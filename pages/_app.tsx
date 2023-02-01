@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 function RecoilDebugObserver() {
   const snapshot = useRecoilSnapshot();
-  
+
   React.useEffect(() => {
     console.debug('The following atoms were modified:');
     for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
