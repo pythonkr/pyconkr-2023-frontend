@@ -3,9 +3,23 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    loader: "imgix",
-    path: "/",
+    loader: 'imgix',
+    path: '/',
   },
-}
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: [{
+        loader: '@svgr/webpack',
+        options: {
+          icon: true,
+        },
+      }],
+    });
 
-module.exports = nextConfig
+    return config;
+  },
+};
+
+module.exports = nextConfig;
