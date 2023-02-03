@@ -7,6 +7,12 @@ export default class Document extends NextDocument {
     return (
       <Html>
         <Head>
+          <link
+            rel="stylesheet"
+            as="style"
+            crossOrigin=""
+            href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.css"
+          />
           <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
         </Head>
         <body>
