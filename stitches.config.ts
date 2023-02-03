@@ -18,4 +18,20 @@ export const { styled, css, getCssText, createTheme, globalCss } =
         functionalGreen: '#45b26b',
       },
     },
+    utils: {
+      bodyText: (level: 1 | 2) => {
+        if (level === 1) {
+          return {
+            fontSize: '20px',
+            lineHeight: '30px',
+            fontWeight: 'normal',
+          };
+        }
+        return {
+          fontSize: '14px',
+          lineHeight: '21px',
+          fontWeight: 'normal',
+        };
+      },
+    },
   });
