@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 
 import styles from '../styles/Home.module.css';
 import { sampleCountState } from '../src/store';
+import SampleRadio from '../components/SampleRadio';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -28,6 +29,9 @@ const Home: NextPage = () => {
             Click
           </button>
         </p>
+
+        {/* sample radio 컴포넌트*/}
+        <SampleRadio />
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
