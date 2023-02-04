@@ -38,8 +38,14 @@ const SampleRadio = () => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <RadioGroup>
-        {sampleData.map((data) => (
-          <Radio key={data.id} id={data.id} value={data.value} name="donate">
+        {sampleData.map((data, index) => (
+          <Radio
+            key={data.id}
+            id={data.id}
+            value={data.value}
+            name="donate"
+            defaultChecked={index === 0}
+          >
             <InfoText>
               <span>{data.name}</span>
               <span>{data.amount}</span>

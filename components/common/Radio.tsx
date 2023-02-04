@@ -26,12 +26,19 @@ interface RadioProps {
   id: string;
   name: string;
   value: string;
+  defaultChecked?: boolean;
 }
 
-const Radio = ({ children, id, name, value }: RadioProps) => {
+const Radio = ({ children, id, name, value, defaultChecked }: RadioProps) => {
   return (
     <>
-      <StyledInput type="radio" id={id} name={name} value={value} />
+      <StyledInput
+        type="radio"
+        id={id}
+        name={name}
+        value={value}
+        defaultChecked={defaultChecked}
+      />
       <StyledLabel htmlFor={id}>{children}</StyledLabel>
     </>
   );
