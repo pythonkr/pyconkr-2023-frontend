@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 
 import styles from '../styles/Home.module.css';
 import { sampleCountState } from '../src/store';
+import NavBar from '../components/NavBar';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -28,6 +29,7 @@ const Home: NextPage = () => {
             Click
           </button>
         </p>
+        <NavBar></NavBar>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
