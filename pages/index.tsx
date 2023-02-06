@@ -1,11 +1,14 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 
-import styles from '../styles/Home.module.css';
+import Button from '@/common/Button';
+import UserFilled from 'public/icons/User/Filled.svg';
 import { sampleCountState } from '../src/store';
 import SampleRadio from '../components/SampleRadio';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -23,12 +26,33 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          Count : {count}
-          <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-            Click
-          </button>
-        </p>
+        <p className={styles.description}>Count : {count}</p>
+
+        {/* SECTION - 버튼 미리보기 */}
+        <div>
+          <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
+            Small
+          </Button>
+          <Button
+            size="big"
+            type="button"
+            onClick={() => setCount((prev) => prev + 1)}
+          >
+            Big
+          </Button>
+          <Button disabled>Disabled</Button>
+          <Button icon={<UserFilled />}>Icon Small</Button>
+          <Button size="big" icon={<UserFilled />}>
+            Icon Big
+          </Button>
+          <Button size="flat" icon={<UserFilled />}>
+            Icon Flat
+          </Button>
+          <Link href="/donate">
+            <Button>후원하기</Button>
+          </Link>
+        </div>
+        {/* !SECTION */}
 
         {/* sample radio 컴포넌트*/}
         <SampleRadio />
