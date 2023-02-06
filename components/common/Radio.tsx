@@ -19,6 +19,7 @@ const StyledLabel = styled('label', {
   border: '1px solid $textSecondary',
   color: '$textSecondary',
   bodyText: 1,
+  cursor: 'pointer',
 });
 
 interface RadioProps {

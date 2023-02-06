@@ -6,14 +6,14 @@ const StyledForm = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  width: '100vw',
 });
 
 const RadioGroup = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  width: '582px',
-  margin: '1rem 0',
+  margin: '2rem',
 });
 
 const InfoText = styled('div', {
