@@ -1,56 +1,60 @@
-import Link from 'next/link';
 import React from 'react';
-import { styled } from '../stitches.config';
-import { Body1 } from './body';
+import { styled } from 'stitches.config';
+import Link from 'next/link';
 import Button from './common/Button';
 import { H4 } from './heading';
 
-const NavHeader = styled('div', {
-  fontFamily: 'Pretendard',
-  width: '74.6rem', 
-  height: '5rem', 
+const StyledNavArea = styled('div', {
+  width: '74.6rem',
+  height: '5rem',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  margin: '0 auto',
 });
 
-const MenuBox = styled('div', {
+const Body = styled('p', {
+  bodyText: 1,
+  color: '$textPrimary',
+});
+
+const StyledMenuBox = styled('div', {
   margin: '0 21.5rem',
 });
 
-const Menu = styled('div', {
+const StyledMenu = styled('div', {
   display: 'inline-block',
   padding: '0 1.5rem',
 });
 
-const NavBar = () => {
-  /* TODO: Router URL이 추가되면 아래 변수를 수정해야 해요 */
-  const logoLink=''; // PyConKR
-  const cocLink=''; // 행동 강령
-  const sponsorInfoLink=''; // 후원 안내
-  const sponsorBtnLink=''; // 후원하기
+/* TODO: Router URL이 추가되면 아래 변수를 수정해야 해요 */
+const logoLink = ''; // PyConKR
+const cocLink = ''; // 행동 강령
+const sponsorInfoLink = ''; // 후원 안내
+const sponsorBtnLink = ''; // 후원하기
 
+const NavBar = () => {
   return (
-    <NavHeader>
-      <Link href={'/'+logoLink} passHref>
+    <StyledNavArea>
+      <Link href={`/${logoLink}`} passHref>
         <H4>PyConKR</H4>
       </Link>
-      <MenuBox>
-        <Menu>
-          <Link href={'/'+cocLink} passHref>
-            <Body1>행동 강령</Body1>
+      <StyledMenuBox>
+        <StyledMenu>
+          <Link href={`/${cocLink}`} passHref>
+            <Body>행동 강령</Body>
           </Link>
-        </Menu>
-        <Menu>
-          <Link href={'/'+sponsorInfoLink} passHref>
-            <Body1>후원 안내</Body1>
+        </StyledMenu>
+        <StyledMenu>
+          <Link href={`/${sponsorInfoLink}`} passHref>
+            <Body>후원 안내</Body>
           </Link>
-        </Menu>
-      </MenuBox>
-      <Link href={'/'+sponsorBtnLink} passHref>
-        <Button children='후원하기'/>
+        </StyledMenu>
+      </StyledMenuBox>
+      <Link href={`/${sponsorBtnLink}`} passHref>
+        <Button>후원하기</Button>
       </Link>
-    </NavHeader>
+    </StyledNavArea>
   );
 };
 
