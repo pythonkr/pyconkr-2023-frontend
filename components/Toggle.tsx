@@ -7,6 +7,9 @@ import ArrowUpSimple from 'public/ArrowUpSimple.svg';
 const Button = styled('button', {
   background: 'none',
   border: 'none',
+  '&:hover': {
+    cursor: 'pointer',
+  },
 });
 
 const Show = styled('div', {
