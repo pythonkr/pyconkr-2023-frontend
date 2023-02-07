@@ -10,6 +10,7 @@ import { sampleCountState } from '../src/store';
 import NavBar from '../components/NavBar';
 import SampleRadio from '../components/SampleRadio';
 import styles from '../styles/Home.module.css';
+import SimpleInput from '@/SimpleInput';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -35,7 +36,25 @@ const Home: NextPage = () => {
           </button>
         </p>
 
-        <p className={styles.description}>Count : {count}</p>
+        {/* SECTION - Simple Input 미리보기 */}
+        <div>
+          <SimpleInput
+            type="text"
+            label="이름"
+            placeholder="이름을 입력해주세요."
+          />
+          <SimpleInput
+            type="email"
+            label="이메일"
+            placeholder="이메일을 입력해주세요."
+          />
+          <SimpleInput
+            type="password"
+            label="비밀번호"
+            size='big'
+            placeholder="8자 이상의 비밀번호를 입력해주세요. (Simple Input 긴 버전)"
+          />
+        </div>
 
         {/* SECTION - 버튼 미리보기 */}
         <div>
