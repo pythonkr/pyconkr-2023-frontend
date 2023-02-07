@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import Button from '@/common/Button';
 import UserFilled from 'public/icons/User/Filled.svg';
 import { sampleCountState } from '../src/store';
+import SampleRadio from '../components/SampleRadio';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -52,6 +53,9 @@ const Home: NextPage = () => {
           </Link>
         </div>
         {/* !SECTION */}
+
+        {/* sample radio 컴포넌트*/}
+        <SampleRadio />
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
