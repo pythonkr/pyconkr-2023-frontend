@@ -2,6 +2,8 @@ import React from 'react';
 import { styled } from 'stitches.config';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { H4 } from './heading';
+import ClearInput from '../public/icons/Clear.svg';
+import CheckInput from '../public/icons/Check.svg';
 
 const StyledInputArea = styled('form', {
     padding: '1rem',
@@ -11,8 +13,28 @@ const Label = styled('label', {
     padding: '.5rem',
 });
 
-const Icon = styled('image', {
+const IconBox = styled('span', {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  
+    '& svg': {
+      width: '0.8rem', 
+      marginTop: '-3.7rem', 
+      marginRight: '1.4rem', 
+    },
+});
 
+const LongIconBox = styled('span', {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  
+    '& svg': {
+      width: '1.5rem',
+      marginTop: '-3.7rem', 
+      marginRight: '-34.6rem',
+    }
 });
 
 const StyledInput = styled('input', {
@@ -24,6 +46,10 @@ const StyledInput = styled('input', {
     width: '20rem',
     height: '4rem',
     fontSize: '1.25rem',
+    '&:focus':{
+        border: '2px solid #F8F8F8',
+        color: '#F8F8F8',
+    },
     variants: {
         size: {
             small: {
@@ -46,7 +72,6 @@ const StyledInput = styled('input', {
             }
         }
     },
-
     defaultVariants: {
         size: "small",
         validation: 'editing',
@@ -86,6 +111,7 @@ interface InputProps {
     label?: string;
     placeholder?: string;
     disabled?: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 const SimpleInput = ({
     type = 'text',
@@ -93,9 +119,10 @@ const SimpleInput = ({
     label,
     placeholder,
     disabled = false,
+    onChange,
     ...props
 }: InputProps) => {
-    const { register, handleSubmit, watch, formState: { errors, isDirty } } = useForm<FormValues>({
+    const { register, handleSubmit, watch, reset, setFocus, formState: { errors, isDirty } } = useForm<FormValues>({
         mode: "onBlur"
     });
     const onSubmitHandler: SubmitHandler<FormValues> = async (data) => {
@@ -117,6 +144,34 @@ const SimpleInput = ({
                 {...register(type, actionList[type])}
                 {...props}
             />
+            {!isDirty? 
+                null 
+                : 
+                errors[type] === undefined ? 
+                    size==='small' ? (
+                        <IconBox>
+                            <CheckInput/>
+                        </IconBox>
+                    ) : (
+                        <LongIconBox>
+                            <CheckInput/>
+                        </LongIconBox>
+                    )
+                    : 
+                    size==='small' ? (
+                        <IconBox>
+                            <ClearInput onClick={()=>{
+                                reset(this);
+                            }}/>
+                        </IconBox>
+                    ) : (
+                        <LongIconBox>
+                            <ClearInput onClick={()=>{
+                                reset(this);
+                            }}/>
+                        </LongIconBox>
+                    )
+            }
         </StyledInputArea>
     );
 

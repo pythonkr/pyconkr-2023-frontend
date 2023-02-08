@@ -11,6 +11,7 @@ import NavBar from '../components/NavBar';
 import SampleRadio from '../components/SampleRadio';
 import styles from '../styles/Home.module.css';
 import SimpleInput from '@/SimpleInput';
+import ClearInput from '../public/icons/Clear.svg';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -42,6 +43,7 @@ const Home: NextPage = () => {
             type="text"
             label="이름"
             placeholder="이름을 입력해주세요."
+            // onChange={(e) => {setName(e.target.value)}} // onChange 이벤트를 받아서 사용할 수 있습니다. 
           />
           <SimpleInput
             type="email"
@@ -55,7 +57,7 @@ const Home: NextPage = () => {
             placeholder="8자 이상의 비밀번호를 입력해주세요. (Simple Input 긴 버전)"
           />
         </div>
-
+        
         {/* SECTION - 버튼 미리보기 */}
         <div>
           <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
