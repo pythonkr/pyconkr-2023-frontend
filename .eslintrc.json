@@ -17,6 +17,8 @@
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": "off",
     "import/no-extraneous-dependencies": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "linebreak-style": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
