@@ -20,6 +20,10 @@ export const { styled, css, getCssText, createTheme, globalCss } =
         functionalGreen: '#45b26b',
         functionalBlue: '#3772ff',
       },
+      radii: {
+        small: '4px',
+        rounded: '8px',
+      },
     },
     utils: {
       bodyText: (level: 1 | 2) => {
