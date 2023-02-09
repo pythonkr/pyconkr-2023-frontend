@@ -1,4 +1,3 @@
-import { VariantProps } from '@stitches/react';
 import { styled } from 'stitches.config';
 
 const ProgressWrapper = styled('div', {
@@ -10,28 +9,7 @@ const ProgressWrapper = styled('div', {
 const Progress = styled('div', {
   height: '100%',
   backgroundColor: '$textPrimary',
-  variants: {
-    size: {
-      1: {
-        width: '20%',
-      },
-      2: {
-        width: '40%',
-      },
-      3: {
-        width: '60%',
-      },
-      4: {
-        width: '80%',
-      },
-      5: {
-        width: '100%',
-      },
-    },
-  },
 });
-
-type ProgressVariantProps = VariantProps<typeof Progress>;
 
 type ProgressbarProps = {
   value: number;
@@ -40,7 +18,11 @@ type ProgressbarProps = {
 export const Progressbar = ({ value }: ProgressbarProps) => {
   return (
     <ProgressWrapper>
-      <Progress size={value as ProgressVariantProps['size']} />
+      <Progress
+        style={{
+          width: `${value * 20}%`,
+        }}
+      />
     </ProgressWrapper>
   );
 };
