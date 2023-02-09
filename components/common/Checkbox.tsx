@@ -35,6 +35,7 @@ const CheckBoxContainer = styled('div', {
 
 const LabelText = styled('span', {
   marginLeft: '12px',
+  bodyText: 1,
 });
 
 interface CheckboxProps {
