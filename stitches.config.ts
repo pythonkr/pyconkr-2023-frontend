@@ -12,10 +12,17 @@ export const { styled, css, getCssText, createTheme, globalCss } =
 
         gray500: '#909090',
 
+        white: '#ffffff',
+
         brandPrimary: '#ef466f',
 
         functionalRed: '#be3455',
         functionalGreen: '#45b26b',
+        functionalBlue: '#3772ff',
+      },
+      radii: {
+        small: '4px',
+        rounded: '8px',
       },
     },
     utils: {
