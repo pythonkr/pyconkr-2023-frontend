@@ -13,23 +13,35 @@ const IconBox = styled('span', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  
-    '& svg': {
-      width: '0.8rem', 
-      marginTop: '-3.7rem', 
-      marginRight: '1.4rem', 
-    },
-});
-
-const LongIconBox = styled('span', {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  
-    '& svg': {
-      width: '1.5rem',
-      marginTop: '-3.7rem', 
-      marginRight: '-34.6rem',
+    variants: {
+        length: {
+            short: {
+                '& svg': {
+                    marginTop: '-3.7rem',
+                    marginRight: '.4rem',
+                },
+            },
+            long: {
+                '& svg': {
+                    marginTop: '-3.7rem',
+                    marginRight: '-32.6rem',
+                },
+            },
+        },
+        isvalid: {
+            success: {
+                '& svg': {
+                    width: '1rem',
+                    height: '1rem',
+                }
+            },
+            fail: {
+                '& svg': {
+                    width: '1.25rem',
+                    height: '1.25rem',
+                }
+            }
+        }
     }
 });
 
@@ -42,7 +54,7 @@ const StyledInput = styled('input', {
     width: '20rem',
     height: '4rem',
     fontSize: '1.25rem',
-    '&:focus':{
+    '&:focus': {
         border: '2px solid $textPrimary',
         color: '$textPrimary',
     },
@@ -73,33 +85,6 @@ const StyledInput = styled('input', {
         isvalid: 'editing',
     }
 });
-// 
-const validate = (type: string, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void) => {
-    if(type === 'email') {
-        return {
-            required: "이메일은 필수 입력입니다.",
-            pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "이메일 형식에 맞지 않습니다."
-            },
-            onChange: onChange,
-        }
-    } else if(type==='password') {
-        return {
-            required: "비밀번호는 필수 입력입니다.",
-            minLength: {
-                value: 8,
-                message: "8자리 이상 비밀번호를 사용하세요."
-            },
-            onChange: onChange,
-        }
-    } else {
-        return {
-            required: "이 항목은 필수 입력입니다.",
-            onChange: onChange,
-        }
-    }
-};
 
 // define types for hook form
 type FormValues = {
@@ -110,7 +95,7 @@ type FormValues = {
 // interface with all input props
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     type?: 'text' | 'email' | 'password';
-    length?: 'short' | 'long'; 
+    length?: 'short' | 'long';
     label?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -126,14 +111,42 @@ const SimpleInput = ({
     const { register, handleSubmit, watch, reset, setFocus, formState: { errors, isDirty } } = useForm<FormValues>({
         mode: "onBlur"
     });
-    
+
+    // input validation function
+    const validate = (type: string, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void) => {
+        if (type === 'email') {
+            return {
+                required: "이메일은 필수 입력입니다.",
+                pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "이메일 형식에 맞지 않습니다."
+                },
+                onChange: onChange,
+            }
+        } else if (type === 'password') {
+            return {
+                required: "비밀번호는 필수 입력입니다.",
+                minLength: {
+                    value: 8,
+                    message: "8자리 이상 비밀번호를 사용하세요."
+                },
+                onChange: onChange,
+            }
+        } else {
+            return {
+                required: "이 항목은 필수 입력입니다.",
+                onChange: onChange,
+            }
+        }
+    };
+
     return (
         <>
             {
-                label===undefined ? null : 
-                <Label htmlFor={type}>
-                    <H4>{label}</H4>
-                </Label>
+                label === undefined ? null :
+                    <Label htmlFor={type}>
+                        <H4>{label}</H4>
+                    </Label>
             }
             <StyledInput
                 id={type}
@@ -145,33 +158,22 @@ const SimpleInput = ({
                 {...register(type, validate(type, onChange))}
                 {...props}
             />
-            {!isDirty? 
-                null 
-                : 
-                errors[type] === undefined ? 
-                    length==='short' ? (
-                        <IconBox>
-                            <CheckInput/>
-                        </IconBox>
-                    ) : (
-                        <LongIconBox>
-                            <CheckInput/>
-                        </LongIconBox>
-                    )
-                    : 
-                    length==='short' ? (
-                        <IconBox>
-                            <ClearInput onClick={()=>{
-                                reset(this);
-                            }}/>
-                        </IconBox>
-                    ) : (
-                        <LongIconBox>
-                            <ClearInput onClick={()=>{
-                                reset(this);
-                            }}/>
-                        </LongIconBox>
-                    )
+            {!isDirty ?
+                null
+                :
+                errors[type] === undefined ?
+                    <IconBox length={length} isvalid='success'>
+                        <CheckInput />
+                    </IconBox>
+                    :
+                    <IconBox length={length} isvalid='fail'>
+                            <ClearInput onClick={() => {
+                                reset({
+                                    [type]: ''
+                                });
+                                setFocus(type);
+                            }} />
+                    </IconBox>
             }
         </>
     );
