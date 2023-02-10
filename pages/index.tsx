@@ -43,18 +43,19 @@ const Home: NextPage = () => {
             type="text"
             label="이름"
             placeholder="이름을 입력해주세요."
-            // onChange={(e) => {setName(e.target.value)}} // onChange 이벤트를 받아서 사용할 수 있습니다. 
+            // onChange={(e) => {console.log(e.target.value)}} // onChange 이벤트를 받아서 사용할 수 있습니다. (Ex. setName())
           />
           <SimpleInput
             type="email"
             label="이메일"
             placeholder="이메일을 입력해주세요."
+            // onChange={(e) => {console.log('email:', e.target.value)}}
           />
           <SimpleInput
             type="password"
             label="비밀번호"
-            size='big'
-            placeholder="8자 이상의 비밀번호를 입력해주세요. (Simple Input 긴 버전)"
+            length='long'
+            placeholder="8자 이상의 비밀번호를 입력해주세요. (Simple Input long ver.)"
           />
         </div>
         
