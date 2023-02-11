@@ -30,6 +30,20 @@ const CloseButton = styled('button', {
   cursor: 'pointer',
 });
 
+const StyledFileUploadIcon = styled(FileUploadIcon, {
+  '& path': {
+    fill: '$textPrimary',
+  },
+});
+
+const StyledCloseIcon = styled(CloseIcon, {
+  width: '16px',
+  height: '16px',
+  '& path': {
+    fill: '$textPrimary',
+  },
+});
+
 interface FileItemProps {
   file: File;
   onRemove: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -39,11 +53,11 @@ export const FileItem = ({ file, onRemove }: FileItemProps) => {
   return (
     <FileItemWrapper>
       <FileItemLeftGroup>
-        <FileUploadIcon />
+        <StyledFileUploadIcon />
         <FileItemName>{file.name}</FileItemName>
       </FileItemLeftGroup>
       <CloseButton onClick={onRemove}>
-        <CloseIcon width={16} height={16} />
+        <StyledCloseIcon />
       </CloseButton>
     </FileItemWrapper>
   );
