@@ -1,9 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-import { styled } from 'stitches.config';
+import { useSetRecoilState } from 'recoil';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
+import { sponsorState } from '@/stores';
+import { styled } from 'stitches.config';
 import NavBar from '@/components/NavBar';
 import { H3 } from '@/components/heading';
 import type { SponsorInputInfo } from '@types';
@@ -48,11 +50,15 @@ const SponsorInfoPage: NextPage = () => {
     resetField,
     handleSubmit,
   } = useForm<SponsorInputInfo>();
+  const setSponsorState = useSetRecoilState(sponsorState);
 
   const onSubmitSponsorInfo: SubmitHandler<SponsorInputInfo> =
-    React.useCallback((data) => {
-      console.log(data);
-    }, []);
+    React.useCallback(
+      (data) => {
+        setSponsorState((prev) => ({ ...prev, ...data }));
+      },
+      [setSponsorState]
+    );
 
   const handleValidForm = React.useCallback(
     (formKey: keyof SponsorInputInfo) => {
