@@ -16,8 +16,6 @@ import { Progressbar } from '@/components/common/Progressbar';
 
 const ContentWrapper = styled('div', {
   width: '100%',
-  marginTop: 68,
-  marginInline: 'auto',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
