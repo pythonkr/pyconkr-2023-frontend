@@ -6,7 +6,7 @@ const StyledForm = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  width: '100vw',
+  width: '100%',
 });
 
 const RadioGroup = styled('div', {
@@ -53,7 +53,6 @@ const SampleRadio = () => {
           </Radio>
         ))}
       </RadioGroup>
-      <button>Submit</button>
     </StyledForm>
   );
 };

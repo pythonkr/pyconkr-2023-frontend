@@ -9,9 +9,52 @@ import UserFilled from 'public/icons/User/Filled.svg';
 import { sampleCountState } from '../src/store';
 import SampleRadio from '../components/SampleRadio';
 import styles from '../styles/Home.module.css';
+import { darkTheme, styled } from 'stitches.config';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
+
+  const ComponentPreview = (
+    <>
+      <div>
+        <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
+          Small
+        </Button>
+        <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
+          Small
+        </Button>
+        <Button
+          size="big"
+          type="button"
+          onClick={() => setCount((prev) => prev + 1)}
+        >
+          Big
+        </Button>
+        <Button disabled>Disabled</Button>
+        <Button icon={<UserFilled />}>Icon Small</Button>
+        <Button size="big" icon={<UserFilled />}>
+          Icon Big
+        </Button>
+        <Button size="flat" icon={<UserFilled />}>
+          Icon Flat
+        </Button>
+        <Link href="/donate">
+          <Button>후원하기</Button>
+        </Link>
+      </div>
+      {/* !SECTION */}
+
+      {/* sample radio 컴포넌트*/}
+      <SampleRadio />
+    </>
+  );
+
+  const PreviewDiv = styled('div', {
+    flex: 1,
+    padding: 8,
+    maxWidth: '100%',
+    backgroundColor: '$backgroundPrimary',
+  });
 
   return (
     <div className={styles.container}>
@@ -22,84 +65,11 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>Count : {count}</p>
-
-        {/* SECTION - 버튼 미리보기 */}
-        <div>
-          <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
-            Small
-          </Button>
-          <Button
-            size="big"
-            type="button"
-            onClick={() => setCount((prev) => prev + 1)}
-          >
-            Big
-          </Button>
-          <Button disabled>Disabled</Button>
-          <Button icon={<UserFilled />}>Icon Small</Button>
-          <Button size="big" icon={<UserFilled />}>
-            Icon Big
-          </Button>
-          <Button size="flat" icon={<UserFilled />}>
-            Icon Flat
-          </Button>
-          <Link href="/donate">
-            <Button>후원하기</Button>
-          </Link>
-        </div>
-        {/* !SECTION */}
-
-        {/* sample radio 컴포넌트*/}
-        <SampleRadio />
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <PreviewDiv>{ComponentPreview}</PreviewDiv>
+          <PreviewDiv className={darkTheme}>{ComponentPreview}</PreviewDiv>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };
