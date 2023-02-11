@@ -41,7 +41,7 @@ export const { styled, css, getCssText, createTheme, globalCss } =
 
 export const darkTheme = createTheme('dark', {
   colors: {
-    textPrimary: '#fff',
+    textPrimary: '#ebebeb',
     textSecondary: '#909090',
 
     backgroundPrimary: '#1c1c1c',

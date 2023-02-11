@@ -6,7 +6,8 @@ import { styled } from 'stitches.config';
 const StyledFileUpload = styled('div', {
   width: '100%',
   height: '180px',
-  backgroundColor: '$backgroundSecondary',
+  backgroundColor: '$backgroundPrimary',
+  border: '2px solid $textPrimary',
 });
 
 const StyledFileUploadInput = styled('input', {
@@ -21,7 +22,7 @@ const FileUploadLabel = styled('label', {
   width: '100%',
   height: '100%',
   bodyText: 2,
-  color: '$textSecondary',
+  color: '$textPrimary',
   gap: 10,
   cursor: 'pointer',
 });
@@ -34,6 +35,15 @@ const FileItemLabel = styled('label', {
   height: '100%',
   overflowY: 'scroll',
   padding: 24,
+});
+
+const StyledFileUploadIcon = styled(FileUploadIcon, {
+  width: '24px',
+  height: '24px',
+
+  '& path': {
+    fill: '$textPrimary',
+  },
 });
 
 interface FileUploadProps {
@@ -104,16 +114,18 @@ export const FileUpload = ({
     [onFileUpload, stopSyntheticEvent]
   );
 
+  const fileInputId = props.id ?? 'file-upload';
+
   return (
     <StyledFileUpload>
       <StyledFileUploadInput
-        id="file-upload"
+        id={fileInputId}
         type="file"
         onChange={handleFileUpload}
         {...props}
       />
       {uploadedFiles?.length ? (
-        <FileItemLabel htmlFor="file-upload">
+        <FileItemLabel htmlFor={fileInputId}>
           {Array.from(uploadedFiles).map((file, index) => (
             <FileItem
               key={file.name}
@@ -124,11 +136,11 @@ export const FileUpload = ({
         </FileItemLabel>
       ) : (
         <FileUploadLabel
-          htmlFor="file-upload"
+          htmlFor={fileInputId}
           onDragOver={stopSyntheticEvent}
           onDrop={handleDrop}
         >
-          <FileUploadIcon width={24} height={24} />
+          <StyledFileUploadIcon />
           {labelText}
         </FileUploadLabel>
       )}

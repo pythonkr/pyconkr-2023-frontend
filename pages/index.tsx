@@ -13,6 +13,7 @@ import Checkbox from '@/common/Checkbox';
 import { ComponentProps, useState } from 'react';
 import Toggle from '@/Toggle';
 import { Progressbar } from '@/common/Progressbar';
+import { FileUpload } from '@/common';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -67,6 +68,14 @@ const Home: NextPage = () => {
 
       {/* sample radio 컴포넌트*/}
       <SampleRadio prefix={prefix} />
+
+      <FileUpload
+        id={`file-upload-${prefix}`}
+        labelText="pdf 파일을 등록해주세요"
+        onFileUpload={(file) => {
+          console.log(file);
+        }}
+      />
     </>
   );
 
