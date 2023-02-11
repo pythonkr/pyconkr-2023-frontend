@@ -12,7 +12,7 @@ const Progress = styled('div', {
 });
 
 type ProgressbarProps = {
-  value: number;
+  value: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 };
 
 export const Progressbar = ({ value }: ProgressbarProps) => {
@@ -20,7 +20,7 @@ export const Progressbar = ({ value }: ProgressbarProps) => {
     <ProgressWrapper>
       <Progress
         style={{
-          width: `${value * 20}%`,
+          width: `${(value / 6) * 100}%`,
         }}
       />
     </ProgressWrapper>

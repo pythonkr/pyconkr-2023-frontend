@@ -10,8 +10,9 @@ import SampleRadio from '../components/SampleRadio';
 import styles from '../styles/Home.module.css';
 import { darkTheme, styled } from 'stitches.config';
 import Checkbox from '@/common/Checkbox';
-import { useState } from 'react';
+import { ComponentProps, useState } from 'react';
 import Toggle from '@/Toggle';
+import { Progressbar } from '@/common/Progressbar';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -20,8 +21,16 @@ const Home: NextPage = () => {
   const ComponentPreview = ({ prefix }: { prefix?: string }) => (
     <>
       <div>
+        {Array(7)
+          .fill(null)
+          .map((_, i) => (
+            <Progressbar
+              key={i}
+              value={i as ComponentProps<typeof Progressbar>['value']}
+            />
+          ))}
         <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
-          Small
+          Small {count}
         </Button>
         <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
           Small
