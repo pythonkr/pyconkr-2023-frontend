@@ -4,21 +4,17 @@ export const { styled, css, getCssText, createTheme, globalCss } =
   createStitches({
     theme: {
       colors: {
-        textPrimary: '#f8f8f8',
-        textSecondary: '#d5d5d5',
+        textPrimary: '#1c1c1c',
+        textSecondary: '#909090',
 
-        backgroundPrimary: '#1d1d1d',
-        backgroundSecondary: '#222',
+        backgroundPrimary: '#fff',
 
         gray500: '#909090',
 
         white: '#ffffff',
 
-        brandPrimary: '#ef466f',
-
         functionalRed: '#be3455',
         functionalGreen: '#45b26b',
-        functionalBlue: '#3772ff',
       },
       radii: {
         small: '4px',
@@ -42,3 +38,12 @@ export const { styled, css, getCssText, createTheme, globalCss } =
       },
     },
   });
+
+export const darkTheme = createTheme('dark', {
+  colors: {
+    textPrimary: '#ebebeb',
+    textSecondary: '#909090',
+
+    backgroundPrimary: '#1c1c1c',
+  },
+});

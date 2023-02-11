@@ -7,9 +7,9 @@ const StyledButton = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '0.5rem',
-  backgroundColor: '$functionalRed',
-  color: 'white',
-  border: 'none',
+  backgroundColor: '$backgroundPrimary',
+  color: '$textPrimary',
+  border: '2px solid $textPrimary',
   cursor: 'pointer',
   bodyText: 1,
 
@@ -51,7 +51,7 @@ const IconBox = styled('span', {
     width: '1rem',
     height: '1rem',
     '& path': {
-      fill: 'white',
+      fill: '$textPrimary',
     },
   },
 });
