@@ -1,6 +1,6 @@
 import React from 'react';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
-import { getCssText } from '../stitches.config';
+import { getCssText } from '@/stitches.config';
 
 export default class Document extends NextDocument {
   render() {
@@ -8,10 +8,9 @@ export default class Document extends NextDocument {
       <Html>
         <Head>
           <link
+            href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
             rel="stylesheet"
-            as="style"
-            crossOrigin=""
-            href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.css"
+            type="text/css"
           />
           <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
         </Head>

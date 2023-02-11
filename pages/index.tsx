@@ -1,20 +1,91 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 
-import Button from '@/common/Button';
+import Button from '@/components/common/Button';
 import UserFilled from 'public/icons/User/Filled.svg';
-import { sampleCountState } from '../src/store';
-import NavBar from '../components/NavBar';
-import SampleRadio from '../components/SampleRadio';
-import styles from '../styles/Home.module.css';
-import SimpleInput from '@/SimpleInput';
-import ClearInput from '../public/icons/Clear.svg';
+
+import { sampleCountState } from '@/src/store';
+import SampleRadio from '@/components/SampleRadio';
+import styles from '@/styles/Home.module.css';
+import { darkTheme, styled } from 'stitches.config';
+import Checkbox from '@/components/common/Checkbox';
+import { ComponentProps, useState } from 'react';
+import Toggle from '@/components/Toggle';
+import { Progressbar } from '@/components/common/Progressbar';
+import { FileUpload } from '@/components/common';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const ComponentPreview = ({ prefix }: { prefix?: string }) => (
+    <>
+      <div>
+        {Array(7)
+          .fill(null)
+          .map((_, i) => (
+            <Progressbar
+              key={i}
+              value={i as ComponentProps<typeof Progressbar>['value']}
+            />
+          ))}
+        <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
+          Small {count}
+        </Button>
+        <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
+          Small
+        </Button>
+        <Button
+          size="big"
+          type="button"
+          onClick={() => setCount((prev) => prev + 1)}
+        >
+          Big
+        </Button>
+        <Button disabled>Disabled</Button>
+        <Button icon={<UserFilled />}>Icon Small</Button>
+        <Button size="big" icon={<UserFilled />}>
+          Icon Big
+        </Button>
+        <Button size="flat" icon={<UserFilled />}>
+          Icon Flat
+        </Button>
+        <Link href="/donate">
+          <Button>후원하기</Button>
+        </Link>
+      </div>
+      {/* !SECTION */}
+
+      <Toggle title="Toggle 제목" content="Toggle 내용" />
+
+      <Checkbox
+        id="demochk1"
+        checked={checked}
+        onChange={() => setChecked((prev) => !prev)}
+        label="데모 체크박스"
+      />
+
+      {/* sample radio 컴포넌트*/}
+      <SampleRadio prefix={prefix} />
+
+      <FileUpload
+        id={`file-upload-${prefix}`}
+        labelText="pdf 파일을 등록해주세요"
+        onFileUpload={(file) => {
+          console.log(file);
+        }}
+      />
+    </>
+  );
+
+  const PreviewDiv = styled('div', {
+    flex: 1,
+    padding: 8,
+    maxWidth: '100%',
+    backgroundColor: '$backgroundPrimary',
+  });
 
   return (
     <div className={styles.container}>
@@ -26,111 +97,15 @@ const Home: NextPage = () => {
       <NavBar />
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Count : {count}
-          <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-            Click
-          </button>
-        </p>
-
-        {/* SECTION - Simple Input 미리보기 */}
-        <div>
-          <SimpleInput
-            type="text"
-            label="이름"
-            placeholder="이름을 입력해주세요."
-            // onChange={(e) => {console.log(e.target.value)}} // onChange 이벤트를 받아서 사용할 수 있습니다. (Ex. setName())
-          />
-          <SimpleInput
-            type="email"
-            label="이메일"
-            placeholder="이메일을 입력해주세요."
-            // onChange={(e) => {console.log('email:', e.target.value)}}
-          />
-          <SimpleInput
-            type="password"
-            label="비밀번호"
-            length='long'
-            placeholder="8자 이상의 비밀번호를 입력해주세요. (Simple Input long ver.)"
-          />
-        </div>
-        
-        {/* SECTION - 버튼 미리보기 */}
-        <div>
-          <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
-            Small
-          </Button>
-          <Button
-            size="big"
-            type="button"
-            onClick={() => setCount((prev) => prev + 1)}
-          >
-            Big
-          </Button>
-          <Button disabled>Disabled</Button>
-          <Button icon={<UserFilled />}>Icon Small</Button>
-          <Button size="big" icon={<UserFilled />}>
-            Icon Big
-          </Button>
-          <Button size="flat" icon={<UserFilled />}>
-            Icon Flat
-          </Button>
-          <Link href="/donate">
-            <Button>후원하기</Button>
-          </Link>
-        </div>
-        {/* !SECTION */}
-
-        {/* sample radio 컴포넌트*/}
-        <SampleRadio />
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <PreviewDiv>
+            <ComponentPreview />
+          </PreviewDiv>
+          <PreviewDiv className={darkTheme}>
+            <ComponentPreview prefix="dark" />
+          </PreviewDiv>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };

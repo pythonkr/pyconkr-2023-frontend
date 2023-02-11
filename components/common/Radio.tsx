@@ -1,11 +1,12 @@
 import React from 'react';
-import { styled } from '../../stitches.config';
+import { styled } from '@/stitches.config';
 
 const StyledInput = styled('input', {
   display: 'none',
   '&:checked + label': {
-    border: '1px solid $functionalRed',
-    color: '$functionalRed',
+    backgroundColor: '$textPrimary',
+    border: '2px solid $textPrimary',
+    color: '$backgroundPrimary',
   },
 });
 
@@ -16,8 +17,8 @@ const StyledLabel = styled('label', {
   width: '100%',
   height: '80px',
   padding: '25px 40px',
-  border: '1px solid $textSecondary',
-  color: '$textSecondary',
+  border: '2px solid $textPrimary',
+  color: '$textPrimary',
   bodyText: 1,
   cursor: 'pointer',
 });

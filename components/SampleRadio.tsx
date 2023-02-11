@@ -1,12 +1,12 @@
 import React from 'react';
-import { styled } from '../stitches.config';
-import Radio from './common/Radio';
+import { styled } from '@/stitches.config';
+import Radio from '@/components/common/Radio';
 
 const StyledForm = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  width: '100vw',
+  width: '100%',
 });
 
 const RadioGroup = styled('div', {
@@ -29,7 +29,7 @@ const sampleData = [
   { id: 'donate3', value: 'partnerB', name: '파트너B', amount: '1000만원' },
 ];
 
-const SampleRadio = () => {
+const SampleRadio = ({ prefix = '' }: { prefix?: string }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e.currentTarget.donate.value);
@@ -40,8 +40,8 @@ const SampleRadio = () => {
       <RadioGroup>
         {sampleData.map((data, index) => (
           <Radio
-            key={data.id}
-            id={data.id}
+            key={`${prefix}${data.id}`}
+            id={`${prefix}${data.id}`}
             value={data.value}
             name="donate"
             defaultChecked={index === 0}
@@ -53,7 +53,6 @@ const SampleRadio = () => {
           </Radio>
         ))}
       </RadioGroup>
-      <button>Submit</button>
     </StyledForm>
   );
 };
