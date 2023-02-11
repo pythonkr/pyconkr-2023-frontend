@@ -3,17 +3,17 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 
-import Button from '@/common/Button';
+import Button from '@/components/common/Button';
 import UserFilled from 'public/icons/User/Filled.svg';
-import { sampleCountState } from '../src/store';
-import SampleRadio from '../components/SampleRadio';
-import styles from '../styles/Home.module.css';
+import { sampleCountState } from '@/src/store';
+import SampleRadio from '@/components/SampleRadio';
+import styles from '@/styles/Home.module.css';
 import { darkTheme, styled } from 'stitches.config';
-import Checkbox from '@/common/Checkbox';
+import Checkbox from '@/components/common/Checkbox';
 import { ComponentProps, useState } from 'react';
-import Toggle from '@/Toggle';
-import { Progressbar } from '@/common/Progressbar';
-import { FileUpload } from '@/common';
+import Toggle from '@/components/Toggle';
+import { Progressbar } from '@/components/common/Progressbar';
+import { FileUpload } from '@/components/common';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);

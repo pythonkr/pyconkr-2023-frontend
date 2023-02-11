@@ -1,5 +1,5 @@
-import { CloseIcon, FileUploadIcon } from 'public/icons';
-import { styled } from 'stitches.config';
+import { CloseIcon, FileUploadIcon } from '@/public/icons';
+import { styled } from '@/stitches.config';
 
 const FileItemWrapper = styled('li', {
   display: 'flex',
