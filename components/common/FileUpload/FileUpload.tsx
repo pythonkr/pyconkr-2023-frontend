@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { FileUploadIcon } from 'public/icons';
-import { FileItem } from './FileItem';
-import { styled } from 'stitches.config';
+import { FileUploadIcon } from '@/public/icons';
+import { FileItem } from '@/components/common/FileUpload/FileItem';
+import { styled } from '@/stitches.config';
 
 const StyledFileUpload = styled('div', {
   width: '100%',

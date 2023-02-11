@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { styled } from '../stitches.config';
-import { H4 } from './heading';
-import Arrow from 'public/Arrow.svg';
+import { styled } from '@/stitches.config';
+import { H4 } from '@/components/heading';
+import Arrow from '@/public/Arrow.svg';
 
 const ArrowIcon = styled(Arrow, {
   stroke: '$textPrimary',
