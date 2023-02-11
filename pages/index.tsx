@@ -11,6 +11,7 @@ import styles from '../styles/Home.module.css';
 import { darkTheme, styled } from 'stitches.config';
 import Checkbox from '@/common/Checkbox';
 import { useState } from 'react';
+import Toggle from '@/Toggle';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
@@ -45,6 +46,8 @@ const Home: NextPage = () => {
         </Link>
       </div>
       {/* !SECTION */}
+
+      <Toggle title="Toggle 제목" content="Toggle 내용" />
 
       <Checkbox
         id="demochk1"

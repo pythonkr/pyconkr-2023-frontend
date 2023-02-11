@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import { styled } from '../stitches.config';
 import { H4 } from './heading';
-import ArrowDownSimple from 'public/ArrowDownSimple.svg';
-import ArrowUpSimple from 'public/ArrowUpSimple.svg';
+import Arrow from 'public/Arrow.svg';
+
+const ArrowIcon = styled(Arrow, {
+  stroke: '$textPrimary',
+  fill: '$textPrimary',
+  variants: {
+    direction: {
+      up: {
+        rotate: '180deg',
+      },
+    },
+  },
+});
 
 const Button = styled('button', {
   background: 'none',
@@ -40,7 +51,7 @@ const Toggle = (props: ToggleProps) => {
       <Show>
         <H4>{title}</H4>
         <Button onClick={() => setOpen((isOpen) => !isOpen)}>
-          {open ? <ArrowUpSimple /> : <ArrowDownSimple />}
+          {open ? <ArrowIcon direction={'up'} /> : <ArrowIcon />}
         </Button>
       </Show>
       {open ? <Hide>{content}</Hide> : null}
