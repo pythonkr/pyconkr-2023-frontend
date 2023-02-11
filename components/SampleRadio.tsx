@@ -29,7 +29,7 @@ const sampleData = [
   { id: 'donate3', value: 'partnerB', name: '파트너B', amount: '1000만원' },
 ];
 
-const SampleRadio = () => {
+const SampleRadio = ({ prefix = '' }: { prefix?: string }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e.currentTarget.donate.value);
@@ -40,8 +40,8 @@ const SampleRadio = () => {
       <RadioGroup>
         {sampleData.map((data, index) => (
           <Radio
-            key={data.id}
-            id={data.id}
+            key={`${prefix}${data.id}`}
+            id={`${prefix}${data.id}`}
             value={data.value}
             name="donate"
             defaultChecked={index === 0}

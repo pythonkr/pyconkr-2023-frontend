@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 
@@ -10,11 +9,14 @@ import { sampleCountState } from '../src/store';
 import SampleRadio from '../components/SampleRadio';
 import styles from '../styles/Home.module.css';
 import { darkTheme, styled } from 'stitches.config';
+import Checkbox from '@/common/Checkbox';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);
+  const [checked, setChecked] = useState<boolean>(false);
 
-  const ComponentPreview = (
+  const ComponentPreview = ({ prefix }: { prefix?: string }) => (
     <>
       <div>
         <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
@@ -44,8 +46,15 @@ const Home: NextPage = () => {
       </div>
       {/* !SECTION */}
 
+      <Checkbox
+        id="demochk1"
+        checked={checked}
+        onChange={() => setChecked((prev) => !prev)}
+        label="데모 체크박스"
+      />
+
       {/* sample radio 컴포넌트*/}
-      <SampleRadio />
+      <SampleRadio prefix={prefix} />
     </>
   );
 
@@ -66,8 +75,12 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <div style={{ display: 'flex', width: '100%' }}>
-          <PreviewDiv>{ComponentPreview}</PreviewDiv>
-          <PreviewDiv className={darkTheme}>{ComponentPreview}</PreviewDiv>
+          <PreviewDiv>
+            <ComponentPreview />
+          </PreviewDiv>
+          <PreviewDiv className={darkTheme}>
+            <ComponentPreview prefix="dark" />
+          </PreviewDiv>
         </div>
       </main>
     </div>

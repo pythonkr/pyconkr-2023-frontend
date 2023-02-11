@@ -20,14 +20,12 @@ const CheckBoxContainer = styled('div', {
   height: '24px',
   width: '24px',
   background: '$white',
-  border: '2px solid $gray500',
-  borderRadius: '$small',
+  border: '2px solid $textPrimary',
 
   variants: {
     checked: {
       true: {
-        backgroundColor: '$functionalBlue',
-        border: '2px solid $functionalBlue',
+        backgroundColor: '$textPrimary',
       },
     },
   },
@@ -36,6 +34,19 @@ const CheckBoxContainer = styled('div', {
 const LabelText = styled('span', {
   marginLeft: '12px',
   bodyText: 1,
+  color: '$textPrimary',
+});
+
+const Path = styled('path', {
+  strokeWidth: 1,
+  stroke: 'none',
+  variants: {
+    checked: {
+      true: {
+        stroke: '$backgroundPrimary',
+      },
+    },
+  },
 });
 
 interface CheckboxProps {
@@ -58,10 +69,9 @@ const Checkbox = (props: CheckboxProps) => {
       />
       <CheckBoxContainer checked={checked}>
         <svg viewBox="0 0 16 16" fill="none">
-          <path
+          <Path
             d="M5.85 11.56 2.5 8.21l.71-.71 2.64 2.65L12.5 3.5l.71.71-7.36 7.35z"
-            strokeWidth="1"
-            stroke={checked ? '#fff' : 'none'}
+            checked={checked}
           />
         </svg>
       </CheckBoxContainer>
