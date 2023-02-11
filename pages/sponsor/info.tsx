@@ -6,7 +6,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import NavBar from '@/components/NavBar';
 import { H3 } from '@/components/heading';
-import type { SponsorInfo } from '@types';
+import type { SponsorInputInfo } from '@types';
 import Button from '@/components/common/Button';
 import SimpleInput from '@/components/SimpleInput';
 import { isCurrentTypeValid, validateChecker } from 'utils';
@@ -47,24 +47,22 @@ const SponsorInfoPage: NextPage = () => {
     setFocus,
     resetField,
     handleSubmit,
-  } = useForm<SponsorInfo>();
+  } = useForm<SponsorInputInfo>();
 
-  const onSubmitSponsorInfo: SubmitHandler<SponsorInfo> = React.useCallback(
-    (data) => {
+  const onSubmitSponsorInfo: SubmitHandler<SponsorInputInfo> =
+    React.useCallback((data) => {
       console.log(data);
-    },
-    []
-  );
+    }, []);
 
   const handleValidForm = React.useCallback(
-    (formKey: keyof SponsorInfo) => {
+    (formKey: keyof SponsorInputInfo) => {
       trigger(formKey);
     },
     [trigger]
   );
 
   const handleClickResetIcon = React.useCallback(
-    (formKey: keyof SponsorInfo) => {
+    (formKey: keyof SponsorInputInfo) => {
       resetField(formKey);
       setFocus(formKey);
     },
