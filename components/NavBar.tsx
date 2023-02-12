@@ -3,7 +3,7 @@ import { styled } from 'stitches.config';
 import Link from 'next/link';
 import Button from './common/Button';
 import { H4 } from './heading';
-import { NavBarMenus, PyConNavList } from './constants';
+import { NavBarMenus, Routes } from '../constants/routes';
 
 const StyledNavArea = styled('div', {
   width: '74.6rem',
@@ -16,7 +16,7 @@ const StyledNavArea = styled('div', {
 
 const Body = styled('p', {
   bodyText: 1,
-  color: '$textPrimary',
+  color: '$white',
 });
 
 const StyledMenuBox = styled('div', {
@@ -31,8 +31,8 @@ const StyledMenu = styled('div', {
 const NavBar = () => {
   return (
     <StyledNavArea>
-      <Link href={PyConNavList.HOME.route} passHref>
-        <H4>{PyConNavList.HOME.title}</H4>
+      <Link href={Routes.HOME.route} passHref>
+        <H4>{Routes.HOME.title}</H4>
       </Link>
       <StyledMenuBox>
         {
@@ -45,8 +45,8 @@ const NavBar = () => {
           ))
         }
       </StyledMenuBox>
-      <Link href={PyConNavList.SPONSOR_JOIN.route} passHref>
-        <Button>{PyConNavList.SPONSOR_JOIN.title}</Button>
+      <Link href={Routes.SPONSOR_JOIN.route} passHref>
+        <Button>{Routes.SPONSOR_JOIN.title}</Button>
       </Link>
     </StyledNavArea>
   );

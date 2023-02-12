@@ -15,6 +15,7 @@ import { ComponentProps, useState } from 'react';
 import Toggle from '@/components/Toggle';
 import { Progressbar } from '@/components/common/Progressbar';
 import { FileUpload } from '@/components/common';
+import NavBar from '@/components/NavBar';
 
 const Home: NextPage = () => {
   const [count, setCount] = useRecoilState<number>(sampleCountState);

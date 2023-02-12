@@ -1,4 +1,4 @@
-export const PyConNavList = {
+export const Routes = {
     HOME: {
         title: 'PyConKR',
         route: '/',
@@ -18,6 +18,6 @@ export const PyConNavList = {
 };
 
 export const NavBarMenus = [
-  PyConNavList.COC,
-  PyConNavList.SPONSOR_INFO,
+    Routes.COC,
+    Routes.SPONSOR_INFO,
 ];
