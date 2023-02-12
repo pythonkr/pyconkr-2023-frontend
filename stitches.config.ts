@@ -1,6 +1,7 @@
 import { createStitches } from '@stitches/react';
+import type * as Stitches from '@stitches/react';
 
-export const { styled, css, getCssText, createTheme, globalCss } =
+export const { styled, css, getCssText, createTheme, globalCss, config } =
   createStitches({
     theme: {
       colors: {
@@ -47,3 +48,5 @@ export const darkTheme = createTheme('dark', {
     backgroundPrimary: '#1c1c1c',
   },
 });
+
+export type CSS = Stitches.CSS<typeof config>;
