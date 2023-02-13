@@ -6,9 +6,9 @@ export interface Sponsor {
   managerTel: string;
   managerEmail: string;
   businessRegistrationNumber: string;
-  logoImage: File;
-  bankBookFile: File;
-  businessRegistrationFile: File;
+  logoImage: File | null;
+  bankBookFile: File | null;
+  businessRegistrationFile: File | null;
 }
 
 export type SponsorInputInfo = Pick<

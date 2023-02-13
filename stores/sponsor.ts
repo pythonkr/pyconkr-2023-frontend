@@ -4,14 +4,15 @@ import { atom } from 'recoil';
 export const sponsorState = atom<Sponsor>({
   key: 'sponsor',
   default: {
-    account: '',
+    url: '',
     name: '',
-    phone: '',
-    email: '',
-    organization: '',
-    files: {
-      passbook: null,
-      certificate: null,
-    },
+    level: '',
+    managerName: '',
+    managerTel: '',
+    managerEmail: '',
+    businessRegistrationNumber: '',
+    logoImage: null,
+    bankBookFile: null,
+    businessRegistrationFile: null,
   },
 });
