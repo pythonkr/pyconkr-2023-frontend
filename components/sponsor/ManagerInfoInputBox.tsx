@@ -32,12 +32,18 @@ function ManagerInfoInputBox() {
     formState: { errors, dirtyFields, isValid },
     trigger,
     setFocus,
+    getValues,
     resetField,
     handleSubmit,
   } = useForm<ManagerInputInfo>();
+  const values = getValues(['managerName', 'managerTel', 'managerEmail']);
   const setSponsorState = useSetRecoilState(sponsorState);
 
-  const onSubmitSponsorInfo: SubmitHandler<ManagerInputInfo> =
+  const isNotEmptyValue = React.useCallback((array: string[]): boolean => {
+    return array.every((content) => content !== '');
+  }, []);
+
+  const onSubmitManagerInfo: SubmitHandler<ManagerInputInfo> =
     React.useCallback(
       (data) => {
         setSponsorState((prev) => ({ ...prev, ...data }));
@@ -61,7 +67,7 @@ function ManagerInfoInputBox() {
   );
 
   return (
-    <SponsorInfoForm onSubmit={handleSubmit(onSubmitSponsorInfo)}>
+    <SponsorInfoForm onSubmit={handleSubmit(onSubmitManagerInfo)}>
       <Controller
         name="managerName"
         defaultValue=""
@@ -132,7 +138,10 @@ function ManagerInfoInputBox() {
       {/* TODO: route에 따라 연동 */}
       <ButtonWrapper>
         <LinkButton type="button">이전으로</LinkButton>
-        <LinkButton type="submit" disabled={!isValid}>
+        <LinkButton
+          type="submit"
+          disabled={!isValid || !isNotEmptyValue(values)}
+        >
           다음으로
         </LinkButton>
       </ButtonWrapper>

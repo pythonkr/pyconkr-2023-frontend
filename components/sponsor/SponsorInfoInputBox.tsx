@@ -29,13 +29,19 @@ const SponsorInfoForm = styled('form', {
 function SponsorInfoBox() {
   const {
     control,
-    formState: { errors, dirtyFields, isValid },
+    formState: { errors, dirtyFields, isDirty },
     trigger,
     setFocus,
+    getValues,
     resetField,
     handleSubmit,
   } = useForm<SponsorInputInfo>();
+  const values = getValues(['url', 'name', 'businessRegistrationNumber']);
   const setSponsorState = useSetRecoilState(sponsorState);
+
+  const isNotEmptyValue = React.useCallback((array: string[]): boolean => {
+    return array.every((content) => content !== '');
+  }, []);
 
   const onSubmitSponsorInfo: SubmitHandler<SponsorInputInfo> =
     React.useCallback(
@@ -123,7 +129,10 @@ function SponsorInfoBox() {
       {/* TODO: route에 따라 연동 */}
       <ButtonWrapper>
         <LinkButton type="button">이전으로</LinkButton>
-        <LinkButton type="submit" disabled={!isValid}>
+        <LinkButton
+          type="submit"
+          disabled={!isDirty || !isNotEmptyValue(values)}
+        >
           다음으로
         </LinkButton>
       </ButtonWrapper>
