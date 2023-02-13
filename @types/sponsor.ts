@@ -10,7 +10,13 @@ export interface Sponsor {
   bankBookFile: File;
   businessRegistrationFile: File;
 }
+
 export type SponsorInputInfo = Pick<
   Sponsor,
   'name' | 'businessRegistrationNumber' | 'url'
+>;
+
+export type ManagerInputInfo = Pick<
+  Sponsor,
+  'managerName' | 'managerEmail' | 'managerTel'
 >;
