@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSetRecoilState } from 'recoil';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
-import { sponsorState } from '@/stores';
 import { styled } from 'stitches.config';
 import Button from '@/components/common/Button';
 import type { ManagerInputInfo } from '@/@types';
 import SimpleInput from '@/components/SimpleInput';
-import { isCurrentTypeValid, validateChecker } from '@/utils';
+import useSponsorInputEvent from '@/hooks/useSponsorInputEvent';
+import { isCurrentTypeValid, isNotEmptyValue, validateChecker } from '@/utils';
 
 const ButtonWrapper = styled('div', {
   display: 'flex',
@@ -36,38 +35,16 @@ function ManagerInfoInputBox() {
     resetField,
     handleSubmit,
   } = useForm<ManagerInputInfo>();
+  const { onSubmitStoreData, handleValidForm, handleClickResetIcon } =
+    useSponsorInputEvent<ManagerInputInfo>({
+      trigger,
+      setFocus,
+      resetField,
+    });
   const values = getValues(['managerName', 'managerTel', 'managerEmail']);
-  const setSponsorState = useSetRecoilState(sponsorState);
-
-  const isNotEmptyValue = React.useCallback((array: string[]): boolean => {
-    return array.every((content) => content !== '');
-  }, []);
-
-  const onSubmitManagerInfo: SubmitHandler<ManagerInputInfo> =
-    React.useCallback(
-      (data) => {
-        setSponsorState((prev) => ({ ...prev, ...data }));
-      },
-      [setSponsorState]
-    );
-
-  const handleValidForm = React.useCallback(
-    (formKey: keyof ManagerInputInfo) => {
-      trigger(formKey);
-    },
-    [trigger]
-  );
-
-  const handleClickResetIcon = React.useCallback(
-    (formKey: keyof ManagerInputInfo) => {
-      resetField(formKey);
-      setFocus(formKey);
-    },
-    [resetField, setFocus]
-  );
 
   return (
-    <SponsorInfoForm onSubmit={handleSubmit(onSubmitManagerInfo)}>
+    <SponsorInfoForm onSubmit={handleSubmit(onSubmitStoreData)}>
       <Controller
         name="managerName"
         defaultValue=""

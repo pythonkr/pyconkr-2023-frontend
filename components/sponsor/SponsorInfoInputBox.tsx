@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSetRecoilState } from 'recoil';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
-import { sponsorState } from '@/stores';
 import { styled } from 'stitches.config';
 import Button from '@/components/common/Button';
 import type { SponsorInputInfo } from '@/@types';
 import SimpleInput from '@/components/SimpleInput';
-import { isCurrentTypeValid, validateChecker } from '@/utils';
+import useSponsorInputEvent from '@/hooks/useSponsorInputEvent';
+import { isCurrentTypeValid, isNotEmptyValue, validateChecker } from '@/utils';
 
 const ButtonWrapper = styled('div', {
   display: 'flex',
@@ -36,38 +35,16 @@ function SponsorInfoBox() {
     resetField,
     handleSubmit,
   } = useForm<SponsorInputInfo>();
+  const { onSubmitStoreData, handleValidForm, handleClickResetIcon } =
+    useSponsorInputEvent<SponsorInputInfo>({
+      trigger,
+      setFocus,
+      resetField,
+    });
   const values = getValues(['url', 'name', 'businessRegistrationNumber']);
-  const setSponsorState = useSetRecoilState(sponsorState);
-
-  const isNotEmptyValue = React.useCallback((array: string[]): boolean => {
-    return array.every((content) => content !== '');
-  }, []);
-
-  const onSubmitSponsorInfo: SubmitHandler<SponsorInputInfo> =
-    React.useCallback(
-      (data) => {
-        setSponsorState((prev) => ({ ...prev, ...data }));
-      },
-      [setSponsorState]
-    );
-
-  const handleValidForm = React.useCallback(
-    (formKey: keyof SponsorInputInfo) => {
-      trigger(formKey);
-    },
-    [trigger]
-  );
-
-  const handleClickResetIcon = React.useCallback(
-    (formKey: keyof SponsorInputInfo) => {
-      resetField(formKey);
-      setFocus(formKey);
-    },
-    [resetField, setFocus]
-  );
 
   return (
-    <SponsorInfoForm onSubmit={handleSubmit(onSubmitSponsorInfo)}>
+    <SponsorInfoForm onSubmit={handleSubmit(onSubmitStoreData)}>
       <Controller
         name="name"
         defaultValue=""
