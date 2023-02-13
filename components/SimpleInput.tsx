@@ -5,14 +5,9 @@ import { styled } from 'stitches.config';
 import ClearInput from '@/public/icons/Clear.svg';
 import CheckInput from '@/public/icons/Check.svg';
 
-const Wrapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 8,
-});
-
 const Label = styled('label', {
   bodyText: 1,
+  marginTop: 8,
 });
 
 const InputWrapper = styled('div', {
@@ -83,12 +78,20 @@ const StyledInput = styled('input', {
   },
 });
 
+const ErrorMessage = styled('p', {
+  bodyText: 2,
+  marginTop: 2,
+  color: '$functionalRed',
+});
+
 // interface with all input props
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
   length?: 'short' | 'long' | 'fullWidth';
   isDirty?: boolean;
   isValid?: boolean;
-  label?: string;
+  isError?: boolean;
+  errorMessage?: string;
   onReset?: () => void;
 }
 
@@ -100,13 +103,15 @@ const SimpleInput = React.forwardRef<HTMLInputElement, InputProps>(
       label,
       isDirty,
       isValid,
+      isError,
+      errorMessage,
       onReset,
       ...props
     },
     ref
   ) => {
     return (
-      <Wrapper>
+      <div>
         {label && <Label htmlFor={type}>{label}</Label>}
         <InputWrapper>
           <StyledInput
@@ -132,7 +137,8 @@ const SimpleInput = React.forwardRef<HTMLInputElement, InputProps>(
             </IconBox>
           )}
         </InputWrapper>
-      </Wrapper>
+        {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      </div>
     );
   }
 );

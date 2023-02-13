@@ -106,6 +106,8 @@ function ManagerInfoInputBox() {
               errors
             )}
             isDirty={dirtyFields.managerEmail}
+            isError={typeof errors.managerEmail?.message !== 'undefined'}
+            errorMessage={errors.managerEmail?.message}
             onReset={() => handleClickResetIcon('managerEmail')}
             onBlur={() => handleValidForm('managerEmail')}
             required
