@@ -12,5 +12,5 @@ export interface Sponsor {
 }
 export type SponsorInputInfo = Pick<
   Sponsor,
-  'name' | 'managerName' | 'managerEmail' | 'managerTel'
+  'name' | 'businessRegistrationNumber' | 'url'
 >;
