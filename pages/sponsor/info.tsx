@@ -86,28 +86,6 @@ const SponsorInfoPage: NextPage = () => {
         >{`후원사 정보를\n입력해주세요`}</H3>
         <SponsorInfoForm onSubmit={handleSubmit(onSubmitSponsorInfo)}>
           <Controller
-            name="organization"
-            defaultValue=""
-            control={control}
-            rules={validateChecker('organization')}
-            render={({ field }) => (
-              <SimpleInput
-                {...field}
-                label="후원사 명"
-                length="fullWidth"
-                isValid={isCurrentTypeValid(
-                  dirtyFields.organization,
-                  'organization',
-                  errors
-                )}
-                isDirty={dirtyFields.organization}
-                onReset={() => handleClickResetIcon('organization')}
-                onBlur={() => handleValidForm('organization')}
-                required
-              />
-            )}
-          />
-          <Controller
             name="name"
             defaultValue=""
             control={control}
@@ -115,7 +93,7 @@ const SponsorInfoPage: NextPage = () => {
             render={({ field }) => (
               <SimpleInput
                 {...field}
-                label="담당자 이름"
+                label="후원사 명"
                 length="fullWidth"
                 isValid={isCurrentTypeValid(dirtyFields.name, 'name', errors)}
                 isDirty={dirtyFields.name}
@@ -126,7 +104,29 @@ const SponsorInfoPage: NextPage = () => {
             )}
           />
           <Controller
-            name="phone"
+            name="managerName"
+            defaultValue=""
+            control={control}
+            rules={validateChecker('managerName')}
+            render={({ field }) => (
+              <SimpleInput
+                {...field}
+                label="담당자 이름"
+                length="fullWidth"
+                isValid={isCurrentTypeValid(
+                  dirtyFields.managerName,
+                  'managerName',
+                  errors
+                )}
+                isDirty={dirtyFields.managerName}
+                onReset={() => handleClickResetIcon('managerName')}
+                onBlur={() => handleValidForm('managerName')}
+                required
+              />
+            )}
+          />
+          <Controller
+            name="managerTel"
             defaultValue=""
             control={control}
             rules={validateChecker('phone')}
@@ -135,29 +135,37 @@ const SponsorInfoPage: NextPage = () => {
                 {...field}
                 label="담당자 연락처"
                 length="fullWidth"
-                isValid={isCurrentTypeValid(dirtyFields.phone, 'phone', errors)}
-                isDirty={dirtyFields.phone}
-                onReset={() => handleClickResetIcon('phone')}
-                onBlur={() => handleValidForm('phone')}
+                isValid={isCurrentTypeValid(
+                  dirtyFields.managerTel,
+                  'managerTel',
+                  errors
+                )}
+                isDirty={dirtyFields.managerTel}
+                onReset={() => handleClickResetIcon('managerTel')}
+                onBlur={() => handleValidForm('managerTel')}
                 required
               />
             )}
           />
           <Controller
-            name="email"
+            name="managerEmail"
             defaultValue=""
             control={control}
-            rules={validateChecker('email')}
+            rules={validateChecker('managerEmail')}
             render={({ field }) => (
               <SimpleInput
                 {...field}
                 type="email"
                 label="담당자 이메일"
                 length="fullWidth"
-                isValid={isCurrentTypeValid(dirtyFields.email, 'email', errors)}
-                isDirty={dirtyFields.email}
-                onReset={() => handleClickResetIcon('email')}
-                onBlur={() => handleValidForm('email')}
+                isValid={isCurrentTypeValid(
+                  dirtyFields.managerEmail,
+                  'managerEmail',
+                  errors
+                )}
+                isDirty={dirtyFields.managerEmail}
+                onReset={() => handleClickResetIcon('managerEmail')}
+                onBlur={() => handleValidForm('managerEmail')}
                 required
               />
             )}

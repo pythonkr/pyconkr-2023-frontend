@@ -1,15 +1,16 @@
 export interface Sponsor {
-  account: string;
+  url: string;
   name: string;
-  phone: string;
-  email: string;
-  organization: string;
-  files: {
-    passbook: null;
-    certificate: null;
-  };
+  level: string;
+  managerName: string;
+  managerTel: string;
+  managerEmail: string;
+  businessRegistrationNumber: string;
+  logoImage: File;
+  bankBookFile: File;
+  businessRegistrationFile: File;
 }
 export type SponsorInputInfo = Pick<
   Sponsor,
-  'email' | 'name' | 'organization' | 'phone'
+  'name' | 'managerName' | 'managerEmail' | 'managerTel'
 >;
