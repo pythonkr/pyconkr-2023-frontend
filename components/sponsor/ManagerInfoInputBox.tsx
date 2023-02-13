@@ -19,10 +19,10 @@ const LinkButton = styled(Button, {
   flex: 1,
 });
 
-const SponsorInfoForm = styled('form', {
+const ManagerInfoForm = styled('form', {
   display: 'flex',
   flexDirection: 'column',
-  gap: 8,
+  gap: 24,
 });
 
 function ManagerInfoInputBox() {
@@ -44,7 +44,7 @@ function ManagerInfoInputBox() {
   const values = getValues(['managerName', 'managerTel', 'managerEmail']);
 
   return (
-    <SponsorInfoForm onSubmit={handleSubmit(onSubmitStoreData)}>
+    <ManagerInfoForm onSubmit={handleSubmit(onSubmitStoreData)}>
       <Controller
         name="managerName"
         defaultValue=""
@@ -122,7 +122,7 @@ function ManagerInfoInputBox() {
           다음으로
         </LinkButton>
       </ButtonWrapper>
-    </SponsorInfoForm>
+    </ManagerInfoForm>
   );
 }
 

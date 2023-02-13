@@ -5,6 +5,12 @@ import { styled } from 'stitches.config';
 import ClearInput from '@/public/icons/Clear.svg';
 import CheckInput from '@/public/icons/Check.svg';
 
+const Wrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 8,
+});
+
 const Label = styled('label', {
   bodyText: 1,
 });
@@ -100,7 +106,7 @@ const SimpleInput = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <>
+      <Wrapper>
         {label && <Label htmlFor={type}>{label}</Label>}
         <InputWrapper>
           <StyledInput
@@ -126,7 +132,7 @@ const SimpleInput = React.forwardRef<HTMLInputElement, InputProps>(
             </IconBox>
           )}
         </InputWrapper>
-      </>
+      </Wrapper>
     );
   }
 );

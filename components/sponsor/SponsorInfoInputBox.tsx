@@ -22,7 +22,7 @@ const LinkButton = styled(Button, {
 const SponsorInfoForm = styled('form', {
   display: 'flex',
   flexDirection: 'column',
-  gap: 8,
+  gap: 16,
 });
 
 function SponsorInfoBox() {
