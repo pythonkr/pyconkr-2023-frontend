@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import React from 'react';
 import { styled } from 'stitches.config';
 
@@ -50,7 +49,7 @@ const StyledInput = styled('input', {
   variants: {
     length: {
       short: {
-        width: '11.5rem',
+        width: '20rem',
       },
       long: {
         width: '36.375rem',
