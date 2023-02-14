@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import { styled } from 'stitches.config';
 import Button from '@/components/common/Button';
@@ -27,20 +27,17 @@ const SponsorInfoForm = styled('form', {
 
 function SponsorInfoBox() {
   const {
+    fieldForms,
+    onSubmitStoreData,
+    handleValidForm,
+    handleClickResetIcon,
+  } = useSponsorInputEvent<SponsorInputInfo>();
+  const {
     control,
     formState: { errors, dirtyFields, isDirty },
-    trigger,
-    setFocus,
     getValues,
-    resetField,
     handleSubmit,
-  } = useForm<SponsorInputInfo>();
-  const { onSubmitStoreData, handleValidForm, handleClickResetIcon } =
-    useSponsorInputEvent<SponsorInputInfo>({
-      trigger,
-      setFocus,
-      resetField,
-    });
+  } = fieldForms;
   const values = getValues(['url', 'name', 'businessRegistrationNumber']);
 
   return (

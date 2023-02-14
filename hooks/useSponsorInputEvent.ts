@@ -1,27 +1,11 @@
-import { Sponsor } from '@/@types';
 import { sponsorState } from '@/stores';
 import React from 'react';
-import {
-  Path,
-  FieldValues,
-  SubmitHandler,
-  UseFormTrigger,
-  UseFormSetFocus,
-  UseFormResetField,
-} from 'react-hook-form';
+import { FieldValues, Path, SubmitHandler, useForm } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
 
-interface Props<T extends FieldValues> {
-  trigger: UseFormTrigger<T>;
-  setFocus: UseFormSetFocus<T>;
-  resetField: UseFormResetField<T>;
-}
-
-const useSponsorInputEvent = <T extends Partial<Sponsor>>({
-  trigger,
-  setFocus,
-  resetField,
-}: Props<T>) => {
+const useSponsorInputEvent = <T extends FieldValues>() => {
+  const fieldForms = useForm<T, object>();
+  const { trigger, resetField, setFocus } = fieldForms;
   const setSponsorState = useSetRecoilState(sponsorState);
 
   const onSubmitStoreData: SubmitHandler<T> = React.useCallback(
@@ -47,6 +31,7 @@ const useSponsorInputEvent = <T extends Partial<Sponsor>>({
   );
 
   return {
+    fieldForms,
     handleValidForm,
     onSubmitStoreData,
     handleClickResetIcon,
