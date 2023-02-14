@@ -2,9 +2,9 @@ import React from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
 import { NavBarMenus, Routes } from '@/constants/routes';
-import { StyledButton } from './common/Button';
+import { StyledButton } from '../common/Button';
 import { Logo as LogoSvg } from '@/public/icons';
-import ThemeSwitch from './ThemeSwitch';
+import ThemeSwitch from '../ThemeSwitch';
 
 const StyledNavArea = styled('div', {
   display: 'flex',
