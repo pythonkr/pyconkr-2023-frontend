@@ -4,6 +4,8 @@ import React from 'react';
 import { RecoilRoot, useRecoilSnapshot } from 'recoil';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'next-themes';
+import { darkTheme } from '@/stitches.config';
 
 function RecoilDebugObserver() {
   const snapshot = useRecoilSnapshot();
@@ -22,13 +24,23 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <RecoilRoot>
-      {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-      </QueryClientProvider>
-    </RecoilRoot>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem={true}
+      value={{
+        light: 'light',
+        dark: darkTheme.className,
+      }}
+    >
+      <RecoilRoot>
+        {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        </QueryClientProvider>
+      </RecoilRoot>
+    </ThemeProvider>
   );
 }
 

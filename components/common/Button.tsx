@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'stitches.config';
 
-const StyledButton = styled('button', {
+export const StyledButton = styled('button', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
