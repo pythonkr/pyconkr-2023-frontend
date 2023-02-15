@@ -12,18 +12,20 @@ const Main = styled('main', {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '0 8rem',
 
   '@bp1': {
-    padding: 0,
+    padding: '0 1rem',
   },
-  '@bp2': {},
+  '@bp2': {
+    padding: '0 8rem',
+  },
   '@bp3': {},
   '@bp4': {},
 });
 
 const Wrapper = styled('div', {
   width: '100%',
+  marginTop: '80px',
 });
 
 type ContainerProps = {
