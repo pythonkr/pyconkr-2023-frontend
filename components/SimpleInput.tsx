@@ -121,31 +121,31 @@ const SimpleInput = ({
 
   // input validation function
   const validate = (
-    type: string,
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    inputType: string,
+    onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void
   ) => {
-    if (type === 'email') {
+    if (inputType === 'email') {
       return {
         required: '이메일은 필수 입력입니다.',
         pattern: {
           value: /\S+@\S+\.\S+/,
           message: '이메일 형식에 맞지 않습니다.',
         },
-        onChange: onChange,
+        onChange: onChangeHandler,
       };
-    } else if (type === 'password') {
+    } else if (inputType === 'password') {
       return {
         required: '비밀번호는 필수 입력입니다.',
         minLength: {
           value: 8,
           message: '8자리 이상 비밀번호를 사용하세요.',
         },
-        onChange: onChange,
+        onChange: onChangeHandler,
       };
     } else {
       return {
         required: '이 항목은 필수 입력입니다.',
-        onChange: onChange,
+        onChange: onChangeHandler,
       };
     }
   };
