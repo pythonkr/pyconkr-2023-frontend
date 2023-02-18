@@ -38,6 +38,12 @@ export const { styled, css, getCssText, createTheme, globalCss, config } =
         };
       },
     },
+    media: {
+      bp1: '(min-width: 360px)',
+      bp2: '(min-width: 768px)',
+      bp3: '(min-width: 1024px)',
+      bp4: '(min-width: 1280px)',
+    },
   });
 
 export const darkTheme = createTheme('dark', {
