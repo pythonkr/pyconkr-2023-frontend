@@ -93,14 +93,12 @@ const Home: NextPage = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
-        <PreviewDiv>
-          <ComponentPreview />
-        </PreviewDiv>
-        <PreviewDiv className={darkTheme}>
-          <ComponentPreview prefix="dark" />
-        </PreviewDiv>
-      </Container>
+      <PreviewDiv>
+        <ComponentPreview />
+      </PreviewDiv>
+      <PreviewDiv className={darkTheme}>
+        <ComponentPreview prefix="dark" />
+      </PreviewDiv>
     </div>
   );
 };
