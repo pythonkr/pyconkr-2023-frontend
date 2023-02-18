@@ -1,11 +1,12 @@
-import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot, useRecoilSnapshot } from 'recoil';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ThemeProvider } from 'next-themes';
+import Container from '@/components/layout/Container';
 import { darkTheme } from '@/stitches.config';
+import { ThemeProvider } from 'next-themes';
+import '@/styles/globals.css';
 
 function RecoilDebugObserver() {
   const snapshot = useRecoilSnapshot();
@@ -36,7 +37,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <RecoilRoot>
         {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <Container>
+            <Component {...pageProps} />
+          </Container>
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
       </RecoilRoot>
