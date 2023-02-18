@@ -13,12 +13,8 @@ const Main = styled('main', {
   justifyContent: 'center',
   alignItems: 'center',
 
-  '@bp1': {
-    padding: '0 1rem',
-  },
-  '@bp2': {
-    padding: '0 8rem',
-  },
+  '@bp1': {},
+  '@bp2': {},
   '@bp3': {},
   '@bp4': {},
 });
