@@ -1,12 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRecoilState } from 'recoil';
 
 import Button from '@/components/common/Button';
 import UserFilled from 'public/icons/User/Filled.svg';
 
-import { sampleCountState } from '@/src/store';
 import SampleRadio from '@/components/SampleRadio';
 import { darkTheme, styled } from 'stitches.config';
 import Checkbox from '@/components/common/Checkbox';
@@ -17,7 +15,6 @@ import { FileUpload } from '@/components/common';
 import Container from '@/components/layout/Container';
 
 const Home: NextPage = () => {
-  const [count, setCount] = useRecoilState<number>(sampleCountState);
   const [checked, setChecked] = useState<boolean>(false);
 
   const ComponentPreview = ({ prefix }: { prefix?: string }) => (
@@ -31,19 +28,6 @@ const Home: NextPage = () => {
               value={i as ComponentProps<typeof Progressbar>['value']}
             />
           ))}
-        <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
-          Small {count}
-        </Button>
-        <Button type="button" onClick={() => setCount((prev) => prev + 1)}>
-          Small
-        </Button>
-        <Button
-          size="big"
-          type="button"
-          onClick={() => setCount((prev) => prev + 1)}
-        >
-          Big
-        </Button>
         <Button disabled>Disabled</Button>
         <Button icon={<UserFilled />}>Icon Small</Button>
         <Button size="big" icon={<UserFilled />}>

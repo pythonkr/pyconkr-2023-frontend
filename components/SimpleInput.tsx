@@ -1,34 +1,25 @@
 import React from 'react';
 import { styled } from 'stitches.config';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { H4 } from './heading';
-import ClearInput from '../public/icons/Clear.svg';
-import CheckInput from '../public/icons/Check.svg';
+
+import ClearInput from '@/public/icons/Clear.svg';
+import CheckInput from '@/public/icons/Check.svg';
 
 const Label = styled('label', {
-  padding: '.5rem',
+  bodyText: 1,
+  marginTop: 8,
+});
+
+const InputWrapper = styled('div', {
+  position: 'relative',
 });
 
 const IconBox = styled('span', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  position: 'absolute',
+  top: '50%',
+  right: 18,
+  transform: 'translateY(-50%)',
   variants: {
-    length: {
-      short: {
-        '& svg': {
-          marginTop: '-3.7rem',
-          marginRight: '.4rem',
-        },
-      },
-      long: {
-        '& svg': {
-          marginTop: '-3.7rem',
-          marginRight: '-32.6rem',
-        },
-      },
-    },
-    isvalid: {
+    status: {
       success: {
         '& svg': {
           width: '1rem',
@@ -37,8 +28,8 @@ const IconBox = styled('span', {
       },
       fail: {
         '& svg': {
-          width: '1.25rem',
-          height: '1.25rem',
+          width: '1rem',
+          height: '1rem',
         },
       },
     },
@@ -47,13 +38,10 @@ const IconBox = styled('span', {
 
 const StyledInput = styled('input', {
   boxSizing: 'border-box',
-  alignItems: 'center',
-  display: 'flex',
   padding: '1rem',
-  gap: '0.5rem',
   width: '20rem',
   height: '4rem',
-  fontSize: '1.25rem',
+  bodyText: 1,
   '&:focus': {
     border: '2px solid $textPrimary',
     color: '$textPrimary',
@@ -66,8 +54,11 @@ const StyledInput = styled('input', {
       long: {
         width: '36.375rem',
       },
+      fullWidth: {
+        width: '100%',
+      },
     },
-    isvalid: {
+    status: {
       success: {
         border: '2px solid $functionalGreen',
       },
@@ -82,111 +73,75 @@ const StyledInput = styled('input', {
   },
   defaultVariants: {
     length: 'short',
-    isvalid: 'editing',
+    status: 'editing',
   },
 });
 
-// define types for hook form
-type FormValues = {
-  email: string;
-  password: string;
-  text: string;
-};
+const ErrorMessage = styled('p', {
+  bodyText: 2,
+  marginTop: 2,
+  color: '$functionalRed',
+});
+
 // interface with all input props
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  type?: 'text' | 'email' | 'password';
-  length?: 'short' | 'long';
   label?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  length?: 'short' | 'long' | 'fullWidth';
+  isDirty?: boolean;
+  isValid?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
+  onReset?: () => void;
 }
-const SimpleInput = ({
-  type = 'text',
-  length = 'short',
-  label,
-  placeholder,
-  disabled = false,
-  onChange,
-  ...props
-}: InputProps) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    setFocus,
-    formState: { errors, isDirty },
-  } = useForm<FormValues>({
-    mode: 'onBlur',
-  });
 
-  // input validation function
-  const validate = (
-    inputType: string,
-    onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void
+const SimpleInput = React.forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      type = 'text',
+      length = 'short',
+      label,
+      isDirty,
+      isValid,
+      isError,
+      errorMessage,
+      onReset,
+      ...props
+    },
+    ref
   ) => {
-    if (inputType === 'email') {
-      return {
-        required: '이메일은 필수 입력입니다.',
-        pattern: {
-          value: /\S+@\S+\.\S+/,
-          message: '이메일 형식에 맞지 않습니다.',
-        },
-        onChange: onChangeHandler,
-      };
-    } else if (inputType === 'password') {
-      return {
-        required: '비밀번호는 필수 입력입니다.',
-        minLength: {
-          value: 8,
-          message: '8자리 이상 비밀번호를 사용하세요.',
-        },
-        onChange: onChangeHandler,
-      };
-    } else {
-      return {
-        required: '이 항목은 필수 입력입니다.',
-        onChange: onChangeHandler,
-      };
-    }
-  };
-
-  return (
-    <>
-      {label === undefined ? null : (
-        <Label htmlFor={type}>
-          <H4>{label}</H4>
-        </Label>
-      )}
-      <StyledInput
-        id={type}
-        type={type}
-        length={length}
-        placeholder={placeholder}
-        aria-invalid={!isDirty ? undefined : errors[type] ? true : false}
-        isvalid={
-          !isDirty ? 'editing' : errors[type] === undefined ? 'success' : 'fail'
-        }
-        {...register(type, validate(type, onChange))}
-        {...props}
-      />
-      {!isDirty ? null : errors[type] === undefined ? (
-        <IconBox length={length} isvalid="success">
-          <CheckInput />
-        </IconBox>
-      ) : (
-        <IconBox length={length} isvalid="fail">
-          <ClearInput
-            onClick={() => {
-              reset({
-                [type]: '',
-              });
-              setFocus(type);
-            }}
+    return (
+      <div>
+        {label && <Label htmlFor={type}>{label}</Label>}
+        <InputWrapper>
+          <StyledInput
+            id={type}
+            ref={ref}
+            type={type}
+            length={length}
+            aria-invalid={!isDirty ? undefined : isValid ? true : false}
+            status={!isDirty ? 'editing' : isValid ? 'success' : 'fail'}
+            {...props}
           />
-        </IconBox>
-      )}
-    </>
-  );
-};
+          {!isDirty ? null : isValid ? (
+            <IconBox status="success">
+              <CheckInput />
+            </IconBox>
+          ) : (
+            <IconBox status="fail">
+              <ClearInput
+                onClick={() => {
+                  onReset?.();
+                }}
+              />
+            </IconBox>
+          )}
+        </InputWrapper>
+        {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      </div>
+    );
+  }
+);
+
+SimpleInput.displayName = 'Input';
 
 export default SimpleInput;
