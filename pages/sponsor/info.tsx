@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { NextPage } from 'next';
 
 import { styled } from 'stitches.config';
-import NavBar from '@/components/NavBar';
 import { H3 } from '@/components/heading';
 import { Progressbar } from '@/components/common/Progressbar';
 import { SponsorInfoInputBox } from '@/components/sponsor';
@@ -22,7 +21,6 @@ const SponsorInfoPage: NextPage = () => {
       <Head>
         <title>Sponsor | 정보 입력</title>
       </Head>
-      <NavBar />
       <ContentWrapper>
         <Progressbar value={4} />
         <H3

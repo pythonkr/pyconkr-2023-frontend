@@ -12,7 +12,6 @@ import { ComponentProps, useState } from 'react';
 import Toggle from '@/components/Toggle';
 import { Progressbar } from '@/components/common/Progressbar';
 import { FileUpload } from '@/components/common';
-import Container from '@/components/layout/Container';
 
 const Home: NextPage = () => {
   const [checked, setChecked] = useState<boolean>(false);
