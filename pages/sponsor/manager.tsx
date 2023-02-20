@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 
 import { styled } from 'stitches.config';
 import { H3 } from '@/components/heading';
+import NavBar from '@/components/layout/NavBar';
 import { Progressbar } from '@/components/common/Progressbar';
 import ManagerInfoInputBox from '@/components/sponsor/ManagerInfoInputBox';
 
