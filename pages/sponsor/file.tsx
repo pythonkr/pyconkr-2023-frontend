@@ -1,5 +1,6 @@
 import { Progressbar } from '@/components/common/Progressbar';
 import { H3 } from '@/components/heading';
+import FileInputBox from '@/components/sponsor/FileInputBox';
 import { styled } from '@/stitches.config';
 
 const Container = styled('div', {
@@ -13,12 +14,13 @@ const Container = styled('div', {
 const ContentWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: 24,
-  width: 630,
+  width: '100%',
+  maxWidth: 630,
 });
 
 const StyledH3 = styled(H3, {
   whiteSpace: 'pre-line',
+  margin: '24px 0 16px 0',
 });
 
 const SponsorFilePage = () => {
@@ -27,6 +29,7 @@ const SponsorFilePage = () => {
       <ContentWrapper>
         <Progressbar value={5} />
         <StyledH3>{`후원에 필요한 파일을\n업로드해주세요`}</StyledH3>
+        <FileInputBox />
       </ContentWrapper>
     </Container>
   );

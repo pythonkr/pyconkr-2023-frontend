@@ -56,6 +56,7 @@ const Home: NextPage = () => {
       <FileUpload
         id={`file-upload-${prefix}`}
         labelText="pdf 파일을 등록해주세요"
+        fileType="pdf"
         onFileUpload={(file) => {
           console.log(file);
         }}
