@@ -1,5 +1,6 @@
+import { fileInputList } from '@/constants/sponsorData';
 import { sponsorState } from '@/stores';
-import { styled } from '@stitches/react';
+import { styled } from 'stitches.config';
 import { useRecoilState } from 'recoil';
 import { FileUpload } from '../common';
 import Button from '../common/Button';
@@ -23,7 +24,6 @@ const FileInputWrapper = styled('div', {
 
 const FileLabel = styled('span', {
   bodyText: 1,
-  fontSize: 20, // bodyText가 적용되지 않아 임시 적용
 });
 
 const ButtonContainer = styled('div', {
@@ -39,33 +39,12 @@ const StyledButton = styled(Button, {
 
 type FileType = 'businessRegistrationFile' | 'bankBookFile' | 'logoImage';
 
-type FileInputListType = {
+export type FileInputListType = {
   key: FileType;
   name: string;
   labelText: string;
   fileType: 'pdf' | 'image';
 }[];
-
-const fileInputList: FileInputListType = [
-  {
-    key: 'businessRegistrationFile',
-    name: '사업자등록증',
-    labelText: 'pdf 파일을 등록해주세요',
-    fileType: 'pdf',
-  },
-  {
-    key: 'bankBookFile',
-    name: '통장사본',
-    labelText: 'pdf 파일을 등록해주세요',
-    fileType: 'pdf',
-  },
-  {
-    key: 'logoImage',
-    name: '후원사 로고',
-    labelText: 'png 또는 jpg 파일을 등록해주세요',
-    fileType: 'image',
-  },
-];
 
 const FileInputBox = () => {
   const [sponsorData, setSponsorData] = useRecoilState(sponsorState);
@@ -92,7 +71,7 @@ const FileInputBox = () => {
       </FileInputContainer>
       <ButtonContainer>
         <StyledButton size="big">이전으로</StyledButton>
-        <StyledButton size="big" disabled={true}>
+        <StyledButton size="big" reversal={true}>
           다음으로
         </StyledButton>
       </ButtonContainer>

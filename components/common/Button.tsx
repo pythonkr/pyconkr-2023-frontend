@@ -39,6 +39,16 @@ export const StyledButton = styled('button', {
         width: '100%',
       },
     },
+    reversal: {
+      true: {
+        color: '$backgroundPrimary',
+        backgroundColor: '$textPrimary',
+      },
+      false: {
+        color: '$textPrimary',
+        backgroundColor: '$backgroundPrimary',
+      },
+    },
   },
 });
 
@@ -62,6 +72,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'big' | 'flat';
   icon?: React.ReactNode;
   disabled?: boolean;
+  reversal?: boolean;
 }
 
 const Button = ({
@@ -69,10 +80,16 @@ const Button = ({
   size = 'small',
   icon,
   disabled = false,
+  reversal = false,
   ...props
 }: ButtonProps) => {
   return (
-    <StyledButton disabled={disabled} size={size} {...props}>
+    <StyledButton
+      disabled={disabled}
+      size={size}
+      reversal={reversal}
+      {...props}
+    >
       {icon ? <IconBox>{icon}</IconBox> : null}
       {children}
     </StyledButton>
