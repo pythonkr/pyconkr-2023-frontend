@@ -13,7 +13,7 @@ import Toggle from '@/components/Toggle';
 import { Progressbar } from '@/components/common/Progressbar';
 import { FileUpload } from '@/components/common';
 import Container from '@/components/layout/Container';
-import SponsorInformation from './sponsor/information';
+import SponsorInformation from '@/pages/sponsor/information';
 
 const Home: NextPage = () => {
   const [checked, setChecked] = useState<boolean>(false);
