@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { H1, H3 } from '@/components/heading';
 import { styled } from '@/stitches.config';
+import SeoHeader from '@/components/layout/SeoHeader';
 // import { Routes } from '@/constants/routes';
 
 const Section = styled('section', {
@@ -121,6 +122,7 @@ const BodyText = styled('span', {
 const SponsorInformation = () => {
   return (
     <>
+      <SeoHeader title="파이콘 한국 2023 후원하기" />
       <Section>
         <H1>SPONSORS</H1>
         <PeriodText>2023.02.14 - 2023.04.21</PeriodText>
