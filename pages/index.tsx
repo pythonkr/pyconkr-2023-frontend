@@ -12,7 +12,7 @@ import { ComponentProps, useState } from 'react';
 import Toggle from '@/components/Toggle';
 import { Progressbar } from '@/components/common/Progressbar';
 import { FileUpload } from '@/components/common';
-import Container from '@/components/layout/Container';
+import SponsorLevelTable from '@/components/sponsor/SponsorLevelTable';
 
 const Home: NextPage = () => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -40,8 +40,10 @@ const Home: NextPage = () => {
           <Button>후원하기</Button>
         </Link>
       </div>
-      {/* !SECTION */}
+      {/* SPONSOR BOTTOM */}
+      <SponsorLevelTable />
 
+      {/* !SECTION */}
       <Toggle title="Toggle 제목" content="Toggle 내용" />
 
       <Checkbox
