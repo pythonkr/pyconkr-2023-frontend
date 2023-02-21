@@ -16,7 +16,7 @@ const TextBox = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: 8,
-  padding: '24px 14px 17px 14px',
+  padding: '24px 14px 17px 23px',
   border: '1px solid $textPrimary',
 });
 

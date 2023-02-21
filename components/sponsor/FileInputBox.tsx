@@ -63,7 +63,6 @@ const FileInputBox = () => {
       'bankBookFile',
       'logoImage',
     ];
-    console.log(fileTypes.every((type) => sponsorData[type]?.length));
     setIsValid(fileTypes.every((type) => sponsorData[type]?.length));
   }, [sponsorData]);
 
