@@ -4,13 +4,14 @@ import { styled } from 'stitches.config';
 import { useRecoilState } from 'recoil';
 import { FileUpload } from '../common';
 import Button from '../common/Button';
+import React, { useEffect, useState } from 'react';
 
 const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 });
 
-const FileInputContainer = styled('div', {
+const FileInputContainer = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   gap: 16,
@@ -48,11 +49,23 @@ export type FileInputListType = {
 
 const FileInputBox = () => {
   const [sponsorData, setSponsorData] = useRecoilState(sponsorState);
+  const [isValid, setIsValid] = useState<boolean>(false);
+
   const handleFileUpload = (file: FileList, type: FileType) => {
     const oldData = { ...sponsorData };
     oldData[type] = file;
     setSponsorData((prev) => ({ ...prev, ...oldData }));
   };
+
+  useEffect(() => {
+    const fileTypes: FileType[] = [
+      'businessRegistrationFile',
+      'bankBookFile',
+      'logoImage',
+    ];
+    console.log(fileTypes.every((type) => sponsorData[type]?.length));
+    setIsValid(fileTypes.every((type) => sponsorData[type]?.length));
+  }, [sponsorData]);
 
   return (
     <Container>
@@ -71,7 +84,7 @@ const FileInputBox = () => {
       </FileInputContainer>
       <ButtonContainer>
         <StyledButton size="big">이전으로</StyledButton>
-        <StyledButton size="big" reversal={true}>
+        <StyledButton size="big" reversal={true} disabled={!isValid}>
           다음으로
         </StyledButton>
       </ButtonContainer>
