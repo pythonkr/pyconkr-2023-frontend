@@ -7,6 +7,7 @@ import {
 } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import { useReducer } from 'react';
+import { useForm } from 'react-hook-form';
 
 const Container = styled('div', {
   width: '100%',
@@ -21,19 +22,31 @@ const SponsorJoinPage: NextPage = () => {
     SponsorFormState.COC_AGREEMENT
   );
 
+  const { control, handleSubmit, register, watch } = useForm({
+    mode: 'onSubmit',
+  });
+
   const onClickPrev = () => dispatch({ direction: 'prev' });
   const onClickNext = () => dispatch({ direction: 'next' });
 
   let children;
   switch (state) {
     case SponsorFormState.COC_AGREEMENT:
-      children = <CoCAgreementForm onClickNext={onClickNext} />;
+      children = (
+        <CoCAgreementForm
+          onClickNext={onClickNext}
+          control={control}
+          watch={watch}
+        />
+      );
       break;
     case SponsorFormState.TERM_AGREEMENT:
       children = (
         <SponsorTermAgreementForm
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
+          control={control}
+          watch={watch}
         />
       );
       break;

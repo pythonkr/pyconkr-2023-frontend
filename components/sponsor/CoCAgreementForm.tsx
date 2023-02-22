@@ -1,13 +1,16 @@
-import { useCallback, useState } from 'react';
-import {
-  SponsorFormDispatcher,
-  SponsorFormState,
-} from '@/reducers/sponsorFormReducer';
+import { useState } from 'react';
+import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import Button from '../common/Button';
 import Checkbox from '../common/Checkbox';
 import Modal from './Modal';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  UseFormWatch,
+} from 'react-hook-form';
 
 const TextArea = styled('textarea', {
   display: 'block',
@@ -47,14 +50,13 @@ const ActionWrapper = styled('div', {
 
 type Props = {
   onClickNext: () => void;
+  control: Control;
+  watch: UseFormWatch<FieldValues>;
 };
 
-const CoCAgreementForm: React.FC<Props> = ({ onClickNext }) => {
-  const [agreed, setAgreed] = useState(false);
+const CoCAgreementForm: React.FC<Props> = ({ onClickNext, control, watch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const onAgreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAgreed(e.target.checked);
-  };
+  const cocAgreement = watch('cocAgreement');
 
   return (
     <>
@@ -71,13 +73,19 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext }) => {
         {/* TODO: 포매팅된 행동강령 본문이 들어간 Textarea 혹은 컴포넌트로 대체 되어야 함 */}
         <TextArea>행동 강령 들어갈 곳</TextArea>
         <ActionWrapper>
-          <Checkbox
-            id="coc-agreement"
-            label="파이콘 행동강령에 동의합니다"
-            checked={agreed}
-            onChange={onAgreeChange}
+          <Controller
+            control={control}
+            name="cocAgreement"
+            render={({ field: { onChange, value } }) => (
+              <Checkbox
+                id="coc-agreement"
+                label="파이콘 행동강령에 동의합니다"
+                checked={value}
+                onChange={onChange}
+              />
+            )}
           />
-          <Button size="flat" disabled={!agreed} onClick={onClickNext}>
+          <Button size="flat" disabled={!cocAgreement} onClick={onClickNext}>
             다음으로
           </Button>
         </ActionWrapper>
