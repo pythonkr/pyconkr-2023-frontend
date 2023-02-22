@@ -1,11 +1,12 @@
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
+import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
 import { NextPage } from 'next';
-import React from 'react';
 import {
   SponsorFormReducer,
   SponsorFormState,
-} from 'src/reducers/sponsorFormReducer';
+} from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
+import { useReducer } from 'react';
 
 const Container = styled('div', {
   width: '100%',
@@ -15,18 +16,26 @@ const Container = styled('div', {
 });
 
 const SponsorJoinPage: NextPage = () => {
-  const [state, dispatch] = React.useReducer(
+  const [state, dispatch] = useReducer(
     SponsorFormReducer,
     SponsorFormState.COC_AGREEMENT
   );
 
+  const onClickPrev = () => dispatch({ direction: 'prev' });
+  const onClickNext = () => dispatch({ direction: 'next' });
+
   let children;
   switch (state) {
     case SponsorFormState.COC_AGREEMENT:
-      children = <CoCAgreementForm />;
+      children = <CoCAgreementForm onClickNext={onClickNext} />;
       break;
     case SponsorFormState.TERM_AGREEMENT:
-      children = null;
+      children = (
+        <SponsorTermAgreementForm
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.SPONSOR_TYPE:
       children = null;

@@ -39,59 +39,70 @@ const ModalButton = styled('button', {
   bodyText: 1,
 });
 
-const ActionWrapper = styled('div', {
+const ButtonWrapper = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
-  gap: 18,
+  flexDirection: 'row',
+  gap: 20,
+  marginTop: 18,
 });
 
 type Props = {
+  onClickPrev: () => void;
   onClickNext: () => void;
 };
 
-const CoCAgreementForm: React.FC<Props> = ({ onClickNext }) => {
+const SponsorTermAgreementForm: React.FC<Props> = ({
+  onClickPrev,
+  onClickNext,
+}) => {
   const [agreed, setAgreed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const onAgreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAgreed(e.target.checked);
-  };
+  const onAgreeChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setAgreed(e.target.checked);
+    },
+    []
+  );
 
   return (
     <>
       <SponsorJoinFormBase
-        title="파이콘 행동 강령에\n동의해주세요"
-        state={SponsorFormState.COC_AGREEMENT}
+        title="파이콘 후원 약관에\n동의해주세요"
+        state={SponsorFormState.TERM_AGREEMENT}
       >
         <TitleWrapper>
-          <Title>파이콘 행동강령</Title>
+          <Title>파이콘 후원 약관</Title>
           <ModalButton type="button" onClick={() => setIsModalOpen(true)}>
             더보기
           </ModalButton>
         </TitleWrapper>
-        {/* TODO: 포매팅된 행동강령 본문이 들어간 Textarea 혹은 컴포넌트로 대체 되어야 함 */}
-        <TextArea>행동 강령 들어갈 곳</TextArea>
-        <ActionWrapper>
-          <Checkbox
-            id="coc-agreement"
-            label="파이콘 행동강령에 동의합니다"
-            checked={agreed}
-            onChange={onAgreeChange}
-          />
+        {/* TODO: 포매팅된 후원 약관 본문이 들어간 Textarea 혹은 컴포넌트로 대체 되어야 함 */}
+        <TextArea>후원 약관 들어갈 곳</TextArea>
+        <Checkbox
+          id="coc-agreement"
+          label="파이콘 후원 약관에 동의합니다"
+          checked={agreed}
+          onChange={onAgreeChange}
+        />
+        <ButtonWrapper>
+          <Button size="flat" onClick={onClickPrev}>
+            이전으로
+          </Button>
           <Button size="flat" disabled={!agreed} onClick={onClickNext}>
             다음으로
           </Button>
-        </ActionWrapper>
+        </ButtonWrapper>
       </SponsorJoinFormBase>
       {isModalOpen && (
         <Modal
-          title="파이콘 행동 강령"
+          title="파이콘 후원 약관"
           handleClose={() => setIsModalOpen(false)}
         >
-          <TextArea>행동 강령 들어갈 곳</TextArea>
+          <TextArea>후원 약관 들어갈 곳</TextArea>
         </Modal>
       )}
     </>
   );
 };
 
-export default CoCAgreementForm;
+export default SponsorTermAgreementForm;

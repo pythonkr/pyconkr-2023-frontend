@@ -1,3 +1,5 @@
+import { Dispatch } from 'react';
+
 export enum SponsorFormState {
   COC_AGREEMENT = 1,
   TERM_AGREEMENT,
@@ -13,16 +15,14 @@ export const SponsorFormReducer: React.Reducer<
 > = (state, action) => {
   switch (action.direction) {
     case 'prev':
-      return (
-        (SponsorFormState[state + 1] as unknown as SponsorFormState) ??
-        SponsorFormState.COMPLETE
-      );
+      return Math.max(state - 1, SponsorFormState.COC_AGREEMENT);
     case 'next':
-      return (
-        (SponsorFormState[state - 1] as unknown as SponsorFormState) ??
-        SponsorFormState.COC_AGREEMENT
-      );
+      return Math.min(state + 1, SponsorFormState.COMPLETE);
     default:
       return state;
   }
 };
+
+export type SponsorFormDispatcher = Dispatch<{
+  direction: 'next' | 'prev';
+}>;

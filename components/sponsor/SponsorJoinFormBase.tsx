@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { SponsorFormState } from 'src/reducers/sponsorFormReducer';
+import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import { Progressbar } from '../common/Progressbar';
 import { H3 } from '../heading';
