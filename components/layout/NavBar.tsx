@@ -22,7 +22,7 @@ const StyledNavArea = styled('div', {
     gap: 0,
   },
   '@bp2': {
-    padding: '24px 80px',
+    padding: '1rem 2rem',
   },
 });
 

@@ -9,7 +9,7 @@ export const Routes = {
   },
   SPONSOR_INFO: {
     title: '후원 안내',
-    route: '/',
+    route: '/sponsor/information',
   },
   SPONSOR_JOIN: {
     title: '후원하기',
