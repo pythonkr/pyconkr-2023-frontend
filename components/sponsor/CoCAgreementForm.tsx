@@ -20,6 +20,7 @@ const TextArea = styled('textarea', {
   backgroundColor: '$backgroundPrimary',
   padding: 16,
   resize: 'none',
+  wordBreak: 'keep-all',
   bodyText: 1,
 });
 
