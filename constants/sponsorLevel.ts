@@ -167,18 +167,18 @@ export const SponsorLevelData2 = [
     publisher: '-',
   },
   {
-    gold: true,
-    silver: true,
-    startup: true,
-    community: true,
-    publisher: true,
+    gold: 'true',
+    silver: 'true',
+    startup: 'true',
+    community: 'true',
+    publisher: 'true',
   },
   {
-    gold: true,
-    silver: true,
-    startup: true,
-    community: true,
-    publisher: true,
+    gold: 'true',
+    silver: 'true',
+    startup: 'true',
+    community: 'true',
+    publisher: 'true',
   },
   {
     gold: '현수막\n스탠딩 배너\n웹사이트',
@@ -188,42 +188,3 @@ export const SponsorLevelData2 = [
     publisher: '현수막\n스탠딩 배너\n웹사이트',
   },
 ];
-
-/*
-    {
-        accessor: 'money',
-        Header: '후원금',
-    },
-    {
-        accessor: 'numOfSponsors',
-        Header: '스폰서 수',
-    },
-    {
-        accessor: 'ticketSupport',
-        Header: '티켓 지원',
-    },
-    {
-        accessor: 'booth',
-        Header: '부스',
-    },
-    {
-        accessor: 'openLunch',
-        Header: '열린점심',
-    },
-    {
-        accessor: 'sponsorSession',
-        Header: '후원사 세션',
-    },
-    {
-        accessor: 'gift',
-        Header: '증정품 지급',
-    },
-    {
-        accessor: 'promotionVideo',
-        Header: '홍보 영상',
-    }, 
-    {
-        accessor: 'logoPosition',
-        Header: '로고 노출 위치',
-    },
-    */

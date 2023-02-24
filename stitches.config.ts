@@ -9,6 +9,7 @@ export const { styled, css, getCssText, createTheme, globalCss, config } =
         textSecondary: '#909090',
 
         backgroundPrimary: '#fff',
+        backgroundSecondary: '#1c1c1c',
 
         gray500: '#909090',
 
@@ -43,6 +44,8 @@ export const { styled, css, getCssText, createTheme, globalCss, config } =
       bp2: '(min-width: 768px)',
       bp3: '(min-width: 1024px)',
       bp4: '(min-width: 1280px)',
+      bp5: '(min-width: 1440px)',
+      bp6: '(min-width: 1920px)',
     },
   });
 
@@ -52,6 +55,7 @@ export const darkTheme = createTheme('dark', {
     textSecondary: '#909090',
 
     backgroundPrimary: '#1c1c1c',
+    backgroundSecondary: '#fff',
   },
 });
 
