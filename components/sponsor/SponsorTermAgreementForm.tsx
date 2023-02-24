@@ -17,8 +17,10 @@ const TextArea = styled('textarea', {
   width: '100%',
   height: '100%',
   marginBottom: 26,
-  backgroundColor: '$backgroundPrimary',
+  border: '2px solid $textPrimary',
   padding: 16,
+  backgroundColor: '$backgroundPrimary',
+
   resize: 'none',
   bodyText: 1,
 });
@@ -54,6 +56,7 @@ type Props = {
   onClickNext: () => void;
   control: Control;
   watch: UseFormWatch<FieldValues>;
+  sponsorTerm: string;
 };
 
 const SponsorTermAgreementForm: React.FC<Props> = ({
@@ -61,6 +64,7 @@ const SponsorTermAgreementForm: React.FC<Props> = ({
   onClickNext,
   control,
   watch,
+  sponsorTerm,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const termAgreement = watch('termAgreement');
@@ -77,8 +81,7 @@ const SponsorTermAgreementForm: React.FC<Props> = ({
             더보기
           </ModalButton>
         </TitleWrapper>
-        {/* TODO: 포매팅된 후원 약관 본문이 들어간 Textarea 혹은 컴포넌트로 대체 되어야 함 */}
-        <TextArea>후원 약관 들어갈 곳</TextArea>
+        <TextArea value={sponsorTerm} readOnly />
         <Controller
           control={control}
           name="termAgreement"
@@ -105,7 +108,7 @@ const SponsorTermAgreementForm: React.FC<Props> = ({
           title="파이콘 후원 약관"
           handleClose={() => setIsModalOpen(false)}
         >
-          <TextArea>후원 약관 들어갈 곳</TextArea>
+          <TextArea value={sponsorTerm} readOnly />
         </Modal>
       )}
     </>

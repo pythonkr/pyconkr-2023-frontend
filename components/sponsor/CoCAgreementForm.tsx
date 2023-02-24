@@ -52,9 +52,15 @@ type Props = {
   onClickNext: () => void;
   control: Control;
   watch: UseFormWatch<FieldValues>;
+  codeOfConduct: string;
 };
 
-const CoCAgreementForm: React.FC<Props> = ({ onClickNext, control, watch }) => {
+const CoCAgreementForm: React.FC<Props> = ({
+  onClickNext,
+  control,
+  watch,
+  codeOfConduct,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cocAgreement = watch('cocAgreement');
 
@@ -70,8 +76,7 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext, control, watch }) => {
             더보기
           </ModalButton>
         </TitleWrapper>
-        {/* TODO: 포매팅된 행동강령 본문이 들어간 Textarea 혹은 컴포넌트로 대체 되어야 함 */}
-        <TextArea>행동 강령 들어갈 곳</TextArea>
+        <TextArea value={codeOfConduct} readOnly />
         <ActionWrapper>
           <Controller
             control={control}
@@ -95,7 +100,7 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext, control, watch }) => {
           title="파이콘 행동 강령"
           handleClose={() => setIsModalOpen(false)}
         >
-          <TextArea>행동 강령 들어갈 곳</TextArea>
+          <TextArea value={codeOfConduct} readOnly />
         </Modal>
       )}
     </>

@@ -1,6 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
-import { NextPage } from 'next';
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import {
   SponsorFormReducer,
   SponsorFormState,
@@ -16,7 +18,9 @@ const Container = styled('div', {
   margin: '0 auto',
 });
 
-const SponsorJoinPage: NextPage = () => {
+const SponsorJoinPage: NextPage<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = ({ codeOfConduct, sponsorTerm }) => {
   const [state, dispatch] = useReducer(
     SponsorFormReducer,
     SponsorFormState.COC_AGREEMENT
@@ -36,6 +40,7 @@ const SponsorJoinPage: NextPage = () => {
         <CoCAgreementForm
           onClickNext={onClickNext}
           control={control}
+          codeOfConduct={codeOfConduct}
           watch={watch}
         />
       );
@@ -46,6 +51,7 @@ const SponsorJoinPage: NextPage = () => {
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
           control={control}
+          sponsorTerm={sponsorTerm}
           watch={watch}
         />
       );
@@ -67,6 +73,25 @@ const SponsorJoinPage: NextPage = () => {
       break;
   }
   return <Container>{children}</Container>;
+};
+
+export const getStaticProps: GetStaticProps<{
+  sponsorTerm: string;
+  codeOfConduct: string;
+}> = async () => {
+  const staticPath = path.join(process.cwd(), 'static');
+  const codeOfConductFilePath = path.join(staticPath, 'code-of-conduct.md');
+  const sponsorTermFilePath = path.join(staticPath, 'sponsor-term.md');
+
+  const codeOfConduct = fs.readFileSync(codeOfConductFilePath, 'utf8');
+  const sponsorTerm = fs.readFileSync(sponsorTermFilePath, 'utf8');
+
+  return {
+    props: {
+      codeOfConduct,
+      sponsorTerm,
+    },
+  };
 };
 
 export default SponsorJoinPage;
