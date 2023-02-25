@@ -22,7 +22,6 @@ const SponsorInfoPage: NextPage = () => {
       <Head>
         <title>Sponsor | 정보 입력</title>
       </Head>
-      <NavBar />
       <ContentWrapper>
         <Progressbar value={4} />
         <H3

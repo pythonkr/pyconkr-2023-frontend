@@ -27,5 +27,5 @@ export const H3 = styled('h3', {
 export const H4 = styled('h4', {
   fontSize: '24px',
   lineHeight: '36px',
-  fontWeight: 'bold',
+  fontWeight: '500',
 });
