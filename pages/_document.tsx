@@ -5,7 +5,7 @@ import { getCssText } from '@/stitches.config';
 export default class Document extends NextDocument {
   render() {
     return (
-      <Html>
+      <Html lang="ko">
         <Head>
           <link
             href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
