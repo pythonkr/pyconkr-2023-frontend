@@ -3,8 +3,8 @@ import { Dispatch } from 'react';
 export enum SponsorFormState {
   COC_AGREEMENT = 1,
   TERM_AGREEMENT,
-  SPONSOR_TYPE,
-  SPONSOR_INFORM,
+  // SPONSOR_TYPE,
+  // SPONSOR_INFORM,
   FILE_UPLOAD,
   COMPLETE,
 }
