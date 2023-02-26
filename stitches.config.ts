@@ -10,6 +10,7 @@ export const { styled, css, getCssText, createTheme, globalCss, config } =
 
         backgroundPrimary: '#fff',
         backgroundSecondary: '#1c1c1c',
+        backgroundPrimary70: 'rgba(255, 255, 255, 0.7)',
 
         gray500: '#909090',
 
@@ -56,6 +57,7 @@ export const darkTheme = createTheme('dark', {
 
     backgroundPrimary: '#1c1c1c',
     backgroundSecondary: '#fff',
+    backgroundPrimary70: 'rgba(28, 28, 28, 0.7)',
   },
 });
 

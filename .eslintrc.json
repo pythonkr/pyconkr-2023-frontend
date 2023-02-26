@@ -1,7 +1,7 @@
 {
   "extends": [
     "airbnb/hooks",
-    "airbnb-typescript", 
+    "airbnb-typescript",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
@@ -15,8 +15,8 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/function-component-definition": "off",
     "react/prop-types": "off",
+    "react/function-component-definition": "off",
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
     "linebreak-style": "off",

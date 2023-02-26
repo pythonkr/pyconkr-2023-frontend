@@ -15,4 +15,5 @@ export const sponsorState = atom<Sponsor>({
     bankBookFile: null,
     businessRegistrationFile: null,
   },
+  dangerouslyAllowMutability: true,
 });
