@@ -3,17 +3,33 @@ import {
   SponsorLevelColumn2,
   SponsorLevelData1,
   SponsorLevelData2,
-} from '@/constants/sponsorLevel';
+} from '@/constants/sponsor/sponsorLevel';
 import { styled } from '@/stitches.config';
 import React, { useMemo } from 'react';
 import Table from '../common/Table';
 
-const TableWrapper = styled('div', {
-  margin: '1rem 5rem',
+const SponsorLevelTableWrapper = styled('div', {
+  display: 'block',
+  margin: '3.75rem 0 4.75rem 0',
+  justifyContent: 'center',
+  marginBottom: '1rem',
 });
+
 const Description = styled('div', {
-  margin: '2rem 0',
+  marginTop: '2rem',
+  margin: 'auto',
   bodyText: 1,
+  width: '110rem',
+
+  '@bp1': {},
+  '@bp2': {},
+  '@bp3': {},
+  '@bp4': {
+    width: '80rem',
+  },
+  '@bp5': {
+    width: '110rem',
+  },
 });
 
 const SponsorLevelTable = () => {
@@ -23,7 +39,7 @@ const SponsorLevelTable = () => {
   const data2 = useMemo(() => SponsorLevelData2, []);
 
   return (
-    <TableWrapper>
+    <SponsorLevelTableWrapper>
       <Table columns={column1} data={data1} />
       <Table columns={column2} data={data2} />
       <Description>
@@ -41,7 +57,7 @@ const SponsorLevelTable = () => {
           인원 30인 이하인 곳에 한합니다.
         </li>
       </Description>
-    </TableWrapper>
+    </SponsorLevelTableWrapper>
   );
 };
 

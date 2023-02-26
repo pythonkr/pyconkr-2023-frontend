@@ -1,4 +1,4 @@
-import { SponsorLevelRow } from '@/constants/sponsorLevel';
+import { SponsorLevelRow } from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
 import React from 'react';
 import { TableOptions, useTable } from 'react-table';
@@ -14,14 +14,14 @@ const StyledTd = styled('td', {
   border: '1px solid $textSecondary',
   borderWidth: '1px 0',
   textAlign: 'center',
-  wordBreak: 'keep-all',
+  // wordBreak: 'keep-all',
   whiteSpace: 'pre-wrap',
   height: '3rem',
+  width: '18.3rem',
 
   '@bp4': {
     width: '13.3rem',
   },
-
   '@bp5': {
     width: '18.3rem',
   },
