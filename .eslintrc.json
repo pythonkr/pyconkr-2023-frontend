@@ -20,6 +20,7 @@
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
     "linebreak-style": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "@typescript-eslint/no-shadow": "warn"
   }
 }
