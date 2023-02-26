@@ -13,6 +13,7 @@ import Toggle from '@/components/Toggle';
 import { Progressbar } from '@/components/common/Progressbar';
 import { FileUpload } from '@/components/common';
 import SponsorLevelTable from '@/components/sponsor/SponsorLevelTable';
+import Check from '@/public/icons/Check.svg';
 
 const Home: NextPage = () => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
   const ComponentPreview = ({ prefix }: { prefix?: string }) => (
     <>
       <div>
+        <Check />
         {Array(7)
           .fill(null)
           .map((_, i) => (

@@ -2,6 +2,7 @@ import { SponsorLevelRow } from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
 import React from 'react';
 import { TableOptions, useTable } from 'react-table';
+import Check from '@/public/icons/Check.svg';
 
 const StyledTable = styled('table', {
   borderCollapse: 'collapse',
@@ -79,7 +80,11 @@ const Table = ({ columns, data }: TableOptions<object>) => {
                 const { key, ...restCell } = cell.getCellProps();
                 return (
                   <StyledTd key={key} {...restCell}>
-                    <TBodyText>{cell.render('Cell')}</TBodyText>
+                    {cell.render('Cell') === 'true' ? (
+                      <Check />
+                    ) : (
+                      <TBodyText>{cell.render('Cell')}</TBodyText>
+                    )}
                   </StyledTd>
                 );
               })}
