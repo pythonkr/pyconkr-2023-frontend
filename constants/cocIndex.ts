@@ -2,35 +2,35 @@ import { RouteType } from '@/interfaces/RouteType';
 
 const cocIndex: RouteType[] = [
   {
-    route: '#1',
+    route: '/coc/purpose',
     title: '의도와 목적',
   },
   {
-    route: '#2',
+    route: '/coc/community',
     title: '커뮤니티',
   },
   {
-    route: '#3',
+    route: '/coc/communication',
     title: '의사소통',
   },
   {
-    route: '#4',
+    route: '/coc/privacy',
     title: '프라이버시',
   },
   {
-    route: '#5',
+    route: '/coc/profit-seeking',
     title: '영리 행위',
   },
   {
-    route: '#6',
+    route: '/coc/manners',
     title: '공중 도덕',
   },
   {
-    route: '#7',
+    route: '/coc/reporting',
     title: '신고하기',
   },
   {
-    route: '#8',
+    route: '/coc/contribute',
     title: '기여하기',
   },
 ];

@@ -20,6 +20,9 @@ const SubNavBarListItem = styled(Link, {
       },
     },
   },
+  '&:hover': {
+    color: '$textPrimary',
+  },
   '&+&': {
     marginTop: '24px',
   },
@@ -34,7 +37,7 @@ const SubNavBar = (props: SubNavBarProps) => {
   const router = useRouter();
 
   const isActive = (route: RouteType): boolean => {
-    return router.asPath === `${router.pathname}${route.route}`;
+    return router.asPath === route.route;
   };
 
   return (
