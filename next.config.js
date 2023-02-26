@@ -3,6 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    loader: 'imgix',
+    path: '/',
     // TODO: domain 추후 수정하기
     domains: ['cdn.pixabay.com', '**'],
     remotePatterns: [
