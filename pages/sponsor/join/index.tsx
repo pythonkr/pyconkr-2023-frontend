@@ -1,15 +1,17 @@
 import fs from 'fs';
 import path from 'path';
+import { useReducer } from 'react';
+import { useForm } from 'react-hook-form';
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+
+import type { Sponsor } from '@/@types';
+import { styled } from 'stitches.config';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import {
   SponsorFormReducer,
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
-import { styled } from 'stitches.config';
-import { useReducer } from 'react';
-import { useForm } from 'react-hook-form';
 
 const Container = styled('div', {
   width: '100%',
@@ -26,7 +28,7 @@ const SponsorJoinPage: NextPage<
     SponsorFormState.COC_AGREEMENT
   );
 
-  const form = useForm({ mode: 'onSubmit' });
+  const form = useForm<Sponsor, object>({ mode: 'onSubmit' });
 
   const onClickPrev = () => dispatch({ direction: 'prev' });
   const onClickNext = () => dispatch({ direction: 'next' });

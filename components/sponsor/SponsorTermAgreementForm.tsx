@@ -3,8 +3,9 @@ import { styled } from 'stitches.config';
 import { Controller, UseFormReturn } from 'react-hook-form';
 
 import Modal from './Modal';
-import Button from '../common/Button';
-import Checkbox from '../common/Checkbox';
+import type { Sponsor } from '@/@types';
+import Button from '@/components/common/Button';
+import Checkbox from '@/components/common/Checkbox';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
@@ -48,7 +49,7 @@ const ButtonWrapper = styled('div', {
 });
 
 type Props = {
-  form: UseFormReturn;
+  form: UseFormReturn<Sponsor, object>;
   sponsorTerm: string;
   onClickPrev: () => void;
   onClickNext: () => void;
