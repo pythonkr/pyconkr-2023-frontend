@@ -15,6 +15,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/coc',
+        destination: '/coc/purpose',
+        permanent: true,
+      },
+    ]
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
