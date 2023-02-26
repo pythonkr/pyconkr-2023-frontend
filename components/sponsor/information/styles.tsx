@@ -23,6 +23,7 @@ export const SectionWithoutPadding = styled('section', {
 
   '&:last-child': {
     borderBottom: '2px solid transparent',
+    paddingTop: '2rem',
   },
 
   '@bp1': {
