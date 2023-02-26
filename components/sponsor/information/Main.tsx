@@ -5,7 +5,7 @@ import { Routes } from '@/constants/routes';
 import * as S from './styles';
 
 export const Main = () => (
-  <S.Section>
+  <S.Section id="application">
     <H1>SPONSORS</H1>
     <S.PeriodText>2023.02.14 - 2023.04.21</S.PeriodText>
     <S.SponsorActionButtonWrapper>

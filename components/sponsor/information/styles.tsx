@@ -172,7 +172,7 @@ export const SimpleCardContainer = styled('div', {
 
 export const ImageCardContainer = styled('div', {
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'start',
   marginTop: '40px',
   width: '100vw',
   overflowX: 'auto',
@@ -183,7 +183,6 @@ export const ImageCardContainer = styled('div', {
   },
   '@bp3': {
     flexDirection: 'row',
-    paddingLeft: '4rem',
   },
   '@bp4': {
     gap: '20px',

@@ -7,7 +7,7 @@ import * as S from './styles';
 
 export const Guide = () => (
   <>
-    <S.Section>
+    <S.Section id="process">
       <H1>
         후원사
         <br />
@@ -24,7 +24,7 @@ export const Guide = () => (
         ))}
       </S.SimpleCardContainer>
     </S.Section>
-    <S.SectionWithSidePadding>
+    <S.SectionWithSidePadding id="benefits">
       <H1>후원사 혜택</H1>
       <S.ImageCardContainer>
         {/* /TODO: 슬라이더(?) 명진님꼐 물어보기 / */}

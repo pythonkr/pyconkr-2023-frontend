@@ -21,11 +21,12 @@ const Spacing = styled('div', {
 });
 
 const TextWrapper = styled('div', {
-  padding: '2rem 1.5rem',
+  maxHeight: '170px',
+  padding: '2rem 0 1.1rem 1.5rem',
 });
 
 const ImageWrapper = styled('div', {
-  height: '100%',
+  height: '280px',
 });
 
 export const ImageCard = ({
