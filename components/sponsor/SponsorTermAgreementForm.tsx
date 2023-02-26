@@ -94,7 +94,12 @@ const SponsorTermAgreementForm: React.FC<Props> = ({
           <Button size="flat" onClick={onClickPrev}>
             이전으로
           </Button>
-          <Button size="flat" disabled={!termAgreement} onClick={onClickNext}>
+          <Button
+            size="flat"
+            reversal
+            disabled={!termAgreement}
+            onClick={onClickNext}
+          >
             다음으로
           </Button>
         </ButtonWrapper>
