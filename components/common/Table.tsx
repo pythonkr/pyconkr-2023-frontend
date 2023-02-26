@@ -1,8 +1,10 @@
+import { useTheme } from 'next-themes';
 import { SponsorLevelRow } from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
 import React from 'react';
 import { TableOptions, useTable } from 'react-table';
-import Check from '@/public/icons/Check.svg';
+import CheckIconDark from '@/public/icons/CheckIconDark.svg';
+import CheckIconLight from '@/public/icons/CheckIconLight.svg';
 
 const StyledTable = styled('table', {
   borderCollapse: 'collapse',
@@ -46,6 +48,7 @@ const TBodyText = styled('span', {
 const Table = ({ columns, data }: TableOptions<object>) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
+  const { resolvedTheme, setTheme } = useTheme();
   return (
     <StyledTable {...getTableProps()}>
       <thead>
@@ -80,8 +83,12 @@ const Table = ({ columns, data }: TableOptions<object>) => {
                 const { key, ...restCell } = cell.getCellProps();
                 return (
                   <StyledTd key={key} {...restCell}>
-                    {cell.render('Cell') === 'true' ? (
-                      <Check />
+                    {i === 6 || i === 7 ? (
+                      resolvedTheme === 'dark' ? (
+                        <CheckIconDark />
+                      ) : (
+                        <CheckIconLight />
+                      )
                     ) : (
                       <TBodyText>{cell.render('Cell')}</TBodyText>
                     )}

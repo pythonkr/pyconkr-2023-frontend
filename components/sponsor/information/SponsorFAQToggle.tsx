@@ -23,7 +23,7 @@ const ToggleWrapper = styled('div', {
 const SponsorFAQToggle = () => {
   return (
     <S.Section>
-      <H1>후원사 등급 안내</H1>
+      <H1>자주 묻는 질문</H1>
       <ToggleSection>
         <ToggleWrapper>
           {SponsorTicketFAQ.map((question) => (
