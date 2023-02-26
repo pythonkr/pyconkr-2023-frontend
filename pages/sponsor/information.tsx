@@ -4,7 +4,6 @@ import { AboutPycon } from '@/components/sponsor/information/AboutPycon';
 import { Guide } from '@/components/sponsor/information/Guide';
 import SponsorLevelTable from '@/components/sponsor/information/SponsorLevelTable';
 import SponsorFAQToggle from '@/components/sponsor/information/SponsorFAQToggle';
-import { H1 } from '@/components/heading';
 
 const SponsorInformation = () => {
   return (
