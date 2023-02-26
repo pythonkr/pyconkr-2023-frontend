@@ -1,4 +1,5 @@
 import { styled } from '@/stitches.config';
+import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
 const ProgressWrapper = styled('div', {
   width: '100%',
@@ -12,7 +13,7 @@ const Progress = styled('div', {
 });
 
 type ProgressbarProps = {
-  value: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  value: SponsorFormState;
 };
 
 export const Progressbar = ({ value }: ProgressbarProps) => {
