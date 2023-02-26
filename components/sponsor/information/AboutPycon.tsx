@@ -6,7 +6,7 @@ import * as S from './styles';
 
 export const AboutPycon = () => (
   <>
-    <S.SectionWithoutPadding>
+    <S.SectionWithoutPadding id="why-sponsor">
       <S.Article>
         <div>
           {/* FIXME: /이 부분 맵 돌릴까? 그러면 맵을 세군데서 돌려야 하는데 괜찮나/  */}
@@ -59,7 +59,7 @@ export const AboutPycon = () => (
         />
       </S.ImageWrapper>
     </S.SectionWithoutPadding>
-    <S.Section>
+    <S.Section id="slogan">
       <H1>다시, 우리, 파이콘</H1>
       <S.Wrapper display="flex">
         <S.BodyText>
