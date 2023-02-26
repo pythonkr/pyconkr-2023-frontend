@@ -26,9 +26,7 @@ const SponsorJoinPage: NextPage<
     SponsorFormState.COC_AGREEMENT
   );
 
-  const { control, handleSubmit, register, watch } = useForm({
-    mode: 'onSubmit',
-  });
+  const form = useForm({ mode: 'onSubmit' });
 
   const onClickPrev = () => dispatch({ direction: 'prev' });
   const onClickNext = () => dispatch({ direction: 'next' });
@@ -38,21 +36,19 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.COC_AGREEMENT:
       children = (
         <CoCAgreementForm
-          onClickNext={onClickNext}
-          control={control}
+          form={form}
           codeOfConduct={codeOfConduct}
-          watch={watch}
+          onClickNext={onClickNext}
         />
       );
       break;
     case SponsorFormState.TERM_AGREEMENT:
       children = (
         <SponsorTermAgreementForm
+          form={form}
+          sponsorTerm={sponsorTerm}
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
-          control={control}
-          sponsorTerm={sponsorTerm}
-          watch={watch}
         />
       );
       break;
