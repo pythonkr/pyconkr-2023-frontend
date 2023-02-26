@@ -53,6 +53,7 @@ export const SectionWithoutPadding = styled('section', {
 });
 
 export const SectionWithSidePadding = styled('section', {
+  borderBottom: '2px solid $textPrimary',
   '@bp1': {
     padding: '2rem 2rem',
   },
