@@ -1,10 +1,8 @@
 import { fileInputList } from '@/constants/sponsor/sponsorData';
-import { sponsorState } from '@/stores';
 import { styled } from 'stitches.config';
-import { useRecoilState } from 'recoil';
 import { FileUpload } from '../common';
 import Button from '../common/Button';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import {
   Control,
   Controller,
@@ -14,7 +12,7 @@ import {
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
-const FileInputContainer = styled('form', {
+const FileInputContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: 16,
@@ -63,23 +61,13 @@ const FileInputBox = ({
   control,
   watch,
 }: FileInputBoxProps) => {
-  const [sponsorData, setSponsorData] = useRecoilState(sponsorState);
-  const [isValid, setIsValid] = useState<boolean>(false);
-
-  const handleFileUpload = (file: FileList, type: FileType) => {
-    const oldData = { ...sponsorData };
-    oldData[type] = file;
-    setSponsorData((prev) => ({ ...prev, ...oldData }));
-  };
-
-  useEffect(() => {
-    const fileTypes: FileType[] = [
-      'businessRegistrationFile',
-      'bankBookFile',
-      'logoImage',
-    ];
-    setIsValid(fileTypes.every((type) => sponsorData[type]?.length));
-  }, [sponsorData]);
+  const checkValidation = useCallback(() => {
+    const fileList = ['businessRegistrationFile', 'bankBookFile', 'logoImage'];
+    return fileList.every((file) => {
+      if (watch(file) === undefined) return false;
+      return watch(file).length;
+    });
+  }, [watch]);
 
   return (
     <SponsorJoinFormBase
@@ -93,12 +81,13 @@ const FileInputBox = ({
             <Controller
               control={control}
               name={fileInput.key}
-              render={({ field: { onChange, value } }) => (
+              defaultValue=""
+              render={({ field: { onChange } }) => (
                 <FileUpload
                   id={fileInput.key}
                   labelText={fileInput.labelText}
                   fileType={fileInput.fileType}
-                  onFileUpload={(file) => handleFileUpload(file, fileInput.key)}
+                  onFileUpload={(file) => onChange(file)}
                 />
               )}
             />
@@ -112,7 +101,7 @@ const FileInputBox = ({
         <StyledButton
           size="big"
           reversal={true}
-          disabled={!isValid}
+          disabled={!checkValidation()}
           onClick={onClickNext}
         >
           다음으로

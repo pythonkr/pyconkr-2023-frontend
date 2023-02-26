@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Button from '../common/Button';
 import { H4 } from '../heading';
 import { Routes } from '@/constants/routes';
-import { FieldValues, UseFormHandleSubmit } from 'react-hook-form';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
@@ -46,11 +45,7 @@ const StyledButton = styled(Button, {
   width: '100%',
 });
 
-interface SponsorCompleteBoxProps {
-  handleSubmit: UseFormHandleSubmit<FieldValues>;
-}
-
-const SponsorCompleteBox = ({ handleSubmit }: SponsorCompleteBoxProps) => {
+const SponsorCompleteBox = () => {
   return (
     <SponsorJoinFormBase
       title="정상적으로 신청 완료되었습니다\n내부 논의 후 다음 절차를 진행하게 됩니다"
@@ -70,13 +65,7 @@ const SponsorCompleteBox = ({ handleSubmit }: SponsorCompleteBoxProps) => {
         </StyledUl>
       </TextBox>
       <Link href={Routes.HOME.route}>
-        <StyledButton
-          size="big"
-          reversal={true}
-          // onClick={handleSubmit((data) => {
-          //   console.log(data);
-          // })}
-        >
+        <StyledButton size="big" reversal={true}>
           후원 신청 완료
         </StyledButton>
       </Link>

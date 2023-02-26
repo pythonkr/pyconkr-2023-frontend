@@ -58,12 +58,12 @@ const SponsorJoinPage: NextPage<
         />
       );
       break;
-    // case SponsorFormState.SPONSOR_TYPE:
-    //   children = null;
-    //   break;
-    // case SponsorFormState.SPONSOR_INFORM:
-    //   children = null;
-    //   break;
+    case SponsorFormState.SPONSOR_TYPE:
+      children = null;
+      break;
+    case SponsorFormState.SPONSOR_INFORM:
+      children = null;
+      break;
     case SponsorFormState.FILE_UPLOAD:
       children = (
         <FileInputBox
@@ -75,7 +75,7 @@ const SponsorJoinPage: NextPage<
       );
       break;
     case SponsorFormState.COMPLETE:
-      children = <SponsorCompleteBox handleSubmit={handleSubmit} />;
+      children = <SponsorCompleteBox />;
       break;
     default:
       children = null;

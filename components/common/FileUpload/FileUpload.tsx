@@ -73,6 +73,7 @@ export const FileUpload = ({
   labelText,
   fileType,
   onFileUpload,
+  onChange,
   ...props
 }: FileUploadType) => {
   const [uploadedFiles, setUploadedFiles] = useState<FileList | null>(null);
