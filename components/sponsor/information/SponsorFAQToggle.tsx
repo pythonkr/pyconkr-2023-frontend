@@ -26,7 +26,7 @@ const PaddingBox = styled('div', {
 const SponsorFAQToggle = () => {
   return (
     <S.Section>
-      <H1>자주 묻는 질문</H1>
+      <H1 id="faq">자주 묻는 질문</H1>
       <ToggleSection>
         <ToggleWrapper>
           {SponsorFAQ.map((question, index) => (
