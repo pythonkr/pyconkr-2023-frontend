@@ -5,6 +5,7 @@ export enum SponsorFormState {
   TERM_AGREEMENT,
   SPONSOR_TYPE,
   SPONSOR_INFORM,
+  MANAGER_INFORM,
   FILE_UPLOAD,
   COMPLETE,
 }

@@ -12,6 +12,7 @@ import {
   SponsorFormReducer,
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
+import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 
 const Container = styled('div', {
   width: '100%',
@@ -58,7 +59,23 @@ const SponsorJoinPage: NextPage<
       children = null;
       break;
     case SponsorFormState.SPONSOR_INFORM:
-      children = null;
+      children = (
+        <SponsorInfoInputBox
+          form={form}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
+
+      break;
+    case SponsorFormState.MANAGER_INFORM:
+      children = (
+        <ManagerInfoInputBox
+          form={form}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.FILE_UPLOAD:
       children = null;
