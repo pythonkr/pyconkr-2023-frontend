@@ -1,16 +1,11 @@
 import { useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import Button from '../common/Button';
 import Checkbox from '../common/Checkbox';
 import Modal from './Modal';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormWatch,
-} from 'react-hook-form';
 
 const TextArea = styled('textarea', {
   display: 'block',
@@ -51,18 +46,12 @@ const ActionWrapper = styled('div', {
 
 type Props = {
   onClickNext: () => void;
-  control: Control;
-  watch: UseFormWatch<FieldValues>;
   codeOfConduct: string;
 };
 
-const CoCAgreementForm: React.FC<Props> = ({
-  onClickNext,
-  control,
-  watch,
-  codeOfConduct,
-}) => {
+const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { control, watch } = useFormContext();
   const cocAgreement = watch('cocAgreement');
 
   return (

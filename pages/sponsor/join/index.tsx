@@ -9,7 +9,8 @@ import {
 } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import { useReducer } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
 
 const Container = styled('div', {
   width: '100%',
@@ -26,7 +27,7 @@ const SponsorJoinPage: NextPage<
     SponsorFormState.COC_AGREEMENT
   );
 
-  const { control, handleSubmit, register, watch } = useForm({
+  const form = useForm({
     mode: 'onSubmit',
   });
 
@@ -39,9 +40,7 @@ const SponsorJoinPage: NextPage<
       children = (
         <CoCAgreementForm
           onClickNext={onClickNext}
-          control={control}
           codeOfConduct={codeOfConduct}
-          watch={watch}
         />
       );
       break;
@@ -50,14 +49,17 @@ const SponsorJoinPage: NextPage<
         <SponsorTermAgreementForm
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
-          control={control}
           sponsorTerm={sponsorTerm}
-          watch={watch}
         />
       );
       break;
     case SponsorFormState.SPONSOR_TYPE:
-      children = null;
+      children = (
+        <SponsorTypeSelectForm
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.SPONSOR_INFORM:
       children = null;
@@ -72,7 +74,11 @@ const SponsorJoinPage: NextPage<
       children = null;
       break;
   }
-  return <Container>{children}</Container>;
+  return (
+    <Container>
+      <FormProvider {...form}>{children}</FormProvider>
+    </Container>
+  );
 };
 
 export const getStaticProps: GetStaticProps<{
