@@ -1,5 +1,6 @@
 import { Progressbar } from '@/components/common/Progressbar';
 import { H3 } from '@/components/heading';
+import SeoHeader from '@/components/layout/SeoHeader';
 import FileInputBox from '@/components/sponsor/FileInputBox';
 import { styled } from '@/stitches.config';
 
@@ -25,13 +26,16 @@ const StyledH3 = styled(H3, {
 
 const SponsorFilePage = () => {
   return (
-    <Container>
-      <ContentWrapper>
-        <Progressbar value={5} />
-        <StyledH3>{`후원에 필요한 파일을\n업로드해주세요`}</StyledH3>
-        <FileInputBox />
-      </ContentWrapper>
-    </Container>
+    <>
+      <SeoHeader title="파일 업로드" />
+      <Container>
+        <ContentWrapper>
+          <Progressbar value={5} />
+          <StyledH3>{`후원에 필요한 파일을\n업로드해주세요`}</StyledH3>
+          <FileInputBox />
+        </ContentWrapper>
+      </Container>
+    </>
   );
 };
 

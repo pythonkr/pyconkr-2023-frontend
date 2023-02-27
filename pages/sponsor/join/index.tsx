@@ -1,15 +1,17 @@
-import fs from 'fs';
-import path from 'path';
+import SeoHeader from '@/components/layout/SeoHeader';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { Routes } from '@/constants/routes';
 import {
   SponsorFormReducer,
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
-import { styled } from 'stitches.config';
+import fs from 'fs';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import path from 'path';
 import { useReducer } from 'react';
 import { useForm } from 'react-hook-form';
+import { styled } from 'stitches.config';
 
 const Container = styled('div', {
   width: '100%',
@@ -72,7 +74,15 @@ const SponsorJoinPage: NextPage<
       children = null;
       break;
   }
-  return <Container>{children}</Container>;
+  return (
+    <>
+      <SeoHeader
+        title={Routes.SPONSOR_JOIN.title}
+        description="파이콘 한국 2023에 후원하기"
+      />
+      <Container>{children}</Container>
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps<{

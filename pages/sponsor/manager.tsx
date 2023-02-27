@@ -7,6 +7,7 @@ import { H3 } from '@/components/heading';
 import NavBar from '@/components/layout/NavBar';
 import { Progressbar } from '@/components/common/Progressbar';
 import ManagerInfoInputBox from '@/components/sponsor/ManagerInfoInputBox';
+import SeoHeader from '@/components/layout/SeoHeader';
 
 const ContentWrapper = styled('div', {
   width: '100%',
@@ -18,18 +19,18 @@ const ContentWrapper = styled('div', {
 
 const SponsorManagerInfoPage: NextPage = () => {
   return (
-    <main>
-      <Head>
-        <title>Sponsor | 정보 입력</title>
-      </Head>
-      <ContentWrapper>
-        <Progressbar value={5} />
-        <H3
-          style={{ whiteSpace: 'pre-line', marginTop: 24, marginBottom: 16 }}
-        >{`담당자 정보를\n입력해주세요`}</H3>
-        <ManagerInfoInputBox />
-      </ContentWrapper>
-    </main>
+    <>
+      <SeoHeader title="담당자 정보 입력" />
+      <main>
+        <ContentWrapper>
+          <Progressbar value={5} />
+          <H3
+            style={{ whiteSpace: 'pre-line', marginTop: 24, marginBottom: 16 }}
+          >{`담당자 정보를\n입력해주세요`}</H3>
+          <ManagerInfoInputBox />
+        </ContentWrapper>
+      </main>
+    </>
   );
 };
 
