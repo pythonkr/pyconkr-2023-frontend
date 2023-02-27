@@ -81,12 +81,12 @@ const FileInputBox = ({
             <Controller
               control={control}
               name={fileInput.key}
-              defaultValue=""
-              render={({ field: { onChange } }) => (
+              render={({ field: { value, onChange } }) => (
                 <FileUpload
                   id={fileInput.key}
                   labelText={fileInput.labelText}
                   fileType={fileInput.fileType}
+                  fileList={value}
                   onFileUpload={(file) => onChange(file)}
                 />
               )}
