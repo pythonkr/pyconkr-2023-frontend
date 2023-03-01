@@ -1,10 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { useReducer } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
-
-import type { Sponsor } from '@/@types';
 import { styled } from 'stitches.config';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
@@ -12,9 +10,12 @@ import {
   SponsorFormReducer,
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
+import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
 import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 import FileInputBox from '@/components/sponsor/FileInputBox';
 import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
+import type { Sponsor } from '@/@types';
+import { DevTool } from '@hookform/devtools';
 
 const Container = styled('div', {
   width: '100%',
@@ -58,7 +59,12 @@ const SponsorJoinPage: NextPage<
       );
       break;
     case SponsorFormState.SPONSOR_TYPE:
-      children = null;
+      children = (
+        <SponsorTypeSelectForm
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.SPONSOR_INFORM:
       children = (
@@ -81,12 +87,7 @@ const SponsorJoinPage: NextPage<
       break;
     case SponsorFormState.FILE_UPLOAD:
       children = (
-        <FileInputBox
-          onClickPrev={onClickPrev}
-          onClickNext={onClickNext}
-          control={control}
-          watch={watch}
-        />
+        <FileInputBox onClickPrev={onClickPrev} onClickNext={onClickNext} />
       );
       break;
     case SponsorFormState.COMPLETE:
@@ -96,7 +97,12 @@ const SponsorJoinPage: NextPage<
       children = null;
       break;
   }
-  return <Container>{children}</Container>;
+  return (
+    <Container>
+      <DevTool control={form.control} placement="top-left" />
+      <FormProvider {...form}>{children}</FormProvider>
+    </Container>
+  );
 };
 
 export const getStaticProps: GetStaticProps<{

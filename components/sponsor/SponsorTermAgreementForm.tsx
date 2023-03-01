@@ -1,13 +1,12 @@
 import { useState } from 'react';
+import { Controller, useFormContext, UseFormReturn } from 'react-hook-form';
+import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
-import { Controller, UseFormReturn } from 'react-hook-form';
-
 import Modal from './Modal';
 import type { Sponsor } from '@/@types';
 import Button from '@/components/common/Button';
 import Checkbox from '@/components/common/Checkbox';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
-import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
 const TextArea = styled('textarea', {
   display: 'block',
@@ -56,13 +55,12 @@ type Props = {
 };
 
 const SponsorTermAgreementForm: React.FC<Props> = ({
-  form,
   sponsorTerm,
   onClickPrev,
   onClickNext,
 }) => {
-  const { watch, control } = form;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { control, watch } = useFormContext();
   const termAgreement = watch('termAgreement');
 
   return (
