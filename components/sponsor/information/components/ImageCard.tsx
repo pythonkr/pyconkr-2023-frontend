@@ -5,14 +5,15 @@ import { ImageCardProps } from '../types';
 import * as S from '../styles';
 
 const ImageCardWrapper = styled('div', {
-  border: '1px solid $textPrimary',
+  border: '2px solid $textPrimary',
   '@bp1': {
     minWidth: '300px',
     height: 'auto',
   },
   '@bp2': {
     minWidth: '522px',
-    maxHeight: '450px',
+    height: '450px',
+    overflow: 'hidden',
   },
 });
 

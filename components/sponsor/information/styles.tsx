@@ -170,11 +170,13 @@ export const SimpleCardContainer = styled('div', {
   '@bp5': {},
 });
 
+export const ImageCardWrapper = styled('div', {});
+
 export const ImageCardContainer = styled('div', {
   display: 'flex',
   justifyContent: 'start',
   marginTop: '40px',
-  width: '100vw',
+  width: '100%',
   overflowX: 'auto',
 
   '@bp1': {

@@ -26,19 +26,21 @@ export const Guide = () => (
     </S.Section>
     <S.SectionWithSidePadding id="benefits">
       <H1>후원사 혜택</H1>
-      <S.ImageCardContainer>
-        {/* /TODO: 슬라이더(?) 명진님꼐 물어보기 / */}
-        {BENEFITS.map((benefit: ImageCardProps) => (
-          <ImageCard
-            key={benefit.id}
-            id={benefit.id}
-            title={benefit.title}
-            description={benefit.description}
-            imgUrl={benefit.imgUrl}
-            alt={benefit.alt}
-          />
-        ))}
-      </S.ImageCardContainer>
+      <S.ImageCardWrapper>
+        <S.ImageCardContainer>
+          {/* /TODO: 슬라이더(?) 명진님꼐 물어보기 / */}
+          {BENEFITS.map((benefit: ImageCardProps) => (
+            <ImageCard
+              key={benefit.id}
+              id={benefit.id}
+              title={benefit.title}
+              description={benefit.description}
+              imgUrl={benefit.imgUrl}
+              alt={benefit.alt}
+            />
+          ))}
+        </S.ImageCardContainer>
+      </S.ImageCardWrapper>
     </S.SectionWithSidePadding>
   </>
 );
