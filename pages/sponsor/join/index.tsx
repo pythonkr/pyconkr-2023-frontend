@@ -13,11 +13,13 @@ import {
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
 import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
+import FileInputBox from '@/components/sponsor/FileInputBox';
+import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
 
 const Container = styled('div', {
   width: '100%',
   height: '100%',
-  maxWidth: '833px',
+  maxWidth: '630px',
   margin: '0 auto',
 });
 
@@ -78,10 +80,17 @@ const SponsorJoinPage: NextPage<
       );
       break;
     case SponsorFormState.FILE_UPLOAD:
-      children = null;
+      children = (
+        <FileInputBox
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+          control={control}
+          watch={watch}
+        />
+      );
       break;
     case SponsorFormState.COMPLETE:
-      children = null;
+      children = <SponsorCompleteBox />;
       break;
     default:
       children = null;

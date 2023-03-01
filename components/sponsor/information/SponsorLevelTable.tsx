@@ -42,7 +42,7 @@ const SponsorLevelTable = () => {
 
   return (
     <S.Section>
-      <H1>후원사 등급 안내</H1>
+      <H1 id="sponsorship-options">후원사 등급 안내</H1>
       <SponsorLevelTableWrapper>
         <Table columns={column1} data={data1} />
         <Table columns={column2} data={data2} />
