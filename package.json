@@ -7,6 +7,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
+    "deploy": "next build && next start",
     "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "prepare": "husky install"
