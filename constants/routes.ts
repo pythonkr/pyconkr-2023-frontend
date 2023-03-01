@@ -13,7 +13,7 @@ export const Routes = {
   },
   SPONSOR_JOIN: {
     title: '후원하기',
-    route: '/',
+    route: '/sponsor/join',
   },
 };
 

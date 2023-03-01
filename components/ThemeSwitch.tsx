@@ -6,9 +6,7 @@ import { useEffect, useState } from 'react';
 const style: CSS = {
   width: 36,
   height: 36,
-
   cursor: 'pointer',
-
   '& path': {
     fill: '$textPrimary',
   },

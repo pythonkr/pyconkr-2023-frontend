@@ -11,8 +11,11 @@ export const sponsorState = atom<Sponsor>({
     managerTel: '',
     managerEmail: '',
     businessRegistrationNumber: '',
+    cocAgreement: false,
+    termAgreement: false,
     logoImage: null,
     bankBookFile: null,
     businessRegistrationFile: null,
   },
+  dangerouslyAllowMutability: true,
 });

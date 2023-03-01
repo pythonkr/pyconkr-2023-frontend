@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react';
-import { FileUploadIcon } from '@/public/icons';
+import React, { useCallback } from 'react';
+import { ImageFileIcon, PdfFileIcon } from '@/public/icons';
 import { FileItem } from '@/components/common/FileUpload/FileItem';
 import { styled } from '@/stitches.config';
 
 const StyledFileUpload = styled('div', {
   width: '100%',
-  height: '180px',
+  height: '100px',
   backgroundColor: '$backgroundPrimary',
   border: '2px solid $textPrimary',
 });
@@ -37,7 +37,16 @@ const FileItemLabel = styled('label', {
   padding: 24,
 });
 
-const StyledFileUploadIcon = styled(FileUploadIcon, {
+const StyledPdfFileIcon = styled(PdfFileIcon, {
+  width: '24px',
+  height: '24px',
+
+  '& path': {
+    fill: '$textPrimary',
+  },
+});
+
+const StyledImageFileIcon = styled(ImageFileIcon, {
   width: '24px',
   height: '24px',
 
@@ -48,19 +57,26 @@ const StyledFileUploadIcon = styled(FileUploadIcon, {
 
 interface FileUploadProps {
   labelText: string;
+  fileType: 'pdf' | 'image';
+  fileList?: FileList;
   onFileUpload: (file: FileList) => void;
 }
 
 type FileUploadType = React.InputHTMLAttributes<HTMLInputElement> &
   FileUploadProps;
 
+const fileTypeList = {
+  pdf: { icon: <StyledPdfFileIcon />, accept: '.pdf' },
+  image: { icon: <StyledImageFileIcon />, accept: 'image/png, image/jpg' },
+};
+
 export const FileUpload = ({
   labelText,
+  fileType,
+  fileList,
   onFileUpload,
   ...props
 }: FileUploadType) => {
-  const [uploadedFiles, setUploadedFiles] = useState<FileList | null>(null);
-
   const stopSyntheticEvent = useCallback((e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -71,7 +87,6 @@ export const FileUpload = ({
       stopSyntheticEvent(e);
       const files = e.target.files;
       if (files) {
-        setUploadedFiles(files);
         onFileUpload(files);
       }
     },
@@ -82,22 +97,20 @@ export const FileUpload = ({
     (e: React.BaseSyntheticEvent<object, unknown, unknown>, index: number) => {
       stopSyntheticEvent(e);
 
-      if (uploadedFiles) {
-        const newFiles = Array.from(uploadedFiles).filter(
+      if (fileList) {
+        const newFiles = Array.from(fileList).filter(
           (_, fileIndex) => fileIndex !== index
         );
 
         const newFileList = new DataTransfer();
 
         newFiles.forEach((file) => newFileList.items.add(file));
-
-        setUploadedFiles(newFileList.files);
         onFileUpload(newFileList.files);
       }
 
       return;
     },
-    [onFileUpload, stopSyntheticEvent, uploadedFiles]
+    [onFileUpload, stopSyntheticEvent, fileList]
   );
 
   const handleDrop = useCallback(
@@ -107,7 +120,6 @@ export const FileUpload = ({
       const files = e.dataTransfer.files;
 
       if (files) {
-        setUploadedFiles(files);
         onFileUpload(files);
       }
     },
@@ -122,14 +134,18 @@ export const FileUpload = ({
         id={fileInputId}
         type="file"
         onChange={handleFileUpload}
+        multiple
+        accept={fileTypeList[fileType].accept}
+        required
         {...props}
       />
-      {uploadedFiles?.length ? (
+      {fileList?.length ? (
         <FileItemLabel htmlFor={fileInputId}>
-          {Array.from(uploadedFiles).map((file, index) => (
+          {Array.from(fileList).map((file, index) => (
             <FileItem
               key={file.name}
               file={file}
+              fileType={fileType}
               onRemove={(e) => handleFileRemove(e, index)}
             />
           ))}
@@ -140,7 +156,7 @@ export const FileUpload = ({
           onDragOver={stopSyntheticEvent}
           onDrop={handleDrop}
         >
-          <StyledFileUploadIcon />
+          {fileTypeList[fileType].icon}
           {labelText}
         </FileUploadLabel>
       )}
