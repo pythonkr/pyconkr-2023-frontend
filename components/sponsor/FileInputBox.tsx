@@ -3,12 +3,7 @@ import { styled } from 'stitches.config';
 import { FileUpload } from '../common';
 import Button from '../common/Button';
 import React, { useCallback } from 'react';
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormWatch,
-} from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
@@ -51,16 +46,10 @@ export type FileInputListType = {
 interface FileInputBoxProps {
   onClickPrev: () => void;
   onClickNext: () => void;
-  control: Control;
-  watch: UseFormWatch<FieldValues>;
 }
 
-const FileInputBox = ({
-  onClickPrev,
-  onClickNext,
-  control,
-  watch,
-}: FileInputBoxProps) => {
+const FileInputBox = ({ onClickPrev, onClickNext }: FileInputBoxProps) => {
+  const { control, watch } = useFormContext();
   const checkValidation = useCallback(() => {
     const fileList = ['businessRegistrationFile', 'bankBookFile', 'logoImage'];
     return fileList.every((file) => {

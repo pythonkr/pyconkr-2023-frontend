@@ -42,7 +42,6 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.COC_AGREEMENT:
       children = (
         <CoCAgreementForm
-          form={form}
           codeOfConduct={codeOfConduct}
           onClickNext={onClickNext}
         />
@@ -51,7 +50,6 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.TERM_AGREEMENT:
       children = (
         <SponsorTermAgreementForm
-          form={form}
           sponsorTerm={sponsorTerm}
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
@@ -69,7 +67,6 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.SPONSOR_INFORM:
       children = (
         <SponsorInfoInputBox
-          form={form}
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
         />
@@ -79,7 +76,6 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.MANAGER_INFORM:
       children = (
         <ManagerInfoInputBox
-          form={form}
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
         />

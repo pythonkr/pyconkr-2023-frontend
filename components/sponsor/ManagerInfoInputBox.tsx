@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, Path, UseFormReturn } from 'react-hook-form';
+import { Controller, Path, useFormContext } from 'react-hook-form';
 
 import { Sponsor } from '@/@types';
 import { styled } from 'stitches.config';
@@ -25,12 +25,11 @@ const ManagerInfoBox = styled('div', {
 });
 
 type Props = {
-  form: UseFormReturn<Sponsor, object>;
   onClickPrev: () => void;
   onClickNext: () => void;
 };
 
-function ManagerInfoInputBox({ form, onClickNext, onClickPrev }: Props) {
+function ManagerInfoInputBox({ onClickNext, onClickPrev }: Props) {
   const {
     control,
     formState: { errors, dirtyFields, isValid },
@@ -38,7 +37,7 @@ function ManagerInfoInputBox({ form, onClickNext, onClickPrev }: Props) {
     setFocus,
     resetField,
     getValues,
-  } = form;
+  } = useFormContext();
   const values = getValues(['managerName', 'managerTel', 'managerEmail']);
 
   const handleValidForm = React.useCallback(

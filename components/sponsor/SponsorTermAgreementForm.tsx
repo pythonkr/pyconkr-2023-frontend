@@ -48,7 +48,6 @@ const ButtonWrapper = styled('div', {
 });
 
 type Props = {
-  form: UseFormReturn<Sponsor, object>;
   sponsorTerm: string;
   onClickPrev: () => void;
   onClickNext: () => void;
