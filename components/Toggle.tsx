@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from '@/stitches.config';
-import { H4 } from '@/components/heading';
+import { H3, H4 } from '@/components/heading';
 import Arrow from '@/public/Arrow.svg';
 
 const ArrowIcon = styled(Arrow, {
@@ -39,20 +39,23 @@ const Hide = styled('p', {
 interface ToggleProps {
   title?: string;
   content?: string;
+  titleSize?: 'big' | 'small';
 }
 
-const Toggle = (props: ToggleProps) => {
+const Toggle = ({
+  title = 'Toggle Title',
+  content = 'Toggle Content',
+  titleSize = 'small',
+}: ToggleProps) => {
   const [open, setOpen] = useState<boolean>(false);
-  const { title, content } = props;
+  // const { title, content } = props;
 
   return (
     <>
       <hr />
-      <Show>
-        <H4>{title}</H4>
-        <Button onClick={() => setOpen((isOpen) => !isOpen)}>
-          {open ? <ArrowIcon direction={'up'} /> : <ArrowIcon />}
-        </Button>
+      <Show onClick={() => setOpen((isOpen) => !isOpen)}>
+        {titleSize === 'small' ? <H4>{title}</H4> : <H3>{title}</H3>}
+        <Button>{open ? <ArrowIcon direction={'up'} /> : <ArrowIcon />}</Button>
       </Show>
       {open ? <Hide>{content}</Hide> : null}
     </>

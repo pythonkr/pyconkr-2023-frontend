@@ -1,4 +1,6 @@
+import React from 'react';
 import { styled } from '@/stitches.config';
+import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 
 const ProgressWrapper = styled('div', {
   width: '100%',
@@ -12,15 +14,19 @@ const Progress = styled('div', {
 });
 
 type ProgressbarProps = {
-  value: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  value: SponsorFormState;
 };
 
 export const Progressbar = ({ value }: ProgressbarProps) => {
+  const sponsorFormStateLength = React.useMemo(
+    () => Object.values(SponsorFormState).length / 2,
+    []
+  );
   return (
     <ProgressWrapper>
       <Progress
         style={{
-          width: `${(value / 6) * 100}%`,
+          width: `${(value / sponsorFormStateLength) * 100}%`,
         }}
       />
     </ProgressWrapper>

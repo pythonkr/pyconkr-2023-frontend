@@ -1,4 +1,8 @@
-import { CloseIcon, FileUploadIcon } from '@/public/icons';
+import {
+  CloseIcon,
+  ImageFileSubmitIcon,
+  PdfFileSubmitIcon,
+} from '@/public/icons';
 import { styled } from '@/stitches.config';
 
 const FileItemWrapper = styled('li', {
@@ -30,7 +34,13 @@ const CloseButton = styled('button', {
   cursor: 'pointer',
 });
 
-const StyledFileUploadIcon = styled(FileUploadIcon, {
+const StyledPdfFileSubmitIcon = styled(PdfFileSubmitIcon, {
+  '& path': {
+    fill: '$textPrimary',
+  },
+});
+
+const StyledImageFileSubmitIcon = styled(ImageFileSubmitIcon, {
   '& path': {
     fill: '$textPrimary',
   },
@@ -46,14 +56,20 @@ const StyledCloseIcon = styled(CloseIcon, {
 
 interface FileItemProps {
   file: File;
+  fileType: 'pdf' | 'image';
   onRemove: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const FileItem = ({ file, onRemove }: FileItemProps) => {
+const fileTypeIcon = {
+  pdf: <StyledPdfFileSubmitIcon />,
+  image: <StyledImageFileSubmitIcon />,
+};
+
+export const FileItem = ({ file, fileType, onRemove }: FileItemProps) => {
   return (
     <FileItemWrapper>
       <FileItemLeftGroup>
-        <StyledFileUploadIcon />
+        {fileTypeIcon[fileType]}
         <FileItemName>{file.name}</FileItemName>
       </FileItemLeftGroup>
       <CloseButton onClick={onRemove}>

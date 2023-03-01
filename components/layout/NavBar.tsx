@@ -128,7 +128,7 @@ const NavBar = () => {
   return (
     <StyledNavArea>
       <Link href={Routes.HOME.route} passHref>
-        <Logo width={230} />
+        <Logo width={230} height={'100%'} />
         <Title>{Routes.HOME.title}</Title>
       </Link>
       <StyledMenuBox>
