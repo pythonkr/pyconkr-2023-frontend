@@ -34,7 +34,6 @@ const Show = styled('div', {
 const Hide = styled('p', {
   bodyText: 1,
   color: '$textPrimary',
-  marginBottom: '2rem',
 });
 
 interface ToggleProps {

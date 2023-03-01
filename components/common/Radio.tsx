@@ -23,26 +23,16 @@ const StyledLabel = styled('label', {
   cursor: 'pointer',
 });
 
-interface RadioProps {
-  children: React.ReactNode;
-  id: string;
-  name: string;
-  value: string;
-  defaultChecked?: boolean;
-}
+type RadioProps = React.PropsWithChildren<
+  React.InputHTMLAttributes<HTMLInputElement>
+>;
 
-const Radio = ({ children, id, name, value, defaultChecked }: RadioProps) => {
+const Radio = ({ children, ...props }: RadioProps) => {
   return (
-    <>
-      <StyledInput
-        type="radio"
-        id={id}
-        name={name}
-        value={value}
-        defaultChecked={defaultChecked}
-      />
-      <StyledLabel htmlFor={id}>{children}</StyledLabel>
-    </>
+    <div>
+      <StyledInput type="radio" {...props} />
+      <StyledLabel htmlFor={props.id}>{children}</StyledLabel>
+    </div>
   );
 };
 

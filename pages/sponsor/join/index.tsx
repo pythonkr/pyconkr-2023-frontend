@@ -1,6 +1,11 @@
+import type { Sponsor } from '@/@types';
 import SeoHeader from '@/components/layout/SeoHeader';
+import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
+import FileInputBox from '@/components/sponsor/FileInputBox';
+import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
+import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
 import { Routes } from '@/constants/routes';
 import {
   SponsorFormReducer,
@@ -10,13 +15,12 @@ import fs from 'fs';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import path from 'path';
 import { useReducer } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { styled } from 'stitches.config';
 
 const Container = styled('div', {
-  width: '100%',
   height: '100%',
-  maxWidth: '833px',
+  maxWidth: '630px',
   margin: '0 auto',
 });
 
@@ -28,9 +32,7 @@ const SponsorJoinPage: NextPage<
     SponsorFormState.COC_AGREEMENT
   );
 
-  const { control, handleSubmit, register, watch } = useForm({
-    mode: 'onSubmit',
-  });
+  const form = useForm<Sponsor, object>({ mode: 'onSubmit' });
 
   const onClickPrev = () => dispatch({ direction: 'prev' });
   const onClickNext = () => dispatch({ direction: 'next' });
@@ -40,35 +42,52 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.COC_AGREEMENT:
       children = (
         <CoCAgreementForm
-          onClickNext={onClickNext}
-          control={control}
           codeOfConduct={codeOfConduct}
-          watch={watch}
+          onClickNext={onClickNext}
         />
       );
       break;
     case SponsorFormState.TERM_AGREEMENT:
       children = (
         <SponsorTermAgreementForm
+          sponsorTerm={sponsorTerm}
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
-          control={control}
-          sponsorTerm={sponsorTerm}
-          watch={watch}
         />
       );
       break;
     case SponsorFormState.SPONSOR_TYPE:
-      children = null;
+      children = (
+        <SponsorTypeSelectForm
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.SPONSOR_INFORM:
-      children = null;
+      children = (
+        <SponsorInfoInputBox
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
+
+      break;
+    case SponsorFormState.MANAGER_INFORM:
+      children = (
+        <ManagerInfoInputBox
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.FILE_UPLOAD:
-      children = null;
+      children = (
+        <FileInputBox onClickPrev={onClickPrev} onClickNext={onClickNext} />
+      );
       break;
     case SponsorFormState.COMPLETE:
-      children = null;
+      children = <SponsorCompleteBox />;
       break;
     default:
       children = null;
@@ -80,7 +99,9 @@ const SponsorJoinPage: NextPage<
         title={Routes.SPONSOR_JOIN.title}
         description="파이콘 한국 2023에 후원하기"
       />
-      <Container>{children}</Container>
+      <Container>
+        <FormProvider {...form}>{children}</FormProvider>
+      </Container>
     </>
   );
 };
