@@ -1,9 +1,9 @@
 name: pyconkr-2023-dev-deploy
 
 on:
-  push:
-    branches:
-      - dev
+  # push:
+  #   branches:
+  #     - dev
 
 jobs:
   deploy-dev:
