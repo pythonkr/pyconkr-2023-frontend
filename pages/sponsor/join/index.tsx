@@ -11,7 +11,6 @@ import { styled } from 'stitches.config';
 import { useReducer } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
-import { useForm } from 'react-hook-form';
 import FileInputBox from '@/components/sponsor/FileInputBox';
 import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
 
@@ -72,8 +71,8 @@ const SponsorJoinPage: NextPage<
         <FileInputBox
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
-          control={control}
-          watch={watch}
+          control={form.control}
+          watch={form.watch}
         />
       );
       break;
