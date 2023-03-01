@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, UseFormReturn } from 'react-hook-form';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
-import Button from '../common/Button';
-import Checkbox from '../common/Checkbox';
 import Modal from './Modal';
+import type { Sponsor } from '@/@types';
+import Button from '@/components/common/Button';
+import Checkbox from '@/components/common/Checkbox';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 
 const TextArea = styled('textarea', {
@@ -47,15 +48,16 @@ const ButtonWrapper = styled('div', {
 });
 
 type Props = {
+  form: UseFormReturn<Sponsor, object>;
+  sponsorTerm: string;
   onClickPrev: () => void;
   onClickNext: () => void;
-  sponsorTerm: string;
 };
 
 const SponsorTermAgreementForm: React.FC<Props> = ({
+  sponsorTerm,
   onClickPrev,
   onClickNext,
-  sponsorTerm,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { control, watch } = useFormContext();
@@ -90,7 +92,12 @@ const SponsorTermAgreementForm: React.FC<Props> = ({
           <Button size="flat" onClick={onClickPrev}>
             이전으로
           </Button>
-          <Button size="flat" disabled={!termAgreement} onClick={onClickNext}>
+          <Button
+            size="flat"
+            reversal
+            disabled={!termAgreement}
+            onClick={onClickNext}
+          >
             다음으로
           </Button>
         </ButtonWrapper>

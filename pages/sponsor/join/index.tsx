@@ -1,18 +1,21 @@
 import fs from 'fs';
 import path from 'path';
+import { useReducer } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { styled } from 'stitches.config';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import {
   SponsorFormReducer,
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
-import { styled } from 'stitches.config';
-import { useReducer } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
 import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
+import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 import FileInputBox from '@/components/sponsor/FileInputBox';
 import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
+import type { Sponsor } from '@/@types';
+import { DevTool } from '@hookform/devtools';
 
 const Container = styled('div', {
   width: '100%',
@@ -29,9 +32,7 @@ const SponsorJoinPage: NextPage<
     SponsorFormState.COC_AGREEMENT
   );
 
-  const form = useForm({
-    mode: 'onSubmit',
-  });
+  const form = useForm<Sponsor, object>({ mode: 'onSubmit' });
 
   const onClickPrev = () => dispatch({ direction: 'prev' });
   const onClickNext = () => dispatch({ direction: 'next' });
@@ -41,17 +42,19 @@ const SponsorJoinPage: NextPage<
     case SponsorFormState.COC_AGREEMENT:
       children = (
         <CoCAgreementForm
-          onClickNext={onClickNext}
+          form={form}
           codeOfConduct={codeOfConduct}
+          onClickNext={onClickNext}
         />
       );
       break;
     case SponsorFormState.TERM_AGREEMENT:
       children = (
         <SponsorTermAgreementForm
+          form={form}
+          sponsorTerm={sponsorTerm}
           onClickPrev={onClickPrev}
           onClickNext={onClickNext}
-          sponsorTerm={sponsorTerm}
         />
       );
       break;
@@ -64,16 +67,27 @@ const SponsorJoinPage: NextPage<
       );
       break;
     case SponsorFormState.SPONSOR_INFORM:
-      children = null;
+      children = (
+        <SponsorInfoInputBox
+          form={form}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
+
+      break;
+    case SponsorFormState.MANAGER_INFORM:
+      children = (
+        <ManagerInfoInputBox
+          form={form}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
       break;
     case SponsorFormState.FILE_UPLOAD:
       children = (
-        <FileInputBox
-          onClickPrev={onClickPrev}
-          onClickNext={onClickNext}
-          control={form.control}
-          watch={form.watch}
-        />
+        <FileInputBox onClickPrev={onClickPrev} onClickNext={onClickNext} />
       );
       break;
     case SponsorFormState.COMPLETE:
@@ -85,6 +99,7 @@ const SponsorJoinPage: NextPage<
   }
   return (
     <Container>
+      <DevTool control={form.control} placement="top-left" />
       <FormProvider {...form}>{children}</FormProvider>
     </Container>
   );

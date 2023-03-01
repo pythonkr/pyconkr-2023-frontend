@@ -1,100 +1,129 @@
-import { useState } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import { SponsorFormState } from '@/reducers/sponsorFormReducer';
+import fs from 'fs';
+import path from 'path';
+import { useReducer } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { styled } from 'stitches.config';
-import Button from '../common/Button';
-import Checkbox from '../common/Checkbox';
-import Modal from './Modal';
-import SponsorJoinFormBase from './SponsorJoinFormBase';
+import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
+import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
+import {
+  SponsorFormReducer,
+  SponsorFormState,
+} from '@/reducers/sponsorFormReducer';
+import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
+import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
+import FileInputBox from '@/components/sponsor/FileInputBox';
+import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
 
-const TextArea = styled('textarea', {
-  display: 'block',
+const Container = styled('div', {
   width: '100%',
   height: '100%',
-  marginBottom: 26,
-  backgroundColor: '$backgroundPrimary',
-  padding: 16,
-  resize: 'none',
-  wordBreak: 'keep-all',
-  bodyText: 1,
+  maxWidth: '630px',
+  margin: '0 auto',
 });
 
-const TitleWrapper = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginBottom: 4,
-});
+const SponsorJoinPage: NextPage<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = ({ codeOfConduct, sponsorTerm }) => {
+  const [state, dispatch] = useReducer(
+    SponsorFormReducer,
+    SponsorFormState.COC_AGREEMENT
+  );
 
-const Title = styled('span', {
-  bodyText: 1,
-});
+  const form = useForm<Sponsor, object>({ mode: 'onSubmit' });
 
-const ModalButton = styled('button', {
-  border: 0,
-  backgroundColor: 'inherit',
-  appearance: 'none',
-  cursor: 'pointer',
-  bodyText: 1,
-});
+  const onClickPrev = () => dispatch({ direction: 'prev' });
+  const onClickNext = () => dispatch({ direction: 'next' });
 
-const ActionWrapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 18,
-});
+  let children;
+  switch (state) {
+    case SponsorFormState.COC_AGREEMENT:
+      children = (
+        <CoCAgreementForm
+          form={form}
+          codeOfConduct={codeOfConduct}
+          onClickNext={onClickNext}
+        />
+      );
+      break;
+    case SponsorFormState.TERM_AGREEMENT:
+      children = (
+        <SponsorTermAgreementForm
+          form={form}
+          sponsorTerm={sponsorTerm}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
+      break;
+    case SponsorFormState.SPONSOR_TYPE:
+      children = (
+        <SponsorTypeSelectForm
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
+      break;
+    case SponsorFormState.SPONSOR_INFORM:
+      children = (
+        <SponsorInfoInputBox
+          form={form}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
 
-type Props = {
-  onClickNext: () => void;
-  codeOfConduct: string;
-};
-
-const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { control, watch } = useFormContext();
-  const cocAgreement = watch('cocAgreement');
-
+      break;
+    case SponsorFormState.MANAGER_INFORM:
+      children = (
+        <ManagerInfoInputBox
+          form={form}
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+        />
+      );
+      break;
+    case SponsorFormState.FILE_UPLOAD:
+      children = (
+        <FileInputBox
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+          control={form.control}
+          watch={form.watch}
+        />
+      );
+      break;
+    case SponsorFormState.COMPLETE:
+      children = <SponsorCompleteBox />;
+      break;
+    default:
+      children = null;
+      break;
+  }
   return (
-    <>
-      <SponsorJoinFormBase
-        title="파이콘 행동 강령에\n동의해주세요"
-        state={SponsorFormState.COC_AGREEMENT}
-      >
-        <TitleWrapper>
-          <Title>파이콘 행동강령</Title>
-          <ModalButton type="button" onClick={() => setIsModalOpen(true)}>
-            더보기
-          </ModalButton>
-        </TitleWrapper>
-        <TextArea value={codeOfConduct} readOnly />
-        <ActionWrapper>
-          <Controller
-            control={control}
-            name="cocAgreement"
-            render={({ field: { onChange, value } }) => (
-              <Checkbox
-                id="coc-agreement"
-                label="파이콘 행동강령에 동의합니다"
-                checked={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          <Button size="flat" disabled={!cocAgreement} onClick={onClickNext}>
-            다음으로
-          </Button>
-        </ActionWrapper>
-      </SponsorJoinFormBase>
-      {isModalOpen && (
-        <Modal
-          title="파이콘 행동 강령"
-          handleClose={() => setIsModalOpen(false)}
-        >
-          <TextArea value={codeOfConduct} readOnly />
-        </Modal>
-      )}
-    </>
+    <Container>
+      <FormProvider {...form}>{children}</FormProvider>
+    </Container>
   );
 };
 
-export default CoCAgreementForm;
+export const getStaticProps: GetStaticProps<{
+  sponsorTerm: string;
+  codeOfConduct: string;
+}> = async () => {
+  const staticPath = path.join(process.cwd(), 'static');
+  const codeOfConductFilePath = path.join(staticPath, 'code-of-conduct.md');
+  const sponsorTermFilePath = path.join(staticPath, 'sponsor-term.md');
+
+  const codeOfConduct = fs.readFileSync(codeOfConductFilePath, 'utf8');
+  const sponsorTerm = fs.readFileSync(sponsorTermFilePath, 'utf8');
+
+  return {
+    props: {
+      codeOfConduct,
+      sponsorTerm,
+    },
+  };
+};
+
+export default SponsorJoinPage;

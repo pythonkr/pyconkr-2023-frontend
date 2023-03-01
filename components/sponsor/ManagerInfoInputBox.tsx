@@ -1,127 +1,153 @@
 import React from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, Path, UseFormReturn } from 'react-hook-form';
 
+import { Sponsor } from '@/@types';
 import { styled } from 'stitches.config';
 import Button from '@/components/common/Button';
-import type { ManagerInputInfo } from '@/@types';
 import SimpleInput from '@/components/SimpleInput';
-import useSponsorInputEvent from '@/hooks/useSponsorInputEvent';
+import SponsorJoinFormBase from './SponsorJoinFormBase';
+import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { isCurrentTypeValid, isNotEmptyValue, validateChecker } from '@/utils';
 
 const ButtonWrapper = styled('div', {
   display: 'flex',
   gap: 20,
-  marginTop: 50,
-  marginBottom: 40,
+  marginTop: 16,
+  '@bp6': {
+    marginTop: 126,
+  },
 });
 
-const LinkButton = styled(Button, {
-  flex: 1,
-});
-
-const ManagerInfoForm = styled('form', {
+const ManagerInfoBox = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: 24,
+  gap: 16,
 });
 
-function ManagerInfoInputBox() {
-  const {
-    fieldForms,
-    onSubmitStoreData,
-    handleValidForm,
-    handleClickResetIcon,
-  } = useSponsorInputEvent<ManagerInputInfo>();
+type Props = {
+  form: UseFormReturn<Sponsor, object>;
+  onClickPrev: () => void;
+  onClickNext: () => void;
+};
+
+function ManagerInfoInputBox({ form, onClickNext, onClickPrev }: Props) {
   const {
     control,
     formState: { errors, dirtyFields, isValid },
+    trigger,
+    setFocus,
+    resetField,
     getValues,
-    handleSubmit,
-  } = fieldForms;
+  } = form;
   const values = getValues(['managerName', 'managerTel', 'managerEmail']);
 
+  const handleValidForm = React.useCallback(
+    (formKey: Path<Sponsor>) => {
+      trigger(formKey);
+    },
+    [trigger]
+  );
+
+  const handleClickResetIcon = React.useCallback(
+    (formKey: Path<Sponsor>) => {
+      resetField(formKey);
+      setFocus(formKey);
+    },
+    [resetField, setFocus]
+  );
+
   return (
-    <ManagerInfoForm onSubmit={handleSubmit(onSubmitStoreData)}>
-      <Controller
-        name="managerName"
-        defaultValue=""
-        control={control}
-        rules={validateChecker('managerName')}
-        render={({ field }) => (
-          <SimpleInput
-            {...field}
-            label="담당자 이름"
-            length="fullWidth"
-            isValid={isCurrentTypeValid(
-              dirtyFields.managerName,
-              'managerName',
-              errors
-            )}
-            isDirty={dirtyFields.managerName}
-            onReset={() => handleClickResetIcon('managerName')}
-            onBlur={() => handleValidForm('managerName')}
-            required
-          />
-        )}
-      />
-      <Controller
-        name="managerTel"
-        defaultValue=""
-        control={control}
-        rules={validateChecker('phone')}
-        render={({ field }) => (
-          <SimpleInput
-            {...field}
-            label="담당자 연락처"
-            length="fullWidth"
-            isValid={isCurrentTypeValid(
-              dirtyFields.managerTel,
-              'managerTel',
-              errors
-            )}
-            isDirty={dirtyFields.managerTel}
-            onReset={() => handleClickResetIcon('managerTel')}
-            onBlur={() => handleValidForm('managerTel')}
-            required
-          />
-        )}
-      />
-      <Controller
-        name="managerEmail"
-        defaultValue=""
-        control={control}
-        rules={validateChecker('email')}
-        render={({ field }) => (
-          <SimpleInput
-            {...field}
-            type="email"
-            label="담당자 이메일"
-            length="fullWidth"
-            isValid={isCurrentTypeValid(
-              dirtyFields.managerEmail,
-              'managerEmail',
-              errors
-            )}
-            isDirty={dirtyFields.managerEmail}
-            isError={typeof errors.managerEmail?.message !== 'undefined'}
-            errorMessage={errors.managerEmail?.message}
-            onReset={() => handleClickResetIcon('managerEmail')}
-            onBlur={() => handleValidForm('managerEmail')}
-            required
-          />
-        )}
-      />
-      {/* TODO: route에 따라 연동 */}
-      <ButtonWrapper>
-        <LinkButton type="button">이전으로</LinkButton>
-        <LinkButton
-          type="submit"
-          disabled={!isValid || !isNotEmptyValue(values)}
-        >
-          다음으로
-        </LinkButton>
-      </ButtonWrapper>
-    </ManagerInfoForm>
+    <SponsorJoinFormBase
+      title="담당자 정보를\n입력해주세요"
+      state={SponsorFormState.MANAGER_INFORM}
+    >
+      <ManagerInfoBox>
+        <Controller
+          name="managerName"
+          defaultValue=""
+          control={control}
+          rules={validateChecker('managerName')}
+          render={({ field }) => (
+            <SimpleInput
+              {...field}
+              label="담당자 이름"
+              length="fullWidth"
+              isValid={isCurrentTypeValid(
+                dirtyFields.managerName,
+                'managerName',
+                errors
+              )}
+              isDirty={dirtyFields.managerName}
+              onReset={() => handleClickResetIcon('managerName')}
+              onBlur={() => handleValidForm('managerName')}
+              required
+            />
+          )}
+        />
+        <Controller
+          name="managerTel"
+          defaultValue=""
+          control={control}
+          rules={validateChecker('phone')}
+          render={({ field }) => (
+            <SimpleInput
+              {...field}
+              label="담당자 연락처"
+              length="fullWidth"
+              isValid={isCurrentTypeValid(
+                dirtyFields.managerTel,
+                'managerTel',
+                errors
+              )}
+              isDirty={dirtyFields.managerTel}
+              isError={typeof errors.managerTel?.message !== 'undefined'}
+              errorMessage={String(errors.managerTel?.message)}
+              onReset={() => handleClickResetIcon('managerTel')}
+              onBlur={() => handleValidForm('managerTel')}
+              required
+            />
+          )}
+        />
+        <Controller
+          name="managerEmail"
+          defaultValue=""
+          control={control}
+          rules={validateChecker('email')}
+          render={({ field }) => (
+            <SimpleInput
+              {...field}
+              type="email"
+              label="담당자 이메일"
+              length="fullWidth"
+              isValid={isCurrentTypeValid(
+                dirtyFields.managerEmail,
+                'managerEmail',
+                errors
+              )}
+              isDirty={dirtyFields.managerEmail}
+              isError={typeof errors.managerEmail?.message !== 'undefined'}
+              errorMessage={String(errors.managerEmail?.message)}
+              onReset={() => handleClickResetIcon('managerEmail')}
+              onBlur={() => handleValidForm('managerEmail')}
+              required
+            />
+          )}
+        />
+        <ButtonWrapper>
+          <Button size="flat" onClick={onClickPrev}>
+            이전으로
+          </Button>
+          <Button
+            size="flat"
+            reversal
+            disabled={!isValid || !isNotEmptyValue(values)}
+            onClick={onClickNext}
+          >
+            다음으로
+          </Button>
+        </ButtonWrapper>
+      </ManagerInfoBox>
+    </SponsorJoinFormBase>
   );
 }
 

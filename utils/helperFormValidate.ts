@@ -18,7 +18,7 @@ const validateRule = {
   phone: {
     pattern: {
       value: /^[0-9]*$/,
-      message: '숫자만 입력이 가능합니다.',
+      message: '* 숫자만 입력이 가능합니다.',
     },
   },
   default: {},
