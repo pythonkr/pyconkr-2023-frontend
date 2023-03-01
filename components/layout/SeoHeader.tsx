@@ -23,7 +23,6 @@ const SeoHeader = ({
     ? `${title} | ${DefaultMetaTags.title}`
     : title;
   const fullUrl = siteUrl + pathname;
-  const fullImageUrl = siteUrl + imageUrl;
 
   return (
     <Head>
@@ -38,7 +37,7 @@ const SeoHeader = ({
       {/* og tags */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={fullImageUrl} />
+      <meta property="og:image" content={imageUrl} />
       <meta property="og:image:alt" content={title} />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:type" content="website" />
@@ -50,7 +49,7 @@ const SeoHeader = ({
       <meta name="twitter:site" content="@pyconkr" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={fullImageUrl} />
+      <meta name="twitter:image" content={imageUrl} />
       <meta name="twitter:image:alt" content={title} />
       <meta name="twitter:url" content={fullUrl} />
 
