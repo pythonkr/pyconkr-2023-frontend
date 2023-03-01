@@ -1,8 +1,8 @@
 import { styled } from '@/stitches.config';
 import React from 'react';
 import Toggle from '@/components/Toggle';
-import { SponsorTicketFAQ } from '@/constants/sponsor/sponsorFAQ';
-import { H1, H3 } from '../../heading';
+import { SponsorFAQ } from '@/constants/sponsor/sponsorFAQ';
+import { H1 } from '../../heading';
 import * as S from './styles';
 
 const ToggleSection = styled(S.SectionWithoutPadding, {
@@ -19,22 +19,24 @@ const ToggleWrapper = styled('div', {
   padding: '1rem',
   width: '100%',
 });
+const PaddingBox = styled('div', {
+  padding: '1rem',
+});
 
 const SponsorFAQToggle = () => {
   return (
     <S.Section>
-      <H1>자주 묻는 질문</H1>
+      <H1 id="faq">자주 묻는 질문</H1>
       <ToggleSection>
         <ToggleWrapper>
-          {SponsorTicketFAQ.map((question) => (
-            <>
+          {SponsorFAQ.map((question, index) => (
+            <PaddingBox key={index}>
               <Toggle
                 title={question.title}
                 content={question.content}
                 titleSize="big"
-                key={SponsorTicketFAQ.indexOf(question)}
               />
-            </>
+            </PaddingBox>
           ))}
         </ToggleWrapper>
       </ToggleSection>
