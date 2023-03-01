@@ -15,7 +15,6 @@ import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 import FileInputBox from '@/components/sponsor/FileInputBox';
 import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
 import type { Sponsor } from '@/@types';
-import { DevTool } from '@hookform/devtools';
 
 const Container = styled('div', {
   width: '100%',
@@ -95,7 +94,6 @@ const SponsorJoinPage: NextPage<
   }
   return (
     <Container>
-      <DevTool control={form.control} placement="top-left" />
       <FormProvider {...form}>{children}</FormProvider>
     </Container>
   );
