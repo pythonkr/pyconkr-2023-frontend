@@ -77,8 +77,15 @@ export const Guide = () => {
           <ArrowForwardIcon width="60" height="60" onClick={moveRight} />
         </S.ArrowWrapper>
         <H1>후원사 혜택</H1>
-        {/* // FIXME: Carousel 컴포넌트로 교체할 예정!! */}
-        <div style={{ display: 'flex', gap: '20px', overflow: 'hidden' }}>
+        {/* // FIXME: Carousel 컴포넌트로 교체하고 아래 인라인 스타일 지울 예정 */}
+        <div
+          style={{
+            display: 'flex',
+            gap: '20px',
+            overflow: 'hidden',
+            marginTop: '50px',
+          }}
+        >
           {BENEFITS.map((benefit: ImageCardProps) => (
             <SponsorImageCard
               key={benefit.id}
