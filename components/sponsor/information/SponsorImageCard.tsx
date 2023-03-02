@@ -6,13 +6,19 @@ import * as S from './styles';
 const ImageCardWrapper = styled('div', {
   border: '2px solid $textPrimary',
   '@bp1': {
-    minWidth: '300px',
+    width: '100%',
     height: 'auto',
+    marginRight: 0,
   },
   '@bp2': {
-    minWidth: '522px',
+    maxWidth: '522px',
     height: '450px',
     overflow: 'hidden',
+    marginRight: '20px',
+  },
+
+  '&:last-child': {
+    marginRight: '0',
   },
 });
 
@@ -29,11 +35,7 @@ const ImageWrapper = styled('div', {
   height: '280px',
 });
 
-export const SponsorImageCard = ({
-  title,
-  description,
-  imgUrl,
-}: ImageCardProps) => (
+const SponsorImageCard = ({ title, description, imgUrl }: ImageCardProps) => (
   <ImageCardWrapper>
     <TextWrapper>
       <H3>{title}</H3>
@@ -45,3 +47,5 @@ export const SponsorImageCard = ({
     </ImageWrapper>
   </ImageCardWrapper>
 );
+
+export default SponsorImageCard;

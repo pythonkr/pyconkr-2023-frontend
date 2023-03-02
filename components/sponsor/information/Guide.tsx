@@ -1,14 +1,20 @@
-import { useRef, useState } from 'react';
+import React, { useRef } from 'react';
+import Flicking from '@egjs/flicking';
 import { H1 } from '@/components/heading';
 import { SponsorSimpleCard } from './SponsorSimpleCard';
 import { ImageCardProps, SimpleCardProps } from './types';
 import { BENEFITS, STEPS } from './constants/cards';
-import { SponsorImageCard } from './SponsorImageCard';
 import ArrowForward from '@/public/icons/ArrowForward.svg';
 import ArrowBack from '@/public/icons/ArrowBack.svg';
+import SponsorCarousel from './SponsorCarousel';
+import SponsorImageCard from './SponsorImageCard';
 import { styled } from '@/stitches.config';
 import * as S from './styles';
-import SponsorCarousel from './SponsorCarousel';
+
+const CarouselWrapper = styled('div', {
+  display: 'flex',
+  marginTop: '50px',
+});
 
 const ArrowForwardIcon = styled(ArrowForward, {
   stroke: '$textPrimary',
@@ -21,6 +27,19 @@ const ArrowBackIcon = styled(ArrowBack, {
 });
 
 export const Guide = () => {
+  // TODO: 화살표 버튼 클릭해도 캐러셀 작동하게 만들기. Type 설정..!
+  const flickingRef = useRef<Flicking>(null);
+  const moveToForward = async () => {
+    if (flickingRef.current) {
+      await flickingRef.current.prev();
+    }
+  };
+  const moveToNext = async () => {
+    if (flickingRef.current) {
+      await flickingRef.current.next();
+    }
+  };
+
   return (
     <>
       <S.Section id="process">
@@ -42,30 +61,24 @@ export const Guide = () => {
       </S.Section>
       <S.SectionWithSidePadding id="benefits">
         <S.ArrowWrapper>
-          <ArrowBackIcon width="60" height="60" />
-          <ArrowForwardIcon width="60" height="60" />
+          <ArrowBackIcon width="60" height="60" onClick={moveToForward} />
+          <ArrowForwardIcon width="60" height="60" onClick={moveToNext} />
         </S.ArrowWrapper>
         <H1>후원사 혜택</H1>
-        {/* // FIXME: Carousel 컴포넌트로 교체하고 아래 인라인 스타일 지울 예정 */}
-        <div
-          style={{
-            display: 'flex',
-            gap: '20px',
-            overflow: 'hidden',
-            marginTop: '50px',
-          }}
-        >
-          {BENEFITS.map((benefit: ImageCardProps) => (
-            <SponsorImageCard
-              key={benefit.id}
-              id={benefit.id}
-              title={benefit.title}
-              description={benefit.description}
-              imgUrl={benefit.imgUrl}
-              alt={benefit.alt}
-            />
-          ))}
-        </div>
+        <CarouselWrapper>
+          <SponsorCarousel>
+            {BENEFITS.map((benefit: ImageCardProps) => (
+              <SponsorImageCard
+                key={benefit.id}
+                id={benefit.id}
+                title={benefit.title}
+                description={benefit.description}
+                imgUrl={benefit.imgUrl}
+                alt={benefit.alt}
+              />
+            ))}
+          </SponsorCarousel>
+        </CarouselWrapper>
       </S.SectionWithSidePadding>
     </>
   );

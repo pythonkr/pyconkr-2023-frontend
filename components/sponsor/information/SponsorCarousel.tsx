@@ -1,17 +1,24 @@
-import Flicking, { MoveEvent, WillChangeEvent } from '@egjs/react-flicking';
+import { LegacyRef } from 'react';
+import Flicking from '@egjs/react-flicking';
+import '@egjs/react-flicking/dist/flicking-inline.css';
+import '@egjs/react-flicking/dist/flicking.css';
 
-const SponsorCarousel = ({ children }: React.PropsWithChildren) => {
+type SponsorCarouselProps = {
+  ref?: LegacyRef<Flicking>;
+};
+
+const SponsorCarousel = ({
+  ref,
+  children,
+}: React.PropsWithChildren<SponsorCarouselProps>) => {
   return (
     <Flicking
+      ref={ref}
       viewportTag="div"
-      cameraTag="div"
-      cameraClass=""
-      renderOnSameKey={false}
-      align="center"
-      onMove={(e: MoveEvent) => {}}
-      onWillChange={(e: WillChangeEvent) => {}}
-      horizontal={true}
-      circular={true}
+      align="prev"
+      horizontal
+      circular
+      useFindDOMNode
     >
       {children}
     </Flicking>
