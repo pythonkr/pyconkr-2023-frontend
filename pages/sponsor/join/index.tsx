@@ -1,23 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-import { useReducer } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { styled } from 'stitches.config';
+import type { Sponsor } from '@/@types';
+import SeoHeader from '@/components/layout/SeoHeader';
+import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
+import FileInputBox from '@/components/sponsor/FileInputBox';
+import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
 import SponsorTermAgreementForm from '@/components/sponsor/SponsorTermAgreementForm';
+import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
+import { Routes } from '@/constants/routes';
 import {
   SponsorFormReducer,
   SponsorFormState,
 } from '@/reducers/sponsorFormReducer';
-import SponsorTypeSelectForm from '@/components/sponsor/SponsorTypeSelectForm';
-import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
-import FileInputBox from '@/components/sponsor/FileInputBox';
-import SponsorCompleteBox from '@/components/sponsor/SponsorCompleteBox';
-import type { Sponsor } from '@/@types';
+import fs from 'fs';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import path from 'path';
+import { useReducer } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { styled } from 'stitches.config';
 
 const Container = styled('div', {
-  width: '100%',
   height: '100%',
   maxWidth: '630px',
   margin: '0 auto',
@@ -93,9 +94,15 @@ const SponsorJoinPage: NextPage<
       break;
   }
   return (
-    <Container>
-      <FormProvider {...form}>{children}</FormProvider>
-    </Container>
+    <>
+      <SeoHeader
+        title={Routes.SPONSOR_JOIN.title}
+        description="파이콘 한국 2023에 후원하기"
+      />
+      <Container>
+        <FormProvider {...form}>{children}</FormProvider>
+      </Container>
+    </>
   );
 };
 
