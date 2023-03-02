@@ -1,16 +1,20 @@
-import Flickity from 'react-flickity-component';
+import Flicking, { MoveEvent, WillChangeEvent } from '@egjs/react-flicking';
 
 const SponsorCarousel = ({ children }: React.PropsWithChildren) => {
   return (
-    <Flickity
-      className={'carousel'}
-      elementType={'div'}
-      disableImagesLoaded={false}
-      reloadOnUpdate
-      static
+    <Flicking
+      viewportTag="div"
+      cameraTag="div"
+      cameraClass=""
+      renderOnSameKey={false}
+      align="center"
+      onMove={(e: MoveEvent) => {}}
+      onWillChange={(e: WillChangeEvent) => {}}
+      horizontal={true}
+      circular={true}
     >
       {children}
-    </Flickity>
+    </Flicking>
   );
 };
 

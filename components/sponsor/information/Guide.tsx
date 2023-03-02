@@ -21,37 +21,6 @@ const ArrowBackIcon = styled(ArrowBack, {
 });
 
 export const Guide = () => {
-  const imageSliderRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [amount, setAmount] = useState<number>(-100);
-  const total = STEPS.length;
-  console.log({ currentIndex });
-  const moveSlider = (slider: HTMLDivElement | null, currentAmount: number) => {
-    if (!slider) return;
-
-    slider.style.transform = `translateX(${currentAmount}%)`;
-    slider.style.transition = 'transform 0.5s ease-in-out';
-  };
-
-  console.log(amount);
-
-  const moveLeft = () => {
-    console.log('left');
-    if (amount === -100) return;
-    // if (amount ) return;
-    setAmount(amount + 100);
-    setCurrentIndex((currentIndex + 1) % total);
-    moveSlider(imageSliderRef.current, amount);
-  };
-
-  const moveRight = () => {
-    console.log('right');
-    if (amount === -400) return;
-    setAmount(amount - 100);
-    setCurrentIndex((currentIndex + total - 1) % total);
-    moveSlider(imageSliderRef.current, amount);
-  };
-
   return (
     <>
       <S.Section id="process">
@@ -73,8 +42,8 @@ export const Guide = () => {
       </S.Section>
       <S.SectionWithSidePadding id="benefits">
         <S.ArrowWrapper>
-          <ArrowBackIcon width="60" height="60" onClick={moveLeft} />
-          <ArrowForwardIcon width="60" height="60" onClick={moveRight} />
+          <ArrowBackIcon width="60" height="60" />
+          <ArrowForwardIcon width="60" height="60" />
         </S.ArrowWrapper>
         <H1>후원사 혜택</H1>
         {/* // FIXME: Carousel 컴포넌트로 교체하고 아래 인라인 스타일 지울 예정 */}
