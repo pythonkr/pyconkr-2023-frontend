@@ -6,7 +6,7 @@ on:
       - prod
 
 jobs:
-  deploy-dev:
+  deploy-docker-prod:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,7 +47,7 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: task-definition-dev.json
+          task-definition: task-definition-prod.json
           service: pyconkr2023-frontend-prod
           cluster: pyconkr-2023-frontend-dev
           wait-for-service-stability: true
