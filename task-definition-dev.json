@@ -1,12 +1,12 @@
 {
     "containerDefinitions": [
         {
-            "name": "frontend",
+            "name": "frontend-dev",
             "image": "518013201776.dkr.ecr.ap-northeast-2.amazonaws.com/pyconkr-2023/frontend:dev",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "frontend-3000-tcp",
+                    "name": "frontend-dev-3000-tcp",
                     "containerPort": 3000,
                     "hostPort": 3000,
                     "protocol": "tcp",
