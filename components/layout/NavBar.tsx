@@ -16,6 +16,7 @@ const StyledNavArea = styled('div', {
   width: '100%',
   height: '80px',
   margin: '0 auto',
+  zIndex: '9999',
 
   '@bp1': {
     padding: '0 0.5rem',

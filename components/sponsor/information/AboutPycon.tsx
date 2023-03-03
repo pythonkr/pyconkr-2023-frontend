@@ -1,7 +1,10 @@
+import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { H1, H3 } from '@/components/heading';
-import Image from 'next/image';
-import Link from 'next/link';
+import {
+  SPONSOR_MEANING_1920,
+  SPONSOR_SELECTION_PROCESS_1920,
+} from './constants/images';
 import * as S from './styles';
 
 export const AboutPycon = () => (
@@ -50,12 +53,8 @@ export const AboutPycon = () => (
         </div>
       </S.Article>
       <S.ImageWrapper width="half">
-        <Image
-          src="https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg"
-          alt="고양이가 세상을 지배한다!"
-          style={{ width: '100%', height: '100%' }}
-          width="0"
-          height="0"
+        <S.ImageContent
+          style={{ backgroundImage: `url(${SPONSOR_MEANING_1920})` }}
         />
       </S.ImageWrapper>
     </S.SectionWithoutPadding>
@@ -75,12 +74,12 @@ export const AboutPycon = () => (
     </S.Section>
     <S.SectionWithoutPadding childWidth="full">
       <S.ImageWrapper width="full">
-        <Image
-          src="https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg"
-          alt="고양이가 세상을 지배한다!"
-          style={{ width: '100%', height: '100%' }}
-          width="0"
-          height="0"
+        {/* // FIXME: 높이 준거 제거하고 이미지가 보이게 수정 */}
+        <S.ImageContent
+          style={{
+            backgroundImage: `url(${SPONSOR_SELECTION_PROCESS_1920})`,
+            height: '400px',
+          }}
         />
       </S.ImageWrapper>
     </S.SectionWithoutPadding>

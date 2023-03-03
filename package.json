@@ -13,6 +13,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.7.0",
+    "@egjs/react-flicking": "^4.10.6",
     "@stitches/react": "^1.2.8",
     "next": "13.1.5",
     "next-themes": "^0.2.1",

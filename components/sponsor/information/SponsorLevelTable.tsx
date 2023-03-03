@@ -21,16 +21,16 @@ const Description = styled('div', {
   marginTop: '2rem',
   margin: 'auto',
   bodyText: 1,
-  width: '110rem',
+  // width: '110rem',
 
   '@bp1': {},
   '@bp2': {},
   '@bp3': {},
   '@bp4': {
-    width: '80rem',
+    // width: '80rem',
   },
   '@bp5': {
-    width: '110rem',
+    // width: '110rem',
   },
 });
 

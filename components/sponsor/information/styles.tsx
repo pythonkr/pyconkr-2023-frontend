@@ -55,6 +55,7 @@ export const SectionWithoutPadding = styled('section', {
 
 export const SectionWithSidePadding = styled('section', {
   borderBottom: '2px solid $textPrimary',
+  position: 'relative',
   '@bp1': {
     padding: '2rem 2rem',
   },
@@ -152,6 +153,13 @@ export const ImageWrapper = styled('div', {
   },
 });
 
+export const ImageContent = styled('div', {
+  width: '100%',
+  height: '100%',
+  backgroundSize: '100% 100%',
+  backgroundRepeat: 'no-repeat',
+});
+
 export const SimpleCardContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
@@ -172,10 +180,8 @@ export const SimpleCardContainer = styled('div', {
 
 export const ImageCardContainer = styled('div', {
   display: 'flex',
-  justifyContent: 'start',
   marginTop: '40px',
-  width: '100vw',
-  overflowX: 'auto',
+  width: '100%',
 
   '@bp1': {
     flexDirection: 'column',
@@ -188,4 +194,18 @@ export const ImageCardContainer = styled('div', {
     gap: '20px',
   },
   '@bp5': {},
+});
+
+export const ArrowWrapper = styled('div', {
+  position: 'absolute',
+  top: '62px',
+  right: '70px',
+  cursor: 'pointer',
+
+  '@bp1': {
+    display: 'none',
+  },
+  '@bp2': {
+    display: 'block',
+  },
 });

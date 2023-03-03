@@ -1,4 +1,5 @@
-import { ImageCardProps, SimpleCardProps } from './types';
+import { ImageCardProps, SimpleCardProps } from '../types';
+import * as IMG from './images';
 
 export const STEPS: SimpleCardProps[] = [
   {
@@ -26,14 +27,14 @@ export const STEPS: SimpleCardProps[] = [
   },
 ];
 
+// FIXME: 이미지 사이즈에 따라 받도록 수정하기
 export const BENEFITS: ImageCardProps[] = [
   {
     id: 1,
     title: '후원증서',
     description:
       '후원에 대한 감사의 마음을 담아\n파이콘 한국 후원인증서를 드립니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.SPONSORSHIP_CERTIFICATE_1920,
     alt: '',
   },
   {
@@ -41,8 +42,7 @@ export const BENEFITS: ImageCardProps[] = [
     title: '후원사 부스',
     description:
       '후원사만의 공간에서 개발자 채용, 회사 또는 서비스 홍보, 코딩 챌린지,제비 뽑기 등 다양한 행사를 진행할 수 있습니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.SPONSOR_BOOTH_1920,
     alt: '',
   },
   {
@@ -50,8 +50,7 @@ export const BENEFITS: ImageCardProps[] = [
     title: '증정품 지급',
     description:
       '파이콘 한국에서 후원사의 굿즈 등 소정의 증정품을 전달할 수 있습니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.SPONSOR_GIFT_1920,
     alt: '',
   },
   {
@@ -59,17 +58,15 @@ export const BENEFITS: ImageCardProps[] = [
     title: '열린 공간',
     description:
       '일반 참가자들과 자유롭게 이야기 나누실 수 있도록 일정 시간 동안 열린 공간을 대여해 드립니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.OPEN_SPACE_1280,
     alt: '',
   },
   {
     id: 5,
-    title: '후원시 세션',
+    title: '후원사 세션',
     description:
       '파이콘 한국에서 후원사 로고를 걸고 파이썬 또는 회사/단체 내의 개발 문화에 대해 이야기할 수 있습니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.SPONSOR_SESSIONS_1920,
     alt: '',
   },
   {
@@ -83,11 +80,20 @@ export const BENEFITS: ImageCardProps[] = [
   },
   {
     id: 7,
-    title: '로고 노출',
+    title: '홍보 영상',
     description:
-      '파이콘 한국 홈페이지는 지난 홈페이지도 계속 보관, 유지되어 지속적으로 로고가 노출됩니다.',
+      '파이콘 한국에서 발표 세션 중간에 후원 등급별 노출 횟수에 따라 후원사 홍보영상을 송출합니다.',
     imgUrl:
       'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
     alt: '',
   },
+  {
+    id: 8,
+    title: '로고 노출',
+    description:
+      '파이콘 한국 홈페이지는 지난 홈페이지도 계속 보관, 유지되어 지속적으로 로고가 노출됩니다.',
+    imgUrl: IMG.SPONSOR_LOGO_1920,
+    alt: '',
+  },
 ];
+// TODO: 홍보영상,
