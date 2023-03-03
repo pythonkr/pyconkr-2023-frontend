@@ -15,7 +15,7 @@ export const Routes: { [key: string]: RouteType } = {
   },
   SPONSOR_JOIN: {
     title: '후원하기',
-    route: '/',
+    route: '/sponsor/join',
   },
 };
 

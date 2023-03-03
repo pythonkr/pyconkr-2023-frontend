@@ -2,8 +2,8 @@ import { styled } from 'stitches.config';
 import NavBar from './NavBar';
 
 const ContainerBody = styled('div', {
-  width: '100%',
-  height: '100%',
+  maxWidth: '1920px',
+  margin: '0 auto',
 });
 
 const Main = styled('main', {

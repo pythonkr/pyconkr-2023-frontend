@@ -1,39 +1,39 @@
-name: pyconkr-2023-dev-deploy
+# name: pyconkr-2023-dev-deploy
 
-on:
-  push:
-    branches:
-      - dev
+# on:
+#   push:
+#     branches:
+#       - dev
 
-jobs:
-  deploy-dev:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: dev
+# jobs:
+#   deploy-dev:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#         with:
+#           ref: dev
 
-      - name: setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
+#       - name: setup node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 14.x
 
-      - name: build
-        run: |
-          npm install -g yarn
-          yarn install --frozen-lockfile
-          yarn build
+#       - name: build
+#         run: |
+#           npm install -g yarn
+#           yarn install --frozen-lockfile
+#           yarn build
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
-          aws-region: ap-northeast-2
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+#           aws-region: ap-northeast-2
 
-      - name: deploy to s3
-        run: aws s3 sync ./${{ secrets.BUILD_DIRECTORY }} ${{ secrets.AWS_S3_BUCKET_NAME_DEV }} --acl public-read --delete
+#       - name: deploy to s3
+#         run: aws s3 sync ./${{ secrets.BUILD_DIRECTORY }} ${{ secrets.AWS_S3_BUCKET_NAME_DEV }} --acl public-read --delete
 
-      - name: cloudfront invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIVUTION_DEV_ID }} --paths '/*'
+#       - name: cloudfront invalidate cache
+#         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIVUTION_DEV_ID }} --paths '/*'

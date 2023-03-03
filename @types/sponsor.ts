@@ -6,6 +6,8 @@ export interface Sponsor {
   managerTel: string;
   managerEmail: string;
   businessRegistrationNumber: string;
+  cocAgreement: boolean;
+  termAgreement: boolean;
   logoImage: FileList | null;
   bankBookFile: FileList | null;
   businessRegistrationFile: FileList | null;

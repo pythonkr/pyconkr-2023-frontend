@@ -1,7 +1,7 @@
 {
   "extends": [
     "airbnb/hooks",
-    "airbnb-typescript", 
+    "airbnb-typescript",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
@@ -17,10 +17,10 @@
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/function-component-definition": "off",
-    "react/prop-types": "off",
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
     "linebreak-style": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "@typescript-eslint/no-shadow": "warn"
   }
 }
