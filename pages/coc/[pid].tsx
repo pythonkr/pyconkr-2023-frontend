@@ -1,8 +1,13 @@
 import { H1, H4 } from '@/components/heading';
 import SubNavBar from '@/components/layout/SubNavBar';
 import cocIndex from '@/constants/cocIndex';
-import type { NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { styled } from 'stitches.config';
+import { useRouter } from 'next/router';
+import path from 'path';
+import fs from 'fs';
+import { ParsedUrlQuery } from 'querystring';
+import ReactMarkdown from 'react-markdown';
 
 const Layout = styled('div', {
   width: '100%',
@@ -28,41 +33,90 @@ const Container = styled('div', {
   width: '100%',
 });
 
-const SideContents = styled('div', {
+const Content = styled('div', {
   marginLeft: '62px',
+  marginBottom: '100px',
   flex: 'auto',
 });
-const Content = styled('div', {
+
+const StyledH4 = styled(H4, {
   borderTop: '2px solid $textPrimary',
   paddingTop: '16px',
-});
-const StyledH4 = styled(H4, {
   fontWeight: 'bold',
 });
-const Paragraph = styled('div', {
+const Paragraph = styled('p', {
   marginTop: '12px',
   bodyText: 1,
+  [`& + ${StyledH4}`]: {
+    marginTop: '28px',
+  },
+});
+const UnorderedList = styled('ul', {
+  marginLeft: '24px',
+  [`& + ${StyledH4}`]: {
+    marginTop: '28px',
+  },
 });
 
-const CoCSubPage: NextPage = () => {
+const CoCSubPage: NextPage<DocumentProps> = ({ document }) => {
   return (
     <Layout>
       <StyledH1>파이콘 행동 강령</StyledH1>
       <SubText>Code of Conducts</SubText>
       <Container>
         <SubNavBar routes={cocIndex} />
-        <SideContents>
-          <Content>
-            <StyledH4>파이콘 한국은 모든 참가자를 포용합니다</StyledH4>
-            <Paragraph>
-              파이콘 한국 행동 강령(이하 행동 강령)은 누구도 배제되지 않는
-              파이썬 커뮤니티를 위해 구성원들이 지켜야 하는 최소한의 약속입니다.
-            </Paragraph>
-          </Content>
-        </SideContents>
+        <Content>
+          <ReactMarkdown
+            components={{
+              h2: ({ node, ...props }) => <StyledH4 {...props} />,
+              p: ({ node, ...props }) => <Paragraph {...props} />,
+              ul: ({ node, ...props }) => <UnorderedList {...props} />,
+            }}
+          >
+            {document}
+          </ReactMarkdown>
+        </Content>
       </Container>
     </Layout>
   );
+};
+
+interface DocumentProps {
+  document: string;
+}
+
+interface Params extends ParsedUrlQuery {
+  pid: string;
+}
+
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+  const paths = cocIndex.map((item) => {
+    const pid = item.route.split('/')[2];
+    return {
+      params: {
+        pid,
+      },
+    };
+  });
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps<DocumentProps, Params> = async (
+  context
+) => {
+  const params = context.params!;
+  const staticPath = path.join(process.cwd(), 'static/coc');
+  const documentFilePath = path.join(staticPath, `${params.pid}.md`);
+
+  const document = fs.readFileSync(documentFilePath, 'utf8');
+  console.log(document);
+
+  return {
+    props: {
+      document,
+    },
+  };
 };
 
 export default CoCSubPage;
