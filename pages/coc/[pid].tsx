@@ -110,7 +110,6 @@ export const getStaticProps: GetStaticProps<DocumentProps, Params> = async (
   const documentFilePath = path.join(staticPath, `${params.pid}.md`);
 
   const document = fs.readFileSync(documentFilePath, 'utf8');
-  console.log(document);
 
   return {
     props: {
