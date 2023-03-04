@@ -36,12 +36,15 @@ const Content = styled('div', {
   marginLeft: '62px',
   marginBottom: '100px',
   flex: 'auto',
+  borderTop: '2px solid $textPrimary',
 });
 
 const StyledH4 = styled(H4, {
-  borderTop: '2px solid $textPrimary',
   paddingTop: '16px',
   fontWeight: 'bold',
+  ['&:not(:first-child)']: {
+    borderTop: '2px solid $textPrimary',
+  },
 });
 const Paragraph = styled('p', {
   marginTop: '12px',
@@ -50,11 +53,29 @@ const Paragraph = styled('p', {
     marginTop: '28px',
   },
 });
+
 const UnorderedList = styled('ul', {
   marginLeft: '24px',
+  marginTop: '12px',
   [`& + ${StyledH4}`]: {
     marginTop: '28px',
   },
+});
+
+const ListItem = styled('li', {
+  lineHeight: 1.2,
+  marginTop: '4px',
+  bodyText: 1,
+  [`& > ${Paragraph}`]: {
+    marginTop: 0,
+  },
+  [`& > ${UnorderedList}`]: {
+    marginTop: 0,
+  },
+});
+
+const StyledLink = styled('a', {
+  textDecoration: 'underline',
 });
 
 const CoCSubPage: NextPage<DocumentProps> = ({ document }) => {
@@ -70,6 +91,8 @@ const CoCSubPage: NextPage<DocumentProps> = ({ document }) => {
               h2: ({ node, ...props }) => <StyledH4 {...props} />,
               p: ({ node, ...props }) => <Paragraph {...props} />,
               ul: ({ node, ...props }) => <UnorderedList {...props} />,
+              li: ({ node, ...props }) => <ListItem {...props} />,
+              a: ({ node, ...props }) => <StyledLink {...props} />,
             }}
           >
             {document}

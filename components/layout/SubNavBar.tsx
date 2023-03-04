@@ -8,11 +8,12 @@ import { RouteType } from '@/interfaces/RouteType';
 const SubNavBarList = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  width: '400px',
+  flexShrink: 0,
 });
 
 const SubNavBarListItem = styled(Link, {
   color: '$textSecondary',
+  display: 'block',
   variants: {
     active: {
       true: {
