@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import Button from '../common/Button';
 import Checkbox from '../common/Checkbox';
-import Modal from './Modal';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
+import Link from 'next/link';
 
 const TextArea = styled('textarea', {
   display: 'block',
@@ -30,18 +29,14 @@ const Title = styled('span', {
   bodyText: 1,
 });
 
-const ModalButton = styled('button', {
-  border: 0,
-  backgroundColor: 'inherit',
-  appearance: 'none',
-  cursor: 'pointer',
-  bodyText: 1,
-});
-
 const ActionWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: 18,
+});
+
+const StyledLink = styled(Link, {
+  textDecoration: 'underline',
 });
 
 type Props = {
@@ -50,7 +45,6 @@ type Props = {
 };
 
 const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { control, watch } = useFormContext();
   const cocAgreement = watch('cocAgreement');
 
@@ -62,9 +56,7 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
       >
         <TitleWrapper>
           <Title>파이콘 행동강령</Title>
-          <ModalButton type="button" onClick={() => setIsModalOpen(true)}>
-            더보기
-          </ModalButton>
+          <StyledLink href="/coc/purpose">전문 보기</StyledLink>
         </TitleWrapper>
         <TextArea value={codeOfConduct} readOnly />
         <ActionWrapper>
@@ -85,14 +77,6 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
           </Button>
         </ActionWrapper>
       </SponsorJoinFormBase>
-      {isModalOpen && (
-        <Modal
-          title="파이콘 행동 강령"
-          handleClose={() => setIsModalOpen(false)}
-        >
-          <TextArea value={codeOfConduct} readOnly />
-        </Modal>
-      )}
     </>
   );
 };
