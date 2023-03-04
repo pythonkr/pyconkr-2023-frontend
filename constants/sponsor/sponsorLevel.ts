@@ -3,10 +3,11 @@ export const SponsorLevelRow = [
   '스폰서 수',
   '티켓 지원',
   '부스',
-  '열린점심',
   '후원사 세션',
-  '증정품 지급',
   '홍보 영상',
+  'SNS 홍보',
+  '증정품 지급',
+  '후원증서',
   '로고 노출 위치',
 ];
 
@@ -58,11 +59,11 @@ export const SponsorLevelColumn2 = [
 
 export const SponsorLevelData1 = [
   {
-    keystone: '25,000,000원',
-    diamond: '18,000,000원',
-    sapphire: '12,000,000원',
-    platinum: '10,000,000원',
-    ruby: '6,000,000원',
+    keystone: '40,000,000원',
+    diamond: '25,000,000원',
+    sapphire: '20,000,000원',
+    platinum: '15,000,000원',
+    ruby: '8,000,000원',
   },
   {
     keystone: '1개',
@@ -86,13 +87,6 @@ export const SponsorLevelData1 = [
     ruby: '1칸',
   },
   {
-    keystone: '20명/2일 (총 40명)',
-    diamond: '30명/1일',
-    sapphire: '20명/1일',
-    platinum: '10명/1일',
-    ruby: '10명/1일',
-  },
-  {
     keystone: '1세션',
     diamond: '1세션',
     sapphire: '1세션',
@@ -100,22 +94,35 @@ export const SponsorLevelData1 = [
     ruby: '-',
   },
   {
-    keystone: 'true',
-    diamond: 'true',
-    sapphire: 'true',
-    platinum: 'true',
-    ruby: 'true',
+    keystone: '2회',
+    diamond: '1회',
+    sapphire: '2회',
+    platinum: '1회',
+    ruby: '-',
   },
   {
-    keystone: 'true',
-    diamond: 'true',
-    sapphire: 'true',
-    platinum: 'true',
-    ruby: 'true',
+    keystone: true,
+    diamond: true,
+    sapphire: true,
+    platinum: true,
+    ruby: true,
   },
-
   {
-    keystone: `현수막\n스탠딩 배너\n웹사이트\n네임택(티켓) 스트랩`,
+    keystone: true,
+    diamond: true,
+    sapphire: true,
+    platinum: true,
+    ruby: true,
+  },
+  {
+    keystone: true,
+    diamond: true,
+    sapphire: true,
+    platinum: true,
+    ruby: true,
+  },
+  {
+    keystone: `현수막\n스탠딩 배너\n웹사이트\n네임택(티켓) 스트랩\n포토월`,
     diamond: `현수막\n스탠딩 배너\n웹사이트`,
     sapphire: `현수막\n스탠딩 배너\n웹사이트`,
     platinum: `현수막\n스탠딩 배너\n웹사이트`,
@@ -125,7 +132,7 @@ export const SponsorLevelData1 = [
 
 export const SponsorLevelData2 = [
   {
-    gold: '4,000,000원',
+    gold: '6,000,000원',
     silver: '2,000,000원',
     startup: '1,000,000원',
     community: '300,000원',
@@ -153,13 +160,6 @@ export const SponsorLevelData2 = [
     publisher: '-',
   },
   {
-    gold: '-',
-    silver: '-',
-    startup: '-',
-    community: '-',
-    publisher: '-',
-  },
-  {
     gold: '1세션',
     silver: '-',
     startup: '-',
@@ -167,18 +167,32 @@ export const SponsorLevelData2 = [
     publisher: '-',
   },
   {
-    gold: 'true',
-    silver: 'true',
-    startup: 'true',
-    community: 'true',
-    publisher: 'true',
+    gold: '-',
+    silver: '-',
+    startup: '-',
+    community: '-',
+    publisher: '-',
   },
   {
-    gold: 'true',
-    silver: 'true',
-    startup: 'true',
-    community: 'true',
-    publisher: 'true',
+    gold: true,
+    silver: true,
+    startup: true,
+    community: true,
+    publisher: false,
+  },
+  {
+    gold: true,
+    silver: true,
+    startup: true,
+    community: true,
+    publisher: true,
+  },
+  {
+    gold: true,
+    silver: true,
+    startup: true,
+    community: true,
+    publisher: false,
   },
   {
     gold: '현수막\n스탠딩 배너\n웹사이트',

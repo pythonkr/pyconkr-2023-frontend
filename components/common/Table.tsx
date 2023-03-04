@@ -4,7 +4,6 @@ import { styled } from 'stitches.config';
 import React from 'react';
 import { TableOptions, useTable } from 'react-table';
 import CheckIconDark from '@/public/icons/CheckIconDark.svg';
-import CheckIconLight from '@/public/icons/CheckIconLight.svg';
 
 const StyledTable = styled('table', {
   borderCollapse: 'collapse',
@@ -45,10 +44,16 @@ const TBodyText = styled('span', {
   bodyText: 1,
 });
 
+const CheckboxIcon = styled(CheckIconDark, {
+  '& path': {
+    stroke: '$textPrimary',
+    fill: '$textPrimary',
+  },
+});
+
 const Table = ({ columns, data }: TableOptions<object>) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
-  const { resolvedTheme, setTheme } = useTheme();
   return (
     <StyledTable {...getTableProps()}>
       <thead>
@@ -80,18 +85,12 @@ const Table = ({ columns, data }: TableOptions<object>) => {
                 <TBodyText>{SponsorLevelRow[i]}</TBodyText>
               </StyledTd>
               {row.cells.map((cell: any) => {
-                const { key, ...restCell } = cell.getCellProps();
+                const { value } = cell;
+                const { key: cellKey, ...restCell } = cell.getCellProps();
                 return (
-                  <StyledTd key={key} {...restCell}>
-                    {i === 6 || i === 7 ? (
-                      resolvedTheme === 'dark' ? (
-                        <CheckIconDark />
-                      ) : (
-                        <CheckIconLight />
-                      )
-                    ) : (
-                      <TBodyText>{cell.render('Cell')}</TBodyText>
-                    )}
+                  <StyledTd key={cellKey} {...restCell}>
+                    {typeof value === 'boolean' && value && <CheckboxIcon />}
+                    <TBodyText>{cell.render('Cell')}</TBodyText>
                   </StyledTd>
                 );
               })}
