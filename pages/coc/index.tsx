@@ -1,12 +1,13 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import type { NextPage } from 'next';
 
 // TODO: CoC head og 추가
-const CoCPage: NextPage = () => {
+const CoCPage = () => {
   const router = useRouter();
-  router.replace('/coc/purpose');
 
-  return <></>;
+  useEffect(() => {
+    router.replace('/coc/purpose');
+  }, [router]);
 };
 
 export default CoCPage;

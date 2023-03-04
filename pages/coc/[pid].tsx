@@ -3,7 +3,6 @@ import SubNavBar from '@/components/layout/SubNavBar';
 import cocIndex from '@/constants/cocIndex';
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { styled } from 'stitches.config';
-import { useRouter } from 'next/router';
 import path from 'path';
 import fs from 'fs';
 import { ParsedUrlQuery } from 'querystring';
