@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { RouteType } from '@/interfaces/RouteType';
 const SubNavBarList = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  width: '160px',
+  width: '400px',
 });
 
 const SubNavBarListItem = styled(Link, {
