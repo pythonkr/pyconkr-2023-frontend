@@ -28,5 +28,5 @@ export const SPONSORSHIP_CERTIFICATE_1920 = `${IMAGE_BASE_URL}/sponsorship_certi
 export const SPONSORSHIP_CERTIFICATE_1280 = `${IMAGE_BASE_URL}/sponsorship_certificate_1280.jpg`;
 export const SPONSORSHIP_CERTIFICATE_360 = `${IMAGE_BASE_URL}/sponsorship_certificate_360.jpg`;
 
-export const SPONSOR_VIDEO_1920 = `${IMAGE_BASE_URL}/sponsor_video_1920.jpg`;
-export const SPONSOR_TICKET_1920 = `${IMAGE_BASE_URL}/sponsor_ticket_1920.png`;
+export const SPONSOR_VIDEO_1920 = `${IMAGE_BASE_URL}/sponsor_promotional_video_1920.jpg`;
+export const SPONSOR_TICKET_1920 = `${IMAGE_BASE_URL}/sponsor_ticket_support_1920.jpg`;

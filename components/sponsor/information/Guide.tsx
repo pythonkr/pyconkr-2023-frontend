@@ -33,6 +33,8 @@ export const Guide = () => {
     const current = flickingRef.current;
     if (current) {
       const animationCtx = current.control.controller.animatingContext;
+      // const index = current.index;
+      // index < 1
       if (animationCtx.start || animationCtx.end) return;
       current.prev();
     }
@@ -42,6 +44,8 @@ export const Guide = () => {
     const current = flickingRef.current;
     if (current) {
       const animationCtx = current.control.controller.animatingContext;
+      // const index = current.index;
+      // index > 5
       if (animationCtx.start || animationCtx.end) return;
       current.next();
     }
