@@ -4,7 +4,7 @@ import { H1, H3 } from '@/components/heading';
 import {
   SPONSOR_MEANING_1920,
   SPONSOR_SELECTION_PROCESS_1920,
-} from './constants/images';
+} from '@/constants/sponsor/images';
 import * as S from './styles';
 
 export const AboutPycon = () => (

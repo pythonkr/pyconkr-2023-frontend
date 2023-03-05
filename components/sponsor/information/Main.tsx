@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { H1 } from '@/components/heading';
 import { Routes } from '@/constants/routes';
+import { GUIDE_FILE_DOWNLOAD } from '@/constants';
 import * as S from './styles';
 
 export const Main = () => (
@@ -13,7 +14,7 @@ export const Main = () => (
         <Button reversal>파이콘 후원하기</Button>
       </Link>
       {/*  TODO: PDF 파일 aws에 올리기  */}
-      <a href="guide.pdf" download>
+      <a href={GUIDE_FILE_DOWNLOAD} download>
         <Button reversal>후원사 가이드 다운로드</Button>
       </a>
     </S.SponsorActionButtonWrapper>

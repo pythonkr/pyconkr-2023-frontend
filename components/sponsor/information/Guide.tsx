@@ -3,7 +3,7 @@ import Flicking from '@egjs/react-flicking';
 import { H1 } from '@/components/heading';
 import { SponsorSimpleCard } from './SponsorSimpleCard';
 import { ImageCardProps, SimpleCardProps } from './types';
-import { BENEFITS, STEPS } from './constants/cards';
+import { BENEFITS, STEPS } from '@/constants/sponsor/cards';
 import ArrowForward from '@/public/icons/ArrowForward.svg';
 import ArrowBack from '@/public/icons/ArrowBack.svg';
 import SponsorCarousel from './SponsorCarousel';
