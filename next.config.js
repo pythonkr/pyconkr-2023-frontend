@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/coc',
+        destination: '/coc/purpose',
+        permanent: true,
+      },
+    ]
+  },
   reactStrictMode: true,
   swcMinify: true,
   images: {

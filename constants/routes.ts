@@ -1,11 +1,13 @@
-export const Routes = {
+import { RouteType } from '@/interfaces/RouteType';
+
+export const Routes: { [key: string]: RouteType } = {
   HOME: {
     title: 'PyCon KR',
     route: '/',
   },
   COC: {
     title: '행동 강령',
-    route: '/',
+    route: '/coc',
   },
   SPONSOR_INFO: {
     title: '후원 안내',
