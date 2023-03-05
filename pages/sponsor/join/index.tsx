@@ -14,7 +14,7 @@ import {
 import fs from 'fs';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import path from 'path';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { styled } from 'stitches.config';
 
