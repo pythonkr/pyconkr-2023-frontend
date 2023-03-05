@@ -2,7 +2,7 @@ import { RouteType } from '@/interfaces/RouteType';
 
 export const Routes: { [key: string]: RouteType } = {
   HOME: {
-    title: 'PyCon KR',
+    title: '파이콘 한국 2023',
     route: '/',
   },
   COC: {
