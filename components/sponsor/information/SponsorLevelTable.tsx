@@ -50,8 +50,9 @@ const SponsorLevelTable = () => {
           표기된 금액은 부가세가 포함되지 않은 금액이며, 부가세는 10% 입니다.
           <br />
           <li>
-            후원 가능 여부나 기타 문의사항은 언제든지 sponsor@pycon.kr로 문의
-            주시기 바랍니다.
+            후원 가능 여부나 기타 문의사항은 언제든지&nbsp;
+            <a href="mailto:sponsor@pycon.kr">sponsor@pycon.kr</a>로 문의 주시기
+            바랍니다.
           </li>
           <li>커뮤니티 스폰서십은 비영리 단체에 한해 후원이 가능합니다.</li>
           <li>추후 일부 내용이 변경될 수 있습니다.</li>

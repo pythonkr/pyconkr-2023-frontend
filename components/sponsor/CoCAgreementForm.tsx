@@ -9,7 +9,7 @@ import Link from 'next/link';
 const TextArea = styled('textarea', {
   display: 'block',
   width: '100%',
-  height: '100%',
+  height: '400px',
   marginBottom: 26,
   backgroundColor: '$backgroundPrimary',
   padding: 16,
@@ -72,7 +72,12 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
               />
             )}
           />
-          <Button size="flat" disabled={!cocAgreement} onClick={onClickNext}>
+          <Button
+            size="flat"
+            disabled={!cocAgreement}
+            onClick={onClickNext}
+            reversal
+          >
             다음으로
           </Button>
         </ActionWrapper>
