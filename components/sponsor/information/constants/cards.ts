@@ -58,8 +58,7 @@ export const BENEFITS: ImageCardProps[] = [
     title: '홍보 영상',
     description:
       '파이콘 한국에서 발표 세션 중간에 후원 등급별 노출 횟수에 따라 후원사 홍보영상을 송출합니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.SPONSOR_VIDEO_1920,
     alt: '파이콘 홍보 영상',
   },
   {
@@ -67,8 +66,7 @@ export const BENEFITS: ImageCardProps[] = [
     title: '티켓 지원',
     description:
       '파이콘 한국을 즐길 수 있는 컨퍼런스 티켓을 지원합니다. 티켓 개수는 후원 등급 별 상이합니다.',
-    imgUrl:
-      'https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg',
+    imgUrl: IMG.SPONSOR_TICKET_1920,
     alt: '파이콘 티켓 지원',
   },
   {
@@ -88,4 +86,3 @@ export const BENEFITS: ImageCardProps[] = [
     alt: '파이콘 후원증서',
   },
 ];
-// TODO: 홍보영상,
