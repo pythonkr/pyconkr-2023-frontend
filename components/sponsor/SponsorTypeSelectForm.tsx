@@ -5,6 +5,7 @@ import { styled } from 'stitches.config';
 import Button from '../common/Button';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 import Radio from '../common/Radio';
+import { formatted } from '@/utils/helperNumber';
 
 const Wrapper = styled('div', {
   display: 'flex',
@@ -88,7 +89,7 @@ const DummySponsorTypesData = [
     name: '스타트업',
     price: 100,
     limit: 0,
-    id: 9,
+    id: 8,
   },
   {
     name: '커뮤니티',
@@ -130,7 +131,7 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
         <RadioGroup>
           {DummySponsorTypesData.map((data) => (
             <Controller
-              key={data.id}
+              key={`level-${data.id}`}
               control={control}
               name={'sponsorType'}
               render={({ field: { name, onChange, value } }) => (
@@ -139,12 +140,14 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
                   value={data.id}
                   name={name}
                   onChange={onChange}
-                  checked={value === data.id}
+                  checked={value == data.id}
                 >
                   <InfoText>
                     <span>{data.name}</span>
                     <span>
-                      {data.name === '출판' ? '도서 후원' : `${data.price}만원`}
+                      {data.name === '출판'
+                        ? '도서 후원'
+                        : `${formatted(data.price)}만원`}
                     </span>
                   </InfoText>
                 </Radio>
