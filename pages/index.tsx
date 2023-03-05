@@ -1,12 +1,17 @@
+import Teaser from '@/components/main/Teaser';
 import type { NextPage } from 'next';
-import SponsorInformation from '@/pages/sponsor/information';
+import SeoHeader from '@/components/layout/SeoHeader';
+import { Routes } from '@/constants/routes';
 
 const Home: NextPage = () => {
   return (
-    <div>
-      {/* FIXME: 임시로 스폰서 페이지 메인에 넣어두기 */}
-      <SponsorInformation />
-    </div>
+    <>
+      <SeoHeader
+        title={Routes.HOME.title}
+        description="파이콘 한국 2023: 8월 11~13일 코엑스"
+      />
+      <Teaser />
+    </>
   );
 };
 
