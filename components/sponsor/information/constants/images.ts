@@ -1,9 +1,5 @@
 import { IMAGE_BASE_URL } from '@/constants';
 
-export const OPEN_SPACE_1920 = `${IMAGE_BASE_URL}/open_space_1920.jpg`;
-export const OPEN_SPACE_1280 = `${IMAGE_BASE_URL}/open_space_1280.jpg`;
-export const OPEN_SPACE_360 = `${IMAGE_BASE_URL}/open_space_360.jpg`;
-
 export const SPONSOR_MEANING_1920 = `${IMAGE_BASE_URL}/sponsor_meaning_1920.jpg`;
 export const SPONSOR_MEANING_1280 = `${IMAGE_BASE_URL}/sponsor_meaning_1280.jpg`;
 export const SPONSOR_MEANING_360 = `${IMAGE_BASE_URL}/sponsor_meaning_360.jpg`;
@@ -31,3 +27,6 @@ export const SPONSOR_SESSIONS_360 = `${IMAGE_BASE_URL}/sponsor_sessions_360.jpg`
 export const SPONSORSHIP_CERTIFICATE_1920 = `${IMAGE_BASE_URL}/sponsorship_certificate_1920.jpg`;
 export const SPONSORSHIP_CERTIFICATE_1280 = `${IMAGE_BASE_URL}/sponsorship_certificate_1280.jpg`;
 export const SPONSORSHIP_CERTIFICATE_360 = `${IMAGE_BASE_URL}/sponsorship_certificate_360.jpg`;
+
+export const SPONSOR_VIDEO_1920 = `${IMAGE_BASE_URL}/sponsor_video_1920.jpg`;
+export const SPONSOR_TICKET_1920 = `${IMAGE_BASE_URL}/sponsor_ticket_1920.png`;
