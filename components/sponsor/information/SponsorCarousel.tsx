@@ -1,19 +1,19 @@
-import { LegacyRef } from 'react';
+import { RefObject } from 'react';
 import Flicking from '@egjs/react-flicking';
 import '@egjs/react-flicking/dist/flicking-inline.css';
 import '@egjs/react-flicking/dist/flicking.css';
 
 type SponsorCarouselProps = {
-  ref?: LegacyRef<Flicking>;
+  flickingRef: RefObject<Flicking> | null;
 };
 
 const SponsorCarousel = ({
-  ref,
+  flickingRef,
   children,
 }: React.PropsWithChildren<SponsorCarouselProps>) => {
   return (
     <Flicking
-      ref={ref}
+      ref={flickingRef}
       viewportTag="div"
       align="prev"
       horizontal
