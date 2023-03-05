@@ -19,7 +19,7 @@ const Wrapper = styled('div', {
 
 const Title = styled(H3, {
   marginTop: '24px',
-  marginBottom: '16px',
+  marginBottom: '8px',
   whiteSpace: 'pre-wrap',
 });
 

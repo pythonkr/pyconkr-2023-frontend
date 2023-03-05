@@ -10,9 +10,9 @@ import { Routes } from '@/constants/routes';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { useFormContext } from 'react-hook-form';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { Sponsor, SposnorApiParams } from '@/@types/sponsor';
+import Modal from '@/components/sponsor/Modal';
 
 const TextBox = styled('div', {
   display: 'flex',
@@ -49,30 +49,50 @@ const StyledButton = styled(Button, {
   width: '100%',
 });
 
+const axiosConfig = {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+};
+
 const SponsorCompleteBox = () => {
   const { getValues } = useFormContext();
+
+  const [openModal, setOpenModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const values = getValues(); // TODO: add type
 
-  const submitForm = async () => {
+  const formData = new FormData();
+  formData.append('name', values.name);
+  formData.append('manager_name', values.managerName);
+  formData.append('manager_tel', values.managerTel);
+  formData.append('manager_email', values.managerEmail);
+  formData.append(
+    'business_registration_number',
+    values.businessRegistrationNumber
+  );
+  formData.append(
+    'business_registration_file',
+    values.businessRegistrationFile[0]
+  );
+  formData.append('bank_book_file', values.bankBookFile[0]);
+  formData.append('url', values.url);
+  formData.append('logo_image', values.logoImage[0]);
+  formData.append('level', values.sponsorType);
+
+  const handleSubmitForm = async () => {
     try {
       const result = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/sponsors`,
-        {
-          name: values.name,
-          manager_name: values.managerName,
-          manager_email: values.managerEmail,
-          manager_tel: values.managerTel,
-          business_registration_number: values.businessRegistrationNumber,
-          business_registration_file: values.businessRegistrationFile,
-          bank_book_file: values.bankBookFile,
-          url: values.url,
-          logo_image: values.logoImage,
-          level: values.level,
-        }
+        formData,
+        axiosConfig
       );
       console.log(result);
     } catch (error: any) {
-      console.log(error);
+      setErrorMessage(
+        '에러가 발생했습니다. 입력된 내용을 확인해주세요. 문제가 있을 경우 sponsor@pycon.kr으로 문의 바랍니다.'
+      );
+      setOpenModal(true);
     }
   };
 
@@ -94,11 +114,22 @@ const SponsorCompleteBox = () => {
           ))}
         </StyledUl>
       </TextBox>
-      <Link href={Routes.HOME.route}>
-        <StyledButton size="big" reversal={true} onClick={() => submitForm()}>
-          후원 신청 완료
-        </StyledButton>
-      </Link>
+      <StyledButton
+        size="big"
+        reversal={true}
+        onClick={() => handleSubmitForm()}
+      >
+        후원 신청 완료
+      </StyledButton>
+      {openModal && (
+        <Modal
+          title="에러가 발생했습니다"
+          handleClose={() => setOpenModal(false)}
+          height={300}
+        >
+          {errorMessage}
+        </Modal>
+      )}
     </SponsorJoinFormBase>
   );
 };
