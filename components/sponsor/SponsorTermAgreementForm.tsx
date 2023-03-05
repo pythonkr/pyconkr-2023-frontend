@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Controller, useFormContext, UseFormReturn } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
 import Modal from './Modal';
-import type { Sponsor } from '@/@types';
 import Button from '@/components/common/Button';
 import Checkbox from '@/components/common/Checkbox';
 import SponsorJoinFormBase from './SponsorJoinFormBase';
@@ -11,7 +10,7 @@ import SponsorJoinFormBase from './SponsorJoinFormBase';
 const TextArea = styled('textarea', {
   display: 'block',
   width: '100%',
-  height: '100%',
+  height: '400px',
   marginBottom: 26,
   border: '2px solid $textPrimary',
   padding: 16,
