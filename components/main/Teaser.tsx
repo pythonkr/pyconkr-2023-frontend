@@ -4,8 +4,9 @@ import { styled } from 'stitches.config';
 const TextBox = styled('div', {
   fontSize: '80px',
   fontWeight: 'bold',
-  marginTop: 220,
-  marginLeft: 40,
+  paddingTop: 220,
+  paddingLeft: 40,
+  height: 'calc(100vh - 80px)',
 });
 const Teaser = () => {
   return (

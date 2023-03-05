@@ -4,11 +4,11 @@ import NavBar from './NavBar';
 const ContainerBody = styled('div', {
   maxWidth: '1920px',
   margin: '0 auto',
+  height: '100%',
 });
 
 const Main = styled('main', {
   width: '100%',
-  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
