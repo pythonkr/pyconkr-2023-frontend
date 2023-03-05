@@ -44,37 +44,37 @@ const ButtonWrapper = styled('div', {
 const DummySponsorTypesData = [
   {
     name: '키스톤',
-    price: 2500,
+    price: 4000,
     limit: 0,
     id: 1,
   },
   {
     name: '다이아몬드',
-    price: 1800,
+    price: 2500,
     limit: 0,
     id: 2,
   },
   {
     name: '사파이어',
-    price: 1200,
+    price: 2000,
     limit: 0,
     id: 3,
   },
   {
     name: '플래티넘',
-    price: 800,
+    price: 1500,
     limit: 0,
     id: 4,
   },
   {
     name: '루비',
-    price: 600,
+    price: 800,
     limit: 0,
     id: 5,
   },
   {
     name: '골드',
-    price: 400,
+    price: 600,
     limit: 0,
     id: 6,
   },
@@ -86,13 +86,13 @@ const DummySponsorTypesData = [
   },
   {
     name: '스타트업',
-    price: 30,
+    price: 100,
     limit: 0,
-    id: 8,
+    id: 9,
   },
   {
     name: '커뮤니티',
-    price: 200,
+    price: 30,
     limit: 0,
     id: 9,
   },
@@ -118,7 +118,7 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
 
   useEffect(() => {
     // TODO: API를 통해 구좌 정보 받아올 때 기본값 설정하기
-    setValue('sponsorType', 0);
+    setValue('sponsorType', 1);
   }, [setValue]);
 
   return (
@@ -139,7 +139,7 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
                   value={data.id}
                   name={name}
                   onChange={onChange}
-                  checked={value == data.id}
+                  checked={value === data.id}
                 >
                   <InfoText>
                     <span>{data.name}</span>

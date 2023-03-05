@@ -98,7 +98,7 @@ const SponsorCompleteBox = () => {
 
   return (
     <SponsorJoinFormBase
-      title="정상적으로 신청 완료되었습니다\n내부 논의 후 다음 절차를 진행하게 됩니다"
+      title="이후 절차는 아래와 같이 진행됩니다.\n내용 확인 후, 하단의 신청하기 버튼을 클릭해주세요."
       state={SponsorFormState.COMPLETE}
     >
       <TextBox>
@@ -119,7 +119,7 @@ const SponsorCompleteBox = () => {
         reversal={true}
         onClick={() => handleSubmitForm()}
       >
-        후원 신청 완료
+        제출하기
       </StyledButton>
       {openModal && (
         <Modal
