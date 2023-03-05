@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import Flicking from '@egjs/flicking';
+import React, { RefObject, useRef } from 'react';
+import Flicking from '@egjs/react-flicking';
 import { H1 } from '@/components/heading';
 import { SponsorSimpleCard } from './SponsorSimpleCard';
 import { ImageCardProps, SimpleCardProps } from './types';
@@ -27,16 +27,23 @@ const ArrowBackIcon = styled(ArrowBack, {
 });
 
 export const Guide = () => {
-  // TODO: 화살표 버튼 클릭해도 캐러셀 작동하게 만들기. Type 설정..!
-  const flickingRef = useRef<Flicking>(null);
-  const moveToForward = async () => {
-    if (flickingRef.current) {
-      await flickingRef.current.prev();
+  const flickingRef: RefObject<Flicking> | null = useRef(null);
+
+  const moveToPrevImages = () => {
+    const current = flickingRef.current;
+    if (current) {
+      const animationCtx = current.control.controller.animatingContext;
+      if (animationCtx.start || animationCtx.end) return;
+      current.prev();
     }
   };
-  const moveToNext = async () => {
-    if (flickingRef.current) {
-      await flickingRef.current.next();
+
+  const moveToNextImages = () => {
+    const current = flickingRef.current;
+    if (current) {
+      const animationCtx = current.control.controller.animatingContext;
+      if (animationCtx.start || animationCtx.end) return;
+      current.next();
     }
   };
 
@@ -61,12 +68,12 @@ export const Guide = () => {
       </S.Section>
       <S.SectionWithSidePadding id="benefits">
         <S.ArrowWrapper>
-          <ArrowBackIcon width="60" height="60" onClick={moveToForward} />
-          <ArrowForwardIcon width="60" height="60" onClick={moveToNext} />
+          <ArrowBackIcon width="60" height="60" onClick={moveToPrevImages} />
+          <ArrowForwardIcon width="60" height="60" onClick={moveToNextImages} />
         </S.ArrowWrapper>
         <H1>후원사 혜택</H1>
         <CarouselWrapper>
-          <SponsorCarousel>
+          <SponsorCarousel flickingRef={flickingRef}>
             {BENEFITS.map((benefit: ImageCardProps) => (
               <SponsorImageCard
                 key={benefit.id}
