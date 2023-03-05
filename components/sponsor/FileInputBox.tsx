@@ -34,6 +34,11 @@ const StyledButton = styled(Button, {
   flex: 1,
 });
 
+const SubText = styled('div', {
+  marginBottom: 40,
+  color: '$textSecondary',
+});
+
 type FileType = 'businessRegistrationFile' | 'bankBookFile' | 'logoImage';
 
 export type FileInputListType = {
@@ -63,6 +68,7 @@ const FileInputBox = ({ onClickPrev, onClickNext }: FileInputBoxProps) => {
       title="후원에 필요한 파일을\n업로드해주세요"
       state={SponsorFormState.FILE_UPLOAD}
     >
+      <SubText>파일명은 100자를 넘지 않도록 해주세요.</SubText>
       <FileInputContainer>
         {fileInputList.map((fileInput) => (
           <FileInputWrapper key={fileInput.key}>

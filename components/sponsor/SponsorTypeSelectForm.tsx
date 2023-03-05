@@ -88,7 +88,7 @@ const DummySponsorTypesData = [
     name: '스타트업',
     price: 100,
     limit: 0,
-    id: 8,
+    id: 9,
   },
   {
     name: '커뮤니티',

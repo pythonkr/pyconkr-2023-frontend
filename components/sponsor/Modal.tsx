@@ -15,7 +15,6 @@ const Wrapper = styled('div', {
   gap: 32,
   maxWidth: 846,
   width: '100%',
-  height: '90%',
   margin: '96px auto 30px',
   border: '2px solid $textPrimary',
   padding: 40,
@@ -53,18 +52,20 @@ const Content = styled('div', {
 type Props = {
   handleClose: () => void;
   title: string;
+  height?: number;
 };
 
 function Modal({
   children,
   handleClose,
   title,
+  height,
 }: React.PropsWithChildren<Props>) {
   const nodeRef = useRef(null);
 
   return (
     <Portal id="sponsor-join-modal">
-      <Wrapper ref={nodeRef}>
+      <Wrapper ref={nodeRef} style={{ height: height ? `${height}px` : '90%' }}>
         <Header>
           <Title>{title}</Title>
           <StyledCloseIcon role="button" onClick={handleClose} />
