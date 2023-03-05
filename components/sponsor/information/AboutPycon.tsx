@@ -67,7 +67,10 @@ export const AboutPycon = () => (
           <br /> 다시금 돌아온 국내 최대 파이써니스타들의 축제를 함께
           만들어나가실 후원사분들을 기다립니다
         </S.BodyText>
-        <Link href="https://2022.pycon.kr/">
+        <Link
+          href="https://2022.pycon.kr/about/previous-pyconkr"
+          target="_blank"
+        >
           <Button reversal>지난 파이콘 보러가기</Button>
         </Link>
       </S.Wrapper>
