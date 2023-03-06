@@ -10,9 +10,9 @@ import SponsorJoinFormBase from './SponsorJoinFormBase';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { useFormContext } from 'react-hook-form';
 import { useState } from 'react';
-import axios from 'axios';
 import Modal from '@/components/sponsor/Modal';
 import { useRouter } from 'next/router';
+import axios from '@/lib/axios';
 
 const TextBox = styled('div', {
   display: 'flex',
@@ -83,11 +83,7 @@ const SponsorCompleteBox = () => {
 
   const handleSubmitForm = async () => {
     try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/sponsors`,
-        formData,
-        axiosConfig
-      );
+      await axios.post(`/sponsors`, formData, axiosConfig);
       alert('신청이 완료되었습니다.');
       router.push(Routes.HOME.route);
     } catch (error: any) {
