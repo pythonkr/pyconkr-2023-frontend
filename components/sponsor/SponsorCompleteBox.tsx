@@ -3,7 +3,6 @@ import {
   sponsorContractProcedure,
 } from '@/constants/sponsor/sponsorData';
 import { styled } from '@/stitches.config';
-import Link from 'next/link';
 import Button from '../common/Button';
 import { H4 } from '../heading';
 import { Routes } from '@/constants/routes';
@@ -13,6 +12,7 @@ import { useFormContext } from 'react-hook-form';
 import { useState } from 'react';
 import axios from 'axios';
 import Modal from '@/components/sponsor/Modal';
+import { useRouter } from 'next/router';
 
 const TextBox = styled('div', {
   display: 'flex',
@@ -57,6 +57,7 @@ const axiosConfig = {
 
 const SponsorCompleteBox = () => {
   const { getValues } = useFormContext();
+  const router = useRouter();
 
   const [openModal, setOpenModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -82,12 +83,13 @@ const SponsorCompleteBox = () => {
 
   const handleSubmitForm = async () => {
     try {
-      const result = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/sponsors`,
         formData,
         axiosConfig
       );
-      console.log(result);
+      alert('신청이 완료되었습니다.');
+      router.push(Routes.HOME.route);
     } catch (error: any) {
       setErrorMessage(
         '에러가 발생했습니다. 입력된 내용을 확인해주세요. 문제가 있을 경우 sponsor@pycon.kr으로 문의 바랍니다.'
