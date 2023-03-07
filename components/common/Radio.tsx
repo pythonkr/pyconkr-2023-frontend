@@ -21,6 +21,15 @@ const StyledLabel = styled('label', {
   color: '$textPrimary',
   bodyText: 1,
   cursor: 'pointer',
+
+  variants: {
+    disabled: {
+      true: {
+        opacity: 0.5,
+        pointerEvents: 'none',
+      },
+    },
+  },
 });
 
 type RadioProps = React.PropsWithChildren<
@@ -31,7 +40,9 @@ const Radio = ({ children, ...props }: RadioProps) => {
   return (
     <div>
       <StyledInput type="radio" {...props} />
-      <StyledLabel htmlFor={props.id}>{children}</StyledLabel>
+      <StyledLabel htmlFor={props.id} disabled={props.disabled}>
+        {children}
+      </StyledLabel>
     </div>
   );
 };

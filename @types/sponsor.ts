@@ -41,6 +41,7 @@ export interface SposnorLevelType {
   price: number;
   limit: number;
   id: number;
+  available: boolean;
 }
 
 // TODO: api interface 파일 분리
