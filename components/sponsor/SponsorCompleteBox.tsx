@@ -144,6 +144,7 @@ const SponsorCompleteBox = () => {
       <StyledButton
         size="big"
         reversal={true}
+        disabled={isLoading}
         onClick={() => handleSubmitForm()}
       >
         {isLoading ? <Loader reversal={true} /> : '제출하기'}
