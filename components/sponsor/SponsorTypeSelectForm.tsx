@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { SponsorFormState } from '@/reducers/sponsorFormReducer';
 import { styled } from 'stitches.config';
@@ -9,6 +9,7 @@ import { formatted } from '@/utils/helperNumber';
 import { useQuery } from 'react-query';
 import axios from '@/lib/axios';
 import { SposnorLevelType } from '@/@types';
+import { Loader } from '../common/Loader';
 
 const Wrapper = styled('div', {
   display: 'flex',
@@ -33,6 +34,13 @@ const InfoText = styled('div', {
   alignItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
+  variants: {
+    isLoading: {
+      true: {
+        justifyContent: 'center',
+      },
+    },
+  },
 });
 
 const ButtonWrapper = styled('div', {
@@ -56,7 +64,7 @@ const InitialSponsorLevelData: Array<SposnorLevelType> = Array(10)
     price: 0,
     id: i + 1,
     limit: 0,
-    available: false,
+    available: true,
   }));
 
 const SponsorTypeSelectForm: React.FC<Props> = ({
@@ -65,6 +73,8 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
 }) => {
   const { control, watch, setValue } = useFormContext();
   const sponsorType = watch('sponsorType');
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     error,
     data: sponsorLevels,
@@ -72,9 +82,11 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
   } = useQuery(
     'sponsorLevels',
     async () => {
+      setIsLoading(true);
       const res = await axios.get<Array<SposnorLevelType>>(
         '/sponsors/remaining/'
       );
+      setIsLoading(false);
       const remainingSponsors = await res.data;
       return remainingSponsors;
     },
@@ -126,9 +138,15 @@ const SponsorTypeSelectForm: React.FC<Props> = ({
                     checked={data.available && isNotDummy && value == data.id}
                     disabled={isFetching || !data.available}
                   >
-                    <InfoText>
-                      <span>{data.name}</span>
-                      <span>{price}</span>
+                    <InfoText isLoading={isLoading}>
+                      {isLoading ? (
+                        <Loader reversal={true} />
+                      ) : (
+                        <>
+                          <span>{data.name}</span>
+                          <span>{price}</span>
+                        </>
+                      )}
                     </InfoText>
                   </Radio>
                 )}

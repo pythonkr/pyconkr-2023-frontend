@@ -13,6 +13,7 @@ import { useState } from 'react';
 import Modal from '@/components/sponsor/Modal';
 import { useRouter } from 'next/router';
 import axios from '@/lib/axios';
+import { Loader } from '@/components/common/Loader';
 
 const TextBox = styled('div', {
   display: 'flex',
@@ -60,6 +61,7 @@ const SponsorCompleteBox = () => {
   const router = useRouter();
 
   const [openModal, setOpenModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const values = getValues(); // TODO: add type
 
@@ -83,6 +85,7 @@ const SponsorCompleteBox = () => {
 
   const handleSubmitForm = async () => {
     try {
+      setIsLoading(true);
       await axios.post(`/sponsors`, formData, axiosConfig);
       alert('신청이 완료되었습니다.');
       router.push(Routes.HOME.route);
@@ -91,6 +94,8 @@ const SponsorCompleteBox = () => {
         '에러가 발생했습니다. 입력된 내용을 확인해주세요. 문제가 있을 경우 sponsor@pycon.kr으로 문의 바랍니다.'
       );
       setOpenModal(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -115,9 +120,10 @@ const SponsorCompleteBox = () => {
       <StyledButton
         size="big"
         reversal={true}
+        disabled={isLoading}
         onClick={() => handleSubmitForm()}
       >
-        제출하기
+        {isLoading ? <Loader reversal={true} /> : '제출하기'}
       </StyledButton>
       {openModal && (
         <Modal
