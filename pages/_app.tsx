@@ -6,7 +6,6 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import Container from '@/components/layout/Container';
 import { darkTheme } from '@/stitches.config';
 import { ThemeProvider } from 'next-themes';
-import '@/styles/globals.css';
 
 function RecoilDebugObserver() {
   const snapshot = useRecoilSnapshot();
