@@ -1,4 +1,4 @@
-import { H1, H4 } from '@/components/heading';
+import { H1 } from '@/components/heading';
 import SubNavBar from '@/components/layout/SubNavBar';
 import cocIndex from '@/constants/cocIndex';
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
@@ -7,6 +7,13 @@ import path from 'path';
 import fs from 'fs';
 import { ParsedUrlQuery } from 'querystring';
 import ReactMarkdown from 'react-markdown';
+import {
+  StyledH4,
+  Paragraph,
+  UnorderedList,
+  ListItem,
+  StyledLink,
+} from '@/components/common/Markdown';
 
 const Layout = styled('div', {
   width: '100%',
@@ -37,45 +44,6 @@ const Content = styled('div', {
   marginBottom: '100px',
   flex: 'auto',
   borderTop: '2px solid $textPrimary',
-});
-
-const StyledH4 = styled(H4, {
-  paddingTop: '16px',
-  fontWeight: 'bold',
-  ['&:not(:first-child)']: {
-    borderTop: '2px solid $textPrimary',
-  },
-});
-const Paragraph = styled('p', {
-  marginTop: '12px',
-  bodyText: 1,
-  [`& + ${StyledH4}`]: {
-    marginTop: '28px',
-  },
-});
-
-const UnorderedList = styled('ul', {
-  marginLeft: '24px',
-  marginTop: '12px',
-  [`& + ${StyledH4}`]: {
-    marginTop: '28px',
-  },
-});
-
-const ListItem = styled('li', {
-  lineHeight: 1.2,
-  marginTop: '4px',
-  bodyText: 1,
-  [`& > ${Paragraph}`]: {
-    marginTop: 0,
-  },
-  [`& > ${UnorderedList}`]: {
-    marginTop: 0,
-  },
-});
-
-const StyledLink = styled('a', {
-  textDecoration: 'underline',
 });
 
 const CoCSubPage: NextPage<DocumentProps> = ({ document }) => {

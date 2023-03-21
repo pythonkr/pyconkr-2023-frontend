@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <>
       <SeoHeader
-        title={Routes.HOME.title}
+        title={Routes.CFP_APPLY.title}
         description="파이콘 한국 2023: 8월 11~13일 코엑스"
       />
       <Teaser />

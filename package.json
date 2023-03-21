@@ -26,7 +26,8 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.8.0",
     "react-table": "^7.8.0",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",

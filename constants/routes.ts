@@ -17,6 +17,10 @@ export const Routes: { [key: string]: RouteType } = {
     title: '후원하기',
     route: '/sponsor/join',
   },
+  CFP_APPLY: {
+    title: '발표 제안',
+    route: '/cfp/apply',
+  },
 };
 
-export const NavBarMenus = [Routes.COC, Routes.SPONSOR_INFO];
+export const NavBarMenus = [Routes.COC, Routes.SPONSOR_INFO, Routes.CFP_APPLY];
