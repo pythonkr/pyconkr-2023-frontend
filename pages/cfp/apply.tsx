@@ -96,6 +96,10 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
             {cfpGuide}
           </ReactMarkdown>
         </Block>
+        <Block css={{ margin: '104px 0 64px' }}>
+          <H2>문의</H2>
+          <Block css={{ marginTop: '16px' }}>program@pycon.kr</Block>
+        </Block>
       </S.Section>
     </ApplyPageContainer>
   );
