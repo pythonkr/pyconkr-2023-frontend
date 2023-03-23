@@ -1,4 +1,3 @@
-import { useTheme } from 'next-themes';
 import { SponsorLevelRow } from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
 import React from 'react';
