@@ -6,6 +6,8 @@ import { TableOptions, useTable } from 'react-table';
 import CheckIconDark from '@/public/icons/CheckIconDark.svg';
 
 const StyledTable = styled('table', {
+  display: 'block',
+  overflowX: 'auto',
   borderCollapse: 'collapse',
   border: '1px solid $textSecondary',
   margin: '1rem auto',
