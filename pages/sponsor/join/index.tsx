@@ -21,7 +21,14 @@ import { styled } from 'stitches.config';
 const Container = styled('div', {
   height: '100%',
   maxWidth: '630px',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
   margin: '0 auto',
+
+  '@bp2': {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
 });
 
 const SponsorJoinPage: NextPage<
