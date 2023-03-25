@@ -1,6 +1,7 @@
 import React from 'react';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { getCssText, globalCss } from '@/stitches.config';
+import * as gtag from '@/lib/gtag';
 
 const globalStyle = globalCss({
   '*': {
@@ -38,6 +39,18 @@ export default class Document extends NextDocument {
             type="text/css"
           />
           <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gtag.GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
         </Head>
         <body>
           <Main />
