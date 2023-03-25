@@ -8,6 +8,7 @@ import PdfFileSubmitIcon from './PdfFileSubmitIcon.svg';
 import ImageFileSubmitIcon from './ImageFileSubmitIcon.svg';
 import CheckIconDark from './CheckIconDark.svg';
 import CheckIconLight from './CheckIconLight.svg';
+import HamburgerIcon from './HamburgerIcon.svg';
 
 export {
   CloseIcon,
@@ -20,4 +21,5 @@ export {
   ImageFileSubmitIcon,
   CheckIconDark,
   CheckIconLight,
+  HamburgerIcon,
 };
