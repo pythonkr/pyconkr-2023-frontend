@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
 import { NavBarMenus, Routes } from '@/constants/routes';
 import { StyledButton } from '../common/Button';
 import { Logo as LogoSvg } from '@/public/icons';
-import { HamburgerIcon } from '@/public/icons';
-import { CloseIcon } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
+import NavBarMobile from './NavBarMobile';
 
 const StyledNavArea = styled('div', {
   position: 'fixed',
@@ -103,38 +102,14 @@ const SolidButton = styled(StyledButton, {
   },
 });
 
-const MenuIconWrapper = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignContent: 'center',
-  width: '35px',
-  height: '35px',
-  cursor: 'pointer',
-  '@bp2': {
-    display: 'none',
-  },
-});
-
 const NavBar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const handleMobileMenuClick = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
-
   return (
     <StyledNavArea>
       <Link href={Routes.HOME.route} passHref>
         <Logo width={230} height={'100%'} />
         <Title>{Routes.HOME.title}</Title>
       </Link>
-      <MenuIconWrapper onClick={handleMobileMenuClick}>
-        {isMobileMenuOpen ? (
-          <CloseIcon width="30" height="30" />
-        ) : (
-          <HamburgerIcon width="30" height="30" />
-        )}
-      </MenuIconWrapper>
+      <NavBarMobile />
       <NavContainer>
         <StyledMenuBox>
           {NavBarMenus.map((menu) => (
