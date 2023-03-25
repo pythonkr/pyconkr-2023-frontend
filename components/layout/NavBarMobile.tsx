@@ -1,10 +1,11 @@
-import { NavBarMenus } from '@/constants/routes';
+import { NavBarMenus, Routes } from '@/constants/routes';
 import { styled } from '@/stitches.config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { HamburgerIcon } from '@/public/icons';
 import { CloseIcon } from '@/public/icons';
+import { StyledButton } from '../common';
 
 const Container = styled('div', {
   display: 'block',
@@ -48,6 +49,19 @@ const MenuIconWrapper = styled('div', {
   zIndex: '101',
 });
 
+const SolidButton = styled(StyledButton, {
+  height: 40,
+  backgroundColor: '$textPrimary',
+  color: '$backgroundPrimary',
+  border: 'none',
+  fontWeight: 700,
+
+  '@bp1': {
+    fontSize: '18px',
+    lineHeight: '18px',
+  },
+});
+
 const NavBarMobile = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { pathname } = useRouter();
@@ -77,6 +91,11 @@ const NavBarMobile = () => {
                 <MenuItem>{menu.title}</MenuItem>
               </Link>
             ))}
+            <Link href={Routes.SPONSOR_JOIN.route} passHref>
+              <SolidButton size={'small'}>
+                {Routes.SPONSOR_JOIN.title}
+              </SolidButton>
+            </Link>
           </MenuContainer>
         </ForeGroundContainer>
       )}

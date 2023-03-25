@@ -90,16 +90,8 @@ const SolidButton = styled(StyledButton, {
   color: '$backgroundPrimary',
   border: 'none',
   fontWeight: 700,
-
-  '@bp1': {
-    fontSize: '18px',
-    lineHeight: '18px',
-  },
-
-  '@bp2': {
-    fontSize: '24px',
-    lineHeight: '24px',
-  },
+  fontSize: '24px',
+  lineHeight: '24px',
 });
 
 const NavBar = () => {
