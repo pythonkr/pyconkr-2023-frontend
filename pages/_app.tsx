@@ -6,6 +6,7 @@ import * as gtag from '@/lib/gtag';
 import { RecoilRoot, useRecoilSnapshot } from 'recoil';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Container from '@/components/layout/Container';
+import Head from 'next/head';
 import Script from 'next/script';
 import { darkTheme } from '@/stitches.config';
 import { ThemeProvider } from 'next-themes';
@@ -40,29 +41,45 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem={true}
-      value={{
-        light: 'light',
-        dark: darkTheme.className,
-      }}
-    >
-      <RecoilRoot>
-        {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
-        <QueryClientProvider client={queryClient}>
-          <Container>
-            <Script
-              strategy="afterInteractive"
-              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-            />
-            <Component {...pageProps} />
-          </Container>
-          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-        </QueryClientProvider>
-      </RecoilRoot>
-    </ThemeProvider>
+    <>
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gtag.GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </Head>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem={true}
+        value={{
+          light: 'light',
+          dark: darkTheme.className,
+        }}
+      >
+        <RecoilRoot>
+          {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
+          <QueryClientProvider client={queryClient}>
+            <Container>
+              <Script
+                strategy="afterInteractive"
+                src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+              />
+              <Component {...pageProps} />
+            </Container>
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+          </QueryClientProvider>
+        </RecoilRoot>
+      </ThemeProvider>
+    </>
   );
 }
 
