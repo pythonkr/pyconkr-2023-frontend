@@ -16,11 +16,10 @@ const ToggleSection = styled(S.SectionWithoutPadding, {
 
 const ToggleWrapper = styled('div', {
   display: 'block',
-  padding: '1rem',
   width: '100%',
 });
 const PaddingBox = styled('div', {
-  padding: '1rem',
+  padding: '1rem 0',
 });
 
 const SponsorFAQToggle = () => {

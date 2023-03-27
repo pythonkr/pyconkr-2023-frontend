@@ -71,11 +71,11 @@ export const Guide = () => {
         </S.SimpleCardContainer>
       </S.Section>
       <S.SectionWithSidePadding id="benefits">
+        <H1>후원사 혜택</H1>
         <S.ArrowWrapper>
           <ArrowBackIcon width="60" height="60" onClick={moveToPrevImages} />
           <ArrowForwardIcon width="60" height="60" onClick={moveToNextImages} />
         </S.ArrowWrapper>
-        <H1>후원사 혜택</H1>
         <CarouselWrapper>
           <SponsorCarousel flickingRef={flickingRef}>
             {BENEFITS.map((benefit: ImageCardProps) => (

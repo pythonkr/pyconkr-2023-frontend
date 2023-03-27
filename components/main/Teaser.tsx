@@ -5,12 +5,14 @@ const TextBox = styled('div', {
   fontSize: '80px',
   fontWeight: 'bold',
   paddingTop: 80,
-  paddingLeft: 40,
-  paddingRight: 40,
+  paddingLeft: 0,
+  paddingRight: 0,
   height: 'calc(100vh - 80px)',
 
   '@bp2': {
     paddingTop: 220,
+    paddingLeft: 40,
+    paddingRight: 40,
   },
 });
 
@@ -25,8 +27,9 @@ const Title = styled('div', {
 
 const Date = styled('div', {
   fontSize: '8vw',
-
+  marginTop: 20,
   '@bp2': {
+    marginTop: 0,
     fontSize: 'inherit',
   },
 });
