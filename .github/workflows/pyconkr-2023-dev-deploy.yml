@@ -7,6 +7,7 @@
 
 # jobs:
 #   deploy-dev:
+#     if: github.repository_owner == 'pythonkr'
 #     runs-on: ubuntu-latest
 #     steps:
 #       - name: Checkout
