@@ -54,7 +54,7 @@ export const SponsorLevelColumn2: SponsorLevelColumn[] = [
   {
     accessor: 'gold',
     Header: '골드',
-    status: SponsorLevelStatus.Active,
+    status: SponsorLevelStatus.Expired,
   },
   {
     accessor: 'silver',
