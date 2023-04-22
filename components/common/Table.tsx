@@ -1,4 +1,7 @@
-import { SponsorLevelRow } from '@/constants/sponsor/sponsorLevel';
+import {
+  SponsorLevelRow,
+  SponsorLevelStatus,
+} from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
 import React from 'react';
 import { TableOptions, useTable } from 'react-table';
@@ -55,18 +58,21 @@ const CheckboxIcon = styled(CheckIconDark, {
 const Table = ({ columns, data }: TableOptions<object>) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
+
   return (
     <StyledTable {...getTableProps()}>
       <thead>
         {headerGroups.map((header) => {
-          const { key, ...restHeaderGroupProps } = header.getHeaderGroupProps();
+          const { key: headerKey, ...restHeaderGroupProps } =
+            header.getHeaderGroupProps();
+
           return (
-            <tr key={key} {...restHeaderGroupProps}>
+            <tr key={headerKey} {...restHeaderGroupProps}>
               <StyledTh />
               {header.headers.map((col) => {
-                const { key, ...restColumn } = col.getHeaderProps();
+                const { key: colKey, ...restColumn } = col.getHeaderProps();
                 return (
-                  <StyledTh key={key} {...restColumn}>
+                  <StyledTh key={colKey} {...restColumn}>
                     {col.render('Header')}
                   </StyledTh>
                 );
@@ -76,22 +82,32 @@ const Table = ({ columns, data }: TableOptions<object>) => {
         })}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row: any) => {
+        {rows.map((row) => {
           prepareRow(row);
           const { key, ...restRow } = row.getRowProps();
+          // REVIEW - map 에서 받아오는 두 번째 매개 변수인 index로는 안 되는 걸까?
           const i = rows.indexOf(row);
+
           return (
             <tr key={key} {...restRow}>
               <StyledTd key={i}>
                 <TBodyText>{SponsorLevelRow[i]}</TBodyText>
               </StyledTd>
-              {row.cells.map((cell: any) => {
+
+              {row.cells.map((cell) => {
                 const { value } = cell;
                 const { key: cellKey, ...restCell } = cell.getCellProps();
+
+                const cellText =
+                  cell.column.render('status') === SponsorLevelStatus.Expired &&
+                  SponsorLevelRow[i] === '후원금'
+                    ? '마감'
+                    : cell.render('Cell');
+
                 return (
                   <StyledTd key={cellKey} {...restCell}>
                     {typeof value === 'boolean' && value && <CheckboxIcon />}
-                    <TBodyText>{cell.render('Cell')}</TBodyText>
+                    <TBodyText>{cellText}</TBodyText>
                   </StyledTd>
                 );
               })}
