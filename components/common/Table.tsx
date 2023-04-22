@@ -42,14 +42,6 @@ const StyledTh = styled('th', {
   color: '$backgroundPrimary',
   fontSize: '1.5rem',
   fontWeight: '700',
-
-  variants: {
-    expired: {
-      true: {
-        textDecoration: 'line-through',
-      },
-    },
-  },
 });
 
 const TBodyText = styled('span', {
@@ -80,13 +72,7 @@ const Table = ({ columns, data }: TableOptions<object>) => {
               {header.headers.map((col) => {
                 const { key: colKey, ...restColumn } = col.getHeaderProps();
                 return (
-                  <StyledTh
-                    key={colKey}
-                    expired={
-                      col.render('status') === SponsorLevelStatus.Expired
-                    }
-                    {...restColumn}
-                  >
+                  <StyledTh key={colKey} {...restColumn}>
                     {col.render('Header')}
                   </StyledTh>
                 );
