@@ -15,13 +15,16 @@ const StyledNavArea = styled('div', {
   alignItems: 'center',
   backgroundColor: '$backgroundPrimary',
   width: '100%',
-  height: '80px',
   margin: '0 auto',
   paddingRight: '30px',
   zIndex: '99',
 
+  '@bp1': {
+    height: '44px',
+  },
   '@bp2': {
     padding: '1rem 2rem',
+    height: '80px',
   },
 });
 

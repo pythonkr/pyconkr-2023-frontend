@@ -24,3 +24,9 @@ export const Routes: { [key: string]: RouteType } = {
 };
 
 export const NavBarMenus = [Routes.COC, Routes.SPONSOR_INFO, Routes.CFP_APPLY];
+export const MobileNavBarMenus = [
+  // TODO: 이거 추가하기 => Routes.PROGRAM ,
+  Routes.CFP_APPLY,
+  Routes.COC,
+  Routes.SPONSOR_JOIN,
+];
