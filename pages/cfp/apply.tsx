@@ -66,7 +66,7 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
           <Block css={{ marginTop: '64px' }}>
             <H2>모집 일정</H2>
             <div style={{ marginTop: '8px' }}>
-              2023년 3월 21일 화요일 ~ 4월 9일 일요일 (23:59 GMT+9)
+              2023년 3월 21일 화요일 ~ 5월 14일 일요일 (23:59 GMT+9)
             </div>
           </Block>
           <Block css={{ marginTop: '16px' }}>
