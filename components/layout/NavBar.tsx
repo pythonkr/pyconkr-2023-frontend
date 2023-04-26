@@ -66,7 +66,7 @@ const MenuItem = styled('span', {
 const StyledMenuBox = styled('div', {
   display: 'flex',
   flex: 1,
-  alignItems: 'flex-start',
+  alignItems: 'center',
   padding: '0 60px',
   gap: '32px',
 });
