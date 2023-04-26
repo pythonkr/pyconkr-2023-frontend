@@ -100,7 +100,7 @@ const Table = ({ columns, data }: TableOptions<object>) => {
 
                 const cellText =
                   cell.column.render('status') === SponsorLevelStatus.Expired &&
-                  SponsorLevelRow[i] === '후원금'
+                  SponsorLevelRow[i] === '스폰서 수'
                     ? '마감'
                     : cell.render('Cell');
 
