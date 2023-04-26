@@ -66,11 +66,19 @@ const MenuIconWrapper = styled('div', {
   zIndex: '101',
 });
 
-const IconWrapper = styled('div', {
+const IconContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   gap: '8px',
+});
+
+const IconWrapper = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '32px',
+  height: '32px',
 });
 
 const NavBarMobile = () => {
@@ -93,18 +101,18 @@ const NavBarMobile = () => {
   return (
     <Container>
       <MenuIconWrapper onClick={handleMobileMenuClick}>
-        <IconWrapper>
+        <IconContainer>
           <ThemeSwitch isMobile />
           {isMobileMenuOpen ? (
-            <CloseIcon
-              width="20"
-              height="20"
-              fill={isDark ? 'white' : 'black'}
-            />
+            <IconWrapper>
+              <CloseIcon fill={isDark ? 'white' : 'black'} />
+            </IconWrapper>
           ) : (
-            <PlusIcon width="20" height="20" />
+            <IconWrapper>
+              <PlusIcon />
+            </IconWrapper>
           )}
-        </IconWrapper>
+        </IconContainer>
       </MenuIconWrapper>
       {isMobileMenuOpen && (
         <ForeGroundContainer onClick={handleMobileMenuClick}>
