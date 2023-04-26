@@ -8,7 +8,7 @@ import * as S from './styles';
 export const Main = () => (
   <S.Section id="application">
     <H1>SPONSORS</H1>
-    <S.PeriodText>모집 기간: 2023.03.06 - 2023.05.01</S.PeriodText>
+    <S.PeriodText>모집 기간: 2023.03.06 - 2023.06.02</S.PeriodText>
     <S.SponsorActionButtonWrapper>
       <Link href={Routes.SPONSOR_JOIN.route}>
         <Button reversal>파이콘 후원하기</Button>
