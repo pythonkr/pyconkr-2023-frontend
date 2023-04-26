@@ -6,11 +6,11 @@ export const Routes: { [key: string]: RouteType } = {
     route: '/',
   },
   COC: {
-    title: '행동 강령',
+    title: '행동강령',
     route: '/coc',
   },
   SPONSOR_INFO: {
-    title: '후원 안내',
+    title: '후원안내',
     route: '/sponsor/information',
   },
   SPONSOR_JOIN: {
@@ -18,7 +18,7 @@ export const Routes: { [key: string]: RouteType } = {
     route: '/sponsor/join',
   },
   CFP_APPLY: {
-    title: '발표 제안',
+    title: '발표제안',
     route: '/cfp/apply',
   },
 };
@@ -28,5 +28,6 @@ export const MobileNavBarMenus = [
   // TODO: 이거 추가하기 => Routes.PROGRAM ,
   Routes.CFP_APPLY,
   Routes.COC,
+  Routes.SPONSOR_INFO,
   Routes.SPONSOR_JOIN,
 ];
