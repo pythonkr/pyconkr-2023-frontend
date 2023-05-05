@@ -5,6 +5,7 @@ import { NavBarMenus, Routes } from '@/constants/routes';
 import { StyledButton } from '../common/Button';
 import { Logo as LogoSvg } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
+import NavBarMobile from './NavBarMobile';
 
 const StyledNavArea = styled('div', {
   position: 'fixed',
@@ -14,25 +15,29 @@ const StyledNavArea = styled('div', {
   alignItems: 'center',
   backgroundColor: '$backgroundPrimary',
   width: '100%',
-  height: '80px',
   margin: '0 auto',
-  zIndex: '9999',
+  paddingRight: '30px',
+  zIndex: '99',
 
   '@bp1': {
-    padding: '0 0.5rem',
-    gap: 0,
+    height: '44px',
   },
   '@bp2': {
     padding: '1rem 2rem',
+    height: '80px',
   },
 });
 
 const Logo = styled(LogoSvg, {
   display: 'block',
-  maxWidth: 230,
+  maxWidth: 180,
   width: '100%',
   '& path': {
     fill: '$textPrimary',
+  },
+
+  '@bp2': {
+    maxWidth: 230,
   },
 });
 
@@ -44,34 +49,26 @@ const Title = styled('h1', {
   clipPath: 'rect(0, 0, 0, 0)',
 });
 
+const NavContainer = styled('div', {
+  display: 'none',
+  '@bp2': {
+    display: 'flex',
+  },
+});
+
 const MenuItem = styled('span', {
   fontWeight: 700,
   color: '$textPrimary',
-
-  '@bp1': {
-    fontSize: '18px',
-    lineHeight: '18px',
-  },
-
-  '@bp2': {
-    fontSize: '24px',
-    lineHeight: '24px',
-  },
+  fontSize: '24px',
+  lineHeight: '24px',
 });
 
 const StyledMenuBox = styled('div', {
   display: 'flex',
-
-  '@bp1': {
-    padding: '0',
-    gap: '13px',
-  },
-  '@bp2': {
-    flex: 1,
-    alignItems: 'flex-start',
-    padding: '0 60px',
-    gap: '32px',
-  },
+  flex: 1,
+  alignItems: 'center',
+  padding: '0 60px',
+  gap: '32px',
 });
 
 const StyledMenu = styled('div', {
@@ -88,23 +85,7 @@ const StyledMenu = styled('div', {
 const SideBox = styled('div', {
   display: 'flex',
   alignItems: 'center',
-
-  '@bp1': {
-    gap: 0,
-  },
-
-  '@bp2': {
-    gap: 40,
-  },
-});
-
-const SwitchWrapper = styled('div', {
-  '@bp1': {
-    display: 'none',
-  },
-  '@bp2': {
-    display: 'block',
-  },
+  gap: 40,
 });
 
 const SolidButton = styled(StyledButton, {
@@ -113,16 +94,8 @@ const SolidButton = styled(StyledButton, {
   color: '$backgroundPrimary',
   border: 'none',
   fontWeight: 700,
-
-  '@bp1': {
-    fontSize: '18px',
-    lineHeight: '18px',
-  },
-
-  '@bp2': {
-    fontSize: '24px',
-    lineHeight: '24px',
-  },
+  fontSize: '24px',
+  lineHeight: '24px',
 });
 
 const NavBar = () => {
@@ -132,23 +105,26 @@ const NavBar = () => {
         <Logo width={230} height={'100%'} />
         <Title>{Routes.HOME.title}</Title>
       </Link>
-      <StyledMenuBox>
-        {NavBarMenus.map((menu) => (
-          <StyledMenu key={menu.route}>
-            <Link href={menu.route} passHref>
-              <MenuItem>{menu.title}</MenuItem>
-            </Link>
-          </StyledMenu>
-        ))}
-      </StyledMenuBox>
-      <SideBox>
-        <SwitchWrapper>
+      <NavBarMobile />
+      <NavContainer>
+        <StyledMenuBox>
+          {NavBarMenus.map((menu) => (
+            <StyledMenu key={menu.route}>
+              <Link href={menu.route} passHref>
+                <MenuItem>{menu.title}</MenuItem>
+              </Link>
+            </StyledMenu>
+          ))}
+        </StyledMenuBox>
+        <SideBox>
           <ThemeSwitch />
-        </SwitchWrapper>
-        <Link href={Routes.SPONSOR_JOIN.route} passHref>
-          <SolidButton size={'small'}>{Routes.SPONSOR_JOIN.title}</SolidButton>
-        </Link>
-      </SideBox>
+          <Link href={Routes.SPONSOR_JOIN.route} passHref>
+            <SolidButton size={'small'}>
+              {Routes.SPONSOR_JOIN.title}
+            </SolidButton>
+          </Link>
+        </SideBox>
+      </NavContainer>
     </StyledNavArea>
   );
 };

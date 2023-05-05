@@ -8,7 +8,6 @@ const CardWrapper = styled('div', {
   width: '100%',
 
   '@bp1': {
-    maxWidth: '300px',
     maxHeight: '300px',
     padding: '1rem 1rem',
   },

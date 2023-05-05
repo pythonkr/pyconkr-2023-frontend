@@ -22,7 +22,10 @@ const RadioGroup = styled('div', {
   flexDirection: 'row',
   flexWrap: 'wrap',
   gap: '1rem',
-  margin: '2rem',
+
+  '@bp2': {
+    margin: '2rem',
+  },
 
   '& > *': {
     flex: '1 1 calc(50% - 1rem)',

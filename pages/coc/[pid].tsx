@@ -20,6 +20,8 @@ const Layout = styled('div', {
   height: '100%',
   maxWidth: '1280px',
   margin: '0 auto',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
 });
 
 const StyledH1 = styled(H1, {
@@ -34,16 +36,26 @@ const SubText = styled('div', {
 });
 
 const Container = styled('div', {
-  marginTop: '90px',
   display: 'flex',
+  flexDirection: 'column',
   width: '100%',
+  marginTop: 40,
+  paddingBottom: 40,
+  '@bp2': {
+    marginTop: '90px',
+    flexDirection: 'row',
+  },
 });
 
 const Content = styled('div', {
-  marginLeft: '62px',
-  marginBottom: '100px',
   flex: 'auto',
+  marginTop: 24,
   borderTop: '2px solid $textPrimary',
+  '@bp2': {
+    marginTop: 0,
+    marginLeft: '62px',
+    marginBottom: '100px',
+  },
 });
 
 const CoCSubPage: NextPage<DocumentProps> = ({ document }) => {

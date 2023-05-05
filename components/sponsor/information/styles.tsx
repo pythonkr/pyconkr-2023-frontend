@@ -8,7 +8,7 @@ export const Section = styled('section', {
   },
 
   '@bp1': {
-    padding: '2rem 2rem',
+    padding: '1.2rem 1.2rem',
   },
   '@bp2': {
     padding: '4rem 4rem',
@@ -203,9 +203,10 @@ export const ArrowWrapper = styled('div', {
   cursor: 'pointer',
 
   '@bp1': {
-    display: 'none',
-  },
-  '@bp2': {
-    display: 'block',
+    position: 'relative',
+    top: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 });

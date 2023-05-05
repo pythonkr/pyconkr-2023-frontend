@@ -40,7 +40,7 @@ export const UnorderedList = styled('ul', {
 });
 
 export const ListItem = styled('li', {
-  lineHeight: 1.2,
+  lineHeight: 1.5,
   marginTop: '4px',
   [`& > ${Paragraph}`]: {
     marginTop: 0,

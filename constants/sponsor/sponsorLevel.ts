@@ -11,49 +11,70 @@ export const SponsorLevelRow = [
   '로고 노출 위치',
 ];
 
-export const SponsorLevelColumn1 = [
+export enum SponsorLevelStatus {
+  Active = 'active',
+  Expired = 'expired',
+}
+
+export interface SponsorLevelColumn {
+  accessor: string;
+  Header: string;
+  status: SponsorLevelStatus;
+}
+
+export const SponsorLevelColumn1: SponsorLevelColumn[] = [
   {
     accessor: 'keystone',
     Header: '키스톤',
+    status: SponsorLevelStatus.Active,
   },
   {
     accessor: 'diamond',
     Header: '다이아몬드',
+    status: SponsorLevelStatus.Active,
   },
   {
     accessor: 'sapphire',
     Header: '사파이어',
+    status: SponsorLevelStatus.Expired,
   },
   {
     accessor: 'platinum',
-    Header: '플레티넘',
+    Header: '플래티넘',
+    status: SponsorLevelStatus.Active,
   },
   {
     accessor: 'ruby',
     Header: '루비',
+    status: SponsorLevelStatus.Active,
   },
 ];
 
-export const SponsorLevelColumn2 = [
+export const SponsorLevelColumn2: SponsorLevelColumn[] = [
   {
     accessor: 'gold',
     Header: '골드',
+    status: SponsorLevelStatus.Expired,
   },
   {
     accessor: 'silver',
     Header: '실버',
+    status: SponsorLevelStatus.Active,
   },
   {
     accessor: 'startup',
     Header: '스타트업',
+    status: SponsorLevelStatus.Active,
   },
   {
     accessor: 'community',
     Header: '커뮤니티',
+    status: SponsorLevelStatus.Active,
   },
   {
     accessor: 'publisher',
     Header: '출판사',
+    status: SponsorLevelStatus.Active,
   },
 ];
 

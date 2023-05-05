@@ -7,8 +7,19 @@ import { RouteType } from '@/interfaces/RouteType';
 
 const SubNavBarList = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
   flexShrink: 0,
+  placeContent: 'space-between',
+  overflow: 'hidden',
+  gap: 16,
+
+  '@bp2': {
+    flexDirection: 'column',
+    placeContent: 'normal',
+    overflow: 'auto',
+    gap: 24,
+  },
 });
 
 const SubNavBarListItem = styled(Link, {
@@ -23,9 +34,6 @@ const SubNavBarListItem = styled(Link, {
   },
   '&:hover': {
     color: '$textPrimary',
-  },
-  '&+&': {
-    marginTop: '24px',
   },
 });
 
