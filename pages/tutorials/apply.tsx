@@ -114,7 +114,7 @@ export const getStaticProps: GetStaticProps<{
   tutorialGuide: string;
 }> = async () => {
   const staticPath = path.join(process.cwd(), 'static');
-  const tutorialGuidePath = path.join(staticPath, 'tutorial-cfp-guide.md');
+  const tutorialGuidePath = path.join(staticPath, 'tutorial-apply-guide.md');
   const tutorialGuide = fs.readFileSync(tutorialGuidePath, 'utf8');
   const formUrl = 'https://forms.gle/BCbEWtUatYVjJHhu8';
 
