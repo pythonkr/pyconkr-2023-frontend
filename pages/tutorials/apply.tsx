@@ -18,7 +18,8 @@ import remarkGfm from 'remark-gfm';
 import { styled } from 'stitches.config';
 
 interface PageProps {
-  cfpGuide: string;
+  tutorialGuide: string;
+  formUrl: string;
 }
 
 const ApplyPageContainer = styled('div', {
@@ -47,11 +48,11 @@ const LinkButton = styled('a', {
   },
 });
 
-const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
+const tutorialApplyPage: NextPage<PageProps> = ({ tutorialGuide, formUrl }) => {
   return (
     <ApplyPageContainer>
       <SeoHeader
-        title={Routes.CFP_APPLY.title}
+        title={Routes.TUTORIAL_APPLY.title}
         description="파이콘 한국 2023: 8월 11~13일 코엑스"
       />
       <S.Section>
@@ -65,6 +66,11 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
             <br />
             💌 교육에 관심이 있는 분들은 튜토리얼 진행자로 많이 지원해주세요!
           </Block>
+          <Block css={{ marginTop: '16px' }}>
+            <LinkButton target="_blank" href={formUrl} reversal={true}>
+              신청하기
+            </LinkButton>
+          </Block>
           <Block css={{ marginTop: '64px' }}>
             <H2>튜토리얼 진행일 및 장소</H2>
             <div style={{ marginTop: '8px' }}>
@@ -76,15 +82,6 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
             <div style={{ marginTop: '8px' }}>
               2023년 4월 03일 월요일 ~ 6월 2일 금요일 (23:59 GMT+9)
             </div>
-          </Block>
-          <Block css={{ marginTop: '16px' }}>
-            <LinkButton
-              target="_blank"
-              href="https://forms.gle/BCbEWtUatYVjJHhu8"
-              reversal={true}
-            >
-              신청하기
-            </LinkButton>
           </Block>
         </div>
         <Block css={{ marginTop: '104px' }}>
@@ -101,7 +98,7 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
             }}
             remarkPlugins={[remarkGfm]}
           >
-            {cfpGuide}
+            {tutorialGuide}
           </ReactMarkdown>
         </Block>
         <Block css={{ margin: '104px 0 64px' }}>
@@ -114,17 +111,19 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
 };
 
 export const getStaticProps: GetStaticProps<{
-  cfpGuide: string;
+  tutorialGuide: string;
 }> = async () => {
   const staticPath = path.join(process.cwd(), 'static');
-  const cfpGuidePath = path.join(staticPath, 'tutorial-cfp-guide.md');
-  const cfpGuide = fs.readFileSync(cfpGuidePath, 'utf8');
+  const tutorialGuidePath = path.join(staticPath, 'tutorial-cfp-guide.md');
+  const tutorialGuide = fs.readFileSync(tutorialGuidePath, 'utf8');
+  const formUrl = 'https://forms.gle/BCbEWtUatYVjJHhu8';
 
   return {
     props: {
-      cfpGuide,
+      tutorialGuide,
+      formUrl,
     },
   };
 };
 
-export default CfpApplyPage;
+export default tutorialApplyPage;
