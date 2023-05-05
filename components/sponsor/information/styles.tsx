@@ -31,7 +31,6 @@ export const SectionWithoutPadding = styled('section', {
   },
   '@bp2': {
     flexDirection: 'row',
-    maxHeight: '820px',
   },
 
   variants: {
