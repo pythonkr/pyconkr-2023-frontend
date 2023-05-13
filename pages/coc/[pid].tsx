@@ -62,7 +62,7 @@ const CoCSubPage: NextPage<DocumentProps> = ({ document }) => {
   return (
     <Layout>
       <StyledH1>파이콘 행동 강령</StyledH1>
-      <SubText>Code of Conducts</SubText>
+      <SubText>Code of Conduct</SubText>
       <Container>
         <SubNavBar routes={cocIndex} />
         <Content>
