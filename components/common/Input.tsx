@@ -1,10 +1,9 @@
-import React, { useState, ChangeEventHandler } from 'react';
+import React, { forwardRef } from 'react';
 import type * as Stitches from '@stitches/react';
 import { styled } from '@/stitches.config';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
-  onChange?: (value: string) => void;
-  state?: 'invalid' | 'valid';
+  state?: 'default' | 'invalid' | 'valid';
   label?: string;
 };
 
@@ -54,44 +53,31 @@ const StyledInput = styled('input', {
 
 type InputVariants = Stitches.VariantProps<typeof StyledInput>;
 
-const Input: React.FC<Props> = ({ onChange, value, label, ...props }) => {
-  const [inputValue, setInputValue] = useState(props.defaultValue);
+const Input = forwardRef<HTMLInputElement, Props>(
+  ({ state, label, ...props }, ref) => {
+    const variants: Partial<Record<keyof InputVariants, boolean>> = {};
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const newValue = event.target.value;
-    if (onChange) {
-      onChange(newValue);
-    } else {
-      setInputValue(newValue);
+    switch (state) {
+      case 'invalid':
+        variants.invalid = true;
+        break;
+      case 'valid':
+        variants.valid = true;
+        break;
     }
-  };
 
-  const variants: Partial<Record<keyof InputVariants, boolean>> = {};
-
-  switch (props.state) {
-    case 'invalid':
-      variants.invalid = true;
-      break;
-    case 'valid':
-      variants.valid = true;
-      break;
+    const InputWrapper = label ? Label : React.Fragment;
+    return (
+      <div>
+        <InputWrapper>
+          {label}
+          <StyledInput {...props} {...variants} ref={ref} />
+        </InputWrapper>
+      </div>
+    );
   }
+);
 
-  const InputWrapper = label ? Label : React.Fragment;
-  console.log(<InputWrapper></InputWrapper>);
-  return (
-    <div>
-      <InputWrapper>
-        {label}
-        <StyledInput
-          {...props}
-          value={value !== undefined ? value : inputValue}
-          onChange={handleChange}
-          {...variants}
-        />
-      </InputWrapper>
-    </div>
-  );
-};
+Input.displayName = 'Input';
 
 export default Input;
