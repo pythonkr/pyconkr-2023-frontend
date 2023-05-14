@@ -69,7 +69,7 @@ function SponsorInfoInputBox({ onClickNext, onClickPrev }: Props) {
           render={({ field }) => (
             <SimpleInput
               {...field}
-              label="후원사 명"
+              label="후원사명"
               length="fullWidth"
               isValid={isCurrentTypeValid(dirtyFields.name, 'name', errors)}
               isDirty={dirtyFields.name}
@@ -87,7 +87,7 @@ function SponsorInfoInputBox({ onClickNext, onClickPrev }: Props) {
           render={({ field }) => (
             <SimpleInput
               {...field}
-              label="사업자 번호"
+              label="사업자 등록 번호"
               length="fullWidth"
               isValid={isCurrentTypeValid(
                 dirtyFields.businessRegistrationNumber,
