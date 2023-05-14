@@ -56,8 +56,8 @@ interface FileInputBoxProps {
 const FileInputBox = ({ onClickPrev, onClickNext }: FileInputBoxProps) => {
   const { control, watch } = useFormContext();
   const checkValidation = useCallback(() => {
-    const fileList = ['businessRegistrationFile', 'bankBookFile', 'logoImage'];
-    return fileList.every((file) => {
+    const necessaryFileList = ['businessRegistrationFile', 'logoImage'];
+    return necessaryFileList.every((file) => {
       if (watch(file) === undefined) return false;
       return watch(file).length;
     });
