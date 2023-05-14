@@ -66,7 +66,7 @@ const CoCAgreementForm: React.FC<Props> = ({ onClickNext, codeOfConduct }) => {
             render={({ field: { onChange, value } }) => (
               <Checkbox
                 id="coc-agreement"
-                label="파이콘 행동강령에 동의합니다"
+                label="파이콘 행동 강령에 동의합니다"
                 checked={value}
                 onChange={onChange}
               />
