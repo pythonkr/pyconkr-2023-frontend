@@ -16,8 +16,6 @@ const globalStyle = globalCss({
   },
 
   'html, body, #__next': {
-    height: '100%',
-    minHeight: '100%',
     background: '$backgroundPrimary',
   },
 

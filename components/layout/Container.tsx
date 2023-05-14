@@ -1,15 +1,15 @@
 import { styled } from 'stitches.config';
-import NavBar from './NavBar';
+import NavBar from '@/components/layout/NavBar';
+import Footer from '@/components/layout/Footer';
 
 const ContainerBody = styled('div', {
   maxWidth: '1920px',
   margin: '0 auto',
   padding: '0 20px',
-  height: '100%',
+  position: 'relative',
 });
 
 const Main = styled('main', {
-  width: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
@@ -23,9 +23,8 @@ const Main = styled('main', {
 });
 
 const Wrapper = styled('div', {
-  width: '100%',
-  height: '100%',
   marginTop: '80px',
+  width: '100%',
 });
 
 type ContainerProps = {
@@ -38,6 +37,7 @@ const Container = ({ children }: ContainerProps) => (
     <Main>
       <Wrapper>{children}</Wrapper>
     </Main>
+    <Footer />
   </ContainerBody>
 );
 
