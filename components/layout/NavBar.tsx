@@ -123,6 +123,9 @@ const NavBar = () => {
               {Routes.SPONSOR_JOIN.title}
             </SolidButton>
           </Link>
+          <Link href={Routes.LOGIN.route} passHref>
+            <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
+          </Link>
         </SideBox>
       </NavContainer>
     </StyledNavArea>
