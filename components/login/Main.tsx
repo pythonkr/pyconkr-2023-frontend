@@ -26,10 +26,19 @@ const Main = () => {
 
     setIsLoading(true);
     try {
-      // await axios
+      const response = await axios.post(
+        '/api/login/',
+        { username: inputId, password: inputPassword },
+        {
+          headers: { 'content-type': 'application/json' },
+        }
+      );
+      if (!('msg' in response.data && response.data.msg === 'ok')) {
+        throw new Error(`${response.status}`);
+      }
       router.push(Routes.HOME.route);
     } catch (e) {
-      alert('로그인 실패 ㅠㅠ');
+      alert(`로그인 실패 ㅠㅠ\n(${e})`);
     } finally {
       setIsLoading(false);
     }
