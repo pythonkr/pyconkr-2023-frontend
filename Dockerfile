@@ -8,4 +8,4 @@ ARG ENV
 
 RUN npm install
 
-CMD ["npm", "run", "deploy:$ENV"]
+CMD ["sh", "-c", "npm run deploy:$ENV"]
