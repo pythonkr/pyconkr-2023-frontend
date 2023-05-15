@@ -31,6 +31,7 @@ const Main = () => {
         { username: inputId, password: inputPassword },
         {
           headers: { 'content-type': 'application/json' },
+          withCredentials: true,
         }
       );
       if (!('msg' in response.data && response.data.msg === 'ok')) {
@@ -38,11 +39,34 @@ const Main = () => {
       }
       router.push(Routes.HOME.route);
     } catch (e) {
+      console.error(e);
       alert(`로그인 실패 ㅠㅠ\n(${e})`);
     } finally {
       setIsLoading(false);
     }
   }, [inputId, inputPassword, router]);
+
+  const signOut = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        '/api/logout/',
+        {},
+        {
+          headers: { 'content-type': 'application/json' },
+          withCredentials: true,
+        }
+      );
+      // if (!('msg' in response.data && response.data.msg === 'ok')) {
+      //   throw new Error(`${response.status}`);
+      // }
+      // router.push(Routes.HOME.route);
+    } catch (e) {
+      alert(`로그인 실패 ㅠㅠ\n(${e})`);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   return (
     <S.MainSection>
@@ -71,6 +95,7 @@ const Main = () => {
         </section>
         <section className="bottom">
           <Button onClick={signIn}>{isLoading ? <Loader /> : '로그인'}</Button>
+          <Button onClick={signOut}>로그아웃</Button>
         </section>
       </S.Container>
     </S.MainSection>
