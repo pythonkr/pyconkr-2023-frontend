@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "next build && next start",
+    "deploy:dev": "cp ./.env.development ./.env && next build && next start",
+    "deploy:prod": "cp ./.env.production ./.env && next build && next start",
     "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "prepare": "husky install"
