@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cp ./.env.dev ./.env && next dev",
     "build": "next build && next export",
-    "start": "next start",
+    "start": "cp ./.env.prod ./.env && next start",
     "lint": "next lint",
     "deploy": "next build && next start",
-    "deploy:dev": "cp ./.env.development ./.env && next build && next start",
-    "deploy:prod": "cp ./.env.production ./.env && next build && next start",
+    "deploy:dev": "cp ./.env.dev ./.env && next build && next start",
+    "deploy:prod": "cp ./.env.prod ./.env && next build && next start",
     "lint-staged": "lint-staged",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "prepare": "husky install"
