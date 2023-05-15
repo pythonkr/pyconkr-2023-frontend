@@ -25,6 +25,10 @@ export const Routes: { [key: string]: RouteType } = {
     title: '튜토리얼',
     route: '/tutorials/apply',
   },
+  LOGIN: {
+    title: '로그인',
+    route: '/login',
+  },
 };
 
 export const NavBarMenus = [
