@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { Routes } from '@/constants/routes';
-import axios from 'axios';
+import axios from '@/lib/axios';
 import * as S from './styles';
 import { Loader } from '../common/Loader';
 import { useRouter } from 'next/router';
