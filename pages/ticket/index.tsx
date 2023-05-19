@@ -7,6 +7,9 @@ import { useRouter } from 'next/router';
 import { Routes } from '@/constants/routes';
 import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
+import { useSetRecoilState } from 'recoil';
+import { ticketState } from '@/stores/ticket';
+import Link from 'next/link';
 
 const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;
 const TicketPage = () => {
@@ -44,6 +47,7 @@ const TicketPage = () => {
       },
     };
   }, []);
+  const setTicketState = useSetRecoilState(ticketState);
 
   const loadTicketTypes = useCallback(async () => {
     setIsLoading(true);
@@ -149,6 +153,12 @@ const TicketPage = () => {
   useEffect(() => {
     loadTicketTypes();
   }, [loadTicketTypes]);
+  useEffect(() => {
+    setTicketState((prevState) => ({
+      ...prevState,
+      ticketTypes: Object.values(ticketTypes).flat(2),
+    }));
+  }, [ticketTypes, setTicketState]);
 
   if (isLoading === true)
     return (
@@ -180,9 +190,16 @@ const TicketPage = () => {
                 </div>
               </S.TicketTypeItemFrame>
               <S.TicketTypeItemButton>
-                <Button size="small" reversal>
-                  선택하기
-                </Button>
+                <Link
+                  href={
+                    Routes.TICKET_DETAIL.route + `?ticketId=${ticketType.id}`
+                  }
+                  passHref
+                >
+                  <Button size="small" reversal>
+                    선택하기
+                  </Button>
+                </Link>
               </S.TicketTypeItemButton>
             </S.TicketTypeItem>
           ))}
