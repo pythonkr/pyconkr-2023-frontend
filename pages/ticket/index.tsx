@@ -7,6 +7,9 @@ import { useRouter } from 'next/router';
 import { Routes } from '@/constants/routes';
 import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
+import { useSetRecoilState } from 'recoil';
+import { ticketState } from '@/stores/ticket';
+import Link from 'next/link';
 
 const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;
 const TicketPage = () => {
@@ -44,10 +47,12 @@ const TicketPage = () => {
       },
     };
   }, []);
+  const setTicketState = useSetRecoilState(ticketState);
 
   const loadTicketTypes = useCallback(async () => {
     setIsLoading(true);
     try {
+      // TODO API로 교체
       ////////////////////////////////////////////////////////////
       // const response = await axios.get<
       // {
@@ -73,6 +78,7 @@ const TicketPage = () => {
       setTicketTypes({
         CONFERENCE: TicketType.fromAPIs([
           {
+            id: 'pycon_korea_day_1',
             name: 'PyCon Korea Day 1 (SAT)',
             price: 70000,
             min_price: null,
@@ -82,6 +88,7 @@ const TicketPage = () => {
             is_refundable: true,
           },
           {
+            id: 'pycon_korea_day_2',
             name: 'PyCon Korea Day 2 (SUN)',
             price: 70000,
             min_price: null,
@@ -91,6 +98,7 @@ const TicketPage = () => {
             is_refundable: true,
           },
           {
+            id: 'pycon_korea_day_1_2',
             name: 'PyCon Korea Day 1, 2 (SAT, SUN)',
             price: 70000,
             min_price: null,
@@ -100,6 +108,7 @@ const TicketPage = () => {
             is_refundable: true,
           },
           {
+            id: 'pycon_korea_day_1_2_patron',
             name: 'PyCon Korea Day 1, 2 개인 후원 (SAT, SUN)',
             price: 150000,
             min_price: 150000,
@@ -111,6 +120,7 @@ const TicketPage = () => {
         ]),
         TUTORIAL: TicketType.fromAPIs([
           {
+            id: 'pycon_korea_tutorial_1',
             name: '쉽게 배우는 파이썬',
             price: 5000,
             min_price: null,
@@ -122,6 +132,7 @@ const TicketPage = () => {
         ]),
         SPRINT: TicketType.fromAPIs([
           {
+            id: 'pycon_korea_sprint_1',
             name: 'asyncio',
             price: 0,
             min_price: null,
@@ -143,6 +154,12 @@ const TicketPage = () => {
   useEffect(() => {
     loadTicketTypes();
   }, [loadTicketTypes]);
+  useEffect(() => {
+    setTicketState((prevState) => ({
+      ...prevState,
+      ticketTypes: Object.values(ticketTypes).flat(2),
+    }));
+  }, [ticketTypes, setTicketState]);
 
   if (isLoading === true)
     return (
@@ -166,15 +183,22 @@ const TicketPage = () => {
               <S.TicketTypeItemFrame>
                 <div>{ticketType.name}</div>
                 <div>
-                  {ticketType.minPrice === null
+                  {ticketType.price === 0
+                    ? '무료'
+                    : ticketType.minPrice === null
                     ? `${ticketType.price.toLocaleString()}원`
                     : `${ticketType.minPrice.toLocaleString()}원~`}
                 </div>
               </S.TicketTypeItemFrame>
               <S.TicketTypeItemButton>
-                <Button size="small" reversal>
-                  선택하기
-                </Button>
+                <Link
+                  href={Routes.TICKET_DETAIL.route + `/${ticketType.id}`}
+                  passHref
+                >
+                  <Button size="small" reversal>
+                    선택하기
+                  </Button>
+                </Link>
               </S.TicketTypeItemButton>
             </S.TicketTypeItem>
           ))}

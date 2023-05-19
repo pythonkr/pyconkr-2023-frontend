@@ -44,7 +44,7 @@ const Footer = () => (
   <FooterLayout>
     <FooterContainer>
       <div>
-        <CoCLink href="/coc">파이콘 한국 행동강령(CoC)</CoCLink>
+        <CoCLink href="/coc">파이콘 한국 행동 강령 (CoC)</CoCLink>
       </div>
       <div>
         <SNSLink href={`mailto:${PYCONKR_EMAIL}`} title="이메일">

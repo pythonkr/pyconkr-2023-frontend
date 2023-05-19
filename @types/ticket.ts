@@ -1,4 +1,6 @@
 export class TicketType {
+  id: string;
+
   /** 티켓 이름 */
   name: string;
 
@@ -21,6 +23,7 @@ export class TicketType {
   isRefundable: boolean;
 
   private constructor(p: TicketType) {
+    this.id = p.id;
     this.name = p.name;
     this.price = p.price;
     this.minPrice = p.minPrice;
@@ -32,6 +35,7 @@ export class TicketType {
 
   static fromAPI(d: APITicketType): TicketType {
     return new TicketType({
+      id: d.id,
       name: d.name,
       price: d.price,
       minPrice: d.min_price,
@@ -48,6 +52,7 @@ export class TicketType {
 }
 
 export type APITicketType = {
+  id: string;
   name: string;
   price: number;
   min_price: number | null;
