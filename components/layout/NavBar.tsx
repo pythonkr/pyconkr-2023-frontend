@@ -141,7 +141,7 @@ const NavBar = () => {
             </Link>
           ) : (
             <SolidButton size={'small'} onClick={logout}>
-              {Routes.LOGOUT.title}
+              로그아웃
             </SolidButton>
           )}
         </SideBox>

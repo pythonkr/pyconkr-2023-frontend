@@ -1,6 +1,16 @@
 import { RouteType } from '@/interfaces/RouteType';
 
-export const Routes: { [key: string]: RouteType } = {
+const routeKeys = [
+  'HOME',
+  'COC',
+  'SPONSOR_INFO',
+  'SPONSOR_JOIN',
+  'CFP_APPLY',
+  'TUTORIAL_APPLY',
+  'LOGIN',
+] as const;
+
+export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   HOME: {
     title: '파이콘 한국 2023',
     route: '/',
