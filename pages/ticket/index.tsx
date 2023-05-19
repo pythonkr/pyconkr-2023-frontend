@@ -191,9 +191,7 @@ const TicketPage = () => {
               </S.TicketTypeItemFrame>
               <S.TicketTypeItemButton>
                 <Link
-                  href={
-                    Routes.TICKET_DETAIL.route + `?ticketId=${ticketType.id}`
-                  }
+                  href={Routes.TICKET_DETAIL.route + `/${ticketType.id}`}
                   passHref
                 >
                   <Button size="small" reversal>
