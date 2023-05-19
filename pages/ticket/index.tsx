@@ -166,7 +166,9 @@ const TicketPage = () => {
               <S.TicketTypeItemFrame>
                 <div>{ticketType.name}</div>
                 <div>
-                  {ticketType.minPrice === null
+                  {ticketType.price === 0
+                    ? '무료'
+                    : ticketType.minPrice === null
                     ? `${ticketType.price.toLocaleString()}원`
                     : `${ticketType.minPrice.toLocaleString()}원~`}
                 </div>
