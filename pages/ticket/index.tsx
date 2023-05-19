@@ -52,6 +52,7 @@ const TicketPage = () => {
   const loadTicketTypes = useCallback(async () => {
     setIsLoading(true);
     try {
+      // TODO API로 교체
       ////////////////////////////////////////////////////////////
       // const response = await axios.get<
       // {
