@@ -73,6 +73,7 @@ const TicketPage = () => {
       setTicketTypes({
         CONFERENCE: TicketType.fromAPIs([
           {
+            id: 'pycon_korea_day_1',
             name: 'PyCon Korea Day 1 (SAT)',
             price: 70000,
             min_price: null,
@@ -82,6 +83,7 @@ const TicketPage = () => {
             is_refundable: true,
           },
           {
+            id: 'pycon_korea_day_2',
             name: 'PyCon Korea Day 2 (SUN)',
             price: 70000,
             min_price: null,
@@ -91,6 +93,7 @@ const TicketPage = () => {
             is_refundable: true,
           },
           {
+            id: 'pycon_korea_day_1_2',
             name: 'PyCon Korea Day 1, 2 (SAT, SUN)',
             price: 70000,
             min_price: null,
@@ -100,6 +103,7 @@ const TicketPage = () => {
             is_refundable: true,
           },
           {
+            id: 'pycon_korea_day_1_2_patron',
             name: 'PyCon Korea Day 1, 2 개인 후원 (SAT, SUN)',
             price: 150000,
             min_price: 150000,
@@ -111,6 +115,7 @@ const TicketPage = () => {
         ]),
         TUTORIAL: TicketType.fromAPIs([
           {
+            id: 'pycon_korea_tutorial_1',
             name: '쉽게 배우는 파이썬',
             price: 5000,
             min_price: null,
@@ -122,6 +127,7 @@ const TicketPage = () => {
         ]),
         SPRINT: TicketType.fromAPIs([
           {
+            id: 'pycon_korea_sprint_1',
             name: 'asyncio',
             price: 0,
             min_price: null,
