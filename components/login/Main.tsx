@@ -1,14 +1,17 @@
 import React, { useState, useCallback } from 'react';
-import Link from 'next/link';
 import Button from '@/components/common/Button';
 import { Routes } from '@/constants/routes';
 import axios from '@/lib/axios';
 import * as S from './styles';
 import { Loader } from '../common/Loader';
 import { useRouter } from 'next/router';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userState } from '@/stores/login';
 
 const Main = () => {
   const router = useRouter();
+  const loginUser = useRecoilValue(userState);
+  const setLoginUser = useSetRecoilState(userState);
 
   const [inputId, setInputId] = useState<string>('');
   const [inputPassword, setInputPassword] = useState<string>('');
@@ -37,6 +40,7 @@ const Main = () => {
       if (!('msg' in response.data && response.data.msg === 'ok')) {
         throw new Error(`${response.status}`);
       }
+      setLoginUser((prev) => ({ ...prev, userid: inputId }));
       router.push(Routes.HOME.route);
     } catch (e) {
       console.error(e);
@@ -44,7 +48,7 @@ const Main = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [inputId, inputPassword, router]);
+  }, [inputId, inputPassword, router, setLoginUser]);
 
   const signOut = useCallback(async () => {
     setIsLoading(true);
@@ -94,8 +98,13 @@ const Main = () => {
           </div>
         </section>
         <section className="bottom">
-          <Button onClick={signIn}>{isLoading ? <Loader /> : '로그인'}</Button>
-          <Button onClick={signOut}>로그아웃</Button>
+          {loginUser.userid === null ? (
+            <Button onClick={signIn}>
+              {isLoading ? <Loader /> : '로그인'}
+            </Button>
+          ) : (
+            <Button onClick={signOut}>로그아웃</Button>
+          )}
         </section>
       </S.Container>
     </S.MainSection>

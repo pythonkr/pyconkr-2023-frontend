@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
 import { NavBarMenus, Routes } from '@/constants/routes';
@@ -6,6 +6,9 @@ import { StyledButton } from '../common/Button';
 import { Logo as LogoSvg } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
 import NavBarMobile from './NavBarMobile';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userState } from '@/stores/login';
+import { useRouter } from 'next/router';
 
 const StyledNavArea = styled('div', {
   position: 'fixed',
@@ -99,6 +102,15 @@ const SolidButton = styled(StyledButton, {
 });
 
 const NavBar = () => {
+  const router = useRouter();
+  const loginUser = useRecoilValue(userState);
+  const setLoginUser = useSetRecoilState(userState);
+
+  const logout = useCallback(() => {
+    setLoginUser((prev) => ({ ...prev, userid: null }));
+    router.push(Routes.HOME.route);
+  }, [setLoginUser, router]);
+
   return (
     <StyledNavArea>
       <Link href={Routes.HOME.route} passHref>
@@ -123,9 +135,15 @@ const NavBar = () => {
               {Routes.SPONSOR_JOIN.title}
             </SolidButton>
           </Link>
-          <Link href={Routes.LOGIN.route} passHref>
-            <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
-          </Link>
+          {loginUser.userid === null ? (
+            <Link href={Routes.LOGIN.route} passHref>
+              <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
+            </Link>
+          ) : (
+            <SolidButton size={'small'} onClick={logout}>
+              로그아웃
+            </SolidButton>
+          )}
         </SideBox>
       </NavContainer>
     </StyledNavArea>
