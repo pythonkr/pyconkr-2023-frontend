@@ -1,3 +1,5 @@
+import { fromUTC, toValidDate } from '@/utils';
+
 export class TicketType {
   id: string;
 
@@ -14,10 +16,16 @@ export class TicketType {
   desc: string;
 
   /** 티켓으로 참가하는 요일 */
-  day: string;
+  day: 'FRI' | 'SAT' | 'SUN' | 'WEEKEND';
 
-  /** 프로그램 ID (임시) */
-  program: string;
+  /** 프로그램 정보 */
+  program: {
+    title: string;
+    shortDesc: string;
+    startAt: Date;
+    endAt: Date;
+    programType: typeof ProgramTypes;
+  };
 
   /** 환불 가능 여부 */
   isRefundable: boolean;
@@ -41,7 +49,13 @@ export class TicketType {
       minPrice: d.min_price,
       desc: d.desc,
       day: d.day,
-      program: d.program,
+      program: {
+        title: d.program.title,
+        shortDesc: d.program.short_desc,
+        startAt: fromUTC(toValidDate(d.program.start_at)),
+        endAt: fromUTC(toValidDate(d.program.end_at)),
+        programType: d.program.program_type,
+      },
       isRefundable: d.is_refundable,
     });
   }
@@ -57,7 +71,16 @@ export type APITicketType = {
   price: number;
   min_price: number | null;
   desc: string;
-  day: string;
-  program: string;
+  day: 'FRI' | 'SAT' | 'SUN' | 'WEEKEND';
+  program: {
+    title: string;
+    short_desc: string;
+    start_at: string;
+    end_at: string;
+    program_type: typeof ProgramTypes;
+  };
   is_refundable: boolean;
+  is_buyable: boolean;
 };
+
+export const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;

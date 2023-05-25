@@ -12,8 +12,8 @@ import { useFormContext } from 'react-hook-form';
 import { useState } from 'react';
 import Modal from '@/components/sponsor/Modal';
 import { useRouter } from 'next/router';
-import axios from '@/lib/axios';
 import { Loader } from '@/components/common/Loader';
+import { SponsorAPI } from '@/api';
 
 const TextBox = styled('div', {
   display: 'flex',
@@ -50,12 +50,6 @@ const StyledButton = styled(Button, {
   width: '100%',
 });
 
-const axiosConfig = {
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-};
-
 const SponsorCompleteBox = () => {
   const { getValues } = useFormContext();
   const router = useRouter();
@@ -86,7 +80,7 @@ const SponsorCompleteBox = () => {
   const handleSubmitForm = async () => {
     try {
       setIsLoading(true);
-      await axios.post(`/sponsors`, formData, axiosConfig);
+      await SponsorAPI.addSponsor(formData);
       alert('신청이 완료되었습니다.');
       router.push(Routes.HOME.route);
     } catch (error: any) {

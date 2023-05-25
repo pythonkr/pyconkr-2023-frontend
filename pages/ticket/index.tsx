@@ -1,4 +1,4 @@
-import { APITicketType, TicketType } from '@/@types';
+import { APITicketType, ProgramTypes, TicketType } from '@/@types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from '@/lib/axios';
 import { AxiosResponse } from 'axios';
@@ -10,8 +10,8 @@ import Button from '@/components/common/Button';
 import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
 import Link from 'next/link';
+import { TicketAPI } from '@/api';
 
-const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;
 const TicketPage = () => {
   const router = useRouter();
 
@@ -52,29 +52,8 @@ const TicketPage = () => {
   const loadTicketTypes = useCallback(async () => {
     setIsLoading(true);
     try {
-      // TODO API로 교체
-      ////////////////////////////////////////////////////////////
-      // const response = await axios.get<
-      // {
-      //     conference: APITicketType[];
-      //     tutorial: APITicketType[];
-      //     sprint: APITicketType[];
-      //   },
-      //   AxiosResponse<{
-      //     conference: APITicketType[];
-      //     tutorial: APITicketType[];
-      //     sprint: APITicketType[];
-      //   }>,
-      //   never
-      // >('/api/ticket/list', {
-      //   withCredentials: true,
-      // });
-      // setTicketTypes({
-      //   CONFERENCE: TicketType.fromAPIs(response.data.conference),
-      //   TUTORIAL: TicketType.fromAPIs(response.data.tutorial),
-      //   SPRINT: TicketType.fromAPIs(response.data.sprint),
-      // });
-      ////////////////////////////////////////////////////////////
+      // const response = await TicketAPI.listTicketTypes();
+      // setTicketTypes(response);
       setTicketTypes({
         CONFERENCE: TicketType.fromAPIs([
           {
