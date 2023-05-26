@@ -6,6 +6,10 @@ const nextConfig = {
         source: '/coc',
         destination: '/coc/purpose',
         permanent: true,
+      },{
+        source: '/mypage',
+        destination: '/mypage/ticket',
+        permanent: true,
       },
     ]
   },
