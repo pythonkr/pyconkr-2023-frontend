@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import Button from '@/components/common/Button';
 import { Routes } from '@/constants/routes';
-import axios from '@/lib/axios';
 import * as S from './styles';
 import { Loader } from '../common/Loader';
 import { useRouter } from 'next/router';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '@/stores/login';
+import { LoginAPI } from '@/api';
 
 const Main = () => {
   const router = useRouter();
@@ -29,17 +29,7 @@ const Main = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        '/api/login/',
-        { username: inputId, password: inputPassword },
-        {
-          headers: { 'content-type': 'application/json' },
-          withCredentials: true,
-        }
-      );
-      if (!('msg' in response.data && response.data.msg === 'ok')) {
-        throw new Error(`${response.status}`);
-      }
+      const response = await LoginAPI.signIn(inputId, inputPassword);
       setLoginUser((prev) => ({ ...prev, userid: inputId }));
       router.push(Routes.HOME.route);
     } catch (e) {
@@ -53,18 +43,7 @@ const Main = () => {
   const signOut = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        '/api/logout/',
-        {},
-        {
-          headers: { 'content-type': 'application/json' },
-          withCredentials: true,
-        }
-      );
-      // if (!('msg' in response.data && response.data.msg === 'ok')) {
-      //   throw new Error(`${response.status}`);
-      // }
-      // router.push(Routes.HOME.route);
+      const response = await LoginAPI.signOut();
     } catch (e) {
       alert(`로그인 실패 ㅠㅠ\n(${e})`);
     } finally {

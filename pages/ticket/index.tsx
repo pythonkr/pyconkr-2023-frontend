@@ -1,7 +1,5 @@
-import { APITicketType, TicketType } from '@/@types';
+import { ProgramTypes, TicketType } from '@/@types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import axios from '@/lib/axios';
-import { AxiosResponse } from 'axios';
 import { Loader } from '@/components/common/Loader';
 import { useRouter } from 'next/router';
 import { Routes } from '@/constants/routes';
@@ -10,8 +8,8 @@ import Button from '@/components/common/Button';
 import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
 import Link from 'next/link';
+import { TicketAPI } from '@/api';
 
-const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;
 const TicketPage = () => {
   const router = useRouter();
 
@@ -52,97 +50,8 @@ const TicketPage = () => {
   const loadTicketTypes = useCallback(async () => {
     setIsLoading(true);
     try {
-      // TODO API로 교체
-      ////////////////////////////////////////////////////////////
-      // const response = await axios.get<
-      // {
-      //     conference: APITicketType[];
-      //     tutorial: APITicketType[];
-      //     sprint: APITicketType[];
-      //   },
-      //   AxiosResponse<{
-      //     conference: APITicketType[];
-      //     tutorial: APITicketType[];
-      //     sprint: APITicketType[];
-      //   }>,
-      //   never
-      // >('/api/ticket/list', {
-      //   withCredentials: true,
-      // });
-      // setTicketTypes({
-      //   CONFERENCE: TicketType.fromAPIs(response.data.conference),
-      //   TUTORIAL: TicketType.fromAPIs(response.data.tutorial),
-      //   SPRINT: TicketType.fromAPIs(response.data.sprint),
-      // });
-      ////////////////////////////////////////////////////////////
-      setTicketTypes({
-        CONFERENCE: TicketType.fromAPIs([
-          {
-            id: 'pycon_korea_day_1',
-            name: 'PyCon Korea Day 1 (SAT)',
-            price: 70000,
-            min_price: null,
-            desc: '컨퍼런스 1일차 티켓',
-            day: '토요일',
-            program: 'CONFERENCE',
-            is_refundable: true,
-          },
-          {
-            id: 'pycon_korea_day_2',
-            name: 'PyCon Korea Day 2 (SUN)',
-            price: 70000,
-            min_price: null,
-            desc: '컨퍼런스 2일차 티켓',
-            day: '일요일',
-            program: 'CONFERENCE',
-            is_refundable: true,
-          },
-          {
-            id: 'pycon_korea_day_1_2',
-            name: 'PyCon Korea Day 1, 2 (SAT, SUN)',
-            price: 70000,
-            min_price: null,
-            desc: '컨퍼런스 양일 티켓',
-            day: '토요일,일요일',
-            program: 'CONFERENCE',
-            is_refundable: true,
-          },
-          {
-            id: 'pycon_korea_day_1_2_patron',
-            name: 'PyCon Korea Day 1, 2 개인 후원 (SAT, SUN)',
-            price: 150000,
-            min_price: 150000,
-            desc: '컨퍼런스 양일 티켓 (개인 후원)',
-            day: '토요일,일요일',
-            program: 'CONFERENCE',
-            is_refundable: false,
-          },
-        ]),
-        TUTORIAL: TicketType.fromAPIs([
-          {
-            id: 'pycon_korea_tutorial_1',
-            name: '쉽게 배우는 파이썬',
-            price: 5000,
-            min_price: null,
-            desc: '쉽게 배우는 파이썬 튜토리얼',
-            day: '금요일',
-            program: 'TUTORIAL',
-            is_refundable: true,
-          },
-        ]),
-        SPRINT: TicketType.fromAPIs([
-          {
-            id: 'pycon_korea_sprint_1',
-            name: 'asyncio',
-            price: 0,
-            min_price: null,
-            desc: 'asyncio 스프린트',
-            day: '금요일',
-            program: 'SPRINT',
-            is_refundable: true,
-          },
-        ]),
-      });
+      const response = await TicketAPI.listTicketTypes();
+      setTicketTypes(response);
     } catch (e) {
       alert(`티켓 목록 불러오기 실패\n(${e})`);
       router.push(Routes.HOME.route);
