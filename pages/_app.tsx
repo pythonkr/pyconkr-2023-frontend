@@ -10,6 +10,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { darkTheme } from '@/stitches.config';
 import { ThemeProvider } from 'next-themes';
+import RecoilNexus from 'recoil-nexus';
 
 function RecoilDebugObserver() {
   const snapshot = useRecoilSnapshot();
@@ -66,6 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       >
         <RecoilRoot>
+          <RecoilNexus />
           {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
           <QueryClientProvider client={queryClient}>
             <Container>

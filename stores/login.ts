@@ -8,6 +8,7 @@ export const userState = atom<LoginUser>({
   key: 'user',
   default: {
     userid: null,
+    authToken: null,
   },
   effects_UNSTABLE: [persistAtom],
 });

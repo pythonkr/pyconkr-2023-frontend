@@ -30,7 +30,11 @@ const Main = () => {
     setIsLoading(true);
     try {
       const response = await LoginAPI.signIn(inputId, inputPassword);
-      setLoginUser((prev) => ({ ...prev, userid: inputId }));
+      setLoginUser((prev) => ({
+        ...prev,
+        userid: inputId,
+        authToken: response,
+      }));
       router.push(Routes.HOME.route);
     } catch (e) {
       console.error(e);
@@ -43,7 +47,7 @@ const Main = () => {
   const signOut = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await LoginAPI.signOut();
+      await LoginAPI.signOut();
     } catch (e) {
       alert(`로그인 실패 ㅠㅠ\n(${e})`);
     } finally {
