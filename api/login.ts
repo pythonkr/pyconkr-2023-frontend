@@ -1,22 +1,20 @@
 import axios from '@/lib/axios';
+import { AxiosResponse } from 'axios';
 
-export function signIn(id: string, password: string): Promise<void> {
+export function signIn(id: string, password: string): Promise<string> {
   return new Promise((resolve, reject) => {
     axios
-      .post(
-        '/api/login/',
-        { username: id, password: password },
-        {
-          headers: { 'content-type': 'application/json' },
-          withCredentials: true,
-        }
-      )
+      .post<
+        { msg: string; basic_auth_token: string },
+        AxiosResponse<{ msg: string; basic_auth_token: string }>,
+        { username: string; password: string }
+      >('/api/login/', { username: id, password: password })
       .then((response) => {
         if (!('msg' in response.data && response.data.msg === 'ok')) {
           reject(`${response.status}`);
           return;
         }
-        resolve();
+        resolve(response.data.basic_auth_token);
       })
       .catch((e) => {
         console.error(e);
@@ -28,14 +26,7 @@ export function signIn(id: string, password: string): Promise<void> {
 export function signOut(): Promise<void> {
   return new Promise((resolve, reject) => {
     axios
-      .post(
-        '/api/logout/',
-        {},
-        {
-          headers: { 'content-type': 'application/json' },
-          withCredentials: true,
-        }
-      )
+      .post('/api/logout/', {})
       .then((response) => {
         // if (!('msg' in response.data && response.data.msg === 'ok')) {
         //   reject(`${response.status}`);

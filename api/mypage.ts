@@ -1,6 +1,7 @@
 import { APIMyTicketType, MyTicketType } from '@/@types/mypage';
 import axios from '@/lib/axios';
 import { AxiosResponse } from 'axios';
+import { getHeaders } from '.';
 
 export function listMyPageTickets(): Promise<MyTicketType[]> {
   return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@ export function listMyPageTickets(): Promise<MyTicketType[]> {
       .get<APIMyTicketType[], AxiosResponse<APIMyTicketType[]>, never>(
         '/api/mypage',
         {
-          withCredentials: true,
+          headers: getHeaders(),
         }
       )
       .then((response) => {

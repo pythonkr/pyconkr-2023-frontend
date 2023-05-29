@@ -1,6 +1,7 @@
 import { APITicketType, ProgramTypes, TicketType } from '@/@types';
 import axios from '@/lib/axios';
 import { AxiosResponse } from 'axios';
+import { getHeaders } from '.';
 
 export function listTicketTypes(): Promise<
   Record<(typeof ProgramTypes)[number], TicketType[]>
@@ -19,8 +20,8 @@ export function listTicketTypes(): Promise<
           sprint: APITicketType[];
         }>,
         never
-      >('/api/ticket/ticket-types', {
-        withCredentials: true,
+      >('/tickets/ticket-types/', {
+        headers: getHeaders(),
       })
       .then((response) => {
         resolve({
@@ -43,11 +44,11 @@ export function checkTicketTypeBuyable(
   return new Promise((resolve, reject) => {
     axios
       .get<boolean, AxiosResponse<boolean>, never>(
-        `/api/ticket/ticket-types/${ticketType.id}/check${
+        `/ticket/ticket-types/${ticketType.id}/check/${
           userid !== null ? `?username=${userid}` : ''
         }`,
         {
-          withCredentials: true,
+          headers: getHeaders(),
         }
       )
       .then((response) => {
