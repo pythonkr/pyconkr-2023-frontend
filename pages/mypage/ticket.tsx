@@ -12,6 +12,7 @@ import { MyTicketType } from '@/@types/mypage';
 import Link from 'next/link';
 import { StyledH4 } from '@/components/common/Markdown';
 import { BodyText } from '@/components/sponsor/information/styles';
+import { MyPageAPI } from '@/api';
 
 const Layout = styled('div', {
   width: '100%',
@@ -80,31 +81,7 @@ const MyTicketPage: NextPage = () => {
   const loadMyTicket = useCallback(async () => {
     setIsLoading(true);
     try {
-      setMyTicket(
-        MyTicketType.fromAPIs([
-          {
-            id: 'ticket1',
-            name: '일반 티켓 (8/13)',
-            price: 50000,
-            payment_date: '2021-07-01T00:00:00+09:00',
-            is_refundable: true,
-          },
-          {
-            id: 'ticket2',
-            name: '튜토리얼 (8/13)',
-            price: 30000,
-            payment_date: '2021-07-01T00:00:00+09:00',
-            is_refundable: true,
-          },
-          {
-            id: 'ticket3',
-            name: '스프린트 (8/13)',
-            price: 20000,
-            payment_date: '2021-07-01T00:00:00+09:00',
-            is_refundable: true,
-          },
-        ])
-      );
+      setMyTicket(await MyPageAPI.listMyPageTickets());
     } catch (e) {
       alert(`나의 티켓 목록 불러오기 실패\n(${e})`);
       router.push(Routes.HOME.route);
@@ -137,7 +114,7 @@ const MyTicketPage: NextPage = () => {
                 <BodyText>{`${ticket.price.toLocaleString()}원`}</BodyText>
               </TicketInfo>
               <Link
-                href={Routes.MYPAGE_REFUND.route + `/${ticket.id}`}
+                href={Routes.MYPAGE_REFUND.route + `/${ticket.paymentKey}`}
                 passHref
               >
                 <Button size="small" reversal>
