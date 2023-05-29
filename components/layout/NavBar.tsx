@@ -9,6 +9,8 @@ import NavBarMobile from './NavBarMobile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '@/stores/login';
 import { useRouter } from 'next/router';
+import axios from '@/lib/axios';
+import { signOut } from '@/api/login';
 
 const StyledNavArea = styled('div', {
   position: 'fixed',
@@ -106,7 +108,12 @@ const NavBar = () => {
   const loginUser = useRecoilValue(userState);
   const setLoginUser = useSetRecoilState(userState);
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    try {
+      await signOut();
+    } catch (e) {
+      console.error(e); // 딱히 신경쓰지 않음
+    }
     setLoginUser((prev) => ({ ...prev, userid: null }));
     router.push(Routes.HOME.route);
   }, [setLoginUser, router]);

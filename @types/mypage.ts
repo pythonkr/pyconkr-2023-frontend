@@ -1,33 +1,31 @@
-export class MyTicketType {
-  id: string;
+import { fromUTC, toValidDate } from '@/utils';
 
+export class MyTicketType {
   /** 티켓 이름 */
   name: string;
 
   /** 티켓 가격 */
   price: number;
 
-  /** 결제일 */
-  paymentDate: string;
+  /** 결제 일시 */
+  paidAt: Date;
 
-  /** 환불 가능 여부 */
-  isRefundable: boolean;
+  /** 환불을 위한 결제 키 */
+  paymentKey: string;
 
   private constructor(p: MyTicketType) {
-    this.id = p.id;
     this.name = p.name;
     this.price = p.price;
-    this.paymentDate = p.paymentDate;
-    this.isRefundable = p.isRefundable;
+    this.paidAt = p.paidAt;
+    this.paymentKey = p.paymentKey;
   }
 
   static fromAPI(d: APIMyTicketType): MyTicketType {
     return new MyTicketType({
-      id: d.id,
-      name: d.name,
+      name: d.ticket_type_name,
       price: d.price,
-      paymentDate: d.payment_date,
-      isRefundable: d.is_refundable,
+      paidAt: fromUTC(toValidDate(d.date)),
+      paymentKey: d.payment_key,
     });
   }
 
@@ -37,9 +35,8 @@ export class MyTicketType {
 }
 
 export type APIMyTicketType = {
-  id: string;
-  name: string;
+  ticket_type_name: string;
+  date: string;
   price: number;
-  payment_date: string;
-  is_refundable: boolean;
+  payment_key: string;
 };

@@ -19,7 +19,7 @@ export function listTicketTypes(): Promise<
           sprint: APITicketType[];
         }>,
         never
-      >('/api/ticket/list', {
+      >('/api/ticket/ticket-types', {
         withCredentials: true,
       })
       .then((response) => {
@@ -28,6 +28,30 @@ export function listTicketTypes(): Promise<
           TUTORIAL: TicketType.fromAPIs(response.data.tutorial),
           SPRINT: TicketType.fromAPIs(response.data.sprint),
         });
+      })
+      .catch((e) => {
+        console.error(e);
+        reject(e);
+      });
+  });
+}
+
+export function checkTicketTypeBuyable(
+  ticketType: TicketType,
+  userid: string | null
+): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get<boolean, AxiosResponse<boolean>, never>(
+        `/api/ticket/ticket-types/${ticketType.id}/check${
+          userid !== null ? `?username=${userid}` : ''
+        }`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        resolve(response.data);
       })
       .catch((e) => {
         console.error(e);
