@@ -1,6 +1,7 @@
 import { TicketType } from '@/@types';
 import axios from '@/lib/axios';
 import { AxiosResponse } from 'axios';
+import { getHeaders } from '.';
 
 /**
  * 결제를 위한 payment_key 생성
@@ -14,15 +15,12 @@ export function getPaymentKey(ticketType: TicketType): Promise<string> {
         AxiosResponse<{ msg: string; payment_key: string; price: number }>,
         { ticket_type: string }
       >(
-        `/payment/key`,
+        `/payment/key/`,
         {
           ticket_type: ticketType.id,
         },
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
+          headers: getHeaders({ 'Content-Type': 'application/json' }),
         }
       )
       .then((response) => {
@@ -47,15 +45,12 @@ export function announcePaymentSucceeded(marchantUid: string): Promise<void> {
         AxiosResponse<{ msg: string; merchant_uid: string }>,
         { merchant_uid: string }
       >(
-        `/payment/success`,
+        `/payment/success/`,
         {
           merchant_uid: marchantUid,
         },
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
+          headers: getHeaders({ 'Content-Type': 'application/json' }),
         }
       )
       .then((response) => {
@@ -80,15 +75,12 @@ export function cancelPayment(paymentKey: string): Promise<void> {
         AxiosResponse<{ msg: string }>,
         { payment_key: string }
       >(
-        `/payment/refund`, // TODO
+        `/payment/refund/`, // TODO
         {
           payment_key: paymentKey,
         },
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
+          headers: getHeaders({ 'Content-Type': 'application/json' }),
         }
       )
       .then((response) => {
