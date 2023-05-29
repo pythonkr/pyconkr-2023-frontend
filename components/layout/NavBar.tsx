@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
 import { NavBarMenus, Routes } from '@/constants/routes';
@@ -9,7 +9,6 @@ import NavBarMobile from './NavBarMobile';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '@/stores/login';
 import { useRouter } from 'next/router';
-import axios from '@/lib/axios';
 import { signOut } from '@/api/login';
 
 const StyledNavArea = styled('div', {
@@ -107,6 +106,11 @@ const NavBar = () => {
   const router = useRouter();
   const loginUser = useRecoilValue(userState);
   const setLoginUser = useSetRecoilState(userState);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+
+  useEffect(() => {
+    setIsLoggedIn(loginUser.userid !== null);
+  }, [loginUser]);
 
   const logout = useCallback(async () => {
     try {
@@ -142,7 +146,9 @@ const NavBar = () => {
               {Routes.SPONSOR_JOIN.title}
             </SolidButton>
           </Link>
-          {loginUser.userid === null ? (
+          {isLoggedIn === undefined ? (
+            <></>
+          ) : !isLoggedIn ? (
             <Link href={Routes.LOGIN.route} passHref>
               <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
             </Link>
