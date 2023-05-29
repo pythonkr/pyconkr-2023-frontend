@@ -3,13 +3,17 @@ import { Routes } from '@/constants/routes';
 import { userState } from '@/stores/login';
 import { ticketState } from '@/stores/ticket';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
 import IMP from 'lib/portone';
 import { PaymentAPI } from '@/api';
 import { announcePaymentSucceeded } from '@/api/payment';
+
+type State = {
+  paymentStatus: 'READY' | 'PAYING' | 'SUCCESS' | 'FAILURE';
+};
 
 const TicketBuyPage = () => {
   const router = useRouter();
@@ -25,6 +29,9 @@ const TicketBuyPage = () => {
     }
     return undefined;
   }, [ticketStore, router.query]);
+
+  const [paymentStatus, setPaymentStatus] =
+    useState<State['paymentStatus']>('READY');
 
   useEffect(() => {
     if (loginUser.userid === null || selectedTicketType === undefined)
@@ -89,31 +96,95 @@ const TicketBuyPage = () => {
 
   return (
     <S.TicketOrderContainer>
-      <S.TicketOrderTitle>Order</S.TicketOrderTitle>
+      <S.TicketOrderTitle>
+        {paymentStatus === 'SUCCESS'
+          ? '결제 완료'
+          : paymentStatus === 'FAILURE'
+          ? '결제 실패'
+          : 'Order'}
+      </S.TicketOrderTitle>
       <S.TicketTypeDetail>
-        <S.TicketTypeDetailTitle>
-          {selectedTicketType?.name}
-        </S.TicketTypeDetailTitle>
-        <S.TicketTypeDetailProgramType>
-          {selectedTicketType?.program.programType} TICKET
-        </S.TicketTypeDetailProgramType>
-        <S.TicketTypeDetailDesc>
-          {selectedTicketType?.desc}
-        </S.TicketTypeDetailDesc>
-        <S.TicketTypeDetailPrice>
-          <div>가격</div>
-          <div>{selectedTicketType?.price.toLocaleString()}원</div>
-        </S.TicketTypeDetailPrice>
+        {paymentStatus !== 'FAILURE' ? (
+          <>
+            <S.TicketTypeDetailTitle>
+              {selectedTicketType?.name}
+            </S.TicketTypeDetailTitle>
+            <S.TicketTypeDetailProgramType>
+              {selectedTicketType?.program.programType} TICKET
+            </S.TicketTypeDetailProgramType>
+            <S.TicketTypeDetailDesc>
+              {selectedTicketType?.desc}
+            </S.TicketTypeDetailDesc>
+            <S.TicketTypeDetailPrice>
+              <div>가격</div>
+              <div>{selectedTicketType?.price.toLocaleString()}원</div>
+              {paymentStatus === 'SUCCESS' && (
+                <>
+                  <div>구매자</div>
+                  {/* TODO */}
+                  <div>권혁민</div>
+                </>
+              )}
+            </S.TicketTypeDetailPrice>
+          </>
+        ) : (
+          <S.TicketPaymentFailureReason>
+            오류로 인해 결제에 실패했습니다.
+          </S.TicketPaymentFailureReason>
+        )}
       </S.TicketTypeDetail>
-      <S.TicketOrderPrice>
-        <div>결제 금액</div>
-        <div>{selectedTicketType?.price.toLocaleString()}원</div>
-      </S.TicketOrderPrice>
-      <S.TicketOrderButton>
-        <Button size="big" reversal onClick={buyTicket}>
-          결제하기
-        </Button>
-      </S.TicketOrderButton>
+      {paymentStatus === 'SUCCESS' && (
+        <S.TicketFootnote>
+          *마이 페이지에서 이름을 바꿀 수 있습니다.
+        </S.TicketFootnote>
+      )}
+      {(['READY', 'PAYING'] as State['paymentStatus'][]).includes(
+        paymentStatus
+      ) && (
+        <S.TicketOrderPrice>
+          <div>결제 금액</div>
+          <div>{selectedTicketType?.price.toLocaleString()}원</div>
+        </S.TicketOrderPrice>
+      )}
+      {paymentStatus === 'READY' ? (
+        <S.TicketOrderButton>
+          <Button size="big" reversal onClick={buyTicket}>
+            결제하기
+          </Button>
+        </S.TicketOrderButton>
+      ) : paymentStatus === 'PAYING' ? (
+        <S.TicketOrderButton>
+          <Button size="big" reversal onClick={() => {}} disabled>
+            결제 중...
+          </Button>
+        </S.TicketOrderButton>
+      ) : paymentStatus === 'SUCCESS' ? (
+        <S.TicketOrderButton>
+          <Button
+            size="big"
+            reversal
+            onClick={() => {
+              router.push(Routes.MYPAGE.route);
+            }}
+          >
+            마이 페이지로
+          </Button>
+        </S.TicketOrderButton>
+      ) : paymentStatus === 'FAILURE' ? (
+        <S.TicketOrderButton>
+          <Button
+            size="big"
+            reversal
+            onClick={() => {
+              router.push(Routes.TICKET.route);
+            }}
+          >
+            티켓 목록으로
+          </Button>
+        </S.TicketOrderButton>
+      ) : (
+        <S.TicketOrderButton />
+      )}
     </S.TicketOrderContainer>
   );
 };
