@@ -6,7 +6,7 @@ export function listMyPageTickets(): Promise<MyTicketType[]> {
   return new Promise((resolve, reject) => {
     axios
       .get<APIMyTicketType[], AxiosResponse<APIMyTicketType[]>, never>(
-        '/api/mypage/ticket',
+        '/api/mypage',
         {
           withCredentials: true,
         }
