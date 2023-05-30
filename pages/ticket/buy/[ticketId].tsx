@@ -12,6 +12,7 @@ import { announcePaymentSucceeded } from '@/api/payment';
 
 type State = {
   paymentStatus: 'READY' | 'PAYING' | 'SUCCESS' | 'FAILURE';
+  portoneModule?: Window['IMP'];
 };
 
 const TicketBuyPage = () => {
@@ -28,7 +29,7 @@ const TicketBuyPage = () => {
     }
     return undefined;
   }, [ticketStore, router.query]);
-  const portoneModule = useMemo<Window['IMP']>(() => window.IMP, []);
+  const [portoneModule, setPortoneModule] = useState<State['portoneModule']>();
 
   const [paymentStatus, setPaymentStatus] =
     useState<State['paymentStatus']>('READY');
@@ -38,8 +39,9 @@ const TicketBuyPage = () => {
       router.push(Routes.HOME.route);
   }, [loginUser, router, selectedTicketType]);
   useEffect(() => {
-    portoneModule.init('imp80859147');
-  }, [portoneModule]);
+    window.IMP.init('imp80859147');
+    setPortoneModule(window.IMP);
+  }, []);
 
   /**
    * 1. 결제하기를 누르면 payment_key 생성하는 API 호출
@@ -51,6 +53,7 @@ const TicketBuyPage = () => {
   const requestPay = useCallback(
     (paymentKey: string) => {
       if (selectedTicketType === undefined) return;
+      if (portoneModule === undefined) return;
 
       setPaymentStatus('PAYING');
       portoneModule.request_pay(
