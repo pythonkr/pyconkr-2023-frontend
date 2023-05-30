@@ -7,7 +7,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
-import IMP from 'lib/portone';
 import { PaymentAPI } from '@/api';
 import { announcePaymentSucceeded } from '@/api/payment';
 
@@ -29,6 +28,7 @@ const TicketBuyPage = () => {
     }
     return undefined;
   }, [ticketStore, router.query]);
+  const portoneModule = useMemo<Window['IMP']>(() => window.IMP, []);
 
   const [paymentStatus, setPaymentStatus] =
     useState<State['paymentStatus']>('READY');
@@ -37,6 +37,9 @@ const TicketBuyPage = () => {
     if (loginUser.userid === null || selectedTicketType === undefined)
       router.push(Routes.HOME.route);
   }, [loginUser, router, selectedTicketType]);
+  useEffect(() => {
+    portoneModule.init('imp80859147');
+  }, [portoneModule]);
 
   /**
    * 1. 결제하기를 누르면 payment_key 생성하는 API 호출
@@ -49,7 +52,8 @@ const TicketBuyPage = () => {
     (paymentKey: string) => {
       if (selectedTicketType === undefined) return;
 
-      IMP.request_pay(
+      setPaymentStatus('PAYING');
+      portoneModule.request_pay(
         {
           pg: 'html5_inicis.INIpayTest',
           pay_method: 'card',
@@ -65,12 +69,16 @@ const TicketBuyPage = () => {
         async (response) => {
           console.log(response);
           // 결제 성공 여부 전송
-          if (response.success === true)
+          if (response.success === true) {
             await announcePaymentSucceeded(paymentKey);
+            setPaymentStatus('SUCCESS');
+          } else {
+            setPaymentStatus('FAILURE');
+          }
         }
       );
     },
-    [selectedTicketType]
+    [selectedTicketType, portoneModule]
   );
 
   const buyTicket = useCallback(async () => {
