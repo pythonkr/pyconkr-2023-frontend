@@ -8,7 +8,8 @@ export class MyTicketType {
   price: number;
 
   /** 결제 일시 */
-  paidAt: Date;
+  // TODO 서버에서 안 줘서 비활성화
+  // paidAt: Date;
 
   /** 환불을 위한 결제 키 */
   paymentKey: string;
@@ -16,7 +17,7 @@ export class MyTicketType {
   private constructor(p: MyTicketType) {
     this.name = p.name;
     this.price = p.price;
-    this.paidAt = p.paidAt;
+    // this.paidAt = p.paidAt;
     this.paymentKey = p.paymentKey;
   }
 
@@ -24,7 +25,7 @@ export class MyTicketType {
     return new MyTicketType({
       name: d.ticket_type_name,
       price: d.price,
-      paidAt: fromUTC(toValidDate(d.date)),
+      // paidAt: fromUTC(toValidDate(d.date)),
       paymentKey: d.payment_key,
     });
   }

@@ -6,14 +6,15 @@ import { getHeaders } from '.';
 export function listMyPageTickets(): Promise<MyTicketType[]> {
   return new Promise((resolve, reject) => {
     axios
-      .get<APIMyTicketType[], AxiosResponse<APIMyTicketType[]>, never>(
-        '/api/mypage/',
-        {
-          headers: getHeaders(),
-        }
-      )
+      .get<
+        { ticket: APIMyTicketType[] },
+        AxiosResponse<{ ticket: APIMyTicketType[] }>,
+        never
+      >('/api/mypage/', {
+        headers: getHeaders(),
+      })
       .then((response) => {
-        resolve(MyTicketType.fromAPIs(response.data));
+        resolve(MyTicketType.fromAPIs(response.data.ticket));
       })
       .catch((e) => {
         console.error(e);
