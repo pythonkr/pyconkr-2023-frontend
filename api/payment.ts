@@ -75,7 +75,7 @@ export function cancelPayment(paymentKey: string): Promise<void> {
         AxiosResponse<{ msg: string }>,
         { payment_key: string }
       >(
-        `/payments/refund/`, // TODO
+        `/payments/cancel/`,
         {
           payment_key: paymentKey,
         },

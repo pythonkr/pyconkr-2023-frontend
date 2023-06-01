@@ -12,7 +12,7 @@ import { MyTicketType } from '@/@types/mypage';
 import Link from 'next/link';
 import { StyledH4 } from '@/components/common/Markdown';
 import { BodyText } from '@/components/sponsor/information/styles';
-import { MyPageAPI } from '@/api';
+import { MyPageAPI, PaymentAPI } from '@/api';
 
 const Layout = styled('div', {
   width: '100%',
@@ -94,6 +94,14 @@ const MyTicketPage: NextPage = () => {
     loadMyTicket();
   }, [loadMyTicket]);
 
+  const refundTicket = useCallback(async (ticket: MyTicketType) => {
+    try {
+      await PaymentAPI.cancelPayment(ticket.paymentKey);
+    } catch (e) {
+      alert(`티켓 환불 실패 (${e})`);
+    }
+  }, []);
+
   if (isLoading === true)
     return (
       <>
@@ -117,7 +125,13 @@ const MyTicketPage: NextPage = () => {
                 href={Routes.MYPAGE_REFUND.route + `/${ticket.paymentKey}`}
                 passHref
               >
-                <Button size="small" reversal>
+                <Button
+                  size="small"
+                  reversal
+                  onClick={() => {
+                    refundTicket(ticket);
+                  }}
+                >
                   환불하기
                 </Button>
               </Link>
