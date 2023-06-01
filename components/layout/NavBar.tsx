@@ -153,9 +153,14 @@ const NavBar = () => {
               <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
             </Link>
           ) : (
-            <SolidButton size={'small'} onClick={logout}>
-              로그아웃
-            </SolidButton>
+            <>
+              <Link href={Routes.MYPAGE.route} passHref>
+                <SolidButton size={'small'}>{Routes.MYPAGE.title}</SolidButton>
+              </Link>
+              <SolidButton size={'small'} onClick={logout}>
+                로그아웃
+              </SolidButton>
+            </>
           )}
         </SideBox>
       </NavContainer>
