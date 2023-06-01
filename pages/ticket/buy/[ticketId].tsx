@@ -11,7 +11,12 @@ import { PaymentAPI } from '@/api';
 import { announcePaymentSucceeded } from '@/api/payment';
 
 type State = {
-  paymentStatus: 'READY' | 'PAYING' | 'SUCCESS' | 'FAILURE';
+  paymentStatus:
+    | 'READY'
+    | 'PAYING'
+    | 'SUCCESS'
+    | 'FAILURE'
+    | 'SUCCESS_AND_ANNOUNCEMENT_FAILURE';
   portoneModule?: Window['IMP'];
 };
 
@@ -30,7 +35,6 @@ const TicketBuyPage = () => {
     return undefined;
   }, [ticketStore, router.query]);
   const [portoneModule, setPortoneModule] = useState<State['portoneModule']>();
-
   const [paymentStatus, setPaymentStatus] =
     useState<State['paymentStatus']>('READY');
 
@@ -79,7 +83,11 @@ const TicketBuyPage = () => {
           console.log(response);
           // 결제 성공 여부 전송
           if (response.success === true) {
-            await announcePaymentSucceeded(paymentKey);
+            try {
+              await announcePaymentSucceeded(paymentKey);
+            } catch (e) {
+              setPaymentStatus('SUCCESS_AND_ANNOUNCEMENT_FAILURE');
+            }
             setPaymentStatus('SUCCESS');
           } else {
             setPaymentStatus('FAILURE');
@@ -114,14 +122,25 @@ const TicketBuyPage = () => {
   return (
     <S.TicketOrderContainer>
       <S.TicketOrderTitle>
-        {paymentStatus === 'SUCCESS'
+        {paymentStatus === 'SUCCESS' ||
+        paymentStatus === 'SUCCESS_AND_ANNOUNCEMENT_FAILURE'
           ? '결제 완료'
           : paymentStatus === 'FAILURE'
           ? '결제 실패'
           : 'Order'}
       </S.TicketOrderTitle>
       <S.TicketTypeDetail>
-        {paymentStatus !== 'FAILURE' ? (
+        {paymentStatus === 'FAILURE' ? (
+          <S.TicketPaymentFailureReason>
+            오류로 인해 결제에 실패했습니다.
+          </S.TicketPaymentFailureReason>
+        ) : paymentStatus === 'SUCCESS_AND_ANNOUNCEMENT_FAILURE' ? (
+          <S.TicketPaymentFailureReason>
+            결제는 성공했지만 서버에 알리지 못했습니다.
+            <br />
+            마이페이지에서 티켓을 확인하세요.
+          </S.TicketPaymentFailureReason>
+        ) : (
           <>
             <S.TicketTypeDetailTitle>
               {selectedTicketType?.name}
@@ -144,10 +163,6 @@ const TicketBuyPage = () => {
               )}
             </S.TicketTypeDetailPrice>
           </>
-        ) : (
-          <S.TicketPaymentFailureReason>
-            오류로 인해 결제에 실패했습니다.
-          </S.TicketPaymentFailureReason>
         )}
       </S.TicketTypeDetail>
       {paymentStatus === 'SUCCESS' && (
@@ -197,6 +212,18 @@ const TicketBuyPage = () => {
             }}
           >
             티켓 목록으로
+          </Button>
+        </S.TicketOrderButton>
+      ) : paymentStatus === 'SUCCESS_AND_ANNOUNCEMENT_FAILURE' ? (
+        <S.TicketOrderButton>
+          <Button
+            size="big"
+            reversal
+            onClick={() => {
+              router.push(Routes.MYPAGE.route);
+            }}
+          >
+            마이 페이지로
           </Button>
         </S.TicketOrderButton>
       ) : (
