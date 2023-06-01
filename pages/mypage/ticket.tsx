@@ -95,6 +95,8 @@ const MyTicketPage: NextPage = () => {
   }, [loadMyTicket]);
 
   const refundTicket = useCallback(async (ticket: MyTicketType) => {
+    if (!window.confirm('정말 티켓 구매를 취소하시겠습니까?')) return;
+
     try {
       await PaymentAPI.cancelPayment(ticket.paymentKey);
     } catch (e) {
@@ -121,7 +123,8 @@ const MyTicketPage: NextPage = () => {
                 <StyledH4>{ticket.name}</StyledH4>
                 <BodyText>{`${ticket.price.toLocaleString()}원`}</BodyText>
               </TicketInfo>
-              <Link
+              {/* TODO 환불 페이지를 우선 따로 분리하지 않음 */}
+              {/* <Link
                 href={Routes.MYPAGE_REFUND.route + `/${ticket.paymentKey}`}
                 passHref
               >
@@ -134,7 +137,16 @@ const MyTicketPage: NextPage = () => {
                 >
                   환불하기
                 </Button>
-              </Link>
+              </Link> */}
+              <Button
+                size="small"
+                reversal
+                onClick={() => {
+                  refundTicket(ticket);
+                }}
+              >
+                환불하기
+              </Button>
             </TicketItem>
           ))}
         </TicketBox>
