@@ -39,9 +39,15 @@ const TicketBuyPage = () => {
       router.push(Routes.HOME.route);
   }, [loginUser, router, selectedTicketType]);
   useEffect(() => {
+    if (window.IMP === undefined) {
+      alert('결제 준비 실패');
+      router.push(Routes.TICKET.route);
+      return;
+    }
+
     window.IMP.init('imp80859147');
     setPortoneModule(window.IMP);
-  }, []);
+  }, [router]);
 
   /**
    * 1. 결제하기를 누르면 payment_key 생성하는 API 호출
