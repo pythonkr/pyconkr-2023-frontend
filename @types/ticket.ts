@@ -22,8 +22,8 @@ export class TicketType {
   program: {
     title: string;
     shortDesc: string;
-    startAt: Date;
-    endAt: Date;
+    startAt: Date | null;
+    endAt: Date | null;
     programType: typeof ProgramTypes;
   };
 
@@ -52,8 +52,14 @@ export class TicketType {
       program: {
         title: d.program.title,
         shortDesc: d.program.short_desc,
-        startAt: fromUTC(toValidDate(d.program.start_at)),
-        endAt: fromUTC(toValidDate(d.program.end_at)),
+        startAt:
+          d.program.start_at !== null
+            ? fromUTC(toValidDate(d.program.start_at))
+            : null,
+        endAt:
+          d.program.end_at !== null
+            ? fromUTC(toValidDate(d.program.end_at))
+            : null,
         programType: d.program.program_type,
       },
       isRefundable: d.is_refundable,
@@ -75,8 +81,8 @@ export type APITicketType = {
   program: {
     title: string;
     short_desc: string;
-    start_at: string;
-    end_at: string;
+    start_at: string | null;
+    end_at: string | null;
     program_type: typeof ProgramTypes;
   };
   is_refundable: boolean;
