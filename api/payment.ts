@@ -15,7 +15,7 @@ export function getPaymentKey(ticketType: TicketType): Promise<string> {
         AxiosResponse<{ msg: string; payment_key: string; price: number }>,
         { ticket_type: string }
       >(
-        `/payment/key/`,
+        `/payments/key/`,
         {
           ticket_type: ticketType.id,
         },
@@ -45,7 +45,7 @@ export function announcePaymentSucceeded(marchantUid: string): Promise<void> {
         AxiosResponse<{ msg: string; merchant_uid: string }>,
         { merchant_uid: string }
       >(
-        `/payment/success/`,
+        `/payments/success/`,
         {
           merchant_uid: marchantUid,
         },
@@ -75,7 +75,7 @@ export function cancelPayment(paymentKey: string): Promise<void> {
         AxiosResponse<{ msg: string }>,
         { payment_key: string }
       >(
-        `/payment/refund/`, // TODO
+        `/payments/refund/`, // TODO
         {
           payment_key: paymentKey,
         },
