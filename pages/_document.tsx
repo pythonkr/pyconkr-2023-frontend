@@ -37,7 +37,7 @@ export default class Document extends NextDocument {
             type="text/css"
           />
           <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
-          <Script src="https://cdn.iamport.kr/v1/iamport.js"></Script>
+          <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
         </Head>
         <body>
           <Main />
