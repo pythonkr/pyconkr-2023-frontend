@@ -9,6 +9,7 @@ import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
 import { PaymentAPI } from '@/api';
 import { announcePaymentSucceeded } from '@/api/payment';
+import { isEnvProd } from '@/utils';
 
 type State = {
   paymentStatus:
@@ -41,6 +42,12 @@ const TicketBuyPage = () => {
   useEffect(() => {
     if (loginUser.userid === null || selectedTicketType === undefined)
       router.push(Routes.HOME.route);
+
+    /////////////////////////////
+    // TODO 운영 환경에서 안 보이게
+    /////////////////////////////
+    if (isEnvProd()) router.replace(Routes.HOME.route);
+    /////////////////////////////
   }, [loginUser, router, selectedTicketType]);
   useEffect(() => {
     if (window.IMP === undefined) {

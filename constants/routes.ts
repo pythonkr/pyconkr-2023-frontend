@@ -1,4 +1,5 @@
 import { RouteType } from '@/interfaces/RouteType';
+import { isEnvProd } from '@/utils';
 
 const routeKeys = [
   'HOME',
@@ -66,8 +67,7 @@ export const NavBarMenus = [
   Routes.SPONSOR_INFO,
   Routes.CFP_APPLY,
   Routes.TUTORIAL_APPLY,
-  Routes.TICKET,
-];
+].concat(isEnvProd() ? [] : [Routes.TICKET]);
 export const MobileNavBarMenus = [
   // TODO: 이거 추가하기 => Routes.PROGRAM ,
   Routes.CFP_APPLY,

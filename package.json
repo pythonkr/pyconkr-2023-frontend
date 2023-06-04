@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "cp ./.env.dev ./.env && next dev",
     "dev:windows": "copy .\\.env.dev .\\.env && next dev",
+    "dev:prod": "cp ./.env.prod ./.env && next dev",
+    "dev:prod_windows": "copy .\\.env.prod .\\.env && next dev",
     "build": "next build && next export",
-    "start": "cp ./.env.prod ./.env && next start",
-    "start:windows": "cp .\\.env.prod .\\.env && next start",
+    "start": "next start",
     "lint": "next lint",
     "deploy": "next build && next start",
     "deploy:dev": "cp ./.env.dev ./.env && next build && next start",

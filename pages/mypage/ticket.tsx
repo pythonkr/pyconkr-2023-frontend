@@ -13,6 +13,7 @@ import Link from 'next/link';
 import { StyledH4 } from '@/components/common/Markdown';
 import { BodyText } from '@/components/sponsor/information/styles';
 import { MyPageAPI, PaymentAPI } from '@/api';
+import { isEnvProd } from '@/utils';
 
 const Layout = styled('div', {
   width: '100%',
@@ -91,8 +92,16 @@ const MyTicketPage: NextPage = () => {
   }, [router]);
 
   useEffect(() => {
-    loadMyTicket();
-  }, [loadMyTicket]);
+    /////////////////////////////
+    // TODO 운영 환경에서 안 보이게
+    /////////////////////////////
+    if (isEnvProd()) {
+      router.replace(Routes.HOME.route);
+    } else {
+      loadMyTicket();
+    }
+    /////////////////////////////
+  }, [loadMyTicket, router]);
 
   const refundTicket = useCallback(async (ticket: MyTicketType) => {
     if (!window.confirm('정말 티켓 구매를 취소하시겠습니까?')) return;

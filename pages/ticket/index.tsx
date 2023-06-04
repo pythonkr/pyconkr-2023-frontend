@@ -9,6 +9,7 @@ import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
 import Link from 'next/link';
 import { TicketAPI } from '@/api';
+import { isEnvProd } from '@/utils';
 
 const TicketPage = () => {
   const router = useRouter();
@@ -61,8 +62,16 @@ const TicketPage = () => {
   }, [router]);
 
   useEffect(() => {
-    loadTicketTypes();
-  }, [loadTicketTypes]);
+    /////////////////////////////
+    // TODO 운영 환경에서 안 보이게
+    /////////////////////////////
+    if (isEnvProd()) {
+      router.replace(Routes.HOME.route);
+    } else {
+      loadTicketTypes();
+    }
+    /////////////////////////////
+  }, [loadTicketTypes, router]);
   useEffect(() => {
     setTicketState((prevState) => ({
       ...prevState,
