@@ -47,9 +47,9 @@ export const toISOFormatString: (date: Date) => string = (date) => {
  */
 export const toValidDate: (dateString: string) => Date = (dateString) => {
   const datetimeFormat =
-    /(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})(T|\s)(?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})(?<timezone>\+\d{2}:\d{2})?/;
+    /^(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})(T|\s)(?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})(?<timezone>\+\d{2}:\d{2})?$/;
   const datetimeKorFormat =
-    /(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})\s(?<noon>오전|오후)\s(?<hour>\d{1,2}):(?<minute>\d{2}):(?<second>\d{2})/;
+    /^(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})\s(?<noon>오전|오후)\s(?<hour>\d{1,2}):(?<minute>\d{2}):(?<second>\d{2})$/;
   const r =
     datetimeFormat.exec(dateString) || datetimeKorFormat.exec(dateString);
   if (r === null) {
