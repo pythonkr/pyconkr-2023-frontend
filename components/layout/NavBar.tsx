@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
 import { NavBarMenus, Routes } from '@/constants/routes';
@@ -6,6 +6,11 @@ import { StyledButton } from '../common/Button';
 import { Logo as LogoSvg } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
 import NavBarMobile from './NavBarMobile';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userState } from '@/stores/login';
+import { useRouter } from 'next/router';
+import { signOut } from '@/api/login';
+import { isEnvProd } from '@/utils';
 
 const StyledNavArea = styled('div', {
   position: 'fixed',
@@ -99,6 +104,25 @@ const SolidButton = styled(StyledButton, {
 });
 
 const NavBar = () => {
+  const router = useRouter();
+  const loginUser = useRecoilValue(userState);
+  const setLoginUser = useSetRecoilState(userState);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+
+  useEffect(() => {
+    setIsLoggedIn(loginUser.userid !== null);
+  }, [loginUser]);
+
+  const logout = useCallback(async () => {
+    try {
+      await signOut();
+    } catch (e) {
+      console.error(e); // 딱히 신경쓰지 않음
+    }
+    setLoginUser((prev) => ({ ...prev, userid: null }));
+    router.push(Routes.HOME.route);
+  }, [setLoginUser, router]);
+
   return (
     <StyledNavArea>
       <Link href={Routes.HOME.route} passHref>
@@ -123,6 +147,25 @@ const NavBar = () => {
               {Routes.SPONSOR_JOIN.title}
             </SolidButton>
           </Link>
+          {!isEnvProd() && // TODO 운영 환경에서 안 보이게
+            (isLoggedIn === undefined ? (
+              <></>
+            ) : !isLoggedIn ? (
+              <Link href={Routes.LOGIN.route} passHref>
+                <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
+              </Link>
+            ) : (
+              <>
+                <Link href={Routes.MYPAGE.route} passHref>
+                  <SolidButton size={'small'}>
+                    {Routes.MYPAGE.title}
+                  </SolidButton>
+                </Link>
+                <SolidButton size={'small'} onClick={logout}>
+                  로그아웃
+                </SolidButton>
+              </>
+            ))}
         </SideBox>
       </NavContainer>
     </StyledNavArea>

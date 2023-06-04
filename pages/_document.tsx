@@ -1,5 +1,6 @@
 import React from 'react';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 import { getCssText, globalCss } from '@/stitches.config';
 
 const globalStyle = globalCss({
@@ -36,6 +37,10 @@ export default class Document extends NextDocument {
             type="text/css"
           />
           <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
+          <Script
+            src="https://cdn.iamport.kr/v1/iamport.js"
+            strategy="beforeInteractive"
+          ></Script>
         </Head>
         <body>
           <Main />
