@@ -17,7 +17,7 @@ export function signIn(id: string, password: string): Promise<string> {
         resolve(response.data.basic_auth_token);
       })
       .catch((e) => {
-        console.error(e);
+        //console.error(e);
         reject(e);
       });
   });
@@ -35,7 +35,7 @@ export function signOut(): Promise<void> {
         resolve();
       })
       .catch((e) => {
-        console.error(e);
+        // console.error(e);
         reject(e);
       });
   });

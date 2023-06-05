@@ -223,3 +223,16 @@ export const SponsorLevelData2 = [
     publisher: '현수막\n스탠딩 배너\n웹사이트',
   },
 ];
+
+export const sponsorLevelLabel = {
+  Keystone: '키스톤',
+  Diamond: '다이아몬트',
+  Sapphire: '사파이어',
+  Platinum: '플래티넘',
+  Ruby: '루비',
+  Gold: '골드',
+  Silver: '실버',
+  Startup: '스타트업',
+  Community: '커뮤니티',
+  Publisher: '출판사',
+};

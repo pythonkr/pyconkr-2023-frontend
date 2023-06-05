@@ -52,3 +52,21 @@ export interface SponsorLevelTypeApiResponse {
   limit: number;
   id: number;
 }
+
+export interface ISponsorListItem {
+  level: string;
+  list: ISponsorData[];
+}
+export interface ISponsorData {
+  name: string;
+  logoImage: string;
+  level: string;
+  id: number;
+}
+
+export interface ISponsorApiListItem {
+  name: string;
+  logo_image: string;
+  level: number;
+  id: number;
+}
