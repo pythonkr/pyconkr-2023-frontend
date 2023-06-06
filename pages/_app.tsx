@@ -94,7 +94,6 @@ function App({
 App.getInitialProps = async () => {
   try {
     const sponsorList = await getSponsorList();
-    console.log(sponsorList);
     return {
       sponsorList,
     };

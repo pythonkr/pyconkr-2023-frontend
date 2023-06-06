@@ -59,6 +59,7 @@ export interface ISponsorListItem {
 }
 export interface ISponsorData {
   name: string;
+  url: string | null;
   logoImage: string;
   level: string;
   id: number;
@@ -66,6 +67,7 @@ export interface ISponsorData {
 
 export interface ISponsorApiListItem {
   name: string;
+  url: string | null;
   logo_image: string;
   level: number;
   id: number;

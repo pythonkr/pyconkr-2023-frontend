@@ -2,6 +2,7 @@ import { ISponsorData, ISponsorListItem } from '@/@types/sponsor';
 import { H3, H4 } from '@/components/heading';
 import { sponsorLevelLabel } from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
+import Link from 'next/link';
 
 const SponsorGroupContainer = styled('div', {
   marginTop: 32,
@@ -40,7 +41,13 @@ const SponsorListItem: React.FC<{ sponsor: ISponsorData }> = (props: {
   const { sponsor } = props;
   return (
     <SponsorGroupItem>
-      <SponsorImage src={sponsor.logoImage} alt={sponsor.name} />
+      {sponsor.url != null ? (
+        <Link href={sponsor.url} target="_blank">
+          <SponsorImage src={sponsor.logoImage} alt={sponsor.name} />
+        </Link>
+      ) : (
+        <SponsorImage src={sponsor.logoImage} alt={sponsor.name} />
+      )}
     </SponsorGroupItem>
   );
 };
