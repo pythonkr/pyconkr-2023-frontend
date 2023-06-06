@@ -11,6 +11,8 @@ import Script from 'next/script';
 import { darkTheme } from '@/stitches.config';
 import { ThemeProvider } from 'next-themes';
 import RecoilNexus from 'recoil-nexus';
+import { getSponsorList } from '@/api/sponsor';
+import { ISponsorListItem } from '@/@types/sponsor';
 
 function RecoilDebugObserver() {
   const snapshot = useRecoilSnapshot();
@@ -27,7 +29,11 @@ function RecoilDebugObserver() {
 
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({
+  Component,
+  pageProps,
+  sponsorList,
+}: AppProps & { sponsorList: ISponsorListItem[] }) {
   const router = useRouter();
   React.useEffect(() => {
     const handleRouteChange = (url: URL) => {
@@ -70,7 +76,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <RecoilNexus />
           {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
           <QueryClientProvider client={queryClient}>
-            <Container>
+            <Container sponsorList={sponsorList}>
               <Script
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
@@ -85,4 +91,16 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+App.getInitialProps = async () => {
+  try {
+    const sponsorList = await getSponsorList();
+    return {
+      sponsorList,
+    };
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
+
+export default App;

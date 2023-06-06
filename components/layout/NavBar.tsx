@@ -142,11 +142,6 @@ const NavBar = () => {
         </StyledMenuBox>
         <SideBox>
           <ThemeSwitch />
-          <Link href={Routes.SPONSOR_JOIN.route} passHref>
-            <SolidButton size={'small'}>
-              {Routes.SPONSOR_JOIN.title}
-            </SolidButton>
-          </Link>
           {!isEnvProd() && // TODO 운영 환경에서 안 보이게
             (isLoggedIn === undefined ? (
               <></>
