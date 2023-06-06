@@ -26,6 +26,7 @@ const Main = styled('main', {
 
 const Wrapper = styled('div', {
   marginTop: '80px',
+  marginBottom: '5vh',
   width: '100%',
 });
 
