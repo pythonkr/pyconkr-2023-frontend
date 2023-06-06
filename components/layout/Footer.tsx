@@ -17,15 +17,28 @@ const FooterLayout = styled('div', {
   position: 'absolute',
   left: 0,
   right: 0,
-  bottom: '-100px',
 });
 
 const FooterContainer = styled('div', {
   borderTop: '2px solid $gray500',
   padding: '15px 30px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+
+  '& > div:first-of-type': {
+    fontSize: 'small',
+
+    '& > table > tbody th': {
+      textAlign: 'start',
+      fontWeight: 'initial',
+      paddingRight: '1vw',
+    },
+  },
+
+  '& > div:nth-of-type(2)': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: '2vh',
+  },
 });
 
 const CoCLink = styled('a', {
@@ -44,44 +57,68 @@ const Footer = () => (
   <FooterLayout>
     <FooterContainer>
       <div>
-        <CoCLink href="/coc">파이콘 한국 행동 강령 (CoC)</CoCLink>
+        <table>
+          <tbody>
+            <tr>
+              <th>상호명</th>
+              <td>사단법인 파이썬 사용자모임</td>
+            </tr>
+            <tr>
+              <th>사업자 등록 번호</th>
+              <td>338-82-00046</td>
+            </tr>
+            <tr>
+              <th>대표자명</th>
+              <td>배권한</td>
+            </tr>
+            <tr>
+              <th>사업장 주소</th>
+              <td>서울시 강남구 강남대로84길 24-4</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div>
-        <SNSLink href={`mailto:${PYCONKR_EMAIL}`} title="이메일">
-          <EmailIcon />
-        </SNSLink>
-        <SNSLink
-          href={PYCONKR_TWITTER_URL}
-          title="트위터"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <TwitterIcon />
-        </SNSLink>
-        <SNSLink
-          href={PYCONKR_FACEBOOK_URL}
-          title="페이스북"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FacebookIcon />
-        </SNSLink>
-        <SNSLink
-          href={PYCONKR_YOUTUBE_URL}
-          title="유튜브"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <YoutubeIcon />
-        </SNSLink>
-        <SNSLink
-          href={PYCONKR_GITHUB_URL}
-          title="깃헙"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <GitHubIcon />
-        </SNSLink>
+        <div>
+          <CoCLink href="/coc">파이콘 한국 행동 강령 (CoC)</CoCLink>
+        </div>
+        <div>
+          <SNSLink href={`mailto:${PYCONKR_EMAIL}`} title="이메일">
+            <EmailIcon />
+          </SNSLink>
+          <SNSLink
+            href={PYCONKR_TWITTER_URL}
+            title="트위터"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <TwitterIcon />
+          </SNSLink>
+          <SNSLink
+            href={PYCONKR_FACEBOOK_URL}
+            title="페이스북"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FacebookIcon />
+          </SNSLink>
+          <SNSLink
+            href={PYCONKR_YOUTUBE_URL}
+            title="유튜브"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <YoutubeIcon />
+          </SNSLink>
+          <SNSLink
+            href={PYCONKR_GITHUB_URL}
+            title="깃헙"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <GitHubIcon />
+          </SNSLink>
+        </div>
       </div>
     </FooterContainer>
   </FooterLayout>
