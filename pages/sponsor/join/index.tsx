@@ -1,4 +1,5 @@
 import type { Sponsor } from '@/@types';
+import { H3 } from '@/components/heading';
 import SeoHeader from '@/components/layout/SeoHeader';
 import { ManagerInfoInputBox, SponsorInfoInputBox } from '@/components/sponsor';
 import CoCAgreementForm from '@/components/sponsor/CoCAgreementForm';
@@ -107,7 +108,8 @@ const SponsorJoinPage: NextPage<
         description="파이콘 한국 2023에 후원하기"
       />
       <Container>
-        <FormProvider {...form}>{children}</FormProvider>
+        {/* <FormProvider {...form}>{children}</FormProvider> */}
+        <H3 style={{ margin: '10vh 0' }}>후원사 모집은 마감되었습니다.</H3>
       </Container>
     </>
   );

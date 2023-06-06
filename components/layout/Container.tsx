@@ -1,6 +1,8 @@
 import { styled } from 'stitches.config';
 import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
+import SponsorList from '@/components/sponsor/SponsorList';
+import { ISponsorListItem } from '@/@types/sponsor';
 
 const ContainerBody = styled('div', {
   maxWidth: '1920px',
@@ -27,15 +29,27 @@ const Wrapper = styled('div', {
   width: '100%',
 });
 
+const SponsorWrapper = styled('div', {
+  marginTop: '32px',
+});
+
 type ContainerProps = {
   children: React.ReactNode;
+  sponsorList: ISponsorListItem[];
 };
 
-const Container = ({ children }: ContainerProps) => (
+const Container = ({ children, sponsorList }: ContainerProps) => (
   <ContainerBody>
     <NavBar />
     <Main>
-      <Wrapper>{children}</Wrapper>
+      <Wrapper>
+        {children}
+        {sponsorList.length > 0 && (
+          <SponsorWrapper>
+            <SponsorList list={sponsorList} />
+          </SponsorWrapper>
+        )}
+      </Wrapper>
     </Main>
     <Footer />
   </ContainerBody>
