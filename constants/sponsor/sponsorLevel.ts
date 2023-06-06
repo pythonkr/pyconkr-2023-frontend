@@ -213,7 +213,7 @@ export const SponsorLevelData2 = [
     silver: true,
     startup: true,
     community: true,
-    publisher: false,
+    publisher: true,
   },
   {
     gold: '현수막\n스탠딩 배너\n웹사이트',
