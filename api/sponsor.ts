@@ -29,7 +29,7 @@ export async function getSponsorList(): Promise<ISponsorListItem[]> {
     name: item.name || '',
     url: item.url,
     logoImage: item.logo_image || '',
-    level: item.level ? SponsorLevel[item.level] : '',
+    level: item.level ? SponsorLevel[item.level] : SponsorLevel.Publisher,
   }));
   const groupedList = groupBy(list, (item) => item.level);
   const sponsorList = Object.entries(groupedList).map(([level, data]) => ({
