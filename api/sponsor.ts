@@ -27,8 +27,8 @@ export async function getSponsorList(): Promise<ISponsorListItem[]> {
   const list = response.data.map((item: ISponsorApiListItem) => ({
     id: item.id || 0,
     name: item.name || '',
-    url: item.url?.replace(/\?.+$/, ''),
-    logoImage: item.logo_image || '',
+    url: item.url ?? '',
+    logoImage: item.logo_image?.replace(/\?.+$/, '') ?? '',
     level: item.level ? SponsorLevel[item.level] : '',
   }));
   const groupedList = groupBy(list, (item) => item.level);
