@@ -66,10 +66,11 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
           <Block css={{ marginTop: '64px' }}>
             <H2>모집 일정</H2>
             <div style={{ marginTop: '8px' }}>
-              2023년 3월 21일 화요일 ~ 5월 14일 일요일 (23:59 GMT+9)
+              {/* 2023년 3월 21일 화요일 ~ 5월 14일 일요일 (23:59 GMT+9) */}
+              현재 마감되었습니다.
             </div>
           </Block>
-          <Block css={{ marginTop: '16px' }}>
+          {/* <Block css={{ marginTop: '16px' }}>
             <LinkButton
               target="_blank"
               href="https://forms.gle/eRNbS4j3PBRoXiFGA"
@@ -77,7 +78,7 @@ const CfpApplyPage: NextPage<PageProps> = ({ cfpGuide }) => {
             >
               신청하기
             </LinkButton>
-          </Block>
+          </Block> */}
         </div>
         <Block css={{ marginTop: '104px' }}>
           <ReactMarkdown
