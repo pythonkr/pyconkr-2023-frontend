@@ -25,11 +25,11 @@ export function addSponsor(formData: FormData): Promise<void> {
 export async function getSponsorList(): Promise<ISponsorListItem[]> {
   const response = await axios.get(`/sponsors/list/`);
   const list = response.data.map((item: ISponsorApiListItem) => ({
-    id: item.id || 0,
-    name: item.name || '',
-    url: item.url,
-    logoImage: item.logo_image || '',
-    level: item.level ? SponsorLevel[item.level] : SponsorLevel.Publisher,
+    id: item.id ?? 0,
+    name: item.name ?? '',
+    url: item.url ?? '',
+    logoImage: item.logo_image?.replace(/\?.+$/, '') ?? '',
+    level: item.level ? SponsorLevel[item.level] : '',
   }));
   const groupedList = groupBy(list, (item) => item.level);
   const sponsorList = Object.entries(groupedList).map(([level, data]) => ({

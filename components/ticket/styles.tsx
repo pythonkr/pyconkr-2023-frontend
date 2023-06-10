@@ -99,6 +99,7 @@ export const TicketTypeDetailProgramType = styled('div', {
 
 export const TicketTypeDetailDesc = styled('div', {
   flexGrow: 1,
+  whiteSpace: 'pre-wrap',
 });
 
 export const TicketTypeDetailPrice = styled('div', {
