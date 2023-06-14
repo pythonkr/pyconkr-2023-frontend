@@ -7,7 +7,7 @@ export const SponsorLevelRow = [
   '홍보 영상',
   'SNS 홍보',
   '증정품 지급',
-  '후원증서',
+  '후원 증서',
   '로고 노출 위치',
 ];
 
@@ -199,7 +199,7 @@ export const SponsorLevelData2 = [
     silver: true,
     startup: true,
     community: true,
-    publisher: false,
+    publisher: true,
   },
   {
     gold: true,
