@@ -8,6 +8,7 @@ const routeKeys = [
   'SPONSOR_JOIN',
   'CFP_APPLY',
   'TUTORIAL_APPLY',
+  'SPRINT_APPLY',
   'LOGIN',
   'TICKET',
   'TICKET_DETAIL',
@@ -40,6 +41,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '튜토리얼',
     route: '/tutorials/apply',
   },
+  SPRINT_APPLY: {
+    title: '스프린트',
+    route: '/sprint/apply',
+  },
   LOGIN: {
     title: '로그인',
     route: '/login',
@@ -66,12 +71,12 @@ export const NavBarMenus = [
   Routes.COC,
   Routes.SPONSOR_INFO,
   Routes.CFP_APPLY,
-  Routes.TUTORIAL_APPLY,
+  Routes.SPRINT_APPLY,
 ].concat(isEnvProd() ? [] : [Routes.TICKET]);
 export const MobileNavBarMenus = [
   // TODO: 이거 추가하기 => Routes.PROGRAM ,
   Routes.CFP_APPLY,
-  Routes.TUTORIAL_APPLY,
+  Routes.SPRINT_APPLY,
   Routes.COC,
   Routes.SPONSOR_INFO,
   Routes.SPONSOR_JOIN,
