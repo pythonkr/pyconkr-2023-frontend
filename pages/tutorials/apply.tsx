@@ -38,11 +38,11 @@ const LinkButton = styled('a', {
     reversal: {
       true: {
         color: '$backgroundPrimary',
-        backgroundColor: '$textPrimary',
+        backgroundColor: '$gray500',
       },
       false: {
         color: '$textPrimary',
-        backgroundColor: '$backgroundPrimary',
+        backgroundColor: '$gray500',
       },
     },
   },
@@ -67,9 +67,7 @@ const tutorialApplyPage: NextPage<PageProps> = ({ tutorialGuide, formUrl }) => {
             💌 교육에 관심이 있는 분들은 튜토리얼 진행자로 많이 지원해주세요!
           </Block>
           <Block css={{ marginTop: '16px' }}>
-            <LinkButton target="_blank" href={formUrl} reversal={true}>
-              신청하기
-            </LinkButton>
+            <LinkButton reversal={true}>신청마감</LinkButton>
           </Block>
           <Block css={{ marginTop: '64px' }}>
             <H2>튜토리얼 진행일 및 장소</H2>
