@@ -62,7 +62,6 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
   const detail = await ProgramAPI.getProgramDetail(id as string);
-  console.log(detail);
 
   return {
     props: {
