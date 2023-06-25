@@ -1,8 +1,8 @@
 import axios from '@/lib/axios';
 import { ProgramDetail, ProgramList } from '@/@types/program';
 
-export async function getProgramList(): Promise<ProgramList> {
-  const list = await axios.get<ProgramList>(`/programs/`);
+export async function getProgramList(): Promise<ProgramList[]> {
+  const list = await axios.get<ProgramList[]>(`/programs/`);
   return list.data;
 }
 
