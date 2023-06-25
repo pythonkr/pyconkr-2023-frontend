@@ -13,6 +13,7 @@ const routeKeys = [
   'TICKET_DETAIL',
   'MYPAGE',
   'MYPAGE_REFUND',
+  'PROGRAM',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -59,6 +60,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   MYPAGE_REFUND: {
     title: '환불 신청',
     route: '/mypage/refund',
+  },
+  PROGRAM: {
+    title: '프로그램',
+    route: '/program',
   },
 };
 
