@@ -31,8 +31,11 @@ const SponsorGroupItem = styled('li', {
   variants: {
     isLogoBig: {
       true: {
-        width: '500px',
-        height: '500px',
+        width: '400px',
+        height: '200px',
+        '@bp3': {
+          height: '400px',
+        },
       },
     },
   },
