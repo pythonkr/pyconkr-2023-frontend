@@ -9,4 +9,6 @@ export enum SponsorLevel {
   Startup = 8,
   Community = 9,
   Publisher = 10,
+  TechSponsor = 11,
+  PlaceSponsor = 12,
 }
