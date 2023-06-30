@@ -9,4 +9,6 @@ export enum SponsorLevelLabel {
   Startup = 'Startup',
   Community = 'Community',
   Publisher = 'Publisher',
+  TechSponsor = 'TechSponsor',
+  PlaceSponsor = 'PlaceSponsor',
 }
