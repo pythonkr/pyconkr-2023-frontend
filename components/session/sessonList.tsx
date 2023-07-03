@@ -1,4 +1,4 @@
-import { ProgramList } from '@/@types/program';
+import { SessionList } from '@/@types/session';
 import React from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
@@ -40,9 +40,9 @@ const Category = styled('div', {
   margin: '30px 0px 30px 0px',
 });
 
-const ListItem = (props: ProgramList) => {
+const ListItem = (props: SessionList) => {
   return (
-    <Link href={`/program/${props.id}`} passHref>
+    <Link href={`/session/${props.id}`} passHref>
       <ItemContainer>
         <ImageBox>
           <Image
@@ -61,9 +61,9 @@ const ListItem = (props: ProgramList) => {
   );
 };
 
-const ProgramListComponent = (props: { data: ProgramList[] }) => {
-  const groupByCategory = (data: ProgramList[]) => {
-    const groupedData: { [key: number]: ProgramList[] } = {};
+const SessionListComponent = (props: { data: SessionList[] }) => {
+  const groupByCategory = (data: SessionList[]) => {
+    const groupedData: { [key: number]: SessionList[] } = {};
     data.forEach((item) => {
       if (groupedData[item.category]) {
         groupedData[item.category].push(item);
@@ -95,4 +95,4 @@ const ProgramListComponent = (props: { data: ProgramList[] }) => {
   );
 };
 
-export default ProgramListComponent;
+export default SessionListComponent;

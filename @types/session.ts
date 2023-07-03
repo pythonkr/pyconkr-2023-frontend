@@ -1,4 +1,4 @@
-export interface ProgramList {
+export interface SessionList {
   id: number;
   title: string;
   brief: string;

@@ -13,7 +13,7 @@ const routeKeys = [
   'TICKET_DETAIL',
   'MYPAGE',
   'MYPAGE_REFUND',
-  'PROGRAM',
+  'SESSION',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -61,9 +61,9 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '환불 신청',
     route: '/mypage/refund',
   },
-  PROGRAM: {
+  SESSION: {
     title: '발표',
-    route: '/program',
+    route: '/session',
   },
 };
 
@@ -74,7 +74,7 @@ export const NavBarMenus = [
   Routes.TUTORIAL_APPLY,
 ].concat(isEnvProd() ? [] : [Routes.TICKET]);
 export const MobileNavBarMenus = [
-  Routes.PROGRAM,
+  Routes.SESSION,
   Routes.CFP_APPLY,
   Routes.TUTORIAL_APPLY,
   Routes.COC,
