@@ -1,5 +1,5 @@
-import { ProgramDetail } from '@/@types/program';
-import { DIFFICULTY, DURATION, LANGUAGE } from '@/constants/program';
+import { SessionDetail } from '@/@types/session';
+import { DIFFICULTY, DURATION, LANGUAGE } from '@/constants/session';
 import { styled } from '@/stitches.config';
 
 const Wrapper = styled('div', {
@@ -8,16 +8,15 @@ const Wrapper = styled('div', {
 
 interface Props {
   info: Pick<
-    ProgramDetail,
-    'category' | 'difficulty' | 'duration' | 'language' | 'room_num'
+    SessionDetail,
+    'category_name' | 'difficulty' | 'duration' | 'language' | 'room_num'
   >;
 }
 
-export const ProgramBasicInfo = ({ info }: Props) => {
+export const SessionBasicInfo = ({ info }: Props) => {
   return (
     <Wrapper>
-      {/* TODO : 카테고리 번호별로 매핑이 필요합니다. */}
-      카테고리 : {info.category}
+      카테고리 : {info.category_name}
       <br />
       난이도 : {DIFFICULTY[info.difficulty]}
       <br />

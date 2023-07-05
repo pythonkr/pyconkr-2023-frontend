@@ -2,23 +2,23 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Routes } from '@/constants/routes';
-import { ProgramDetail } from '@/@types/program';
-import { ProgramAPI } from '@/api';
+import { SessionDetail } from '@/@types/session';
+import { SessionAPI } from '@/api';
 
-import * as P from '@/components/program/styles';
+import * as P from '@/components/session/styles';
 import SeoHeader from '@/components/layout/SeoHeader';
 import { H1, H2 } from '@/components/heading';
-import { ProgramBasicInfo } from '@/components/program/ProgramBasicInfo';
-import { SpeakerInfo } from '@/components/program/SpeakerInfo';
+import { SessionBasicInfo } from '@/components/session/SessionBasicInfo';
+import { SpeakerInfo } from '@/components/session/SpeakerInfo';
 
-const ProgramInfo: NextPage<{ info: ProgramDetail }> = ({ info }) => {
+const SessionInfo: NextPage<{ info: SessionDetail }> = ({ info }) => {
   return (
     <P.PageContainer>
-      <SeoHeader title={Routes.PROGRAM.title} />
+      <SeoHeader title={Routes.SESSION.title} />
       <P.Section>
         <P.Block css={{ marginTop: '16px' }}>
           <H1>{info.title}</H1>
-          <ProgramBasicInfo info={info} />
+          <SessionBasicInfo info={info} />
         </P.Block>
         <P.Block css={{ marginTop: '64px' }}>
           <H2>설명</H2>
@@ -50,7 +50,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const list = await ProgramAPI.getProgramList();
+  const list = await SessionAPI.getSessionList();
   const paths = list.map((detail) => ({ params: { id: `${detail.id}` } }));
 
   return {
@@ -61,7 +61,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
-  const detail = await ProgramAPI.getProgramDetail(id as string);
+  const detail = await SessionAPI.getSessionDetail(id as string);
 
   return {
     props: {
@@ -70,4 +70,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default ProgramInfo;
+export default SessionInfo;
