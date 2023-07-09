@@ -45,7 +45,7 @@ const Container = ({ children, sponsorList }: ContainerProps) => (
     <Main>
       <Wrapper>
         {children}
-        {sponsorList.length > 0 && (
+        {sponsorList && sponsorList.length > 0 && (
           <SponsorWrapper>
             <SponsorList list={sponsorList} />
           </SponsorWrapper>
