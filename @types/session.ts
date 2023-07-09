@@ -12,6 +12,6 @@ export interface SessionList {
 
 export interface User {
   nickname: string;
-  profile_img: string;
+  profile_img: string | null;
   bio: string;
 }
