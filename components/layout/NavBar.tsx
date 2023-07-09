@@ -13,7 +13,6 @@ import { signOut } from '@/api/login';
 import { isEnvProd } from '@/utils';
 
 const StyledNavArea = styled('div', {
-  position: 'fixed',
   display: 'flex',
   justifyContent: 'space-between',
   gap: 40,
