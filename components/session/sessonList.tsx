@@ -46,7 +46,7 @@ const ListItem = (props: SessionList) => {
       <ItemContainer>
         <ImageBox>
           <Image
-            src={props.user.profile_img ?? '/images/Logo.png'}
+            src={props.user?.profile_img ?? '/images/Logo.png'}
             width={100}
             height={100}
             alt={'profile image'}
@@ -54,7 +54,7 @@ const ListItem = (props: SessionList) => {
         </ImageBox>
         <div>
           <Title>{props.title}</Title>
-          <Text>{props.user.nickname}</Text>
+          <Text>{props.user?.nickname}</Text>
         </div>
       </ItemContainer>
     </Link>

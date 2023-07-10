@@ -1,13 +1,13 @@
 export interface SessionList {
   id: number;
   title: string;
-  brief: string;
+  introduction: string;
   difficulty: string;
   duration: string;
   language: string;
   category: number;
   category_name: string;
-  user: User;
+  user: User | null;
 }
 
 export interface User {
