@@ -42,25 +42,24 @@ const Category = styled('div', {
 
 const ListItem = (props: SessionList) => {
   return (
-    // TODO 세션 상세 페이지가 나올 때까지 Link 비활성화
-    // <Link href={`/session/${props.id}`} passHref>
-    <ItemContainer>
-      <ImageBox>
-        <Image
-          src={props.user?.profile_img ?? '/images/Logo.png'}
-          width={100}
-          height={100}
-          alt={'profile image'}
-        />
-      </ImageBox>
-      <div>
-        <Title>{props.title}</Title>
-        {props.user?.nickname !== undefined && (
-          <Text>{props.user?.nickname}</Text>
-        )}
-      </div>
-    </ItemContainer>
-    //  </Link>
+    <Link href={`/session/${props.id}`} passHref>
+      <ItemContainer>
+        <ImageBox>
+          <Image
+            src={props.user?.profile_img ?? '/images/Logo.png'}
+            width={100}
+            height={100}
+            alt={'profile image'}
+          />
+        </ImageBox>
+        <div>
+          <Title>{props.title}</Title>
+          {props.user?.nickname !== undefined && (
+            <Text>{props.user?.nickname}</Text>
+          )}
+        </div>
+      </ItemContainer>
+    </Link>
   );
 };
 
