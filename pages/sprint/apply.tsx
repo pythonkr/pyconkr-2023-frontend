@@ -18,7 +18,7 @@ import remarkGfm from 'remark-gfm';
 import { styled } from 'stitches.config';
 
 interface PageProps {
-  tutorialGuide: string;
+  sprintGuide: string;
   formUrl: string;
 }
 
@@ -38,39 +38,43 @@ const LinkButton = styled('a', {
     reversal: {
       true: {
         color: '$backgroundPrimary',
-        backgroundColor: '$gray500',
+        backgroundColor: '$textPrimary',
       },
       false: {
         color: '$textPrimary',
-        backgroundColor: '$gray500',
+        backgroundColor: '$backgroundPrimary',
       },
     },
   },
 });
 
-const tutorialApplyPage: NextPage<PageProps> = ({ tutorialGuide, formUrl }) => {
+const sprintApplyPage: NextPage<PageProps> = ({ sprintGuide, formUrl }) => {
   return (
     <ApplyPageContainer>
       <SeoHeader
-        title={Routes.TUTORIAL_APPLY.title}
+        title={Routes.SPRINT_APPLY.title}
         description="파이콘 한국 2023: 8월 11~13일 코엑스"
       />
       <S.Section>
         <div>
-          <H1>튜토리얼 진행자 모집</H1>
+          <H1>스프린트 진행자 모집</H1>
           <Block css={{ marginTop: '16px' }}>
-            튜토리얼은 파이썬에 대한 새로운 기술이나 라이브러리를 직접 알려주는
-            프로그램입니다. <br />
-            직접 컴퓨터를 가져와서 진행하며 현장에서 질문하고 해결하는 만큼 해당
-            기술에 대해 좀 더 깊게 알게됩니다. <br />
-            <br />
-            💌 교육에 관심이 있는 분들은 튜토리얼 진행자로 많이 지원해주세요!
+            스프린트는 관심있는 오픈소스 프로젝트를 같은 장소에 모여 집중적으로
+            개발하는 자리입니다. <br />
+            새로운 동료를 만나고, 오픈소스에서 얻을 수 있는 경험과 지식을 나눌
+            수 있는 시간입니다. <br />
+            처음 참여하신다고요? 문제 없습니다. 해당 프로젝트를 주도적으로
+            개발하는 분에게 배울 수 있는 시간이 될 것입니다. <br />
+            💌 오픈소스 프로젝트에 기여하고자 하시는 분들은 스프린트 진행자로
+            많이 지원해주세요!
           </Block>
           <Block css={{ marginTop: '16px' }}>
-            <LinkButton reversal={true}>신청마감</LinkButton>
+            <LinkButton target="_blank" href={formUrl} reversal={true}>
+              신청하기
+            </LinkButton>
           </Block>
           <Block css={{ marginTop: '64px' }}>
-            <H2>튜토리얼 진행일 및 장소</H2>
+            <H2>스프린트 진행일 및 장소</H2>
             <div style={{ marginTop: '8px' }}>
               2023년 8월 11일 금요일 / 코엑스(Coex) 아셈볼룸 - 컨퍼런스룸(북)
             </div>
@@ -78,7 +82,7 @@ const tutorialApplyPage: NextPage<PageProps> = ({ tutorialGuide, formUrl }) => {
           <Block css={{ marginTop: '64px' }}>
             <H2>모집 일정</H2>
             <div style={{ marginTop: '8px' }}>
-              2023년 4월 03일 월요일 ~ 6월 2일 금요일 (23:59 GMT+9)
+              ~ 2023년 6월 25일 일요일 (23:50 GMT+9)
             </div>
           </Block>
         </div>
@@ -96,7 +100,7 @@ const tutorialApplyPage: NextPage<PageProps> = ({ tutorialGuide, formUrl }) => {
             }}
             remarkPlugins={[remarkGfm]}
           >
-            {tutorialGuide}
+            {sprintGuide}
           </ReactMarkdown>
         </Block>
         <Block css={{ margin: '104px 0 64px' }}>
@@ -109,19 +113,19 @@ const tutorialApplyPage: NextPage<PageProps> = ({ tutorialGuide, formUrl }) => {
 };
 
 export const getStaticProps: GetStaticProps<{
-  tutorialGuide: string;
+  sprintGuide: string;
 }> = async () => {
   const staticPath = path.join(process.cwd(), 'static');
-  const tutorialGuidePath = path.join(staticPath, 'tutorial-apply-guide.md');
-  const tutorialGuide = fs.readFileSync(tutorialGuidePath, 'utf8');
-  const formUrl = 'https://forms.gle/BCbEWtUatYVjJHhu8';
+  const sprintGuidePath = path.join(staticPath, 'sprint-apply-guide.md');
+  const sprintGuide = fs.readFileSync(sprintGuidePath, 'utf8');
+  const formUrl = 'https://forms.gle/tiaBc3ydhmiecknG9';
 
   return {
     props: {
-      tutorialGuide,
+      sprintGuide,
       formUrl,
     },
   };
 };
 
-export default tutorialApplyPage;
+export default sprintApplyPage;

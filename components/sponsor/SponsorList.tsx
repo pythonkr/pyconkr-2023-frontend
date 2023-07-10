@@ -3,6 +3,7 @@ import { H3, H4 } from '@/components/heading';
 import { sponsorLevelLabel } from '@/constants/sponsor/sponsorLevel';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
+import { SponsorLevelLabel } from '@/data/enums/SponsorLevelLabel';
 
 const SponsorGroupContainer = styled('div', {
   marginTop: 32,
@@ -27,6 +28,17 @@ const SponsorGroupItem = styled('li', {
   listStyle: 'none',
   display: 'inline-flex',
   alignItems: 'center',
+  variants: {
+    isLogoBig: {
+      true: {
+        width: '400px',
+        height: '200px',
+        '@bp3': {
+          height: '400px',
+        },
+      },
+    },
+  },
 });
 
 const SponsorImage = styled('img', {
@@ -39,8 +51,16 @@ const SponsorListItem: React.FC<{ sponsor: ISponsorData }> = (props: {
   sponsor: ISponsorData;
 }) => {
   const { sponsor } = props;
+  const bigLogoLevels = [
+    SponsorLevelLabel.Keystone,
+    SponsorLevelLabel.Diamond,
+    SponsorLevelLabel.Sapphire,
+    SponsorLevelLabel.Platinum,
+  ];
+  const isLogoBig = bigLogoLevels.includes(sponsor.level);
+
   return (
-    <SponsorGroupItem>
+    <SponsorGroupItem isLogoBig={isLogoBig}>
       {sponsor.url != null ? (
         <Link href={sponsor.url} target="_blank">
           <SponsorImage src={sponsor.logoImage} alt={sponsor.name} />

@@ -1,18 +1,7 @@
-export type SessionDifficulty = 'BEGINNER' | 'INTERMEDIATE' | 'EXPERIENCED';
-export type SessionDuration = 'SHORT' | 'LONG';
-export type SessionLanguage = 'KOREAN' | 'ENGLISH';
-type SessionRoomNumber = '101' | '102' | '103' | '104' | '105';
-
-export interface User {
-  nickname: string;
-  profile_img: string;
-  bio: string;
-}
-
 export interface SessionList {
   id: number;
   title: string;
-  brief: string;
+  introduction: string;
   difficulty: string;
   duration: string;
   language: string;
@@ -23,7 +12,6 @@ export interface SessionList {
 
 export interface SessionDetail {
   id: number;
-  user: User;
   title: string;
   brief?: string; // 리뷰용: 발표에 대한 간단한 설명.
   desc?: string; // 리뷰용: 발표에 대한 자세한 설명
@@ -40,4 +28,16 @@ export interface SessionDetail {
   room_num: SessionRoomNumber;
   created_at: string;
   updated_at: string;
+  user: User | null;
 }
+
+export interface User {
+  nickname: string;
+  profile_img: string | null;
+  bio: string;
+}
+
+export type SessionDifficulty = 'BEGINNER' | 'INTERMEDIATE' | 'EXPERIENCED';
+export type SessionDuration = 'SHORT' | 'LONG';
+export type SessionLanguage = 'KOREAN' | 'ENGLISH';
+type SessionRoomNumber = '101' | '102' | '103' | '104' | '105';

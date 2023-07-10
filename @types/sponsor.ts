@@ -1,3 +1,5 @@
+import { SponsorLevelLabel } from '@/data/enums/SponsorLevelLabel';
+
 export interface Sponsor {
   url: string;
   name: string;
@@ -61,7 +63,7 @@ export interface ISponsorData {
   name: string;
   url: string | null;
   logoImage: string;
-  level: string;
+  level: SponsorLevelLabel;
   id: number;
 }
 

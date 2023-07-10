@@ -235,4 +235,6 @@ export const sponsorLevelLabel = {
   Startup: '스타트업',
   Community: '커뮤니티',
   Publisher: '출판사',
+  TechSponsor: '기술후원',
+  PlaceSponsor: '장소후원',
 };
