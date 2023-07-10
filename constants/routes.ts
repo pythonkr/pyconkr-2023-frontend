@@ -6,7 +6,7 @@ const routeKeys = [
   'COC',
   'SPONSOR_INFO',
   'SPONSOR_JOIN',
-  'CFP_APPLY',
+  // 'CFP_APPLY',
   'TUTORIAL_APPLY',
   'SPRINT_APPLY',
   'LOGIN',
@@ -34,10 +34,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '후원하기',
     route: '/sponsor/join',
   },
-  CFP_APPLY: {
-    title: '발표 제안',
-    route: '/cfp/apply',
-  },
+  // CFP_APPLY: {
+  //   title: '발표 제안',
+  //   route: '/cfp/apply',
+  // },
   TUTORIAL_APPLY: {
     title: '튜토리얼',
     route: '/tutorials/apply',
@@ -67,7 +67,7 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     route: '/mypage/refund',
   },
   SESSION: {
-    title: '발표',
+    title: '발표 목록',
     route: '/session',
   },
 };
@@ -75,13 +75,14 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
 export const NavBarMenus = [
   Routes.COC,
   Routes.SPONSOR_INFO,
-  Routes.CFP_APPLY,
+  // Routes.CFP_APPLY,
+  Routes.SESSION,
   Routes.TUTORIAL_APPLY,
   Routes.SPRINT_APPLY,
 ].concat(isEnvProd() ? [] : [Routes.TICKET]);
 export const MobileNavBarMenus = [
   Routes.SESSION,
-  Routes.CFP_APPLY,
+  // Routes.CFP_APPLY,
   Routes.TUTORIAL_APPLY,
   Routes.SPRINT_APPLY,
   Routes.COC,
