@@ -5,7 +5,6 @@ import SessionListComponent from '@/components/session/sessonList';
 import { SessionList } from '@/@types/session';
 import { SessionAPI } from '@/api';
 import router from 'next/router';
-import { isEnvProd } from '@/utils';
 import { Loader } from '@/components/common/Loader';
 
 const SessionListPage = () => {
@@ -23,11 +22,7 @@ const SessionListPage = () => {
         setIsLoading(false);
       }
     };
-    if (isEnvProd()) {
-      router.replace(Routes.HOME.route);
-    } else {
-      getSessionList();
-    }
+    getSessionList();
   }, []);
   if (isLoading === true)
     return (
