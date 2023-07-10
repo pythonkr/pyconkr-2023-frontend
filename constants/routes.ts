@@ -6,7 +6,7 @@ const routeKeys = [
   'COC',
   'SPONSOR_INFO',
   'SPONSOR_JOIN',
-  // 'CFP_APPLY',
+  'CFP_APPLY',
   'TUTORIAL_APPLY',
   'SPRINT_APPLY',
   'LOGIN',
@@ -34,10 +34,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '후원하기',
     route: '/sponsor/join',
   },
-  // CFP_APPLY: {
-  //   title: '발표 제안',
-  //   route: '/cfp/apply',
-  // },
+  CFP_APPLY: {
+    title: '발표 제안',
+    route: '/cfp/apply',
+  },
   TUTORIAL_APPLY: {
     title: '튜토리얼',
     route: '/tutorials/apply',
