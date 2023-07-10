@@ -7,7 +7,7 @@ export interface SessionList {
   language: string;
   category: number;
   category_name: string;
-  user: User;
+  user: User | null;
 }
 
 export interface SessionDetail {
