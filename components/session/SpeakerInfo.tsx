@@ -26,7 +26,7 @@ export const SpeakerInfo = ({ user }: { user: User }) => {
     <SpeakerContainer>
       <ImageContainer>
         <Image
-          src={user.profile_img}
+          src={user.profile_img || '/images/Logo.png'}
           fill
           style={{ objectFit: 'cover', borderRadius: '50%' }}
           alt={user.nickname}
