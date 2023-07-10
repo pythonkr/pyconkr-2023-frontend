@@ -42,22 +42,25 @@ const Category = styled('div', {
 
 const ListItem = (props: SessionList) => {
   return (
-    <Link href={`/session/${props.id}`} passHref>
-      <ItemContainer>
-        <ImageBox>
-          <Image
-            src={props.user?.profile_img ?? '/images/Logo.png'}
-            width={100}
-            height={100}
-            alt={'profile image'}
-          />
-        </ImageBox>
-        <div>
-          <Title>{props.title}</Title>
+    // TODO 세션 상세 페이지가 나올 때까지 Link 비활성화
+    // <Link href={`/session/${props.id}`} passHref>
+    <ItemContainer>
+      <ImageBox>
+        <Image
+          src={props.user?.profile_img ?? '/images/Logo.png'}
+          width={100}
+          height={100}
+          alt={'profile image'}
+        />
+      </ImageBox>
+      <div>
+        <Title>{props.title}</Title>
+        {props.user?.nickname !== undefined && (
           <Text>{props.user?.nickname}</Text>
-        </div>
-      </ItemContainer>
-    </Link>
+        )}
+      </div>
+    </ItemContainer>
+    //  </Link>
   );
 };
 
@@ -79,8 +82,11 @@ const SessionListComponent = (props: { data: SessionList[] }) => {
   return (
     <Container>
       <H2Box>
-        <H2>발표</H2>
+        <H2>발표 목록</H2>
       </H2Box>
+      <p style={{ fontSize: '19px', marginTop: '1.5vh' }}>
+        * 발표 목록은 발표자 사정에 따라 변동될 수 있습니다.
+      </p>
       {Object.entries(groupedData).map(([category, items]) => (
         <div key={category}>
           <Category>
