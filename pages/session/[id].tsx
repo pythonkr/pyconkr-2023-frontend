@@ -36,10 +36,12 @@ const SessionInfo: NextPage<{ info: SessionDetail }> = ({ info }) => {
             <div style={{ marginTop: '8px' }}>{info.slide_url}</div>
           </P.Block>
         )}
-        <P.Block css={{ marginTop: '64px' }}>
-          <H2>발표자 소개</H2>
-          <SpeakerInfo user={info.user} />
-        </P.Block>
+        {info.user && (
+          <P.Block css={{ marginTop: '64px' }}>
+            <H2>발표자 소개</H2>
+            <SpeakerInfo user={info.user} />
+          </P.Block>
+        )}
       </P.Section>
     </P.PageContainer>
   );
