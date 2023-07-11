@@ -8,6 +8,8 @@ export * as TicketAPI from './ticket';
 export * as PaymentAPI from './payment';
 export * as MyPageAPI from './mypage';
 export * as SessionAPI from './session';
+export * as TutorialAPI from './tutorials';
+export * as SprintAPI from './sprint';
 
 export function getHeaders(
   others?: AxiosRequestConfig['headers']
