@@ -74,3 +74,7 @@ export interface ISponsorApiListItem {
   level: number;
   id: number;
 }
+
+export interface ISponsorDetail extends ISponsorApiListItem {
+  desc: string;
+}
