@@ -1,5 +1,5 @@
 import { Program } from '@/@types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { H2 } from '@/components/heading';
 import * as S from './styles';
 import Button from '../common/Button';
@@ -11,6 +11,7 @@ type Props = {
   programTypeName: string;
   noticeContent?: string;
   ticketUrl?: string;
+  ticketAvailableDate?: Date;
 };
 
 const SubprogramList = ({
@@ -18,7 +19,13 @@ const SubprogramList = ({
   programTypeName,
   noticeContent,
   ticketUrl,
+  ticketAvailableDate,
 }: Props) => {
+  const ticketAvailable = useMemo<boolean>(
+    () => ticketAvailableDate !== undefined && ticketAvailableDate < new Date(),
+    [ticketAvailableDate]
+  );
+
   return (
     <S.Container>
       <S.H2Box>
@@ -40,8 +47,14 @@ const SubprogramList = ({
             onClick={() => {
               window.open(ticketUrl);
             }}
+            disabled={!ticketAvailable}
           >
-            지금 바로 구매하기!
+            {ticketAvailable
+              ? '지금 바로 구매하기!'
+              : `${toFormatString(
+                  ticketAvailableDate,
+                  'M월 D일 H시 오픈 예정'
+                )}`}
           </Button>
         </div>
       )}

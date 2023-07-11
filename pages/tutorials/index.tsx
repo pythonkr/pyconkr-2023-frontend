@@ -6,6 +6,7 @@ import router from 'next/router';
 import { Loader } from '@/components/common/Loader';
 import { Program } from '@/@types';
 import SubprogramList from '@/components/tutorial/list';
+import { toValidDate } from '@/utils';
 
 type State = {
   tutorials: Program[];
@@ -50,6 +51,7 @@ class TutorialListPage extends Component<Record<string, never>, State> {
           programTypeName="튜토리얼"
           noticeContent="* 튜토리얼은 2023년 8월 11일 금요일에 진행됩니다."
           ticketUrl="https://event-us.kr/pyconkr/event/66004"
+          ticketAvailableDate={toValidDate('2023-07-17T10:00:00')}
         />
       </>
     );
