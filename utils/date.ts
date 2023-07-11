@@ -112,10 +112,21 @@ export function toValidDate(
  * @param date 날짜
  * @param timezone 입력한 날짜의 시간대를 분 단위로 입력. +09:00라면 +540
  */
+export function toUTC(date: Date, timezone?: number | undefined): Date;
 export function toUTC(
-  date: Date,
+  date: null | undefined,
+  timezone?: number | undefined
+): null;
+export function toUTC(
+  date: Date | null | undefined,
+  timezone?: number | undefined
+): Date | null;
+export function toUTC(
+  date: Date | null | undefined,
   timezone: number | undefined = undefined
-): Date {
+): Date | null {
+  if (date == null) return null;
+
   const utcDate = new Date(date);
 
   if (timezone === undefined) {
@@ -133,10 +144,21 @@ export function toUTC(
  * @param date 날짜
  * @param timezone 원하는 날짜의 시간대를 분 단위로 입력. +09:00라면 +540
  */
+export function fromUTC(date: Date, timezone?: number | undefined): Date;
 export function fromUTC(
-  date: Date,
+  date: null | undefined,
+  timezone?: number | undefined
+): null;
+export function fromUTC(
+  date: Date | null | undefined,
+  timezone?: number | undefined
+): Date | null;
+export function fromUTC(
+  date: Date | null | undefined,
   timezone: number | undefined = undefined
-): Date {
+): Date | null {
+  if (date == null) return null;
+
   const resultDate = new Date(date);
 
   if (timezone === undefined) {
