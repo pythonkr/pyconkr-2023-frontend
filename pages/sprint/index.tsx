@@ -43,7 +43,7 @@ class SprintListPage extends Component<Record<string, never>, State> {
     return (
       <>
         <SeoHeader
-          title={Routes.TUTORIAL_LIST.title}
+          title={Routes.SPRINT_LIST.title}
           description="파이콘 한국 2023: 8월 11~13일 코엑스"
         />
         <SubprogramList
