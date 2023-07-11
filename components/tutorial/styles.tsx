@@ -19,6 +19,7 @@ export const ContentBox = styled('div', {
 export const Title = styled('div', {
   bodyText: 1,
   padding: '0.2rem',
+  fontWeight: 'bold',
 });
 export const Text = styled('div', {
   bodyText: 2,
