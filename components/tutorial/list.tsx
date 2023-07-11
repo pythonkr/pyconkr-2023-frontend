@@ -45,39 +45,45 @@ const SubprogramList = ({
           </Button>
         </div>
       )}
-      {programs.map((program) => (
-        <S.ItemContainer key={program.id}>
-          <S.ImageBox>
-            <Image
-              src={'/images/Logo.png'}
-              width={100}
-              height={100}
-              alt={'profile image'}
-            />
-          </S.ImageBox>
-          <S.ContentBox>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-end',
-              }}
-            >
-              <S.Title>{program.title}</S.Title>
-              {program.startAt !== null && program.endAt !== null && (
-                <S.Text>
-                  {`${toFormatString(
-                    program.startAt,
-                    'H:m'
-                  )} ~ ${toFormatString(program.endAt, 'H:m')}`}
-                </S.Text>
-              )}
-            </div>
-            <S.Text>{program.host}</S.Text>
-            <S.Text>{program.shortDesc}</S.Text>
-          </S.ContentBox>
-        </S.ItemContainer>
-      ))}
+      {programs.map((program) => {
+        const hasTimeInfo = program.startAt !== null && program.endAt !== null;
+
+        return (
+          <S.ItemContainer key={program.id}>
+            <S.ImageBox>
+              <Image
+                src={'/images/Logo.png'}
+                width={100}
+                height={100}
+                alt={'profile image'}
+              />
+            </S.ImageBox>
+            <S.ContentBox>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-end',
+                }}
+              >
+                <S.Title style={{ ...(hasTimeInfo && { width: '85%' }) }}>
+                  {program.title}
+                </S.Title>
+                {hasTimeInfo && (
+                  <S.Text>
+                    {`${toFormatString(
+                      program.startAt,
+                      'H:m'
+                    )} ~ ${toFormatString(program.endAt, 'H:m')}`}
+                  </S.Text>
+                )}
+              </div>
+              <S.Text>{program.host}</S.Text>
+              <S.Text>{program.shortDesc}</S.Text>
+            </S.ContentBox>
+          </S.ItemContainer>
+        );
+      })}
     </S.Container>
   );
 };

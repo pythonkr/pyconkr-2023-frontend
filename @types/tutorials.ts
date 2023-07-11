@@ -1,4 +1,4 @@
-import { toValidDate } from '@/utils';
+import { fromUTC, toValidDate } from '@/utils';
 
 export class Program {
   id: string;
@@ -32,8 +32,8 @@ export class Program {
       title: d.title,
       shortDesc: d.short_desc,
       desc: d.desc,
-      startAt: toValidDate(d.start_at),
-      endAt: toValidDate(d.end_at),
+      startAt: fromUTC(toValidDate(d.start_at)),
+      endAt: fromUTC(toValidDate(d.end_at)),
     });
   }
 
