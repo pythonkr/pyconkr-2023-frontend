@@ -7,7 +7,6 @@ import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
 import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
-import Link from 'next/link';
 import { TicketAPI } from '@/api';
 
 const TicketPage = () => {
