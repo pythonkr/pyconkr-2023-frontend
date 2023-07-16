@@ -18,6 +18,9 @@ const ImageBox = styled('div', {
   marginRight: '1rem',
   overflow: 'hidden',
 });
+const ContentBox = styled('div', {
+  width: 'calc(100% - 7rem)',
+});
 const Title = styled('div', {
   bodyText: 1,
   padding: '0.2rem',
@@ -25,6 +28,7 @@ const Title = styled('div', {
 const Text = styled('div', {
   bodyText: 2,
   padding: '0.2rem',
+  whiteSpace: 'pre-wrap',
 });
 const Container = styled('div', {
   maxWidth: '600px',
@@ -38,6 +42,47 @@ const H2Box = styled('div', {
 });
 const Category = styled('div', {
   margin: '30px 0px 30px 0px',
+});
+const Labels = styled('span', {
+  paddingLeft: '0.2rem',
+});
+const Label = styled('span', {
+  bodyText: 2,
+  marginLeft: '0.5vw',
+  padding: '0 0.5rem',
+  borderRadius: '0.25rem',
+  '&:first-of-type': {
+    marginLeft: '0',
+  },
+});
+const DayofWeek = styled(Label, {
+  color: '#fff',
+  variants: {
+    day: {
+      sat: {
+        backgroundColor: '#5C8AF7',
+      },
+      sun: {
+        backgroundColor: '#FA4E4A',
+      },
+    },
+    language: {
+      english: {
+        backgroundColor: '#AE85FA',
+      },
+    },
+    difficulty: {
+      beginner: {
+        backgroundColor: '#1FE53D',
+      },
+      intermediate: {
+        backgroundColor: '#FAB91D',
+      },
+      experienced: {
+        backgroundColor: '#FA5D53',
+      },
+    },
+  },
 });
 
 const ListItem = (props: SessionList) => {
@@ -53,12 +98,28 @@ const ListItem = (props: SessionList) => {
           alt={'profile image'}
         />
       </ImageBox>
-      <div>
+      <ContentBox>
         <Title>{props.title}</Title>
+        <Labels>
+          {props.day_of_week === 'Sat' && <DayofWeek day="sat">토</DayofWeek>}
+          {props.day_of_week === 'Sun' && <DayofWeek day="sun">일</DayofWeek>}
+          {props.difficulty === 'BEGINNER' && (
+            <DayofWeek difficulty="beginner">초급</DayofWeek>
+          )}
+          {props.difficulty === 'INTERMEDIATE' && (
+            <DayofWeek difficulty="intermediate">중급</DayofWeek>
+          )}
+          {props.difficulty === 'EXPERIENCED' && (
+            <DayofWeek difficulty="experienced">고급</DayofWeek>
+          )}
+          {props.language === 'ENGLISH' && (
+            <DayofWeek language="english">영어</DayofWeek>
+          )}
+        </Labels>
         {props.user?.nickname !== undefined && (
           <Text>{props.user?.nickname}</Text>
         )}
-      </div>
+      </ContentBox>
     </ItemContainer>
     //  </Link>
   );
