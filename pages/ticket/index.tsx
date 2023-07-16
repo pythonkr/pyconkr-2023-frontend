@@ -8,6 +8,7 @@ import Button from '@/components/common/Button';
 import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
 import { TicketAPI } from '@/api';
+import SeoHeader from '@/components/layout/SeoHeader';
 
 const TicketPage = () => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const TicketPage = () => {
   >(() => {
     return {
       CONFERENCE: {
-        name: '컨퍼런스 티켓',
+        name: '컨퍼런스',
         desc: '8월 12일, 13일 파이콘 한국 2023 컨퍼런스에 참가할 수 있는 티켓입니다.',
       },
       TUTORIAL: {
@@ -78,6 +79,10 @@ const TicketPage = () => {
 
   return (
     <>
+      <SeoHeader
+        title={Routes.TICKET.title}
+        description="파이콘 한국 2023: 8월 11~13일 코엑스"
+      />
       {ProgramTypes.map((programType) => (
         <S.ProgramTypeSection key={programType}>
           <S.ProgramTypeTitle>
