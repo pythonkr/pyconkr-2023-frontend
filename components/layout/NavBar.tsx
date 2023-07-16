@@ -33,8 +33,7 @@ const StyledNavArea = styled('div', {
 
 const Logo = styled(LogoSvg, {
   display: 'block',
-  maxWidth: 180,
-  width: '100%',
+  width: 230,
   '& path': {
     fill: '$textPrimary',
   },
