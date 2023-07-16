@@ -30,6 +30,9 @@ export class TicketType {
   /** 환불 가능 여부 */
   isRefundable: boolean;
 
+  /** 구매 가능한 페이지 주소 */
+  buyableUrl: string | null;
+
   private constructor(p: TicketType) {
     this.id = p.id;
     this.name = p.name;
@@ -39,6 +42,7 @@ export class TicketType {
     this.day = p.day;
     this.program = p.program;
     this.isRefundable = p.isRefundable;
+    this.buyableUrl = p.buyableUrl;
   }
 
   static fromAPI(d: APITicketType): TicketType {
@@ -63,6 +67,7 @@ export class TicketType {
         programType: d.program.program_type,
       },
       isRefundable: d.is_refundable,
+      buyableUrl: d.buyable_url,
     });
   }
 
@@ -87,6 +92,7 @@ export type APITicketType = {
   };
   is_refundable: boolean;
   is_buyable: boolean;
+  buyable_url: string | null;
 };
 
 export const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;
