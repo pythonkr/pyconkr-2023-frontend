@@ -51,7 +51,7 @@ class SprintListPage extends Component<Record<string, never>, State> {
           programTypeName="스프린트"
           noticeContent="* 스프린트는 2023년 8월 11일 금요일에 진행됩니다."
           ticketUrl="https://event-us.kr/pyconkr/event/66005"
-          ticketAvailableDate={toValidDate('2023-07-17T10:00:00')}
+          // ticketAvailableDate={toValidDate('2023-07-17T10:00:00')}
         />
       </>
     );

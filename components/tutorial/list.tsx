@@ -22,7 +22,9 @@ const SubprogramList = ({
   ticketAvailableDate,
 }: Props) => {
   const ticketAvailable = useMemo<boolean>(
-    () => ticketAvailableDate !== undefined && ticketAvailableDate < new Date(),
+    () =>
+      ticketAvailableDate === undefined ||
+      (ticketAvailableDate !== undefined && ticketAvailableDate < new Date()),
     [ticketAvailableDate]
   );
 
