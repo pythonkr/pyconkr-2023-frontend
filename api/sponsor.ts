@@ -1,9 +1,8 @@
 import axios from '@/lib/axios';
 import { getHeaders } from '.';
-import { ISponsorApiListItem, ISponsorListItem } from '@/@types/sponsor';
+import { ISponsorApiListItem } from '@/@types/sponsor';
 import { SponsorLevel } from '@/data/enums/SponsorLevel';
 import { groupBy } from '@/helpers/array.helpers';
-import { SponsorLevelStatus } from '@/constants/sponsor/sponsorLevel';
 
 export function addSponsor(formData: FormData): Promise<void> {
   return new Promise((resolve, reject) => {
