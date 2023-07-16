@@ -11,6 +11,7 @@ import {
   PYCONKR_EMAIL,
   PYCONKR_GITHUB_URL,
 } from '@/constants';
+import { Routes } from '@/constants/routes';
 
 const FooterLayout = styled('div', {
   backgroundColor: 'inherit',
@@ -53,6 +54,10 @@ const SNSLink = styled('a', {
   },
 });
 
+const SponsorLoginLink = styled(CoCLink, {
+  marginLeft: '1vw',
+});
+
 const Footer = () => (
   <FooterLayout>
     <FooterContainer>
@@ -81,6 +86,9 @@ const Footer = () => (
       <div>
         <div>
           <CoCLink href="/coc">파이콘 한국 행동 강령 (CoC)</CoCLink>
+          <SponsorLoginLink href={Routes.LOGIN.route}>
+            후원사 담당자 로그인
+          </SponsorLoginLink>
         </div>
         <div>
           <SNSLink href={`mailto:${PYCONKR_EMAIL}`} title="이메일">
