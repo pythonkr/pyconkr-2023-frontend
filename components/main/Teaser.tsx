@@ -46,7 +46,7 @@ const Location = styled('div', {
 
 const Block = styled('div', {});
 
-const LinkButton = styled('a', {
+const LinkButton = styled('button', {
   bodyText: 1,
   width: '160px',
   padding: '8px',

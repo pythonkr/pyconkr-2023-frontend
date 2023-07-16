@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Button from '@/components/common/Button';
 import { Routes } from '@/constants/routes';
 import * as S from './styles';
@@ -16,6 +16,11 @@ const Main = () => {
   const [inputId, setInputId] = useState<string>('');
   const [inputPassword, setInputPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+
+  useEffect(() => {
+    setIsLoggedIn(loginUser.userid !== null);
+  }, [loginUser]);
 
   const signIn = useCallback(async () => {
     if (inputId.length === 0) {
@@ -48,12 +53,16 @@ const Main = () => {
     setIsLoading(true);
     try {
       await LoginAPI.signOut();
+      setLoginUser(() => ({
+        userid: null,
+        authToken: null,
+      }));
     } catch (e) {
       alert(`로그인 실패 ㅠㅠ\n(${e})`);
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [setLoginUser]);
 
   return (
     <S.MainSection>
@@ -67,6 +76,7 @@ const Main = () => {
               onChange={(e) => {
                 setInputId(e.currentTarget.value);
               }}
+              autoComplete="on"
             />
           </div>
           <div className="login-password">
@@ -77,12 +87,13 @@ const Main = () => {
               onChange={(e) => {
                 setInputPassword(e.currentTarget.value);
               }}
+              autoComplete="on"
             />
           </div>
         </section>
         <section className="bottom">
-          {loginUser.userid === null ? (
-            <Button onClick={signIn}>
+          {!isLoggedIn ? (
+            <Button onClick={signIn} reversal>
               {isLoading ? <Loader /> : '로그인'}
             </Button>
           ) : (
