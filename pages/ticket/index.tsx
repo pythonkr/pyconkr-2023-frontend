@@ -9,7 +9,6 @@ import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
 import Link from 'next/link';
 import { TicketAPI } from '@/api';
-import { isEnvProd } from '@/utils';
 
 const TicketPage = () => {
   const router = useRouter();
@@ -62,15 +61,7 @@ const TicketPage = () => {
   }, [router]);
 
   useEffect(() => {
-    /////////////////////////////
-    // TODO 운영 환경에서 안 보이게
-    /////////////////////////////
-    if (isEnvProd()) {
-      router.replace(Routes.HOME.route);
-    } else {
-      loadTicketTypes();
-    }
-    /////////////////////////////
+    loadTicketTypes();
   }, [loadTicketTypes, router]);
   useEffect(() => {
     setTicketState((prevState) => ({
@@ -109,14 +100,17 @@ const TicketPage = () => {
                 </div>
               </S.TicketTypeItemFrame>
               <S.TicketTypeItemButton>
-                <Link
-                  href={Routes.TICKET_DETAIL.route + `/${ticketType.id}`}
-                  passHref
-                >
-                  <Button size="small" reversal>
-                    선택하기
+                {ticketType.buyableUrl !== null ? (
+                  <Link href={ticketType.buyableUrl} passHref>
+                    <Button size="small" reversal>
+                      구매하기
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button size="small" reversal disabled>
+                    판매 예정
                   </Button>
-                </Link>
+                )}
               </S.TicketTypeItemButton>
             </S.TicketTypeItem>
           ))}

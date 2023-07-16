@@ -11,7 +11,6 @@ const routeKeys = [
   'SPRINT_APPLY',
   'LOGIN',
   'TICKET',
-  'TICKET_DETAIL',
   'MYPAGE',
   'MYPAGE_REFUND',
   'SESSION',
@@ -56,10 +55,6 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '티켓 구매',
     route: '/ticket',
   },
-  TICKET_DETAIL: {
-    title: '티켓 구매',
-    route: '/ticket/buy',
-  },
   MYPAGE: {
     title: '마이페이지',
     route: '/mypage',
@@ -89,7 +84,8 @@ export const NavBarMenus = [
   Routes.SESSION,
   Routes.TUTORIAL_LIST,
   Routes.SPRINT_LIST,
-].concat(isEnvProd() ? [] : [Routes.TICKET]);
+  Routes.TICKET,
+];
 export const MobileNavBarMenus = [
   Routes.SESSION,
   // Routes.CFP_APPLY,

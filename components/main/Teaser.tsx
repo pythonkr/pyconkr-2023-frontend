@@ -1,5 +1,7 @@
+import { Routes } from '@/constants/routes';
+import Link from 'next/link';
 import React from 'react';
-import { css, styled } from 'stitches.config';
+import { styled } from 'stitches.config';
 
 const TextBox = styled('div', {
   fontSize: '80px',
@@ -71,13 +73,9 @@ const Teaser = () => {
       <Date>2023.08.11-13</Date>
       <Location>COEX 그랜드볼룸 & 아셈볼룸</Location>
       <Block css={{ marginTop: '16px' }}>
-        <LinkButton
-          target="_blank"
-          href="https://event-us.kr/pyconkr/event/65861"
-          reversal={true}
-        >
-          티켓 구매
-        </LinkButton>
+        <Link href={Routes.TICKET.route}>
+          <LinkButton reversal>티켓 구매</LinkButton>
+        </Link>
       </Block>
     </TextBox>
   );
