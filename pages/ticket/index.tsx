@@ -101,11 +101,15 @@ const TicketPage = () => {
               </S.TicketTypeItemFrame>
               <S.TicketTypeItemButton>
                 {ticketType.buyableUrl !== null ? (
-                  <Link href={ticketType.buyableUrl} passHref>
-                    <Button size="small" reversal>
-                      구매하기
-                    </Button>
-                  </Link>
+                  <Button
+                    size="small"
+                    reversal
+                    onClick={() => {
+                      window.open(ticketType.buyableUrl!);
+                    }}
+                  >
+                    구매하기
+                  </Button>
                 ) : (
                   <Button size="small" reversal disabled>
                     판매 예정
