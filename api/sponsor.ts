@@ -3,6 +3,7 @@ import { getHeaders } from '.';
 import { ISponsorApiListItem, ISponsorListItem } from '@/@types/sponsor';
 import { SponsorLevel } from '@/data/enums/SponsorLevel';
 import { groupBy } from '@/helpers/array.helpers';
+import { SponsorLevelStatus } from '@/constants/sponsor/sponsorLevel';
 
 export function addSponsor(formData: FormData): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -22,9 +23,20 @@ export function addSponsor(formData: FormData): Promise<void> {
   });
 }
 
-export async function getSponsorList(): Promise<ISponsorListItem[]> {
-  const response = await axios.get(`/sponsors/list/`);
-  const list = response.data.map((item: ISponsorApiListItem) => ({
+export async function getSponsorList(): Promise<
+  {
+    level: string;
+    list: {
+      id: number;
+      name: string;
+      url: string;
+      logoImage: string;
+      level: string;
+    }[];
+  }[]
+> {
+  const response = await axios.get<ISponsorApiListItem[]>(`/sponsors/list/`);
+  const list = response.data.map((item) => ({
     id: item.id ?? 0,
     name: item.name ?? '',
     url: item.url ?? '',
