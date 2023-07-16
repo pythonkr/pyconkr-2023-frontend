@@ -51,7 +51,7 @@ class TutorialListPage extends Component<Record<string, never>, State> {
           programTypeName="튜토리얼"
           noticeContent="* 튜토리얼은 2023년 8월 11일 금요일에 진행됩니다."
           ticketUrl="https://event-us.kr/pyconkr/event/66004"
-          ticketAvailableDate={toValidDate('2023-07-17T10:00:00')}
+          // ticketAvailableDate={toValidDate('2023-07-17T10:00:00')}
         />
       </>
     );
