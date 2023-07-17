@@ -1,5 +1,4 @@
 import { RouteType } from '@/interfaces/RouteType';
-import { isEnvProd } from '@/utils';
 
 const routeKeys = [
   'HOME',
@@ -16,6 +15,7 @@ const routeKeys = [
   'SESSION',
   'TUTORIAL_LIST',
   'SPRINT_LIST',
+  'FINANCIAL_AID',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -75,6 +75,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '스프린트',
     route: '/sprint',
   },
+  FINANCIAL_AID: {
+    title: '재정 지원',
+    route: '/fa',
+  },
 };
 
 export const NavBarMenus = [
@@ -82,16 +86,19 @@ export const NavBarMenus = [
   Routes.SPONSOR_INFO,
   // Routes.CFP_APPLY,
   Routes.SESSION,
+  Routes.FINANCIAL_AID,
   Routes.TUTORIAL_LIST,
   Routes.SPRINT_LIST,
   Routes.TICKET,
 ];
 export const MobileNavBarMenus = [
-  Routes.SESSION,
-  // Routes.CFP_APPLY,
-  Routes.TUTORIAL_LIST,
-  Routes.SPRINT_LIST,
   Routes.COC,
   Routes.SPONSOR_INFO,
-  Routes.SPONSOR_JOIN,
+  // Routes.CFP_APPLY,
+  Routes.SESSION,
+  Routes.FINANCIAL_AID,
+  Routes.TUTORIAL_LIST,
+  Routes.SPRINT_LIST,
+  // Routes.SPONSOR_JOIN,
+  Routes.TICKET,
 ];

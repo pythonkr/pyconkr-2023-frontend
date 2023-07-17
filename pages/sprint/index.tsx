@@ -6,7 +6,6 @@ import { Routes } from '@/constants/routes';
 import { Loader } from '@/components/common/Loader';
 import SeoHeader from '@/components/layout/SeoHeader';
 import SubprogramList from '@/components/tutorial/list';
-import { toValidDate } from '@/utils';
 
 type State = {
   sprints: Program[];
