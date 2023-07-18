@@ -13,10 +13,16 @@ export const getToday: () => Date = () => {
  *
  * Y(연), M(월), D(일), H(시), m(분), S(초)
  */
-export const toFormatString: (date: Date, format?: string) => string = (
-  date,
+export function toFormatString(
+  date: Date | null | undefined,
+  format: string | undefined
+): string;
+export function toFormatString(
+  date: Date | null | undefined,
   format = 'Y/M/D H:m'
-) => {
+): string {
+  if (date == null) return '';
+
   const Y = date.getFullYear().toString();
   const mm = date.getMonth() + 1;
   const M = (mm > 9 ? '' : '0') + mm;
@@ -37,7 +43,7 @@ export const toFormatString: (date: Date, format?: string) => string = (
     .replace('H', H)
     .replace('m', m)
     .replace('S', S);
-};
+}
 export const toISOFormatString: (date: Date) => string = (date) => {
   return toFormatString(date, 'Y-M-DTH:m:S');
 };
@@ -45,13 +51,23 @@ export const toISOFormatString: (date: Date) => string = (date) => {
 /**
  * 날짜 문자열을 Date로
  */
-export const toValidDate: (dateString: string) => Date = (dateString) => {
+export function toValidDate(dateString: string): Date;
+export function toValidDate(dateString: null | undefined): null;
+export function toValidDate(dateString: string | null | undefined): Date | null;
+export function toValidDate(
+  dateString: string | null | undefined
+): Date | null {
+  if (dateString == null) return null;
+
+  const dateFormat = /^(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})$/;
   const datetimeFormat =
     /^(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})(T|\s)(?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})(?<timezone>\+\d{2}:\d{2})?$/;
   const datetimeKorFormat =
     /^(?<year>\d+)-(?<month>\d{2})-(?<date>\d{2})\s(?<noon>오전|오후)\s(?<hour>\d{1,2}):(?<minute>\d{2}):(?<second>\d{2})$/;
   const r =
-    datetimeFormat.exec(dateString) || datetimeKorFormat.exec(dateString);
+    dateFormat.exec(dateString) ||
+    datetimeFormat.exec(dateString) ||
+    datetimeKorFormat.exec(dateString);
   if (r === null) {
     throw new Error('Invalid date string');
   } else {
@@ -64,9 +80,9 @@ export const toValidDate: (dateString: string) => Date = (dateString) => {
         parseInt(r.groups.year),
         parseInt(r.groups.month) - 1, // Month는 0부터
         parseInt(r.groups.date),
-        parseInt(r.groups.hour),
-        parseInt(r.groups.minute),
-        parseInt(r.groups.second)
+        parseInt(r.groups.hour ?? '0'),
+        parseInt(r.groups.minute ?? '0'),
+        parseInt(r.groups.second ?? '0')
       );
 
       if (r.groups.timezone !== undefined) {
@@ -89,17 +105,28 @@ export const toValidDate: (dateString: string) => Date = (dateString) => {
       return result;
     }
   }
-};
+}
 
 /**
  * 입력한 날짜를 UTC로 변환
  * @param date 날짜
  * @param timezone 입력한 날짜의 시간대를 분 단위로 입력. +09:00라면 +540
  */
+export function toUTC(date: Date, timezone?: number | undefined): Date;
 export function toUTC(
-  date: Date,
+  date: null | undefined,
+  timezone?: number | undefined
+): null;
+export function toUTC(
+  date: Date | null | undefined,
+  timezone?: number | undefined
+): Date | null;
+export function toUTC(
+  date: Date | null | undefined,
   timezone: number | undefined = undefined
-): Date {
+): Date | null {
+  if (date == null) return null;
+
   const utcDate = new Date(date);
 
   if (timezone === undefined) {
@@ -117,10 +144,21 @@ export function toUTC(
  * @param date 날짜
  * @param timezone 원하는 날짜의 시간대를 분 단위로 입력. +09:00라면 +540
  */
+export function fromUTC(date: Date, timezone?: number | undefined): Date;
 export function fromUTC(
-  date: Date,
+  date: null | undefined,
+  timezone?: number | undefined
+): null;
+export function fromUTC(
+  date: Date | null | undefined,
+  timezone?: number | undefined
+): Date | null;
+export function fromUTC(
+  date: Date | null | undefined,
   timezone: number | undefined = undefined
-): Date {
+): Date | null {
+  if (date == null) return null;
+
   const resultDate = new Date(date);
 
   if (timezone === undefined) {

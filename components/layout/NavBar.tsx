@@ -10,7 +10,6 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '@/stores/login';
 import { useRouter } from 'next/router';
 import { signOut } from '@/api/login';
-import { isEnvProd } from '@/utils';
 
 const StyledNavArea = styled('div', {
   display: 'flex',
@@ -34,8 +33,7 @@ const StyledNavArea = styled('div', {
 
 const Logo = styled(LogoSvg, {
   display: 'block',
-  maxWidth: 180,
-  width: '100%',
+  width: 230,
   '& path': {
     fill: '$textPrimary',
   },
@@ -141,25 +139,16 @@ const NavBar = () => {
         </StyledMenuBox>
         <SideBox>
           <ThemeSwitch />
-          {!isEnvProd() && // TODO 운영 환경에서 안 보이게
-            (isLoggedIn === undefined ? (
-              <></>
-            ) : !isLoggedIn ? (
-              <Link href={Routes.LOGIN.route} passHref>
-                <SolidButton size={'small'}>{Routes.LOGIN.title}</SolidButton>
+          {isLoggedIn === true && (
+            <>
+              <Link href={Routes.MYPAGE.route} passHref>
+                <SolidButton size={'small'}>{Routes.MYPAGE.title}</SolidButton>
               </Link>
-            ) : (
-              <>
-                <Link href={Routes.MYPAGE.route} passHref>
-                  <SolidButton size={'small'}>
-                    {Routes.MYPAGE.title}
-                  </SolidButton>
-                </Link>
-                <SolidButton size={'small'} onClick={logout}>
-                  로그아웃
-                </SolidButton>
-              </>
-            ))}
+              <SolidButton size={'small'} onClick={logout}>
+                로그아웃
+              </SolidButton>
+            </>
+          )}
         </SideBox>
       </NavContainer>
     </StyledNavArea>

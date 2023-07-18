@@ -1,19 +1,17 @@
 import Main from '@/components/login/Main';
 import { Routes } from '@/constants/routes';
-import { isEnvProd } from '@/utils';
+import { userState } from '@/stores/login';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 
 const Login = () => {
   const router = useRouter();
+  const loginUser = useRecoilValue(userState);
 
   useEffect(() => {
-    /////////////////////////////
-    // TODO 운영 환경에서 안 보이게
-    /////////////////////////////
-    if (isEnvProd()) router.replace(Routes.HOME.route);
-    /////////////////////////////
-  }, [router]);
+    if (loginUser.userid !== null) router.replace(Routes.HOME.route);
+  }, [loginUser, router]);
 
   return (
     <>

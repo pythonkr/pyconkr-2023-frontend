@@ -7,9 +7,8 @@ import * as S from '@/components/ticket/styles';
 import Button from '@/components/common/Button';
 import { useSetRecoilState } from 'recoil';
 import { ticketState } from '@/stores/ticket';
-import Link from 'next/link';
 import { TicketAPI } from '@/api';
-import { isEnvProd } from '@/utils';
+import SeoHeader from '@/components/layout/SeoHeader';
 
 const TicketPage = () => {
   const router = useRouter();
@@ -33,7 +32,7 @@ const TicketPage = () => {
   >(() => {
     return {
       CONFERENCE: {
-        name: '컨퍼런스 티켓',
+        name: '컨퍼런스',
         desc: '8월 12일, 13일 파이콘 한국 2023 컨퍼런스에 참가할 수 있는 티켓입니다.',
       },
       TUTORIAL: {
@@ -62,15 +61,7 @@ const TicketPage = () => {
   }, [router]);
 
   useEffect(() => {
-    /////////////////////////////
-    // TODO 운영 환경에서 안 보이게
-    /////////////////////////////
-    if (isEnvProd()) {
-      router.replace(Routes.HOME.route);
-    } else {
-      loadTicketTypes();
-    }
-    /////////////////////////////
+    loadTicketTypes();
   }, [loadTicketTypes, router]);
   useEffect(() => {
     setTicketState((prevState) => ({
@@ -88,6 +79,10 @@ const TicketPage = () => {
 
   return (
     <>
+      <SeoHeader
+        title={Routes.TICKET.title}
+        description="파이콘 한국 2023: 8월 11~13일 코엑스"
+      />
       {ProgramTypes.map((programType) => (
         <S.ProgramTypeSection key={programType}>
           <S.ProgramTypeTitle>
@@ -109,14 +104,21 @@ const TicketPage = () => {
                 </div>
               </S.TicketTypeItemFrame>
               <S.TicketTypeItemButton>
-                <Link
-                  href={Routes.TICKET_DETAIL.route + `/${ticketType.id}`}
-                  passHref
-                >
-                  <Button size="small" reversal>
-                    선택하기
+                {ticketType.buyableUrl !== null ? (
+                  <Button
+                    size="small"
+                    reversal
+                    onClick={() => {
+                      window.open(ticketType.buyableUrl!);
+                    }}
+                  >
+                    구매하기
                   </Button>
-                </Link>
+                ) : (
+                  <Button size="small" reversal disabled>
+                    판매 예정
+                  </Button>
+                )}
               </S.TicketTypeItemButton>
             </S.TicketTypeItem>
           ))}

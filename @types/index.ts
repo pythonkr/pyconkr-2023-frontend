@@ -1,6 +1,7 @@
 export * from './sponsor';
 export * from './login';
 export * from './ticket';
+export * from './tutorials';
 
 declare global {
   interface Window {

@@ -21,6 +21,7 @@
     "import/extensions": "off",
     "linebreak-style": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "@typescript-eslint/no-shadow": "warn"
+    "@typescript-eslint/no-shadow": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }
