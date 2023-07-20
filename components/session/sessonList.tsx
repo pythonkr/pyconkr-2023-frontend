@@ -87,8 +87,7 @@ const DayofWeek = styled(Label, {
 
 const ListItem = (props: SessionList) => {
   return (
-    // TODO 세션 상세 페이지가 나올 때까지 Link 비활성화
-    // <Link href={`/session/${props.id}`} passHref>
+  <Link href={`/session/${props.id}`} passHref>
     <ItemContainer>
       <ImageBox>
         <Image
@@ -121,7 +120,7 @@ const ListItem = (props: SessionList) => {
         )}
       </ContentBox>
     </ItemContainer>
-    //  </Link>
+  </Link>
   );
 };
 
