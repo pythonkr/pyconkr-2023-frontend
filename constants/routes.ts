@@ -16,6 +16,7 @@ const routeKeys = [
   'TUTORIAL_LIST',
   'SPRINT_LIST',
   'FINANCIAL_AID',
+  'CHILDCARE',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -78,6 +79,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   FINANCIAL_AID: {
     title: '재정 지원',
     route: '/fa',
+  },
+  CHILDCARE: {
+    title: '아이 돌봄',
+    route: '/childcare',
   },
 };
 
