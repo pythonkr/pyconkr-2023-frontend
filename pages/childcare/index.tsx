@@ -63,6 +63,26 @@ const ApplyContainer = styled('div', {
   alignItems: 'center',
 });
 
+const LinkButton = styled('a', {
+  bodyText: 1,
+  width: '160px',
+  padding: '8px',
+  display: 'inline-block',
+  textAlign: 'center',
+  variants: {
+    reversal: {
+      true: {
+        color: '$backgroundPrimary',
+        backgroundColor: '$textPrimary',
+      },
+      false: {
+        color: '$textPrimary',
+        backgroundColor: '$backgroundPrimary',
+      },
+    },
+  },
+});
+
 const KoreanContent = (
   <>
     <H1Container>
@@ -141,14 +161,13 @@ const KoreanContent = (
       </H2Container>
     </H1Container>
     <ApplyContainer>
-      <Button
-        reversal
-        onClick={() => {
-          window.open('https://event-us.kr/pyconkr/event/66006');
-        }}
+      <LinkButton
+        target="_blank"
+        href="https://event-us.kr/pyconkr/event/66006"
+        reversal={true}
       >
-        지금 바로 구매하기!
-      </Button>
+        티켓 구매하기!
+      </LinkButton>
     </ApplyContainer>
   </>
 );
@@ -259,14 +278,13 @@ const EnglishContent = (
       </H2Container>
     </H1Container>
     <ApplyContainer>
-      <Button
-        reversal
-        onClick={() => {
-          window.open('https://event-us.kr/pyconkr/event/66006');
-        }}
+      <LinkButton
+        target="_blank"
+        href="https://event-us.kr/pyconkr/event/66006"
+        reversal={true}
       >
         Buying a ticket
-      </Button>
+      </LinkButton>
     </ApplyContainer>
   </>
 );
