@@ -5,6 +5,8 @@ export class Program {
 
   host: string;
 
+  profile_img: string;
+
   title: string;
 
   shortDesc: string;
@@ -18,6 +20,7 @@ export class Program {
   private constructor(p: Program) {
     this.id = p.id;
     this.host = p.host;
+    this.profile_img = p.profile_img;
     this.title = p.title;
     this.shortDesc = p.shortDesc;
     this.desc = p.desc;
@@ -29,6 +32,7 @@ export class Program {
     return new Program({
       id: d.id,
       host: d.host,
+      profile_img: d.profile_img,
       title: d.title,
       shortDesc: d.short_desc,
       desc: d.desc,
@@ -45,6 +49,7 @@ export class Program {
 export type APIProgram = {
   id: string;
   host: string;
+  profile_img: string;
   title: string;
   short_desc: string;
   desc: string;
