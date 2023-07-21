@@ -1,4 +1,4 @@
-import { Category } from '@/constants/session';
+import { SessionCategory } from '@/constants/session';
 
 export interface SessionList {
   id: number;
@@ -19,6 +19,11 @@ export interface User {
   bio: string;
 }
 
+export interface TimeTableInfoByDays {
+  Day1: TimeTableInfo;
+  Day2: TimeTableInfo;
+}
+
 export interface TimeTableInfo {
   title: string;
   location: string;
@@ -34,5 +39,5 @@ export interface TimeTableSessions {
   id: string;
   host_name?: string;
   room_num: string[];
-  category?: (typeof Category)[number];
+  category?: (typeof SessionCategory)[number];
 }

@@ -1,7 +1,7 @@
 import { TimeTable, TimeTableInfo } from '@/@types/session';
 
 export const Day = ['Day1', 'Day2'] as const;
-export const Category = [
+export const SessionCategory = [
   '파이썬',
   '오픈소스/커뮤니티',
   '웹 서비스',
@@ -12,17 +12,18 @@ export const Category = [
   '기타',
 ] as const;
 
-export const CategoryLabelColor: { [T in (typeof Category)[number]]: string } =
-  {
-    파이썬: '#FFE0E9',
-    '오픈소스/커뮤니티': '#BDECE6',
-    '웹 서비스': '#EDEDED',
-    '데이터 과학': '#CBE9FF',
-    데브옵스: '#F2E2FF',
-    '로보틱스/임베디드 시스템': '#F9FAD6',
-    '일상/사회': '#D4F2C9',
-    기타: '#FFE4CC',
-  };
+export const CategoryLabelColor: {
+  [T in (typeof SessionCategory)[number]]: string;
+} = {
+  파이썬: '#FFE0E9',
+  '오픈소스/커뮤니티': '#BDECE6',
+  '웹 서비스': '#EDEDED',
+  '데이터 과학': '#CBE9FF',
+  데브옵스: '#F2E2FF',
+  '로보틱스/임베디드 시스템': '#F9FAD6',
+  '일상/사회': '#D4F2C9',
+  기타: '#FFE4CC',
+};
 
 const Day1: TimeTable[] = [
   {
