@@ -67,7 +67,7 @@ const SubprogramList = ({
           <S.ItemContainer key={program.id}>
             <S.ImageBox>
               <Image
-                src={'/images/Logo.png'}
+                src={program.profile_img ?? '/images/Logo.png'}
                 width={100}
                 height={100}
                 alt={'profile image'}
