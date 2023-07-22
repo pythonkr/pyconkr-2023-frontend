@@ -9,12 +9,14 @@ export const TableWrapper = styled('div', {
   overflowY: 'hidden',
 });
 export const Table = styled('table', {
-  border: '1px solid #1C1C1C',
+  border: '1px solid',
+  borderCoolor: '$backgroundPrimary',
   borderCollapse: 'collapse',
   width: 'auto',
 });
 export const Tr = styled('tr', {
-  border: '1px solid #1C1C1C',
+  border: '1px solid',
+  borderCoolor: '$backgroundPrimary',
   textAlign: 'center',
 });
 export const TdContent = styled('div', {
@@ -29,11 +31,12 @@ export const TdContent = styled('div', {
   },
 });
 export const Td = styled('td', {
-  border: '1px solid #1C1C1C',
+  border: '1px solid',
+  borderCoolor: '$backgroundPrimary',
   textAlign: 'center',
   variants: {
     c: {
-      head: { border: '2px solid #1C1C1C' },
+      head: { border: '2px solid', borderCoolor: '$backgroundPrimary' },
     },
   },
 });
@@ -57,6 +60,7 @@ export const B5 = styled('p', {
 export const CategoryTag = styled('p', {
   fontSize: 13,
   fontWeight: 400,
+  color: '#1c1c1c', // 다크모드 미적용
   whiteSpace: 'pre-wrap',
   textAlign: 'center',
   padding: '4px 8px',

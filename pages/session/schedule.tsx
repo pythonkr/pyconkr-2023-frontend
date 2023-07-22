@@ -19,8 +19,8 @@ const ContentBox = styled('div', {
 });
 
 const TableTitle = styled('div', {
-  background: '#000',
-  color: '#fff',
+  background: '$backgroundSecondary',
+  color: '$backgroundPrimary',
   whiteSpace: 'pre-wrap',
   textAlign: 'center',
   padding: '1rem 0',
@@ -32,7 +32,7 @@ const SelectorBox = styled('div', {
   padding: '30px 0',
 });
 const DaySelector = styled('a', {
-  color: '#000',
+  color: '$backgroundSecondary',
   fontWeight: 700,
   display: 'inline-block',
   '&:hover': {
