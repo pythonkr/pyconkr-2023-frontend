@@ -5,9 +5,6 @@ export const setIdAtDayTimeTable = (
   dayTimeTable: TimeTable[]
 ) =>
   dayTimeTable.map((time) => {
-    // console.log('###');
-    // console.log(time)
-    // console.log('###');
     return {
       ...time,
       sessions: time.sessions.map((session) => {
