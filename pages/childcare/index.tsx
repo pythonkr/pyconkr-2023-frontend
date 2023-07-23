@@ -4,6 +4,7 @@ import { Routes } from '@/constants/routes';
 import React, { useState } from 'react';
 import { styled } from '@/stitches.config';
 import Button from '@/components/common/Button';
+import Link from 'next/link';
 
 const Page = styled('div', {
   position: 'relative',
@@ -38,7 +39,7 @@ const H1Container = styled('div', {
 });
 
 const H2Container = styled('div', {
-  padding: '2rem 2rem',
+  padding: '2rem 0',
 });
 
 const H2P = styled('p', {
@@ -61,26 +62,6 @@ const ApplyContainer = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-});
-
-const LinkButton = styled('a', {
-  bodyText: 1,
-  width: '160px',
-  padding: '8px',
-  display: 'inline-block',
-  textAlign: 'center',
-  variants: {
-    reversal: {
-      true: {
-        color: '$backgroundPrimary',
-        backgroundColor: '$textPrimary',
-      },
-      false: {
-        color: '$textPrimary',
-        backgroundColor: '$backgroundPrimary',
-      },
-    },
-  },
 });
 
 const KoreanContent = (
@@ -161,13 +142,9 @@ const KoreanContent = (
       </H2Container>
     </H1Container>
     <ApplyContainer>
-      <LinkButton
-        target="_blank"
-        href="https://event-us.kr/pyconkr/event/66006"
-        reversal={true}
-      >
-        티켓 구매하기!
-      </LinkButton>
+      <Link href="https://event-us.kr/pyconkr/event/66006" target="_blank">
+        <Button reversal>티켓 구매하기</Button>
+      </Link>
     </ApplyContainer>
   </>
 );
@@ -278,19 +255,23 @@ const EnglishContent = (
       </H2Container>
     </H1Container>
     <ApplyContainer>
-      <LinkButton
-        target="_blank"
-        href="https://event-us.kr/pyconkr/event/66006"
-        reversal={true}
-      >
-        Buying a ticket
-      </LinkButton>
+      <Link href="https://event-us.kr/pyconkr/event/66006" target="_blank">
+        <Button reversal>Buying a ticket</Button>
+      </Link>
     </ApplyContainer>
   </>
 );
 
 const ChildcarePage = () => {
   const [language, setLanguage] = useState<'KOR' | 'ENG'>('KOR');
+
+  const getLanguageButtonConfig = (lang: typeof language) => {
+    return lang === 'KOR'
+      ? { text: '한국어', onClick: () => setLanguage('ENG') }
+      : { text: 'English', onClick: () => setLanguage('KOR') };
+  };
+
+  const { text, onClick } = getLanguageButtonConfig(language);
 
   return (
     <Page>
@@ -299,26 +280,9 @@ const ChildcarePage = () => {
         description="파이콘 한국 2023: 8월 11~13일 코엑스"
       />
       <LanguageButtonContainer>
-        {language === 'KOR' && (
-          <Button
-            reversal
-            onClick={() => {
-              setLanguage('ENG');
-            }}
-          >
-            English
-          </Button>
-        )}
-        {language === 'ENG' && (
-          <Button
-            reversal
-            onClick={() => {
-              setLanguage('KOR');
-            }}
-          >
-            한국어
-          </Button>
-        )}
+        <Button reversal onClick={onClick}>
+          {text}
+        </Button>
       </LanguageButtonContainer>
       {language === 'KOR' && KoreanContent}
       {language === 'ENG' && EnglishContent}
