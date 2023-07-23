@@ -91,7 +91,7 @@ const Day1: TimeTable[] = [
     sessions: [
       {
         title: '파이썬을 처음 사용하는 동료와 효율적으로 일하는 방법',
-        id: '',
+        id: '18',
         host_name: '이태현',
         room_num: ['101/102'],
         category: '파이썬',
@@ -99,14 +99,14 @@ const Day1: TimeTable[] = [
       {
         title:
           '짠내나는 데이터 다루기 (부제 : 제한된 메모리로 다룰 수 있는 현실적인 데이터)',
-        id: '',
+        id: '29',
         host_name: '박조은',
         room_num: ['103'],
         category: '데이터 과학',
       },
       {
         title: 'Introduction to Structural Pattern Matching',
-        id: '',
+        id: '12',
         host_name: 'Takanori Suzuki',
         room_num: ['104/105'],
         category: '파이썬',
@@ -129,14 +129,14 @@ const Day1: TimeTable[] = [
     sessions: [
       {
         title: 'Async state machine',
-        id: '',
+        id: '17',
         host_name: '이상훈',
         room_num: ['101/102'],
         category: '파이썬',
       },
       {
         title: 'Icebreaking with import',
-        id: '',
+        id: '8',
         host_name: '윤수진',
         room_num: ['103'],
         category: '웹 서비스',
@@ -167,7 +167,7 @@ const Day1: TimeTable[] = [
       {
         title:
           '로컬 환경에서 사이즈가 큰 데이터를 처리/분석하기 위한 전략: 🐼Pandas 2.0, 🤗HF Datasets',
-        id: '',
+        id: '34',
         host_name: '오성우(sackoh)',
         room_num: ['101/102'],
         category: '데이터 과학',
@@ -175,7 +175,7 @@ const Day1: TimeTable[] = [
       { title: '', host_name: '', id: '', room_num: ['103'] },
       {
         title: 'pyo3를 활용한 분산 시스템 알고리즘 구현체 바인딩 작성 도전기',
-        id: '',
+        id: '15',
         host_name: '이규봉',
         room_num: ['104/105'],
         category: '파이썬',
@@ -199,14 +199,14 @@ const Day1: TimeTable[] = [
       {
         title:
           'Django 봄은 다시 온다 - Django와 함께 좋은 웹서비스 코드 만들기',
-        id: '',
+        id: '9',
         host_name: '정경업',
         room_num: ['101/102'],
         category: '웹 서비스',
       },
       {
         title: 'Python 개발자를 위한 Nix',
-        id: '',
+        id: '32',
         host_name: '김수빈',
         room_num: ['103'],
         category: '데브옵스',
@@ -214,7 +214,7 @@ const Day1: TimeTable[] = [
       {
         title:
           '반복적인 일이 싫은 선생님의 Python을 활용한 학교에서의 업무자동화 사례',
-        id: '',
+        id: '40',
         host_name: '황수빈',
         room_num: ['104/105'],
         category: '일상/사회',
@@ -237,7 +237,7 @@ const Day1: TimeTable[] = [
     sessions: [
       {
         title: 'Jupyter Book을 활용해 손쉽게 콘텐츠를 생산하고 공유하자!',
-        id: '',
+        id: '13',
         host_name: '안성진',
         room_num: ['101/102'],
         category: '파이썬',
@@ -245,7 +245,7 @@ const Day1: TimeTable[] = [
       { title: '', host_name: '', id: '', room_num: ['103'] },
       {
         title: 'pandas와 PySpark로 데이터 워크로드 확장하기',
-        id: '',
+        id: '26',
         host_name: '권혁진',
         room_num: ['104/105'],
       },
@@ -267,7 +267,7 @@ const Day1: TimeTable[] = [
     sessions: [
       {
         title: 'Improving debuggability of complex asyncio applications',
-        id: '',
+        id: '22',
         host_name: '김준기',
         room_num: ['101/102'],
         category: '파이썬',
@@ -281,7 +281,7 @@ const Day1: TimeTable[] = [
       {
         title:
           "An overview of cloud services providers from Python developer's point of view",
-        id: '',
+        id: '1',
         host_name: 'Dmitry K',
         room_num: ['104/105'],
         category: '웹 서비스',
@@ -304,21 +304,21 @@ const Day1: TimeTable[] = [
     sessions: [
       {
         title: 'Django 컨트리뷰터가 되기까지의 여정',
-        id: '',
+        id: '42',
         host_name: '윤준기',
         room_num: ['101/102'],
         category: '오픈소스/커뮤니티',
       },
       {
         title: 'mypy에 올라타서 함수 호출자를 재귀적으로 탐색하기',
-        id: '',
+        id: '25',
         host_name: '양경모',
         room_num: ['103'],
         category: '파이썬',
       },
       {
         title: '리스트와 딕셔너리 학습을 위한 패키지 개발 여정',
-        id: '',
+        id: '39',
         host_name: '한상곤',
         room_num: ['104/105'],
         category: '일상/사회',
@@ -355,21 +355,21 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: 'CPython 코드로 보는 파이썬의 심층 세상',
-        id: '',
+        id: '37',
         host_name: '한성민',
         room_num: ['101/102'],
         category: '파이썬',
       },
       {
         title: 'Chatbot Framework with Python',
-        id: '',
+        id: '43',
         host_name: '조성빈',
         room_num: ['103'],
         category: '오픈소스/커뮤니티',
       },
       {
         title: 'MLOps: Model Serving Architecture with BentoML',
-        id: '',
+        id: '7',
         host_name: '김성렬',
         room_num: ['104/105'],
         category: '데이터 과학',
@@ -393,7 +393,7 @@ const Day2: TimeTable[] = [
       {
         title:
           'Django와 FastAPI를 함께 사용하여, 실무에서 사용하는 채팅 백앤드를 만들어보자',
-        id: '',
+        id: '4',
         host_name: '김지훈',
         room_num: ['101/102'],
         category: '웹 서비스',
@@ -401,14 +401,14 @@ const Day2: TimeTable[] = [
       {
         title:
           '딥러닝 개발에서의 Poetry 도입기 - 테스팅 및 모델 패키징에서의 의존성 관리',
-        id: '',
+        id: '34',
         host_name: '정호진',
         room_num: ['103'],
         category: '데브옵스',
       },
       {
         title: 'Pantsbuild로 Django 모노레포 마이크로서비스 구현하기',
-        id: '',
+        id: '10',
         host_name: '김순',
         room_num: ['104/105'],
         category: '웹 서비스',
@@ -432,14 +432,14 @@ const Day2: TimeTable[] = [
       { title: '', host_name: '', id: '', room_num: ['101/102'] },
       {
         title: 'Scalable Backtesting with Python, I/O부터 Scalable까지',
-        id: '',
+        id: '14',
         host_name: '김태완',
         room_num: ['103'],
         category: '데이터 과학',
       },
       {
         title: 'Python으로 전자음악 작곡하기',
-        id: '',
+        id: '28',
         host_name: '유태영',
         room_num: ['104/105'],
         category: '일상/사회',
@@ -462,21 +462,21 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: '당신의 Dependency는 안녕하십니까?(Feat. Poetry)',
-        id: '',
+        id: '23',
         host_name: '김두훈',
         room_num: ['101/102'],
         category: '파이썬',
       },
       {
         title: 'Python을 이용한 Linux 인증 모듈 만들기',
-        id: '',
+        id: '33',
         host_name: '유성진',
         room_num: ['103'],
         category: '데브옵스',
       },
       {
         title: 'Relay on Django: React와 공생하기',
-        id: '',
+        id: '2',
         host_name: '강정석',
         room_num: ['104/105'],
         category: '웹 서비스',
@@ -500,14 +500,14 @@ const Day2: TimeTable[] = [
       {
         title:
           'Django ORM에서는 어떻게 SQL Where절 조건 순서를 고정할 수 있을까?',
-        id: '',
+        id: '24',
         host_name: '안성현(ash84)',
         room_num: ['101/102'],
         category: '웹 서비스',
       },
       {
         title: 'Django Apps at Scale: Mistakes to Avoid',
-        id: '',
+        id: '11',
         host_name: 'Kushal Vijay',
         room_num: ['103'],
         category: '파이썬',
@@ -515,7 +515,7 @@ const Day2: TimeTable[] = [
       {
         title:
           'Python beyond traditional software development; Developing Robots using MicroPython',
-        id: '',
+        id: '45',
         host_name: 'Olaniyan Adewale',
         room_num: ['104/105'],
         category: '로보틱스/임베디드 시스템',
@@ -538,21 +538,21 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: 'Pynecone 프레임워크로 웹 기반 운영도구 개발하기',
-        id: '',
+        id: '36',
         host_name: '임찬식',
         room_num: ['101/102'],
         category: '파이썬',
       },
       {
         title: '파이썬에서의 병렬 처리',
-        id: '',
+        id: '5',
         host_name: '김현우',
         room_num: ['103'],
         category: '웹 서비스',
       },
       {
         title: '아래아한글_이렇게도 활용할 수 있어요.',
-        id: '',
+        id: '20',
         host_name: '신명진',
         room_num: ['104/105'],
         category: '일상/사회',
@@ -575,21 +575,21 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: 'Python DDD',
-        id: '',
+        id: '6',
         host_name: '신동현',
         room_num: ['101/102'],
         category: '웹 서비스',
       },
       {
         title: 'Python으로 월 몇 백원으로 사내 슬랙봇 운영해본 이야기',
-        id: '',
+        id: '44',
         host_name: '신희재',
         room_num: ['103'],
         category: '기타',
       },
       {
         title: '파이썬을 이용한 퀀트 트레이딩',
-        id: '',
+        id: '31',
         host_name: '정진혁',
         room_num: ['104/105'],
         category: '데이터 과학',
@@ -612,14 +612,14 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: 'FastAPI Deep-dive',
-        id: '',
+        id: '21',
         host_name: '정보람',
         room_num: ['101/102'],
         category: '파이썬',
       },
       {
         title: '오픈소스와 함께 성장하기(Feat. Django)',
-        id: '',
+        id: '41',
         host_name: '배두식(조단)',
         room_num: ['103'],
         category: '오픈소스/커뮤니티',
@@ -643,21 +643,21 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: '이건 정말 없네요...? 없어서 시작한 아래아 한글 패키지 만들기',
-        id: '',
+        id: '38',
         host_name: '전다민',
         room_num: ['101/102'],
         category: '일상/사회',
       },
       {
         title: '8년만에 다시 만난 Python: Python2 개발자의 Python3 개발 도전기',
-        id: '',
+        id: '16',
         host_name: '이다니엘',
         room_num: ['103'],
         category: '파이썬',
       },
       {
         title: 'Django 국제화 지원하기',
-        id: '',
+        id: '19',
         host_name: '서명석 / 후원사',
         room_num: ['104/105'],
         category: '웹 서비스',
@@ -680,7 +680,7 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: 'MLOps, LLM 개발에 필요한 실전 파이썬 디자인 패턴',
-        id: '',
+        id: '30',
         host_name: '이태호',
         room_num: ['101/102'],
         category: '파이썬',
@@ -688,7 +688,7 @@ const Day2: TimeTable[] = [
       { title: '', host_name: '', id: '', room_num: ['103'] },
       {
         title: '걱정돼요. 파이썬을 미워하는 학생과 학부모가 생겨나는 미래가',
-        id: '',
+        id: '35',
         host_name: '스펜서',
         room_num: ['104/105'],
         category: '일상/사회',
