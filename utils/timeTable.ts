@@ -11,7 +11,7 @@ export const setIdAtDayTimeTable = (
         if (!session.host_name) return session;
         return {
           ...session,
-          id: `${idByNickName[session.host_name] || ''}`,
+          // id: `${idByNickName[session.host_name] || ''}`,
         };
       }),
     };
