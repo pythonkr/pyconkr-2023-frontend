@@ -16,6 +16,7 @@ const routeKeys = [
   'TUTORIAL_LIST',
   'SPRINT_LIST',
   'FINANCIAL_AID',
+  'TIMETABLE',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -79,6 +80,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '재정 지원',
     route: '/fa',
   },
+  TIMETABLE: {
+    title: '시간표',
+    route: '/session/schedule',
+  },
 };
 
 export const NavBarMenus = [
@@ -86,6 +91,7 @@ export const NavBarMenus = [
   Routes.SPONSOR_INFO,
   // Routes.CFP_APPLY,
   Routes.SESSION,
+  Routes.TIMETABLE,
   Routes.FINANCIAL_AID,
   Routes.TUTORIAL_LIST,
   Routes.SPRINT_LIST,
@@ -96,6 +102,7 @@ export const MobileNavBarMenus = [
   Routes.SPONSOR_INFO,
   // Routes.CFP_APPLY,
   Routes.SESSION,
+  Routes.TIMETABLE,
   Routes.FINANCIAL_AID,
   Routes.TUTORIAL_LIST,
   Routes.SPRINT_LIST,
