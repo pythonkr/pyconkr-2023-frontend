@@ -1,7 +1,9 @@
 import { SessionList, TimeTableInfoByDays } from '@/@types/session';
 import { getSessionList } from '@/api/session';
 import { H1, H4 } from '@/components/heading';
+import SeoHeader from '@/components/layout/SeoHeader';
 import { TimeTable } from '@/components/session/TimeTable';
+import { Routes } from '@/constants/routes';
 import { Day, TimeTables } from '@/constants/session';
 import { setIdAtDayTimeTable } from '@/utils/timeTable';
 import { styled } from '@stitches/react';
@@ -52,32 +54,38 @@ const Schedule = ({ table }: { table: TimeTableInfoByDays }) => {
   const [day, setDay] = useState<(typeof Day)[number]>('Day1');
 
   return (
-    <ContentBox>
-      <TitleBox>
-        <H1>발표 시간표</H1>
-      </TitleBox>
-      <TableTitle>
-        <H4>
-          파이콘 한국 2023 세션 시간표{'\n'}Pycon KR 2023 Session Timetable
-        </H4>
-      </TableTitle>
-      <SelectorBox>
-        {Day.map((d) => (
-          <DaySelector
-            key={d}
-            href="#"
-            area-selected={day === d}
-            onClick={() => {
-              setDay(d);
-            }}
-          >
-            {/*  Day1 => Day 1 */}
-            <H4>{d.slice(0, 3) + ' ' + d.slice(3)}</H4>
-          </DaySelector>
-        ))}
-      </SelectorBox>
-      <TimeTable timeTableInfo={table[day]} />
-    </ContentBox>
+    <>
+      <SeoHeader
+        title={Routes.TIMETABLE.title}
+        description="파이콘 한국 2023: 8월 11~13일 코엑스"
+      />
+      <ContentBox>
+        <TitleBox>
+          <H1>발표 시간표</H1>
+        </TitleBox>
+        <TableTitle>
+          <H4>
+            파이콘 한국 2023 세션 시간표{'\n'}PyCon Korea 2023 Session Timetable
+          </H4>
+        </TableTitle>
+        <SelectorBox>
+          {Day.map((d) => (
+            <DaySelector
+              key={d}
+              href="#"
+              area-selected={day === d}
+              onClick={() => {
+                setDay(d);
+              }}
+            >
+              {/*  Day1 => Day 1 */}
+              <H4>{d.slice(0, 3) + ' ' + d.slice(3)}</H4>
+            </DaySelector>
+          ))}
+        </SelectorBox>
+        <TimeTable timeTableInfo={table[day]} />
+      </ContentBox>
+    </>
   );
 };
 
