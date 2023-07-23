@@ -732,12 +732,12 @@ const Day2: TimeTable[] = [
 
 export const TimeTables: { [T in (typeof Day)[number]]: TimeTableInfo } = {
   Day1: {
-    title: '8월 12일(토) / August 12th (Sat) KST',
+    title: '8월 12일 (토) / August 12th (Sat) KST',
     location: 'COEX 그랜드볼룸',
     TimeTable: Day1,
   },
   Day2: {
-    title: '8월 13일(일) / August 13th (Sun) KST',
+    title: '8월 13일 (일) / August 13th (Sun) KST',
     location: 'COEX 그랜드볼룸',
     TimeTable: Day2,
   },
