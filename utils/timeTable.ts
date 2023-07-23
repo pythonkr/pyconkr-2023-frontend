@@ -5,13 +5,16 @@ export const setIdAtDayTimeTable = (
   dayTimeTable: TimeTable[]
 ) =>
   dayTimeTable.map((time) => {
+    // console.log('###');
+    // console.log(time)
+    // console.log('###');
     return {
       ...time,
       sessions: time.sessions.map((session) => {
         if (!session.host_name) return session;
         return {
           ...session,
-          id: `${idByNickName[session.host_name] || ''}`,
+          // id: `${idByNickName[session.host_name] || ''}`,
         };
       }),
     };
