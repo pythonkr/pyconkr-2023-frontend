@@ -61,13 +61,9 @@ const SponsorListItem: React.FC<{ sponsor: ISponsorData }> = (props: {
 
   return (
     <SponsorGroupItem isLogoBig={isLogoBig}>
-      {sponsor.url != null ? (
-        <Link href={sponsor.url} target="_blank">
-          <SponsorImage src={sponsor.logoImage} alt={sponsor.name} />
-        </Link>
-      ) : (
+      <Link href={`/sponsor/list/${sponsor.id}`}>
         <SponsorImage src={sponsor.logoImage} alt={sponsor.name} />
-      )}
+      </Link>
     </SponsorGroupItem>
   );
 };
@@ -79,13 +75,17 @@ const SponsorList: React.FC<{ list: ISponsorListItem[] }> = (props: {
     <div>
       <H3>후원사 목록</H3>
       <SponsorGroupContainer>
-        {props.list.map((item: ISponsorListItem) => (
-          <SponsorLevelContainer key={`level-${item.level}`}>
+        {props.list.map((sponsorListItem: ISponsorListItem) => (
+          <SponsorLevelContainer key={`level-${sponsorListItem.level}`}>
             <H4>
-              {sponsorLevelLabel[item.level as keyof typeof sponsorLevelLabel]}
+              {
+                sponsorLevelLabel[
+                  sponsorListItem.level as keyof typeof sponsorLevelLabel
+                ]
+              }
             </H4>
             <SponsorGroup>
-              {item.list.map((item, index) => (
+              {sponsorListItem.list.map((item, index) => (
                 <SponsorListItem
                   key={`sponsor-${item.level}-${index}`}
                   sponsor={item}

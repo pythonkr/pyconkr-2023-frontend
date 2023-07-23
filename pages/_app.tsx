@@ -76,7 +76,11 @@ function App({
           <RecoilNexus />
           {process.env.NODE_ENV === 'development' && <RecoilDebugObserver />}
           <QueryClientProvider client={queryClient}>
-            <Container sponsorList={sponsorList}>
+            <Container
+              sponsorList={
+                Component.displayName === 'SponsorDetailPage' ? [] : sponsorList
+              }
+            >
               <Script
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}

@@ -87,41 +87,40 @@ const DayofWeek = styled(Label, {
 
 const ListItem = (props: SessionList) => {
   return (
-    // TODO 세션 상세 페이지가 나올 때까지 Link 비활성화
-    // <Link href={`/session/${props.id}`} passHref>
-    <ItemContainer>
-      <ImageBox>
-        <Image
-          src={props.user?.profile_img ?? '/images/Logo.png'}
-          width={100}
-          height={100}
-          alt={'profile image'}
-        />
-      </ImageBox>
-      <ContentBox>
-        <Title>{props.title}</Title>
-        <Labels>
-          {props.day_of_week === 'Sat' && <DayofWeek day="sat">토</DayofWeek>}
-          {props.day_of_week === 'Sun' && <DayofWeek day="sun">일</DayofWeek>}
-          {props.difficulty === 'BEGINNER' && (
-            <DayofWeek difficulty="beginner">초급</DayofWeek>
+    <Link href={`/session/${props.id}`} passHref>
+      <ItemContainer>
+        <ImageBox>
+          <Image
+            src={props.user?.profile_img ?? '/images/Logo.png'}
+            width={100}
+            height={100}
+            alt={'profile image'}
+          />
+        </ImageBox>
+        <ContentBox>
+          <Title>{props.title}</Title>
+          <Labels>
+            {props.day_of_week === 'Sat' && <DayofWeek day="sat">토</DayofWeek>}
+            {props.day_of_week === 'Sun' && <DayofWeek day="sun">일</DayofWeek>}
+            {props.difficulty === 'BEGINNER' && (
+              <DayofWeek difficulty="beginner">초급</DayofWeek>
+            )}
+            {props.difficulty === 'INTERMEDIATE' && (
+              <DayofWeek difficulty="intermediate">중급</DayofWeek>
+            )}
+            {props.difficulty === 'EXPERIENCED' && (
+              <DayofWeek difficulty="experienced">고급</DayofWeek>
+            )}
+            {props.language === 'ENGLISH' && (
+              <DayofWeek language="english">영어</DayofWeek>
+            )}
+          </Labels>
+          {props.user?.nickname !== undefined && (
+            <Text>{props.user?.nickname}</Text>
           )}
-          {props.difficulty === 'INTERMEDIATE' && (
-            <DayofWeek difficulty="intermediate">중급</DayofWeek>
-          )}
-          {props.difficulty === 'EXPERIENCED' && (
-            <DayofWeek difficulty="experienced">고급</DayofWeek>
-          )}
-          {props.language === 'ENGLISH' && (
-            <DayofWeek language="english">영어</DayofWeek>
-          )}
-        </Labels>
-        {props.user?.nickname !== undefined && (
-          <Text>{props.user?.nickname}</Text>
-        )}
-      </ContentBox>
-    </ItemContainer>
-    //  </Link>
+        </ContentBox>
+      </ItemContainer>
+    </Link>
   );
 };
 

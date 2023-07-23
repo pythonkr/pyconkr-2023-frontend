@@ -1,6 +1,6 @@
 import axios from '@/lib/axios';
 import { getHeaders } from '.';
-import { ISponsorApiListItem } from '@/@types/sponsor';
+import { ISponsorApiListItem, ISponsorDetail } from '@/@types/sponsor';
 import { SponsorLevel } from '@/data/enums/SponsorLevel';
 import { groupBy } from '@/helpers/array.helpers';
 
@@ -48,4 +48,16 @@ export async function getSponsorList(): Promise<
     list: data,
   }));
   return sponsorList;
+}
+
+export async function getSponsorDetail(id: string): Promise<ISponsorDetail> {
+  const { data } = await axios.get(`/sponsors/list/${id}/`);
+  return {
+    id: data.id ?? 0,
+    name: data.name ?? '',
+    url: data.url ?? '',
+    logo_image: data.logo_image?.replace(/\?.+$/, '') ?? '',
+    level: data.level ?? 0,
+    desc: data.desc ?? '',
+  };
 }
