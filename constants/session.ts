@@ -401,7 +401,7 @@ const Day2: TimeTable[] = [
       {
         title:
           '딥러닝 개발에서의 Poetry 도입기 - 테스팅 및 모델 패키징에서의 의존성 관리',
-        id: '23',
+        id: '34',
         host_name: '정호진',
         room_num: ['103'],
         category: '데브옵스',
@@ -462,7 +462,7 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: '당신의 Dependency는 안녕하십니까?(Feat. Poetry)',
-        id: '35',
+        id: '23',
         host_name: '김두훈',
         room_num: ['101/102'],
         category: '파이썬',
@@ -688,7 +688,7 @@ const Day2: TimeTable[] = [
       { title: '', host_name: '', id: '', room_num: ['103'] },
       {
         title: '걱정돼요. 파이썬을 미워하는 학생과 학부모가 생겨나는 미래가',
-        id: '27',
+        id: '35',
         host_name: '스펜서',
         room_num: ['104/105'],
         category: '일상/사회',
