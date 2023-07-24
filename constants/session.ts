@@ -462,7 +462,7 @@ const Day2: TimeTable[] = [
     sessions: [
       {
         title: '당신의 Dependency는 안녕하십니까?(Feat. Poetry)',
-        id: '23',
+        id: '35',
         host_name: '김두훈',
         room_num: ['101/102'],
         category: '파이썬',
@@ -750,7 +750,7 @@ export const DIFFICULTY: { [T in SessionDifficulty]: string } = {
 };
 
 export const DURATION: { [T in SessionDuration]: string } = {
-  SHORT: '25분',
+  SHORT: '20분',
   LONG: '40분',
 };
 
