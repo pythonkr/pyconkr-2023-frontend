@@ -109,3 +109,22 @@ export const MobileNavBarMenus = [
   // Routes.SPONSOR_JOIN,
   Routes.TICKET,
 ];
+
+export const RouteSection = [
+  { label: '파이콘 한국', items: [Routes.TICKET] },
+  {
+    label: '프로그램',
+    items: [
+      Routes.TIMETABLE,
+      Routes.SESSION,
+      Routes.TUTORIAL_LIST,
+      Routes.SPRINT_LIST,
+    ],
+  },
+  { label: '기여', items: [Routes.FINANCIAL_AID] },
+  {
+    label: '후원',
+    items: [Routes.SPONSOR_INFO],
+  },
+  { label: '행동 강령', items: [Routes.SPONSOR_INFO] },
+];
