@@ -1,4 +1,4 @@
-import { MobileNavBarMenus } from '@/constants/routes';
+import { RouteSection } from '@/constants/routes';
 import { styled } from '@/stitches.config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -26,34 +26,51 @@ const ForeGroundContainer = styled('div', {
   left: '0',
   width: '100%',
   height: '100%',
-  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  backgroundColor: '$backgroundPrimary',
   zIndex: '100',
+  padding: '1.5rem',
 });
 
 const MenuContainer = styled('div', {
+  backgroundColor: '$backgroundPrimary',
   display: 'flex',
   flexDirection: 'column',
 });
 
 const MenuWrapper = styled('ul', {
   listStyle: 'none',
+  padding: '0.5rem',
 });
 
 const MenuList = styled('li', {
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'space-between',
   gap: '8px',
-  padding: '8px 8px 8px 16px',
+  padding: '8px 0',
   zIndex: '1000',
   color: '$textPrimary',
   backgroundColor: '$backgroundPrimary',
-  borderTop: '1px solid $textPrimary',
+});
+
+const SectionItem = styled('span', {
+  fontWeight: 700,
+  color: '$textPrimary',
+  fontSize: '24px',
+  lineHeight: '28px',
+  display: 'inline-block',
+  padding: '8px 0',
+});
+
+const MenuItemWrapper = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
 });
 
 const MenuItem = styled('span', {
   fontWeight: 700,
   color: '$textPrimary',
-  fontSize: '24px',
+  fontSize: '18px',
   lineHeight: '28px',
 });
 
@@ -79,6 +96,10 @@ const IconWrapper = styled('div', {
   alignItems: 'center',
   width: '32px',
   height: '32px',
+});
+
+const Divider = styled('hr', {
+  borderTop: '1px solid $textPrimary',
 });
 
 const NavBarMobile = () => {
@@ -117,16 +138,22 @@ const NavBarMobile = () => {
       {isMobileMenuOpen && (
         <ForeGroundContainer onClick={handleMobileMenuClick}>
           <MenuContainer>
-            <MenuWrapper>
-              {MobileNavBarMenus.map((menu) => (
-                <Link key={menu.route} href={menu.route} passHref>
-                  <MenuList>
-                    <MenuItem>{menu.title}</MenuItem>
-                    <LinkArrowIcon width="28" height="28" />
-                  </MenuList>
-                </Link>
-              ))}
-            </MenuWrapper>
+            {RouteSection.map((section) => (
+              <MenuWrapper key={section.label}>
+                <SectionItem>{section.label}</SectionItem>
+                <Divider />
+                <MenuList>
+                  {section.items.map((menu) => (
+                    <Link key={menu.route} href={menu.route} passHref>
+                      <MenuItemWrapper>
+                        <MenuItem>{menu.title}</MenuItem>
+                        <LinkArrowIcon width="28" height="28" />
+                      </MenuItemWrapper>
+                    </Link>
+                  ))}
+                </MenuList>
+              </MenuWrapper>
+            ))}
           </MenuContainer>
         </ForeGroundContainer>
       )}
