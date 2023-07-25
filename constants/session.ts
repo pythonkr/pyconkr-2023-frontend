@@ -498,12 +498,10 @@ const Day2: TimeTable[] = [
     time: '13:20 ~ 14:00 (40`)',
     sessions: [
       {
-        title:
-          'Django ORM에서는 어떻게 SQL Where절 조건 순서를 고정할 수 있을까?',
-        id: '24',
-        host_name: '안성현(ash84)',
+        title: '',
+        id: '',
+        host_name: '',
         room_num: ['101/102'],
-        category: '웹 서비스',
       },
       {
         title: 'Django Apps at Scale: Mistakes to Avoid',
@@ -624,7 +622,14 @@ const Day2: TimeTable[] = [
         room_num: ['103'],
         category: '오픈소스/커뮤니티',
       },
-      { title: '', host_name: '', id: '', room_num: ['104/105'] },
+      {
+        title:
+          'Django ORM에서는 어떻게 SQL Where절 조건 순서를 고정할 수 있을까?',
+        id: '24',
+        host_name: '안성현(ash84)',
+        room_num: ['104/105'],
+        category: '웹 서비스',
+      },
     ],
   },
   {
