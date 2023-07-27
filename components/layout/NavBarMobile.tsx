@@ -1,4 +1,4 @@
-import { RouteSection } from '@/constants/routes';
+import { LinkMenu, SectionMenu } from '@/constants/routes';
 import { styled } from '@/stitches.config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -138,7 +138,7 @@ const NavBarMobile = () => {
       {isMobileMenuOpen && (
         <ForeGroundContainer onClick={handleMobileMenuClick}>
           <MenuContainer>
-            {RouteSection.map((section) => (
+            {SectionMenu.map((section) => (
               <MenuWrapper key={section.label}>
                 <SectionItem>{section.label}</SectionItem>
                 <Divider />
@@ -152,6 +152,16 @@ const NavBarMobile = () => {
                     </Link>
                   ))}
                 </MenuList>
+              </MenuWrapper>
+            ))}
+            {LinkMenu.map((menu) => (
+              <MenuWrapper key={menu.title}>
+                <Link key={menu.route} href={menu.route}>
+                  <MenuItemWrapper>
+                    <SectionItem>{menu.title}</SectionItem>
+                    <LinkArrowIcon width="28" height="28" />
+                  </MenuItemWrapper>
+                </Link>
               </MenuWrapper>
             ))}
           </MenuContainer>
