@@ -110,7 +110,10 @@ export const MobileNavBarMenus = [
   Routes.TICKET,
 ];
 
-export const RouteSection = [
+export const SectionMenu: {
+  label: string;
+  items: RouteType[];
+}[] = [
   { label: '파이콘 한국', items: [Routes.TICKET] },
   {
     label: '프로그램',
@@ -121,10 +124,11 @@ export const RouteSection = [
       Routes.SPRINT_LIST,
     ],
   },
-  { label: '기여', items: [Routes.FINANCIAL_AID] },
+  { label: '기여 안내', items: [Routes.FINANCIAL_AID] },
   {
-    label: '후원',
+    label: '후원 안내',
     items: [Routes.SPONSOR_INFO],
   },
-  { label: '행동 강령', items: [Routes.SPONSOR_INFO] },
 ];
+
+export const LinkMenu = [Routes.COC];
