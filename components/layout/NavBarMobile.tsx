@@ -21,6 +21,7 @@ const Container = styled('div', {
 });
 
 const ForeGroundContainer = styled('div', {
+  overflow: 'scroll',
   position: 'fixed',
   top: '44px',
   left: '0',
@@ -29,6 +30,7 @@ const ForeGroundContainer = styled('div', {
   backgroundColor: '$backgroundPrimary',
   zIndex: '100',
   padding: '1.5rem',
+  paddingBottom: '3rem',
 });
 
 const MenuContainer = styled('div', {
