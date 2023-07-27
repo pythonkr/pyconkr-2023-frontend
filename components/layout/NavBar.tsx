@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
-import { RouteSection, Routes } from '@/constants/routes';
+import { SectionMenu, Routes, LinkMenu } from '@/constants/routes';
 import { StyledButton } from '../common/Button';
+import DesktopMenu from '../common/DesktopMenu';
 import { Logo as LogoSvg } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
 import NavBarMobile from './NavBarMobile';
@@ -10,28 +11,6 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '@/stores/login';
 import { useRouter } from 'next/router';
 import { signOut } from '@/api/login';
-import { ExpandMore, ExpandLess } from '@/public/icons';
-
-const SectionWrapper = styled('div', {
-  listStyle: 'none',
-  padding: '0.5rem',
-  position: 'relative',
-});
-
-const SectionTitleWrapper = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-});
-
-const DropDownOpendIcon = styled(ExpandMore, {
-  display: 'block',
-  width: '30px',
-  height: 'auto',
-  '& path': {
-    fill: '$textPrimary',
-  },
-});
 
 const StyledNavArea = styled('div', {
   position: 'fixed',
@@ -77,17 +56,10 @@ const NavContainer = styled('div', {
   },
 });
 
-const MenuItem = styled('span', {
-  fontWeight: 700,
-  color: '$textPrimary',
-  fontSize: '24px',
-  lineHeight: '24px',
-});
-
 const StyledMenuBox = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '32px',
+  gap: '40px',
 });
 
 const SideBox = styled('div', {
@@ -135,22 +107,19 @@ const NavBar = () => {
       <NavBarMobile />
       <NavContainer>
         <StyledMenuBox>
-          {RouteSection.map((section) => (
-            <SectionWrapper key={section.label}>
-              <SectionTitleWrapper>
-                <MenuItem>{section.label}</MenuItem>
-                <DropDownOpendIcon />
-              </SectionTitleWrapper>
-              {/* {section.items.map((menu) => (
-              <DropDownMenu key={menu.route}>
-                <StyledMenu key={menu.route}>
-                  <Link href={menu.route} passHref>
-                    <MenuItem>{menu.title}</MenuItem>
-                  </Link>
-                </StyledMenu>
-              </DropDownMenu>
-            ))} */}
-            </SectionWrapper>
+          {SectionMenu.map((section) => (
+            <DesktopMenu.Section
+              key={section.label}
+              label={section.label}
+              items={section.items}
+            />
+          ))}
+          {LinkMenu.map((menu) => (
+            <DesktopMenu.Link
+              key={menu.route}
+              title={menu.title}
+              route={menu.route}
+            />
           ))}
         </StyledMenuBox>
         <SideBox>
