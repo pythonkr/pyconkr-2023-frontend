@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
-import { NavBarMenus, Routes } from '@/constants/routes';
+import { RouteSection, Routes } from '@/constants/routes';
 import { StyledButton } from '../common/Button';
 import { Logo as LogoSvg } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
@@ -10,36 +10,55 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userState } from '@/stores/login';
 import { useRouter } from 'next/router';
 import { signOut } from '@/api/login';
+import { ExpandMore, ExpandLess } from '@/public/icons';
+
+const SectionWrapper = styled('div', {
+  listStyle: 'none',
+  padding: '0.5rem',
+  position: 'relative',
+});
+
+const SectionTitleWrapper = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+});
+
+const DropDownOpendIcon = styled(ExpandMore, {
+  display: 'block',
+  width: '30px',
+  height: 'auto',
+  '& path': {
+    fill: '$textPrimary',
+  },
+});
 
 const StyledNavArea = styled('div', {
+  position: 'fixed',
   display: 'flex',
   justifyContent: 'space-between',
   gap: 40,
   alignItems: 'center',
   backgroundColor: '$backgroundPrimary',
-  width: '100%',
+  width: 'calc(100% - 40px)',
   margin: '0 auto',
-  paddingRight: '30px',
   zIndex: '99',
 
   '@bp1': {
     height: '44px',
   },
   '@bp2': {
-    padding: '1rem 2rem',
+    position: 'relative',
+    padding: '1rem',
     height: '80px',
   },
 });
 
 const Logo = styled(LogoSvg, {
   display: 'block',
-  width: 230,
+  width: 114,
   '& path': {
     fill: '$textPrimary',
-  },
-
-  '@bp2': {
-    maxWidth: 230,
   },
 });
 
@@ -54,7 +73,7 @@ const Title = styled('h1', {
 const NavContainer = styled('div', {
   display: 'none',
   '@bp2': {
-    display: 'flex',
+    display: 'contents',
   },
 });
 
@@ -67,21 +86,8 @@ const MenuItem = styled('span', {
 
 const StyledMenuBox = styled('div', {
   display: 'flex',
-  flex: 1,
   alignItems: 'center',
-  padding: '0 60px',
   gap: '32px',
-});
-
-const StyledMenu = styled('div', {
-  display: 'inline-block',
-
-  '@bp1': {
-    padding: '0',
-  },
-  '@bp2': {
-    padding: '0 1.5rem',
-  },
 });
 
 const SideBox = styled('div', {
@@ -129,12 +135,22 @@ const NavBar = () => {
       <NavBarMobile />
       <NavContainer>
         <StyledMenuBox>
-          {NavBarMenus.map((menu) => (
-            <StyledMenu key={menu.route}>
-              <Link href={menu.route} passHref>
-                <MenuItem>{menu.title}</MenuItem>
-              </Link>
-            </StyledMenu>
+          {RouteSection.map((section) => (
+            <SectionWrapper key={section.label}>
+              <SectionTitleWrapper>
+                <MenuItem>{section.label}</MenuItem>
+                <DropDownOpendIcon />
+              </SectionTitleWrapper>
+              {/* {section.items.map((menu) => (
+              <DropDownMenu key={menu.route}>
+                <StyledMenu key={menu.route}>
+                  <Link href={menu.route} passHref>
+                    <MenuItem>{menu.title}</MenuItem>
+                  </Link>
+                </StyledMenu>
+              </DropDownMenu>
+            ))} */}
+            </SectionWrapper>
           ))}
         </StyledMenuBox>
         <SideBox>
