@@ -86,30 +86,6 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   },
 };
 
-export const NavBarMenus = [
-  Routes.COC,
-  Routes.SPONSOR_INFO,
-  // Routes.CFP_APPLY,
-  Routes.SESSION,
-  Routes.TIMETABLE,
-  Routes.FINANCIAL_AID,
-  Routes.TUTORIAL_LIST,
-  Routes.SPRINT_LIST,
-  Routes.TICKET,
-];
-export const MobileNavBarMenus = [
-  Routes.COC,
-  Routes.SPONSOR_INFO,
-  // Routes.CFP_APPLY,
-  Routes.SESSION,
-  Routes.TIMETABLE,
-  Routes.FINANCIAL_AID,
-  Routes.TUTORIAL_LIST,
-  Routes.SPRINT_LIST,
-  // Routes.SPONSOR_JOIN,
-  Routes.TICKET,
-];
-
 export const SectionMenu: {
   label: string;
   items: RouteType[];
@@ -131,4 +107,8 @@ export const SectionMenu: {
   },
 ];
 
-export const LinkMenu = [Routes.COC];
+export const LinkMenu = [
+  Routes.COC,
+  // Routes.CFP_APPLY,
+  // Routes.SPONSOR_JOIN,
+];
