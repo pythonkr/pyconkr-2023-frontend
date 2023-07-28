@@ -13,8 +13,6 @@ import ImageFileSubmitIcon from './ImageFileSubmitIcon.svg';
 import CheckIconDark from './CheckIconDark.svg';
 import CheckIconLight from './CheckIconLight.svg';
 import HamburgerIcon from './HamburgerIcon.svg';
-import ExpandMore from './ExpandMore.svg';
-import ExpandLess from './ExpandLess.svg';
 
 export {
   CloseIcon,
@@ -32,6 +30,4 @@ export {
   CheckIconDark,
   CheckIconLight,
   HamburgerIcon,
-  ExpandMore,
-  ExpandLess,
 };
