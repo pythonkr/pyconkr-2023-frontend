@@ -69,7 +69,7 @@ const Schedule = ({ table }: { table: TimeTableInfoByDays }) => {
           </H4>
         </TableTitle>
         <SelectorBox>
-          {Day.map((d) => (
+          {Day.map((d, i) => (
             <DaySelector
               key={d}
               href="#"
@@ -78,8 +78,7 @@ const Schedule = ({ table }: { table: TimeTableInfoByDays }) => {
                 setDay(d);
               }}
             >
-              {/*  Day1 => Day 1 */}
-              <H4>{d.slice(0, 3) + ' ' + d.slice(3)}</H4>
+              <H4>Day {i + 1}</H4>
             </DaySelector>
           ))}
         </SelectorBox>
