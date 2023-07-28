@@ -24,10 +24,10 @@ const StyledNavArea = styled('div', {
   zIndex: '99',
 
   '@bp1': {
+    position: 'fixed',
     height: '44px',
   },
   '@bp2': {
-    position: 'relative',
     padding: '1rem',
     height: '80px',
   },
