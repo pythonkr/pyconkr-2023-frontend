@@ -103,6 +103,7 @@ export const SectionMenu: {
       Routes.SESSION,
       Routes.TUTORIAL_LIST,
       Routes.SPRINT_LIST,
+      Routes.CHILDCARE,
     ],
   },
   { label: '기여 안내', items: [Routes.FINANCIAL_AID] },
