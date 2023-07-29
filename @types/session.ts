@@ -1,3 +1,5 @@
+import { SessionCategory } from '@/constants/session';
+
 export interface SessionList {
   id: number;
   title: string;
@@ -38,6 +40,28 @@ export interface User {
   bio: string;
 }
 
+export interface TimeTableInfoByDays {
+  Day1: TimeTableInfo;
+  Day2: TimeTableInfo;
+}
+
+export interface TimeTableInfo {
+  title: string;
+  location: string;
+  TimeTable: TimeTable[];
+}
+
+export interface TimeTable {
+  time: string;
+  sessions: TimeTableSessions[];
+}
+export interface TimeTableSessions {
+  title: string;
+  id: string;
+  host_name?: string;
+  room_num: string[];
+  category?: (typeof SessionCategory)[number];
+}
 export type SessionDifficulty = 'BEGINNER' | 'INTERMEDIATE' | 'EXPERIENCED';
 export type SessionDuration = 'SHORT' | 'LONG';
 export type SessionLanguage = 'KOREAN' | 'ENGLISH';
