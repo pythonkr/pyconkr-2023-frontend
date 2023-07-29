@@ -17,6 +17,7 @@ const routeKeys = [
   'SPRINT_LIST',
   'FINANCIAL_AID',
   'TIMETABLE',
+  'CHILDCARE',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -80,6 +81,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '재정 지원',
     route: '/fa',
   },
+  CHILDCARE: {
+    title: '아이 돌봄',
+    route: '/childcare',
+  },
   TIMETABLE: {
     title: '시간표',
     route: '/session/schedule',
@@ -98,6 +103,7 @@ export const SectionMenu: {
       Routes.SESSION,
       Routes.TUTORIAL_LIST,
       Routes.SPRINT_LIST,
+      Routes.CHILDCARE,
     ],
   },
   { label: '기여 안내', items: [Routes.FINANCIAL_AID] },
