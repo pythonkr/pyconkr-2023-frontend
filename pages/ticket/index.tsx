@@ -17,6 +17,7 @@ const TicketPage = () => {
     Record<(typeof ProgramTypes)[number], TicketType[]>
   >({
     CONFERENCE: [],
+    CHILDCARE: [],
     TUTORIAL: [],
     SPRINT: [],
   });
@@ -34,6 +35,10 @@ const TicketPage = () => {
       CONFERENCE: {
         name: '컨퍼런스',
         desc: '8월 12일, 13일 파이콘 한국 2023 컨퍼런스에 참가할 수 있는 티켓입니다.',
+      },
+      CHILDCARE: {
+        name: '아이돌봄',
+        desc: '8월 12일, 13일 아이돌봄 프로그램을 이용할 수 있는 티켓입니다.',
       },
       TUTORIAL: {
         name: '튜토리얼',
@@ -116,7 +121,7 @@ const TicketPage = () => {
                   </Button>
                 ) : (
                   <Button size="small" reversal disabled>
-                    판매 예정
+                    판매 종료
                   </Button>
                 )}
               </S.TicketTypeItemButton>
