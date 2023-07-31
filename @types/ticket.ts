@@ -95,4 +95,9 @@ export type APITicketType = {
   buyable_url: string | null;
 };
 
-export const ProgramTypes = ['CONFERENCE', 'TUTORIAL', 'SPRINT'] as const;
+export const ProgramTypes = [
+  'CONFERENCE',
+  'CHILDCARE',
+  'TUTORIAL',
+  'SPRINT',
+] as const;
