@@ -143,7 +143,7 @@ const Day1: TimeTable[] = [
       },
       {
         title: '15년 만에 Python2에서 Python3로 Migration',
-        id: '',
+        id: '3',
         host_name: '강지훈',
         room_num: ['104/105'],
         category: '파이썬',
