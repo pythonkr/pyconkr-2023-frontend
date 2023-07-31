@@ -17,6 +17,7 @@ const routeKeys = [
   'SPRINT_LIST',
   'FINANCIAL_AID',
   'TIMETABLE',
+  'CHILDCARE',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -80,32 +81,40 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '재정 지원',
     route: '/fa',
   },
+  CHILDCARE: {
+    title: '아이 돌봄',
+    route: '/childcare',
+  },
   TIMETABLE: {
     title: '시간표',
     route: '/session/schedule',
   },
 };
 
-export const NavBarMenus = [
-  Routes.COC,
-  Routes.SPONSOR_INFO,
-  // Routes.CFP_APPLY,
-  Routes.SESSION,
-  Routes.TIMETABLE,
-  Routes.FINANCIAL_AID,
-  Routes.TUTORIAL_LIST,
-  Routes.SPRINT_LIST,
-  Routes.TICKET,
+export const SectionMenu: {
+  label: string;
+  items: RouteType[];
+}[] = [
+  { label: '파이콘 한국', items: [Routes.TICKET] },
+  {
+    label: '프로그램',
+    items: [
+      Routes.TIMETABLE,
+      Routes.SESSION,
+      Routes.TUTORIAL_LIST,
+      Routes.SPRINT_LIST,
+      Routes.CHILDCARE,
+    ],
+  },
+  { label: '기여 안내', items: [Routes.FINANCIAL_AID] },
+  {
+    label: '후원 안내',
+    items: [Routes.SPONSOR_INFO],
+  },
 ];
-export const MobileNavBarMenus = [
+
+export const LinkMenu = [
   Routes.COC,
-  Routes.SPONSOR_INFO,
   // Routes.CFP_APPLY,
-  Routes.SESSION,
-  Routes.TIMETABLE,
-  Routes.FINANCIAL_AID,
-  Routes.TUTORIAL_LIST,
-  Routes.SPRINT_LIST,
   // Routes.SPONSOR_JOIN,
-  Routes.TICKET,
 ];

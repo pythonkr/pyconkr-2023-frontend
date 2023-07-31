@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { styled } from 'stitches.config';
 import Link from 'next/link';
-import { NavBarMenus, Routes } from '@/constants/routes';
+import { SectionMenu, Routes, LinkMenu } from '@/constants/routes';
 import { StyledButton } from '../common/Button';
+import DesktopMenu from '../common/DesktopMenu';
 import { Logo as LogoSvg } from '@/public/icons';
 import ThemeSwitch from '../ThemeSwitch';
 import NavBarMobile from './NavBarMobile';
@@ -12,34 +13,31 @@ import { useRouter } from 'next/router';
 import { signOut } from '@/api/login';
 
 const StyledNavArea = styled('div', {
+  position: 'fixed',
   display: 'flex',
   justifyContent: 'space-between',
   gap: 40,
   alignItems: 'center',
   backgroundColor: '$backgroundPrimary',
-  width: '100%',
+  width: 'calc(100% - 40px)',
   margin: '0 auto',
-  paddingRight: '30px',
   zIndex: '99',
 
   '@bp1': {
+    position: 'fixed',
     height: '44px',
   },
   '@bp2': {
-    padding: '1rem 2rem',
+    padding: '1rem',
     height: '80px',
   },
 });
 
 const Logo = styled(LogoSvg, {
   display: 'block',
-  width: 230,
+  width: 114,
   '& path': {
     fill: '$textPrimary',
-  },
-
-  '@bp2': {
-    maxWidth: 230,
   },
 });
 
@@ -54,34 +52,14 @@ const Title = styled('h1', {
 const NavContainer = styled('div', {
   display: 'none',
   '@bp2': {
-    display: 'flex',
+    display: 'contents',
   },
-});
-
-const MenuItem = styled('span', {
-  fontWeight: 700,
-  color: '$textPrimary',
-  fontSize: '24px',
-  lineHeight: '24px',
 });
 
 const StyledMenuBox = styled('div', {
   display: 'flex',
-  flex: 1,
   alignItems: 'center',
-  padding: '0 60px',
-  gap: '32px',
-});
-
-const StyledMenu = styled('div', {
-  display: 'inline-block',
-
-  '@bp1': {
-    padding: '0',
-  },
-  '@bp2': {
-    padding: '0 1.5rem',
-  },
+  gap: '40px',
 });
 
 const SideBox = styled('div', {
@@ -129,12 +107,19 @@ const NavBar = () => {
       <NavBarMobile />
       <NavContainer>
         <StyledMenuBox>
-          {NavBarMenus.map((menu) => (
-            <StyledMenu key={menu.route}>
-              <Link href={menu.route} passHref>
-                <MenuItem>{menu.title}</MenuItem>
-              </Link>
-            </StyledMenu>
+          {SectionMenu.map((section) => (
+            <DesktopMenu.Section
+              key={section.label}
+              label={section.label}
+              items={section.items}
+            />
+          ))}
+          {LinkMenu.map((menu) => (
+            <DesktopMenu.Link
+              key={menu.route}
+              title={menu.title}
+              route={menu.route}
+            />
           ))}
         </StyledMenuBox>
         <SideBox>
