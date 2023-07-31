@@ -267,8 +267,8 @@ const ChildcarePage = () => {
 
   const getLanguageButtonConfig = (lang: typeof language) => {
     return lang === 'KOR'
-      ? { text: '한국어', onClick: () => setLanguage('ENG') }
-      : { text: 'English', onClick: () => setLanguage('KOR') };
+      ? { text: 'English', onClick: () => setLanguage('ENG') }
+      : { text: '한국어', onClick: () => setLanguage('KOR') };
   };
 
   const { text, onClick } = getLanguageButtonConfig(language);
