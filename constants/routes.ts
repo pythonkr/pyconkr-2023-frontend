@@ -18,6 +18,7 @@ const routeKeys = [
   'FINANCIAL_AID',
   'TIMETABLE',
   'CHILDCARE',
+  'SPONSOR_EDIT',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -88,6 +89,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   TIMETABLE: {
     title: '시간표',
     route: '/session/schedule',
+  },
+  SPONSOR_EDIT: {
+    title: '후원사 정보 수정',
+    route: '/sponsor/edit',
   },
 };
 
