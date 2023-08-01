@@ -84,7 +84,7 @@ const SponsorDetailPage = () => {
     <PageWrapper>
       <StyledH2>{name}</StyledH2>
       <Content>
-        <Link href={url || ''}>
+        <Link href={url || ''} target="_blank">
           <ImageWrapper>
             <Image
               src={logoImage || '/images/Logo.png'}
