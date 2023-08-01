@@ -47,8 +47,8 @@ const Day1: TimeTable[] = [
     time: '10:10 ~ 10:40 (30`)',
     sessions: [
       {
-        title: '키노트 Keynote',
-        id: '',
+        title: '우리 파이썬이의 꼬꼬마 시절',
+        id: '47',
         host_name: '장혜식',
         room_num: ['101/102', '103', '104/105'],
       },
@@ -68,8 +68,8 @@ const Day1: TimeTable[] = [
     time: '10:50 ~ 11:20 (30`)',
     sessions: [
       {
-        title: '키노트 Keynote',
-        id: '',
+        title: 'RustPython, 파이썬 커뮤니티로',
+        id: '48',
         host_name: '정윤원',
         room_num: ['101/102', '103', '104/105'],
       },
