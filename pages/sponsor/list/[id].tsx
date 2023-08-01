@@ -7,6 +7,9 @@ import { H2 } from '@/components/heading';
 import Link from 'next/link';
 import Image from 'next/image';
 import SeoHeader from '@/components/layout/SeoHeader';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@/stores/login';
+import Button from '@/components/common/Button';
 
 const PageWrapper = styled('div', {
   width: '100%',
@@ -52,7 +55,7 @@ const Content = styled('div', {
   },
 });
 
-const Description = styled('span', {
+const Description = styled('div', {
   marginTop: '24px',
 
   '@bp2': {
@@ -61,9 +64,9 @@ const Description = styled('span', {
 });
 
 const SponsorDetailPage = () => {
-  const {
-    query: { id: sponsorId },
-  } = useRouter();
+  const router = useRouter();
+  const sponsorId = router.query.id;
+  const loginUser = useRecoilValue(userState);
 
   const {
     error,
@@ -103,10 +106,25 @@ const SponsorDetailPage = () => {
             </ImageWrapper>
           </Link>
           <Description>
-            {desc ||
-              '후원사에 대한 자세한 설명을 알고싶다면 후원사 로고를 클릭해주세요.'}
+            {!desc ? (
+              '후원사에 대한 자세한 설명을 알고싶다면 후원사 로고를 클릭해주세요.'
+            ) : (
+              <div dangerouslySetInnerHTML={{ __html: desc }} />
+            )}
           </Description>
         </Content>
+        {sponsorDetail.creatorUserid === loginUser.userid && (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+              reversal
+              onClick={() => {
+                router.push(`/sponsor/edit/${sponsorDetail.id}`);
+              }}
+            >
+              후원사 설명 수정
+            </Button>
+          </div>
+        )}
       </PageWrapper>
     </>
   );
