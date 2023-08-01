@@ -3,6 +3,7 @@ import { getHeaders } from '.';
 import { ISponsorApiListItem, ISponsorDetail } from '@/@types/sponsor';
 import { SponsorLevel } from '@/data/enums/SponsorLevel';
 import { groupBy } from '@/helpers/array.helpers';
+import { AxiosResponse } from 'axios';
 
 export function addSponsor(formData: FormData): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -60,4 +61,33 @@ export async function getSponsorDetail(id: string): Promise<ISponsorDetail> {
     level: data.level ?? 0,
     desc: data.desc ?? '',
   };
+}
+
+export function updateSponsorDesc(
+  sponsorId: number,
+  desc: string
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    axios
+      .put<
+        void,
+        AxiosResponse<void>,
+        {
+          desc: string;
+        }
+      >(
+        `/sponsors/${sponsorId}/`,
+        { desc },
+        {
+          headers: getHeaders(),
+        }
+      )
+      .then((response) => {
+        resolve();
+      })
+      .catch((e) => {
+        console.error(e);
+        reject(e);
+      });
+  });
 }
