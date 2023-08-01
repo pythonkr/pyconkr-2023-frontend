@@ -66,6 +66,13 @@ const SponsorEdit = () => {
     setIsLoading(true);
     try {
       const response = await SponsorAPI.getSponsorDetail(sponsorId.toString());
+      if (
+        loginUser.userid !== null &&
+        response.creatorUserid !== loginUser.userid
+      ) {
+        router.push(`/sponsor/list/${sponsorId}`);
+        return;
+      }
       setSponsorDetail({ name: response.name, desc: response.desc });
     } catch (e) {
       alert(`후원사 상세 불러오기 실패\n(${e})`);
@@ -73,7 +80,7 @@ const SponsorEdit = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [router, sponsorId]);
+  }, [router, sponsorId, loginUser]);
   const saveSponsorDesc = useCallback(async () => {
     if (newDesc === undefined) {
       router.push(`/sponsor/list/${sponsorId}`);
