@@ -60,6 +60,7 @@ export async function getSponsorDetail(id: string): Promise<ISponsorDetail> {
     logo_image: data.logo_image?.replace(/\?.+$/, '') ?? '',
     level: data.level ?? 0,
     desc: data.desc ?? '',
+    creatorUserid: data.creator_userid,
   };
 }
 
