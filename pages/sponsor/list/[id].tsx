@@ -113,18 +113,19 @@ const SponsorDetailPage = () => {
             )}
           </Description>
         </Content>
-        {sponsorDetail.creatorUserid === loginUser.userid && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button
-              reversal
-              onClick={() => {
-                router.push(`/sponsor/edit/${sponsorDetail.id}`);
-              }}
-            >
-              후원사 설명 수정
-            </Button>
-          </div>
-        )}
+        {loginUser.userid !== null &&
+          sponsorDetail.creatorUserid === loginUser.userid && (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Button
+                reversal
+                onClick={() => {
+                  router.push(`/sponsor/edit/${sponsorDetail.id}`);
+                }}
+              >
+                후원사 설명 수정
+              </Button>
+            </div>
+          )}
       </PageWrapper>
     </>
   );
