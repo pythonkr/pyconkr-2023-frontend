@@ -76,7 +76,7 @@ export function updateSponsorDesc(
           desc: string;
         }
       >(
-        `/sponsors/${sponsorId}/`,
+        `/sponsors/list/${sponsorId}/`,
         { desc },
         {
           headers: getHeaders(),
