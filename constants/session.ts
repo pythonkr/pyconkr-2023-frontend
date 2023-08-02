@@ -283,7 +283,6 @@ const Day1: TimeTable[] = [
         id: '',
         host_name: '',
         room_num: ['104/105'],
-        category: undefined,
       },
     ],
   },
