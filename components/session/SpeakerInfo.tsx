@@ -1,4 +1,3 @@
-import { User } from '@/@types/session';
 import * as P from '@/components/session/styles';
 import Image from 'next/image';
 import { H4 } from '../heading';
@@ -21,20 +20,28 @@ export const ImageContainer = styled('div', {
   },
 });
 
-export const SpeakerInfo = ({ user }: { user: User }) => {
+export const SpeakerInfo = ({
+  user,
+}: {
+  user: {
+    hostName: string;
+    hostIntroduction: string;
+    hostProfileImage: string | null;
+  };
+}) => {
   return (
     <SpeakerContainer>
       <ImageContainer>
         <Image
-          src={user.profile_img || '/images/Logo.png'}
+          src={user.hostProfileImage || '/images/Logo.png'}
           fill
           style={{ objectFit: 'cover', borderRadius: '50%' }}
-          alt={user.nickname}
+          alt={user.hostName}
         />
       </ImageContainer>
       <div>
-        <H4>{user.nickname}</H4>
-        <P.DescContainer>{user.bio}</P.DescContainer>
+        <H4>{user.hostName}</H4>
+        <P.DescContainer>{user.hostIntroduction}</P.DescContainer>
       </div>
     </SpeakerContainer>
   );
