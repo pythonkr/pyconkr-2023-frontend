@@ -279,12 +279,11 @@ const Day1: TimeTable[] = [
         room_num: ['103'],
       },
       {
-        title:
-          "An overview of cloud services providers from Python developer's point of view",
-        id: '1',
-        host_name: 'Dmitry K',
+        title: '',
+        id: '',
+        host_name: '',
         room_num: ['104/105'],
-        category: '웹 서비스',
+        category: undefined,
       },
     ],
   },
