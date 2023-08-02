@@ -9,8 +9,11 @@ export interface SessionList {
   language: 'KOREAN' | 'ENGLISH';
   category: number;
   category_name: string;
-  user: User | null;
   day_of_week: 'Sat' | 'Sun' | null;
+  host_name: string;
+  host_introduction: string;
+  host_profile_image: string | null;
+  user: User | null;
 }
 
 export interface SessionDetail {
