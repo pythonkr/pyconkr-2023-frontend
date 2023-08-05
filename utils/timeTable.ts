@@ -8,10 +8,15 @@ export const setIdAtDayTimeTable = (
     return {
       ...time,
       sessions: time.sessions.map((session) => {
-        if (!session.host_name) return session;
+        if (
+          session.id ||
+          !session.host_name ||
+          !idByNickName[session.host_name]
+        )
+          return session;
         return {
           ...session,
-          // id: `${idByNickName[session.host_name] || ''}`,
+          id: `${idByNickName[session.host_name] || ''}`,
         };
       }),
     };
