@@ -84,9 +84,9 @@ const KoreanContent = (
         <PIndent>
         방법2) coc@pycon.kr 를 통해 메일을 보내주세요. 
         </PIndent>
-        <p>
-          파일 첨부가 필요하신 경우 메일을 통해 접수해 주세요.
-        </p>
+        <P>
+          - 파일 첨부가 필요하신 경우 메일을 통해 접수해 주세요.
+        </P>
       </H2Container>
     </H1Container>
     <ApplyContainer>
