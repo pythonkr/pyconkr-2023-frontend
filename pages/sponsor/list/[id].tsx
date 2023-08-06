@@ -62,6 +62,11 @@ const Description = styled('div', {
   '@bp2': {
     marginTop: '48px',
   },
+
+  '*': {
+    color: '$textPrimary !important',
+    backgroundColor: '$backgroundPrimary !important',
+  },
 });
 
 const SponsorDetailPage = () => {
