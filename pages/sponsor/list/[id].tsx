@@ -57,6 +57,7 @@ const Content = styled('div', {
 
 const Description = styled('div', {
   marginTop: '24px',
+  whiteSpace: 'pre-wrap',
 
   '@bp2': {
     marginTop: '48px',
