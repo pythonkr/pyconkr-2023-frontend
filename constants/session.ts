@@ -502,11 +502,11 @@ const Day2: TimeTable[] = [
         room_num: ['101/102'],
       },
       {
-        title: 'Django Apps at Scale: Mistakes to Avoid',
-        id: '11',
-        host_name: 'Kushal Vijay',
+        title: '',
+        id: '',
+        host_name: '',
         room_num: ['103'],
-        category: '파이썬',
+        category: undefined,
       },
       {
         title: '',
