@@ -273,8 +273,8 @@ const Day1: TimeTable[] = [
         category: '파이썬',
       },
       {
-        title: '-',
-        id: '',
+        title: '구글 클라우드는 Gen AI 앱 개발을 어떻게 도와줄 수 있을까?',
+        id: '49',
         host_name: '김일호 / 후원사',
         room_num: ['103'],
       },
@@ -502,11 +502,11 @@ const Day2: TimeTable[] = [
         room_num: ['101/102'],
       },
       {
-        title: 'Django Apps at Scale: Mistakes to Avoid',
-        id: '11',
-        host_name: 'Kushal Vijay',
+        title: '',
+        id: '',
+        host_name: '',
         room_num: ['103'],
-        category: '파이썬',
+        category: undefined,
       },
       {
         title: '',
@@ -545,7 +545,7 @@ const Day2: TimeTable[] = [
         category: '웹 서비스',
       },
       {
-        title: '아래아한글_이렇게도 활용할 수 있어요.',
+        title: '파이썬-아래아한글 업무자동화, 이렇게도 활용할 수 있어요!',
         id: '20',
         host_name: '신명진',
         room_num: ['104/105'],
