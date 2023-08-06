@@ -10,6 +10,5 @@ export async function getSessionDetail(
   sessionId: string
 ): Promise<SessionDetail> {
   const response = await axios.get<SessionDetail>(`/sessions/${sessionId}/`);
-  const { brief, desc, comment, ...data } = response.data;
-  return data;
+  return response.data;
 }

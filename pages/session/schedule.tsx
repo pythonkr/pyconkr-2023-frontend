@@ -93,10 +93,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const { Day1: day1, Day2: day2 } = TimeTables;
   const idByNickName: { [hostName: string]: number } = sessionList.reduce(
     (prev, session: SessionList) => {
-      if (session.user?.nickname) {
+      if (session.host_name) {
         return {
           ...prev,
-          [session.user?.nickname]: session.id,
+          [session.host_name]: session.id,
         };
       }
       return prev;
