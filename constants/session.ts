@@ -482,41 +482,7 @@ const Day2: TimeTable[] = [
     ],
   },
   {
-    time: '13:00 ~ 13:20 (20`)',
-    sessions: [
-      {
-        title: 'Break',
-        id: '',
-
-        room_num: ['101/102', '103', '104/105'],
-      },
-    ],
-  },
-  {
-    time: '13:20 ~ 14:00 (40`)',
-    sessions: [
-      {
-        title: '',
-        id: '',
-        host_name: '',
-        room_num: ['101/102'],
-      },
-      {
-        title: '',
-        id: '',
-        host_name: '',
-        room_num: ['103'],
-      },
-      {
-        title: '',
-        id: '',
-        host_name: '',
-        room_num: ['104/105'],
-      },
-    ],
-  },
-  {
-    time: '14:00 ~ 14:20 (20`)',
+    time: '13:00 ~ 14:20 (80`)',
     sessions: [
       {
         title: 'Break',
