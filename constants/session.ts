@@ -506,7 +506,6 @@ const Day2: TimeTable[] = [
         id: '',
         host_name: '',
         room_num: ['103'],
-        category: undefined,
       },
       {
         title: '',
