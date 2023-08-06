@@ -122,12 +122,12 @@ export const SectionMenu: {
     items: [Routes.SPONSOR_INFO],
   },
   {
-    label: '행동 강령(CoC)',
+    label: '행동 강령 (CoC)',
     items: [Routes.COC, Routes.COC_REPORT],
-  }
+  },
 ];
 
-export const LinkMenu = [
+export const LinkMenu: RouteType[] = [
   // Routes.COC,
   // Routes.CFP_APPLY,
   // Routes.SPONSOR_JOIN,
