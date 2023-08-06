@@ -273,8 +273,8 @@ const Day1: TimeTable[] = [
         category: '파이썬',
       },
       {
-        title: '-',
-        id: '',
+        title: '구글 클라우드는 Gen AI 앱 개발을 어떻게 도와줄 수 있을까?',
+        id: '49',
         host_name: '김일호 / 후원사',
         room_num: ['103'],
       },
