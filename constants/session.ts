@@ -545,7 +545,7 @@ const Day2: TimeTable[] = [
         category: '웹 서비스',
       },
       {
-        title: '아래아한글_이렇게도 활용할 수 있어요.',
+        title: '파이썬-아래아한글 업무자동화, 이렇게도 활용할 수 있어요!',
         id: '20',
         host_name: '신명진',
         room_num: ['104/105'],
