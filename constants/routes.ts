@@ -3,6 +3,7 @@ import { RouteType } from '@/interfaces/RouteType';
 const routeKeys = [
   'HOME',
   'COC',
+  'COC_REPORT',
   'SPONSOR_INFO',
   'SPONSOR_JOIN',
   'CFP_APPLY',
@@ -29,6 +30,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   COC: {
     title: '행동 강령',
     route: '/coc',
+  },
+  COC_REPORT: {
+    title: '행동 강령 위반 신고',
+    route: '/coc-report',
   },
   SPONSOR_INFO: {
     title: '후원 안내',
@@ -116,10 +121,14 @@ export const SectionMenu: {
     label: '후원 안내',
     items: [Routes.SPONSOR_INFO],
   },
+  {
+    label: '행동 강령(CoC)',
+    items: [Routes.COC, Routes.COC_REPORT],
+  }
 ];
 
 export const LinkMenu = [
-  Routes.COC,
+  // Routes.COC,
   // Routes.CFP_APPLY,
   // Routes.SPONSOR_JOIN,
 ];
