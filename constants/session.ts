@@ -509,12 +509,10 @@ const Day2: TimeTable[] = [
         category: '파이썬',
       },
       {
-        title:
-          'Python beyond traditional software development; Developing Robots using MicroPython',
-        id: '45',
-        host_name: 'Olaniyan Adewale',
+        title: '',
+        id: '',
+        host_name: '',
         room_num: ['104/105'],
-        category: '로보틱스/임베디드 시스템',
       },
     ],
   },
