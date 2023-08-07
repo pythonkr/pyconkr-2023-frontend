@@ -168,7 +168,7 @@ const Day1: TimeTable[] = [
         title:
           '로컬 환경에서 사이즈가 큰 데이터를 처리/분석하기 위한 전략: 🐼Pandas 2.0, 🤗HF Datasets',
         id: '46',
-        host_name: '오성우(sackoh)',
+        host_name: '오성우',
         room_num: ['101/102'],
         category: '데이터 과학',
       },
