@@ -78,3 +78,8 @@ export interface ISponsorApiListItem {
 export interface ISponsorDetail extends ISponsorApiListItem {
   desc: string;
 }
+
+export interface Patron {
+  name: string;
+  contribution_message: string;
+}
