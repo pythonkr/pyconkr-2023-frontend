@@ -107,7 +107,7 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   },
   ORGANISING_COMMITTEE: {
     title: '파이콘 한국 준비위원회',
-    route: '/about/organising-committee',
+    route: '/about/organizing-team',
   },
 };
 
