@@ -89,7 +89,9 @@ const Patrons = () => {
               </ImageBox>
               <ContentBox>
                 <Title>{name}</Title>
-                <Text>{contribution_message}</Text>
+                <Text
+                  dangerouslySetInnerHTML={{ __html: contribution_message }}
+                />
               </ContentBox>
             </PatronContainer>
           ))}
