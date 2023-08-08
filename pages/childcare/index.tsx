@@ -1,4 +1,4 @@
-import { H1, H2 } from '@/components/heading';
+import { H1, H2, H3, H4 } from '@/components/heading';
 import SeoHeader from '@/components/layout/SeoHeader';
 import { Routes } from '@/constants/routes';
 import React, { useState } from 'react';
@@ -68,6 +68,7 @@ const KoreanContent = (
   <>
     <H1Container>
       <H1>아이 돌봄</H1>
+      <H4>*아이 돌봄은 참여 인원 미달로 운영되지 않으니 참고 바랍니다.</H4>
       <H2Container>
         <H2>개요</H2>
         <H2P>
@@ -143,7 +144,9 @@ const KoreanContent = (
     </H1Container>
     <ApplyContainer>
       <Link href="https://event-us.kr/pyconkr/event/66006" target="_blank">
-        <Button reversal>티켓 구매하기</Button>
+        <Button reversal disabled>
+          판매 종료
+        </Button>
       </Link>
     </ApplyContainer>
   </>

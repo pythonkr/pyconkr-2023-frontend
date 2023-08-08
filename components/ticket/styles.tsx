@@ -21,6 +21,7 @@ export const ProgramTypeDesc = styled('p', {
   fontSize: '1.1rem',
   lineHeight: '30px',
   marginBottom: '1vh',
+  whiteSpace: 'pre-wrap',
 });
 
 export const TicketTypeItem = styled('div', {
