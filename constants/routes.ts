@@ -21,6 +21,7 @@ const routeKeys = [
   'TIMETABLE',
   'CHILDCARE',
   'SPONSOR_EDIT',
+  'ORGANISING_COMMITTEE',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -104,13 +105,20 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '후원사 정보 수정',
     route: '/sponsor/edit',
   },
+  ORGANISING_COMMITTEE: {
+    title: '파이콘 한국 준비위원회',
+    route: '/about/organizing-team',
+  },
 };
 
 export const SectionMenu: {
   label: string;
   items: RouteType[];
 }[] = [
-  { label: '파이콘 한국', items: [Routes.TICKET] },
+  {
+    label: '파이콘 한국',
+    items: [Routes.TICKET, Routes.ORGANISING_COMMITTEE],
+  },
   {
     label: '프로그램',
     items: [
