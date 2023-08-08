@@ -105,9 +105,9 @@ const KoreanContent = (
       <H2Container>
         <H2>재정 지원 일정</H2>
         <H2P>
-          - 재정 지원 신청 : 2023년 8월 2일 (수) 23시 59분까지 (KST)
+          - 재정 지원 신청 : 2023년 8월 8일 (화) 23시 59분까지 (KST)
           <br />
-          - 재정 지원 승인 여부 발표 (이메일) : 2023년 8월 6일 (일) 10시 (KST)
+          - 재정 지원 승인 여부 발표 (이메일) : 2023년 8월 10일 (목) 10시 (KST)
           <br />
           - 재정 지원 금액 지급 : 2023년 8월 12-13일 (토-일) (컨퍼런스 당일)
           <br />* 당일에 지출 증빙을 위한 영수증, 사진이 있는 신분증(또는
@@ -183,9 +183,9 @@ const EnglishContent = (
       <H2Container>
         <H2>Schedule</H2>
         <H2P>
-          - Financial aid application period : Until 2023.08.02. (Wed) 23:59 KST
+          - Financial aid application period : Until 2023.08.08. (Tue) 23:59 KST
           <br />
-          - Financial aid confirmation / announcement : 2023.08.06 (Sun) 10 a.m.
+          - Financial aid confirmation / announcement : 2023.08.10 (Thr) 10 a.m.
           KST via email
           <br />
           - Financial aid amount payment : 2023.08.12-13 (Sat-Sun) (Conference

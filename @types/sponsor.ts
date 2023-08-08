@@ -77,6 +77,7 @@ export interface ISponsorApiListItem {
 
 export interface ISponsorDetail extends ISponsorApiListItem {
   desc: string;
+  creatorUserid: string | null;
 }
 
 export interface Patron {

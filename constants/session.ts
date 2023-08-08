@@ -47,8 +47,8 @@ const Day1: TimeTable[] = [
     time: '10:10 ~ 10:40 (30`)',
     sessions: [
       {
-        title: '키노트 Keynote',
-        id: '',
+        title: '우리 파이썬이의 꼬꼬마 시절',
+        id: '47',
         host_name: '장혜식',
         room_num: ['101/102', '103', '104/105'],
       },
@@ -68,8 +68,8 @@ const Day1: TimeTable[] = [
     time: '10:50 ~ 11:20 (30`)',
     sessions: [
       {
-        title: '키노트 Keynote',
-        id: '',
+        title: 'RustPython, 파이썬 커뮤니티로',
+        id: '48',
         host_name: '정윤원',
         room_num: ['101/102', '103', '104/105'],
       },
@@ -143,7 +143,7 @@ const Day1: TimeTable[] = [
       },
       {
         title: '15년 만에 Python2에서 Python3로 Migration',
-        id: '',
+        id: '3',
         host_name: '강지훈',
         room_num: ['104/105'],
         category: '파이썬',
@@ -168,7 +168,7 @@ const Day1: TimeTable[] = [
         title:
           '로컬 환경에서 사이즈가 큰 데이터를 처리/분석하기 위한 전략: 🐼Pandas 2.0, 🤗HF Datasets',
         id: '46',
-        host_name: '오성우(sackoh)',
+        host_name: '오성우',
         room_num: ['101/102'],
         category: '데이터 과학',
       },
@@ -273,18 +273,16 @@ const Day1: TimeTable[] = [
         category: '파이썬',
       },
       {
-        title: '-',
-        id: '',
+        title: '구글 클라우드는 Gen AI 앱 개발을 어떻게 도와줄 수 있을까?',
+        id: '49',
         host_name: '김일호 / 후원사',
         room_num: ['103'],
       },
       {
-        title:
-          "An overview of cloud services providers from Python developer's point of view",
-        id: '1',
-        host_name: 'Dmitry K',
+        title: '',
+        id: '',
+        host_name: '',
         room_num: ['104/105'],
-        category: '웹 서비스',
       },
     ],
   },
@@ -484,44 +482,7 @@ const Day2: TimeTable[] = [
     ],
   },
   {
-    time: '13:00 ~ 13:20 (20`)',
-    sessions: [
-      {
-        title: 'Break',
-        id: '',
-
-        room_num: ['101/102', '103', '104/105'],
-      },
-    ],
-  },
-  {
-    time: '13:20 ~ 14:00 (40`)',
-    sessions: [
-      {
-        title: '',
-        id: '',
-        host_name: '',
-        room_num: ['101/102'],
-      },
-      {
-        title: 'Django Apps at Scale: Mistakes to Avoid',
-        id: '11',
-        host_name: 'Kushal Vijay',
-        room_num: ['103'],
-        category: '파이썬',
-      },
-      {
-        title:
-          'Python beyond traditional software development; Developing Robots using MicroPython',
-        id: '45',
-        host_name: 'Olaniyan Adewale',
-        room_num: ['104/105'],
-        category: '로보틱스/임베디드 시스템',
-      },
-    ],
-  },
-  {
-    time: '14:00 ~ 14:20 (20`)',
+    time: '13:00 ~ 14:20 (80`)',
     sessions: [
       {
         title: 'Break',
@@ -549,7 +510,7 @@ const Day2: TimeTable[] = [
         category: '웹 서비스',
       },
       {
-        title: '아래아한글_이렇게도 활용할 수 있어요.',
+        title: '파이썬-아래아한글 업무자동화, 이렇게도 활용할 수 있어요!',
         id: '20',
         host_name: '신명진',
         room_num: ['104/105'],

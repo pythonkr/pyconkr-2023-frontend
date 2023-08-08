@@ -12,6 +12,12 @@ import { SessionBasicInfo } from '@/components/session/SessionBasicInfo';
 import { SpeakerInfo } from '@/components/session/SpeakerInfo';
 
 const SessionInfo: NextPage<{ info: SessionDetail }> = ({ info }) => {
+  const {
+    host_name: hostName,
+    host_introduction: hostIntroduction,
+    host_profile_image: hostProfileImage,
+  } = info;
+  const user = { hostName, hostIntroduction, hostProfileImage };
   return (
     <P.PageContainer>
       <SeoHeader title={Routes.SESSION.title} />
@@ -36,10 +42,10 @@ const SessionInfo: NextPage<{ info: SessionDetail }> = ({ info }) => {
             <div style={{ marginTop: '8px' }}>{info.slide_url}</div>
           </P.Block>
         )}
-        {info.user && (
+        {user.hostName && (
           <P.Block css={{ marginTop: '64px' }}>
             <H2>발표자 소개</H2>
-            <SpeakerInfo user={info.user} />
+            <SpeakerInfo user={user} />
           </P.Block>
         )}
       </P.Section>

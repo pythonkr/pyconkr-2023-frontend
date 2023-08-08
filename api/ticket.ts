@@ -11,11 +11,13 @@ export function listTicketTypes(): Promise<
       .get<
         {
           conference: APITicketType[];
+          childcare: APITicketType[];
           tutorial: APITicketType[];
           sprint: APITicketType[];
         },
         AxiosResponse<{
           conference: APITicketType[];
+          childcare: APITicketType[];
           tutorial: APITicketType[];
           sprint: APITicketType[];
         }>,
@@ -26,6 +28,7 @@ export function listTicketTypes(): Promise<
       .then((response) => {
         resolve({
           CONFERENCE: TicketType.fromAPIs(response.data.conference),
+          CHILDCARE: TicketType.fromAPIs(response.data.childcare),
           TUTORIAL: TicketType.fromAPIs(response.data.tutorial),
           SPRINT: TicketType.fromAPIs(response.data.sprint),
         });
