@@ -6,6 +6,7 @@ const routeKeys = [
   'COC_REPORT',
   'SPONSOR_INFO',
   'SPONSOR_JOIN',
+  'PRIVATE_SPONSORS',
   'CFP_APPLY',
   'TUTORIAL_APPLY',
   'SPRINT_APPLY',
@@ -42,6 +43,10 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
   SPONSOR_JOIN: {
     title: '후원하기',
     route: '/sponsor/join',
+  },
+  PRIVATE_SPONSORS: {
+    title: '개인 후원자',
+    route: '/sponsor/patrons',
   },
   CFP_APPLY: {
     title: '발표 제안',
@@ -119,7 +124,7 @@ export const SectionMenu: {
   { label: '기여 안내', items: [Routes.FINANCIAL_AID] },
   {
     label: '후원 안내',
-    items: [Routes.SPONSOR_INFO],
+    items: [Routes.SPONSOR_INFO, Routes.PRIVATE_SPONSORS],
   },
   {
     label: '행동 강령 (CoC)',
