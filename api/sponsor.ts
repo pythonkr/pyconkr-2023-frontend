@@ -68,6 +68,7 @@ export async function getSponsorDetail(id: string): Promise<ISponsorDetail> {
 export async function getPatrons(): Promise<Patron[]> {
   const { data } = await axios.get('/sponsors/patron/list/');
   return data;
+}
 
 export function updateSponsorDesc(
   sponsorId: number,
