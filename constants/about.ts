@@ -1,10 +1,23 @@
-import { CommitteeInfo } from '@/@types/about';
+import { CommitteeInfo, VolunteerInfo } from '@/@types/about';
 
 export const CommitteePageInfo = {
   title: '파이콘 한국 준비위원회',
   description:
     '파이콘 한국 준비위원회는 2014년 조직되어, 올해 열 번째 한국에서의 파이콘 행사를 준비하고 있습니다. \n준비위원회는 매년 신규 멤버를 모집하는 파이콘을 사랑하는 사람들의 열린 모임입니다.',
 };
+
+export const DevelopmentVolunteerPageInfo = {
+  title: '홈페이지 개발 자원봉사자',
+  description:
+    '파이콘 한국 2023 홈페이지 개발에 기여해주신 분들입니다. 파이콘 한국에 기여해주셔서 감사합니다. \n(가나다 순)',
+};
+
+export const EventVolunteerPageInfo = {
+  title: '행사 자원봉사자',
+  description:
+    '파이콘 한국 2023에서 행사 진행을 위해 기여해주신 분들입니다. 파이콘 한국에 기여해주셔서 감사합니다. \n(가나다 순)',
+};
+
 export const CommitteeList: CommitteeInfo[] = [
   {
     name: '강지우',
@@ -91,5 +104,127 @@ export const CommitteeList: CommitteeInfo[] = [
     name: '진태양(Theo)',
     image: '/images/ot/진태양.jpg',
     description: '주니어 CTO로 일하고 있습니다.',
+  },
+];
+
+export const DevelopmentVolunteerList: VolunteerInfo[] = [
+  {
+    name: '김동영',
+    description: 'https://github.com/pers0n4',
+  },
+  {
+    name: '김윤서',
+    description: 'https://github.com/ottl-seo',
+  },
+  {
+    name: '박나경',
+    description: 'https://github.com/NaGyeong-Park',
+  },
+  {
+    name: '박미림',
+    description: 'https://github.com/Palwol',
+  },
+  {
+    name: '손지민',
+    description: 'https://github.com/safethecode',
+  },
+  {
+    name: '송기웅',
+    description: 'https://github.com/song-giung',
+  },
+  {
+    name: '신원지',
+    description: 'https://github.com/sw6820',
+  },
+  {
+    name: '윤창식',
+    description: 'https://github.com/CaesiumY',
+  },
+  {
+    name: '이민형',
+    description: 'https://github.com/alreadynyeong',
+  },
+  {
+    name: '이상민',
+    description: 'https://github.com/poiu694',
+  },
+  {
+    name: '이찬행',
+    description: 'https://github.com/2chanhaeng',
+  },
+  {
+    name: '이창희',
+    description: 'https://github.com/blurfx',
+  },
+  {
+    name: '정건우',
+    description: 'https://github.com/zi-gae',
+  },
+  {
+    name: '최영은',
+    description: 'https://github.com/shinecoding',
+  },
+  {
+    name: '최호승',
+    description: 'https://github.com/startergate',
+  },
+];
+
+export const EventVolunteerList: VolunteerInfo[] = [
+  {
+    name: '강은성',
+    description: '',
+  },
+  {
+    name: '김무훈',
+    description: '',
+  },
+  {
+    name: '김보라',
+    description: '',
+  },
+  {
+    name: '김세연',
+    description: '',
+  },
+  {
+    name: '김혜린',
+    description: '',
+  },
+  {
+    name: '백찬희',
+    description: '',
+  },
+  {
+    name: '신유리',
+    description: '',
+  },
+  {
+    name: '유창범',
+    description: '',
+  },
+  {
+    name: '이강희',
+    description: '',
+  },
+  {
+    name: '이경희',
+    description: '',
+  },
+  {
+    name: '임승민',
+    description: '',
+  },
+  {
+    name: '최명규',
+    description: '',
+  },
+  {
+    name: '한송희',
+    description: '',
+  },
+  {
+    name: '허강준',
+    description: '',
   },
 ];

@@ -4,7 +4,14 @@ import { styled } from '@stitches/react';
 import { H2 } from '@/components/heading';
 import SeoHeader from '@/components/layout/SeoHeader';
 
-import { CommitteeList, CommitteePageInfo } from '@/constants/about';
+import {
+  CommitteeList,
+  CommitteePageInfo,
+  DevelopmentVolunteerList,
+  DevelopmentVolunteerPageInfo,
+  EventVolunteerList,
+  EventVolunteerPageInfo,
+} from '@/constants/about';
 import { Routes } from '@/constants/routes';
 
 export const Container = styled('div', {
@@ -44,6 +51,7 @@ const Title = styled('div', {
   fontWeight: 600,
   bodyText: 1,
   padding: '0.2rem',
+  fontSize: 'large',
 });
 const Text = styled('div', {
   bodyText: 2,
@@ -57,25 +65,44 @@ const OrganisingCommittee = () => {
   return (
     <>
       <SeoHeader
-        title={Routes.ORGANIZING_TEAM.title}
+        title={Routes.VOLUNTEER.title}
         description="파이콘 한국 2023: 8월 11~13일 코엑스"
       />
       <Container>
         <TitleWrapper>
-          <H2>{CommitteePageInfo.title}</H2>
+          <H2>{DevelopmentVolunteerPageInfo.title}</H2>
         </TitleWrapper>
-        <PageDescription>{CommitteePageInfo.description}</PageDescription>
+        <PageDescription>
+          {DevelopmentVolunteerPageInfo.description}
+        </PageDescription>
         <CommitteeInfoWrapper>
-          {CommitteeList.map((committee) => (
+          {DevelopmentVolunteerList.map((committee) => (
             <CommitteeWrapper key={committee.name}>
-              <ImageBox>
-                <Image
-                  src={committee.image || '/images/Logo.png'}
-                  width={100}
-                  height={100}
-                  alt="profile image"
-                />
-              </ImageBox>
+              <Content>
+                <Title>{committee.name}</Title>
+                <Text>
+                  <a
+                    href={committee.description}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {committee.description}
+                  </a>
+                </Text>
+              </Content>
+            </CommitteeWrapper>
+          ))}
+        </CommitteeInfoWrapper>
+      </Container>
+
+      <Container>
+        <TitleWrapper>
+          <H2>{EventVolunteerPageInfo.title}</H2>
+        </TitleWrapper>
+        <PageDescription>{EventVolunteerPageInfo.description}</PageDescription>
+        <CommitteeInfoWrapper>
+          {EventVolunteerList.map((committee) => (
+            <CommitteeWrapper key={committee.name}>
               <Content>
                 <Title>{committee.name}</Title>
                 <Text>{committee.description}</Text>
