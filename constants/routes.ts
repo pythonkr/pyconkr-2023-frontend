@@ -21,7 +21,8 @@ const routeKeys = [
   'TIMETABLE',
   'CHILDCARE',
   'SPONSOR_EDIT',
-  'ORGANISING_COMMITTEE',
+  'ORGANIZING_TEAM',
+  'VOLUNTEER',
 ] as const;
 
 export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
@@ -105,9 +106,13 @@ export const Routes: { [key in (typeof routeKeys)[number]]: RouteType } = {
     title: '후원사 정보 수정',
     route: '/sponsor/edit',
   },
-  ORGANISING_COMMITTEE: {
+  ORGANIZING_TEAM: {
     title: '파이콘 한국 준비위원회',
     route: '/about/organizing-team',
+  },
+  VOLUNTEER: {
+    title: '자원봉사자',
+    route: '/about/volunteer',
   },
 };
 
@@ -117,7 +122,7 @@ export const SectionMenu: {
 }[] = [
   {
     label: '파이콘 한국',
-    items: [Routes.TICKET, Routes.ORGANISING_COMMITTEE],
+    items: [Routes.TICKET, Routes.ORGANIZING_TEAM, Routes.VOLUNTEER],
   },
   {
     label: '프로그램',
@@ -129,7 +134,6 @@ export const SectionMenu: {
       Routes.CHILDCARE,
     ],
   },
-  { label: '기여 안내', items: [Routes.FINANCIAL_AID] },
   {
     label: '후원 안내',
     items: [Routes.SPONSOR_INFO, Routes.PRIVATE_SPONSORS],
@@ -144,4 +148,5 @@ export const LinkMenu: RouteType[] = [
   // Routes.COC,
   // Routes.CFP_APPLY,
   // Routes.SPONSOR_JOIN,
+  Routes.FINANCIAL_AID,
 ];

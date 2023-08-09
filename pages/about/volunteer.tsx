@@ -64,7 +64,7 @@ const OrganisingCommittee = () => {
   return (
     <>
       <SeoHeader
-        title={Routes.ORGANISING_COMMITTEE.title}
+        title={Routes.VOLUNTEER.title}
         description="파이콘 한국 2023: 8월 11~13일 코엑스"
       />
       <Container>
