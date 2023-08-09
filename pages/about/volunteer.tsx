@@ -51,6 +51,7 @@ const Title = styled('div', {
   fontWeight: 600,
   bodyText: 1,
   padding: '0.2rem',
+  fontSize: 'large',
 });
 const Text = styled('div', {
   bodyText: 2,
