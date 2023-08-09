@@ -85,7 +85,7 @@ const KoreanContent = (
       </H2Container>
     </H1Container>
     <ApplyContainer>
-      <Link href="#" target="_blank">
+      <Link href="https://s3lnaf3pqyt.typeform.com/to/XlvqWfVW" target="_blank">
         <Button reversal>CoC 신고 양식 작성하기</Button>
       </Link>
     </ApplyContainer>
@@ -115,7 +115,7 @@ const EnglishContent = (
       </H2Container>
     </H1Container>
     <ApplyContainer>
-      <Link href="#" target="_blank">
+      <Link href="https://s3lnaf3pqyt.typeform.com/to/XlvqWfVW" target="_blank">
         <Button reversal>Submit CoC violation case report form</Button>
       </Link>
     </ApplyContainer>
