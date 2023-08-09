@@ -15,7 +15,7 @@ export const DevelopmentVolunteerPageInfo = {
 export const EventVolunteerPageInfo = {
   title: '행사 자원봉사자',
   description:
-    '파이콘 한국 2023 에서 행사진행을 위해 기여해주신 분들입니다. 파이콘 한국에 기여해주셔서 감사합니다. \n(가나다 순)',
+    '파이콘 한국 2023에서 행사 진행을 위해 기여해주신 분들입니다. 파이콘 한국에 기여해주셔서 감사합니다. \n(가나다 순)',
 };
 
 export const CommitteeList: CommitteeInfo[] = [
