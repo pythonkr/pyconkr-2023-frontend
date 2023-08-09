@@ -91,7 +91,7 @@ const ListItem = (props: SessionList) => {
       <ItemContainer>
         <ImageBox>
           <Image
-            src={props.user?.profile_img ?? '/images/Logo.png'}
+            src={props.host_profile_image ?? '/images/Logo.png'}
             width={100}
             height={100}
             alt={'profile image'}
