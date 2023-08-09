@@ -3,3 +3,8 @@ export interface CommitteeInfo {
   image?: string;
   description: string;
 }
+
+export interface VolunteerInfo {
+  name: string;
+  description: string;
+}
