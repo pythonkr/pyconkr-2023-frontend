@@ -79,7 +79,15 @@ const OrganisingCommittee = () => {
             <CommitteeWrapper key={committee.name}>
               <Content>
                 <Title>{committee.name}</Title>
-                <Text>{committee.description}</Text>
+                <Text>
+                  <a
+                    href={committee.description}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {committee.description}
+                  </a>
+                </Text>
               </Content>
             </CommitteeWrapper>
           ))}

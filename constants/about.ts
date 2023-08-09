@@ -172,10 +172,6 @@ export const DevelopmentVolunteerList: VolunteerInfo[] = [
 
 export const EventVolunteerList: VolunteerInfo[] = [
   {
-    name: '김보라',
-    description: '',
-  },
-  {
     name: '강은성',
     description: '',
   },
