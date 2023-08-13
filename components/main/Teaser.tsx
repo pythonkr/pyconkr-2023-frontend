@@ -73,8 +73,13 @@ const Teaser = () => {
       <Date>2023.08.11-13</Date>
       <Location>COEX 그랜드볼룸 & 아셈볼룸</Location>
       <Block css={{ marginTop: '16px' }}>
-        <Link href={Routes.TICKET.route}>
+        {/* <Link href={Routes.TICKET.route}>
           <LinkButton reversal>티켓 구매</LinkButton>
+        </Link> */}
+        <Link href="http://bit.ly/talk23" target="_blank">
+          <LinkButton reversal style={{ fontSize: '1.1rem' }}>
+            라이트닝 토크 신청
+          </LinkButton>
         </Link>
       </Block>
     </TextBox>
