@@ -61,7 +61,8 @@ export const CommitteeList: CommitteeInfo[] = [
   {
     name: 'golony6449',
     image: '/images/ot/박성흠.jpg',
-    description: '백엔드 개발을 하고 있습니다. 근데 이제 인프라를 곁들인',
+    description:
+      '백엔드 개발을 하고 있습니다. 근데 이제 인프라를 곁들인 https://github.com/golony6449',
   },
   { name: '배권한', image: undefined, description: '파이썬을 사랑합니다.' },
   { name: '심명진', image: undefined, description: '다시, 우리, 파이썬' },
@@ -92,7 +93,7 @@ export const CommitteeList: CommitteeInfo[] = [
   { name: '이현호', image: undefined, description: '다시, 우리, 파이썬' },
   {
     name: '정동규 / yummygyudon',
-    image: undefined,
+    image: '/images/ot/정동규.png',
     description: '🌟 동반 성장과 기여에 관심이 많은 학생입니다. 🌟',
   },
   {
