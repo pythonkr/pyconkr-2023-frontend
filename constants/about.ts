@@ -83,7 +83,10 @@ export const CommitteeList: CommitteeInfo[] = [
     description: 'LoveFrom / https://www.linkedin.com/in/woosublee',
   },
   { name: '이재준', image: undefined, description: '다시, 우리, 파이썬' },
-  { name: '이준원', image: undefined, description: '다시, 우리, 파이썬' },
+  { name: '이준원', 
+    image: '/images/ot/이준원.jpeg', 
+      description: 'https://github.com/cpprhtn' 
+  },
   {
     name: 'Han Lee | 이한결 (한결같은한결, 한결같은 개발자)',
     image: '/images/ot/이한결.jpg',
