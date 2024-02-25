@@ -76,11 +76,11 @@ const Teaser = () => {
         {/* <Link href={Routes.TICKET.route}>
           <LinkButton reversal>티켓 구매</LinkButton>
         </Link> */}
-        <Link href="http://bit.ly/talk23" target="_blank">
+        {/* <Link href="http://bit.ly/talk23" target="_blank">
           <LinkButton reversal style={{ fontSize: '1.1rem' }}>
             라이트닝 토크 신청
           </LinkButton>
-        </Link>
+        </Link> */}
       </Block>
     </TextBox>
   );
