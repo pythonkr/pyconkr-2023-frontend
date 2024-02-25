@@ -143,7 +143,7 @@ const EnglishContent = (
           equal qualifications.
         </H2P>
         <H2P>
-          However, this principle, &quot;Everybody pays&quot;, can be another
+          However, this principle, &quot;Everybody Pays&quot;, can be another
           discrimination to limit the participants as people who can pay their
           tickets.
         </H2P>
